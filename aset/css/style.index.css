@@ -1,0 +1,196 @@
+a { color: #cb0023; }
+.atas {
+	position: fixed;
+	top: 0px;left: 0px;right: 0px;
+	line-height: 75px;
+	border-bottom: 1px solid #777;
+	color: #fff;
+	z-index: 5;
+}
+.logoHome {
+	width: 18%;
+	float: left;
+	margin-left: 2.5%;
+}
+.bege {
+	position: absolute;
+	top: 0px;left: 0px;right: 0px;bottom: 0px;
+	background: rgba(0,0,0,0.6);
+}
+.pencarian {
+	float: left;
+	width: 32%;
+	margin-left: 2.5%;
+}
+.pencarian .box {
+	background: none;
+	border: none;
+	color: #fff;
+	font-size: 15px;
+	width: 82%;
+}
+.menu {
+	float: right;
+	margin-right: 2.5%;
+}
+.menu li {
+	float: left;
+	list-style: none;
+	padding: 1px 25px;
+	font-size: 15px;
+}
+.menu a {
+	text-decoration: none;
+	color: #fff;
+}
+.menu #cta {
+	background-color: #fff;
+	color: #e74c3c;
+	border-radius: 4px;
+	font-size: 15px;
+}
+.sub {
+	position: fixed;
+	top: 65px;right: 6%;
+	width: 13.5%;
+	border: 1px solid #777;
+	border-top: none;
+	top: -800px;
+	transition: 0.4s;
+	z-index: 2;
+}
+.sub li {
+	display: block;
+}
+.sub #icon {
+	display: inline-block;
+	width: 25px;
+}
+#adaSub { cursor: pointer; }
+#adaSub:hover .sub { top: 65px; }
+
+.container {
+	position: absolute;
+	top: 125px;left: 5%;right: 5%;
+	color: #fff;
+}
+.container h1 {
+	font-family: OBold;
+	font-size: 46px;
+}
+.container h2 {
+	font-family: OLight;
+	font-size: 20px;
+}
+.boxTengah {
+	background-color: #fff;
+	border-radius: 4px;
+}
+.boxTengah .box {
+	border: none;
+	border-radius: 0px;
+	border-bottom: 1px solid #ccc;
+	font-size: 15px;
+	width: 70%;
+}
+.pencarian .box { font-size: 13px; }
+.pencarian .box::-webkit-input-placeholder {
+	color: #fff;
+}
+select.box {
+	width: 100%;
+}
+.option {
+	width: 25%;
+	display: inline-block;
+}
+.boxTengah #search {
+	margin-top: 13px;
+	border-radius: 4px;
+	margin-left: 15px;
+	font-size: 15px;
+}
+
+.bawah {
+	position: absolute;
+	top: 100%;left: 0px;right: 0px;
+	background-color: #ecf0f1;
+}
+.bg {
+	z-index: 15;
+}
+.formPopup {
+	display: none;
+	position: fixed;
+	top: 130px;left: 35%;
+	width: 30%;
+	z-index: 15;
+	background-color: #fff;
+	color: #666;
+}
+#popupRegist { top: 90px; }
+.formPopup .wrap { margin: 7% 10% 9% 10%; }
+.formPopup .box {
+	padding: 0px;
+	width: 100%;
+	border-radius: 0px;
+	border: none;
+	border-bottom: 2px solid #ccc;
+	height: 55px;
+	font-size: 15px;
+}
+.formPopup .box:focus {
+	border-bottom: 2px solid rgba(203, 0, 25, 0.57);
+}
+.formPopup .bag-tombol {
+	margin: 4px 0px 20px 0px;
+}
+.formPopup .rata-kanan a {
+	text-decoration: none;
+	color: #777;
+}
+
+#tblMenu {
+	float: right;
+	margin-right: 2.5%;
+	font-size: 25px;
+	display: none;
+}
+
+@media (max-width: 720px) {
+	#tblMenu {
+		display: block;
+	}
+	.logoHome { width: 50%; }
+	.menu {
+		position: fixed !important;
+		transition: 0.45s;
+		top: 75px;left: 0px;right: 0px;bottom: 0px;
+		float: none;
+		left: 100%;
+		background-color: #fff;
+		margin: 0;
+	}
+	.menu a {
+		color: #cb0029;
+	}
+	.menu li {
+		display: block;
+		list-style: none;
+	}
+	#cta { margin-left: 6%; }
+
+	.container h1 {
+		font-size: 30px;
+	}
+	.option:nth-child(1) {
+		float: none;
+		width: 100%;
+	}
+	.option:nth-child(2),.option:nth-child(3) {
+		display: none;
+	}
+	.formPopup {
+		width: 80%;left: 10%;
+	}
+}

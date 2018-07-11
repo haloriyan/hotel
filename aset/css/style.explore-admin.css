@@ -1,0 +1,136 @@
+body { background-color: #ecf0f1; }
+.kiri {
+	position: fixed;
+	top: 125px;left: 2.5%;
+	width: 25%;
+}
+.kiri .listWizard {
+	line-height: 60px;
+	background-color: #fff;
+	padding-left: 20px;
+	padding-right: 20px;
+	font-size: 16px;
+	font-family: OLight;
+	cursor: pointer;
+}
+.kiri a { color: #444;text-decoration: none; }
+.kiri div[aktif=ya] {
+	background-color: #cb0023;
+	color: #fff;
+	font-family: OBold;
+}
+.form {
+	position: absolute;
+	top: 125px;right: 2.5%;
+	left: 30%;
+}
+.form .box {
+	border-radius: 0px;
+	border: none;
+	border-bottom: 1px solid #ccc;
+	padding: 0px;
+	font-size: 16px;
+	height: 60px;
+	width: 100%;
+}
+input[type=file].box {
+	padding-top: 10px;
+	padding-bottom: 0px;
+}
+.isi {
+	font-size: 15px;
+	font-family: OLight;
+	margin: 17px 0px 6px 0px;
+}
+.form .box:focus { border-bottom: 1px solid #cb0023; }
+#description { height: 120px; }
+.bagForm {
+	background-color: #fff;
+	border: 1px solid #ccc;
+	margin-bottom: 29px;
+}
+.bagForm h4 {
+	color: #cb0023;
+}
+
+.bagForm .ket {
+	font-size: 12px;
+	font-family: OLight;
+}
+.bagForm label {
+	font-family: OLight;
+}
+.container {
+	left: 30%;width: 65%;
+}
+.container,.container .bagian {
+	background-color: #fff;
+	color: #444;
+	border: 1px solid #ccc;
+	margin-bottom: 25px;
+}
+.bagForm #icon,.container #icon {
+	background-color: #cb0023;
+	color: #fff;
+	width: 40px;
+	line-height: 40px;
+	text-align: center;
+	display: inline-block;
+	border-radius: 90px;
+	margin-right: 15px;
+}
+
+#eventImages,#contactInformation,#location,#eventDetail,#pricePromotion {
+	display: none;
+}
+
+.bege {
+	position: fixed;
+	top: 0px;left: 0px;right: 0px;bottom: 0px;
+	background: rgba(0,0,0,0.4);
+	z-index: 5;
+	display: none;
+}
+.notif {
+	display: none;
+	position: fixed;
+	top: 170px;left: 30%;right: 30%;
+	z-index: 5;
+	background-color: #fff;
+}
+.notif h3 {
+	margin: 0;
+	line-height: 50px;
+	margin-bottom: 22px;
+}
+.notif {
+	font-size: 20px;
+	font-family: OLight;
+	line-height: 38px;
+}
+
+.save {
+	width: 50px;
+	height: 45px;
+	border: none;
+}
+.pencarian {
+	display: none;
+	width: 20%;
+}
+
+@media (max-width: 720px) {
+	.menuMob {
+		position: fixed;
+		top: 75px;right: 0px;
+	}
+	.kiri {
+		display: none;
+	}
+	.form {
+		left: 5%;width: 90%;top: 100px;
+	}
+	.notif {
+		left: 10%;right: 10%;
+	}
+}

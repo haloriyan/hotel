@@ -1,0 +1,19 @@
+.container {
+	position: absolute;
+	top: 120px;left: 35%;right: 35%;
+	box-shadow: 1px 1px 1px 1px #ccc;
+	color: #454545;
+}
+.container .top .wrap { margin-top: 0px; }
+.container p {
+	font-size: 18px;
+	line-height: 33px;
+}
+.container i.fa-check { color: #2ecc71; }
+a { color: #cb0023; }
+
+@media (max-width: 720px) {
+	.container {
+		left: 10%;right: 10%;
+	}
+}

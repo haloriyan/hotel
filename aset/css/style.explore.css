@@ -1,0 +1,189 @@
+body { background-color: #ecf0f1; }
+.kiri {
+	position: fixed;
+	top: 82px;left: 0px;bottom: 0px;
+	width: 30%;
+	background-color: #fff;
+	color: #454545;
+	border-right: 1px solid #ccc;
+}
+.kiri h2 {
+	text-align: center;
+	font-size: 22px;
+	font-family: OBold;
+	margin-top: 24px;
+}
+.kiri h4 {
+	text-align: center;
+	font-family: OLight;
+	font-weight: lighter;
+	margin-top: 0px;
+}
+.kiri .box {
+	font-size: 15px;
+	border-radius: 0px;
+	border: none;
+	border-bottom: 1px solid #ccc;
+	padding: 0px;
+	height: 55px;
+	width: 99%;
+}
+.kiri .box:focus {
+	border-bottom: 1px solid #cb0023;
+}
+.label {
+	display: inline-block;
+	width: 45%;
+	line-height: 40px;
+}
+.kiri .bag-tombol button {
+	font-size: 14px;
+}
+
+#filter {
+	overflow: auto;
+	height: 405px;
+}
+
+.container {
+	position: absolute;
+	top: 82px;right: 0px;left: 30%;
+	color: #444;
+	width: 70%;
+}
+
+.listHotel {
+	width: 47.5%;
+	display: inline-block;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	margin: 5px 8px;
+	margin-bottom: 19px;
+}
+.listHotel img {
+	width: 100%;
+	height: 180px;
+}
+.listHotel .ketBuka {
+	position: relative;
+	top: -185px;
+	height: 180px;
+	background: rgba(0,0,0,0.34);
+	text-align: left;
+}
+.ketBuka #open {
+	margin: 5% 0% 5% 5%;
+	border: 1px solid #fff;
+	color: #fff;
+	display: inline-block;
+	width: 65px;
+	line-height: 37px;
+	font-size: 15px;
+	border-radius: 4px;
+	text-align: center;
+}
+.ketHotel {
+	margin-top: -180px;
+}
+.ketHotel h4 {
+	margin: 0;
+	margin-top: -35px;
+	font-size: 18px;
+}
+.ketHotel p {
+	color: #999;
+	font-size: 15px;
+}
+#iconHotel {
+	width: 100px;
+	height: 100px;
+	border-radius: 120px;
+	position: relative;
+	top: -50px;
+}
+
+.list {
+	width: 28%;
+	float: left;
+	margin: 5px 2.5%;
+	height: 250px;
+	cursor: pointer;
+}
+.list img {
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+.list .ket {
+	text-align: left;
+	position: relative;
+	top: -255px;
+	height: 250px;
+	background: rgba(209, 0, 20, 0.35);
+	color: #fff;
+	z-index: 1;
+	padding-top: 1px;
+}
+.ket #iconKet {
+	font-size: 28px;
+}
+.ket #keterangan {
+	margin-top: 40%;
+}
+.ket #hosted {
+	background-color: #fff;
+	padding: 1px;
+	color: #454545;
+	height: 65px;
+	line-height: 45px;
+}
+.ket #hosted img {
+	width: 40px;
+	height: 40px;
+	border-radius: 45px;
+}
+#namaHotel {
+	margin-left: 5%;
+	float: left;
+}
+
+#tblMenu { display: none; }
+
+@media (max-width: 720px) {
+	.kiri {
+		display: none;
+	}
+	.container {
+		left: 0%;
+		width: 100%;
+	}
+	.menuMob {
+		position: fixed !important;
+		transition: 0.45s;
+		top: 75px;left: 0px;right: 0px;bottom: 0px;
+		float: none;
+		left: 100%;
+		background-color: #fff;
+		margin: 0;
+	}
+	.menuMob a {
+		color: #cb0029;
+	}
+	.menuMob li {
+		display: block;
+		list-style: none;
+	}
+	#cta { margin-left: 6%;background-color: #cb0029; }
+	#tblMenu {
+		display: block;
+		float: right;
+		margin-right: 2.5%;
+		font-size: 25px;
+	}
+
+	.listHotel,.list {
+		width: 94%;
+		float: none;
+		display: block;
+	}
+}

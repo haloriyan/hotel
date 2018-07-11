@@ -1,0 +1,100 @@
+body { background-color: #fff; }
+.bawah {
+	color: #444;
+	top: 90px;left: 0px;right: 0px;
+}
+.bawah > .wrap > h4 {
+	font-family: OLight;
+	font-weight: lighter;
+	color: #cb0023;
+	font-size: 18px;
+}
+.bawah > .wrap > h2 {
+	font-size: 30px;
+	font-family: OBold;
+	margin-top: -10px;
+}
+.list {
+	width: 28%;
+	display: inline-block;
+	margin: 5px 10px;
+	height: 250px;
+	cursor: pointer;
+}
+.listHotel {
+	width: 31.3%;
+	display: inline-block;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	margin: 5px 8px;
+}
+.list img {
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+.listHotel img {
+	width: 100%;
+	height: 180px;
+}
+.list .ket {
+	text-align: left;
+	position: relative;
+	top: -255px;
+	height: 250px;
+	background: rgba(209, 0, 20, 0.35);
+	color: #fff;
+	z-index: 1;
+	padding-top: 1px;
+}
+.ket #iconKet {
+	font-size: 28px;
+}
+.ket #keterangan {
+	margin-top: 40%;
+}
+#iconHotel {
+	width: 100px;
+	height: 100px;
+	border-radius: 120px;
+	position: relative;
+	top: -50px;
+}
+.listHotel .ketBuka {
+	position: relative;
+	top: -185px;
+	height: 180px;
+	background: rgba(0,0,0,0.34);
+	text-align: left;
+}
+.ketBuka #open {
+	margin: 5% 0% 5% 5%;
+	border: 1px solid #fff;
+	color: #fff;
+	display: inline-block;
+	width: 65px;
+	line-height: 37px;
+	font-size: 15px;
+	border-radius: 4px;
+	text-align: center;
+}
+.ketHotel {
+	margin-top: -180px;
+}
+.ketHotel h4 {
+	margin: 0;
+	margin-top: -35px;
+	font-size: 18px;
+}
+.ketHotel p {
+	color: #999;
+	font-size: 15px;
+}
+
+@media (max-width: 720px) {
+	.list,.listHotel {
+		display: block;
+		width: 94%;
+		margin-bottom: 25px;
+	}
+}

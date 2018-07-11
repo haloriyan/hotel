@@ -1,0 +1,116 @@
+body { background-color: #ecf0f1; }
+.cover,.bege {
+	position: absolute;
+	top: 0px;left: 0px;right: 0px;bottom: 25%;
+}
+.bege { background: rgba(0,0,0,0.65);z-index: 1; }
+.cover img {
+	width: 100%;
+	height: 100%;
+}
+.bawah {
+	position: absolute;
+	top: 75%;left: 0px;right: 0px;
+	background-color: #ecf0f1;
+	z-index: 2;
+}
+.bawah .nav {
+	background-color: #fff;
+	border-bottom: 1px solid #ccc;
+}
+.nav .wrap { margin-top: 0px;margin-bottom: 0px; }
+.nav .iconHotel {
+	width: 125px;
+	height: 125px;
+	margin-top: -65px;
+	border: 6px solid #fff;
+}
+.nav .ketHotel {
+	display: inline-block;
+	margin-left: 2.5%;
+	color: #444;
+}
+.ketHotel h2 {
+	margin-bottom: -5px;
+	font-size: 20px;
+}
+.ketHotel p {
+	font-size: 15px;
+	margin-bottom: 25px;
+}
+.nav .menuHotel {
+	float: right;
+	line-height: 97px;
+}
+.menuHotel li {
+	display: inline-block;
+	padding: 1px 25px;
+	font-size: 14px;
+}
+.tot {
+	display: inline-block;
+	border: 1px solid #555;
+	width: 30px;
+	text-align: center;
+	line-height: 30px;
+	border-radius: 40px;
+	font-size: 10px;
+	margin-left: 10px;
+}
+.menuHotel a {
+	color: #999;
+	text-decoration: underline;
+}
+.menuHotel .active {
+	color: #555;
+	border-bottom: 1px solid #cb0023;
+}
+.bawahe {
+	margin-top: 25px;
+}
+.bawahe .bagian {
+	border: 1px solid #ccc;
+	background-color: #fff;
+	width: 100%;
+	margin-bottom: 30px;
+	margin-left: 10px;
+	margin-right: 10px;
+	color: #555;
+}
+#bawahKiri,#bawahKanan { width: 49%; }
+.bagian h3 {
+	font-size: 16px;
+}
+.bagian p {
+	font-family: OLight;
+	line-height: 32px;
+}
+.open h3 {
+	display: inline-block;
+}
+.open .openHours {
+	display: inline-block;
+	text-align: right;
+	width: 85%;
+}
+.imgCollection img {
+	width: 32.5%;
+	height: 150px;
+}
+.listFac {
+	display: inline-block;
+	width: 49.2%;
+	margin-bottom: 20px;
+}
+
+@media (max-width: 720px) {
+	.bawahe .bagian,.openHours {
+		float: none;
+		width: 95%;
+		display: block;
+	}
+	.nav .menuHotel {
+		float: none;
+	}
+	
+}
