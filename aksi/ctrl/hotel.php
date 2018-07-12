@@ -67,6 +67,12 @@ class hotel extends user {
 				  ->eksekusi();
 		return $q;
 	}
+
+	public function infoFac($id, $struktur) {
+		$q = $this->tabel("facility")->pilih()->dimana(["idfacility" => $id])->eksekusi();
+		$r = $this->ambil($q);
+		return $r[$struktur];
+	}
 }
 
 $hotel = new hotel();

@@ -161,36 +161,19 @@ $namaPertama = explode(" ", $nama)[0];
 				<div class="bagian facilities">
 					<div class="wrap">
 						<h3><i class="fa fa-times-square"></i> &nbsp; Facilities</h3>
-						<div class="listFac">
-							<div class="tot"><i class="fa fa-wifi"></i></div>
-							&nbsp;
-							Wireless Internet
-						</div>
-						<div class="listFac">
-							<div class="tot"><i class="fa fa-car"></i></div>
-							&nbsp;
-							Parking Street
-						</div>
-						<div class="listFac">
-							<div class="tot"><i class="fa fa-magic"></i></div>
-							&nbsp;
-							Smoking Allowed
-						</div>
-						<div class="listFac">
-							<div class="tot"><i class="fa fa-credit-card"></i></div>
-							&nbsp;
-							Accepts Credit Cards
-						</div>
-						<div class="listFac">
-							<div class="tot"><i class="fa fa-bicycle"></i></div>
-							&nbsp;
-							Bike Parking
-						</div>
-						<div class="listFac">
-							<div class="tot"><i class="fa fa-tags"></i></div>
-							&nbsp;
-							Coupons
-						</div>
+						<?php
+						$myFac = $hotel->get($idhotel, "facility");
+						$fac = explode(",", $myFac);
+						foreach ($fac as $key => $value) {
+							$nama = $hotel->infoFac($value, "nama");
+							$icon = $hotel->infoFac($value, "icon");
+							echo "<div class='listFac'>".
+									"<div class='tot'><i class='".$icon."'></i></div>".
+									"&nbsp; ".
+									$nama.
+								 "</div>";
+						}
+						?>
 					</div>
 				</div>
 			</div>	

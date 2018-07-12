@@ -25,4 +25,23 @@ if($bag == "detil") {
 
 	$hotel->change($idhotel, "icon", $icon);
 	$hotel->change($idhotel, "cover", $cover);
+}else if($bag == "facility") {
+	$idfac = $_POST['idfac'];
+	$myFac = $hotel->get($sesi, "facility");
+	$fac = explode(",", $myFac);
+	if(in_array($idfac, $fac)) {
+		foreach ($fac as $key => $value) {
+			if($idfac == $fac[$key]) {
+				unset($fac[$key]);
+			}
+			$baru = implode(",", $fac);
+		}
+	}else {
+		if($myFac != "") {
+			$baru = $myFac.",".$idfac;
+		}else {
+			$baru = $idfac;
+		}
+	}
+	$hotel->change($idhotel, "facility", $baru);
 }

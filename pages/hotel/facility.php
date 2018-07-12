@@ -14,6 +14,9 @@ $facility = [
 	"6" => "Coupons"
 ];
 
+$myFacility = $hotel->get($sesi, "facility");
+$fac = explode(",", $myFacility);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,6 +29,14 @@ $facility = [
 	<link href='../aset/css/style.index.css' rel='stylesheet'>
 	<link href="../aset/css/style.explore-admin.css" rel="stylesheet">
 	<style>
+		#saved {
+			padding: 15px 35px;
+			background: rgba(76, 175, 80, 0.85);
+			color: #fff;
+			margin-bottom: -35px;
+			margin-top: 10px;
+			display: none;
+		}
 	</style>
 </head>
 <body>
@@ -46,10 +57,11 @@ $facility = [
 </div>
 
 <div class="kiri">
-	<div class="listWizard" aktif="ya">Dashboard</div>
+	<div class="listWizard">Dashboard</div>
 	<a href="./listing"><div class="listWizard">My Listings</div></a>
 	<a href="./detail"><div class="listWizard">Detail Information</div></a>
 	<a href="./social"><div class="listWizard">Social Network</div></a>
+	<a href="./facility"><div class="listWizard" aktif="ya">Facility</div></a>
 	<a href="./logout"><div class="listWizard">Logout</div></a>
 </div>
 
@@ -67,33 +79,46 @@ $facility = [
 				<tbody>
 					<?php
 					foreach ($facility as $key => $value) {
+						if(in_array($key, $fac)) {
+							$checked = "checked";
+						}else {
+							$checked = "";
+						}
 						echo "<tr>".
-								"<td><input type='checkbox' name='facilities' class='fac' value='".$key."' id='facilities".$key."'></span></td>".
+								"<td><input type='checkbox' name='facilities' class='fac' value='".$key."' id='facilities".$key."' onclick='save(this.value)' ".$checked."></span></td>".
 								"<td><label for='facilities".$key."'>".$value."</label></td>".
 							 "</tr>";
 					}
 					?>
 				</tbody>
 				</table>
-			<button class="ke-kanan tbl merah-2">Save</button>
+			<div id="saved">
+				<i class="fa fa-check"></i> &nbsp;Saved
+			</div>
 			<br /><br />
 		</div>
 	</form>
 </div>
 
 <script src="../aset/js/embo.js"></script>
+<script src="../aset/js/jquery-3.1.1.js"></script>
 <script>
 	klik("#cta", function() {
 		mengarahkan("./add-listing")
 	})
 	pilih("#formFac").onsubmit = function() {
-		let checkArr = [];
-		let check = pilih(".fac:checked")
-		for(i = 0; i < check.length; i++) {
-			checkArr.push(check[i].value)
-		}
-		console.log(checkArr)
+		let tes = $("input[name=facilities]").val()
+		console.log(tes)
 		return false
+	}
+	function save(val) {
+		let save = "idfac="+val+"&bag=facility"
+		pos("../aksi/hotel/edit.php", save, function() {
+			muncul("#saved")
+			setTimeout(function() {
+				hilang("#saved")
+			}, 1200)
+		})
 	}
 </script>
 
