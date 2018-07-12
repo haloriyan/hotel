@@ -24,49 +24,8 @@ $namaPertama = explode(" ", $nama)[0];
 	<link href="../aset/css/bootstrap.min.css">
 	<link href="../aset/css/style.index.css" rel="stylesheet">
 	<link href="../aset/css/style.profile.css" rel="stylesheet">
+	<link href="../aset/css/tambahanProfile.css" rel="stylesheet">
 	<script src="../aset/js/embo.js"></script>
-	<style>
-		.bg { z-index: 5; }
-		.popup { z-index: 5; }
-		#socialNetwork a {
-			color: #555;
-			text-decoration: none;
-		}
-		.galeri {
-			width: 31.25%;
-			text-align: center;
-			display: inline-block;
-			margin: 0px 10px;
-			margin-bottom: 20px;
-		}
-		.galeri img {
-			width: 100%;
-			height: 200px;
-		}
-		.galeri:nth-child(1),.galeri:nth-child(3n + 1) { margin-left: 0px; }
-		.galeri:nth-child(3n) { margin-right: 0px; }
-		.galeri li {
-			background: rgba(0,0,0,0.6);
-			cursor: pointer;
-			display: inline-block;
-			margin-top: -155px;
-			position: relative;
-			top: -35px;
-			color: #fff;
-			opacity: 0.01;
-			padding: 8px 0px;
-			width: 100%;
-		}
-		.galeri:hover li { opacity: 1; }
-		#galeries { display: none; }
-		#popupSeeImage {
-			width: 90%;left: 5%;
-		}
-		#popupSeeImage img {
-			width: 60%;
-		}
-		#popupSeeImage .popup { background: none;color: #fff; }
-	</style>
 </head>
 <body>
 
@@ -187,7 +146,7 @@ $namaPertama = explode(" ", $nama)[0];
 				<div class="bagian galeriBag">
 					<div class="wrap">
 						<h3><i class="fa fa-image"></i> &nbsp; Galeri
-							<a id="allGallery" class="ke-kanan" style="font-family: OLight;">see more images</a>
+							<a id="allGallery" class="ke-kanan" style="font-family: OLight;cursor: pointer;">see more images</a>
 						</h3>
 						<div class="imgCollection">
 							<?php
@@ -276,83 +235,7 @@ $namaPertama = explode(" ", $nama)[0];
 	</div>
 </div>
 
-<script>
-	function loadGaleri() {
-		ambil("../aksi/galeri/loadHotel2.php", function(res) {
-			tulis("#loadGaleri", res)
-		})
-	}
-
-	function fadeOut(el) {
-		let op = 1;
-		let element = pilih(el)
-		let timer = setInterval(function() {
-			if(op <= 0.01) {
-				clearInterval(timer)
-				element.style.display = "none"
-			}
-			element.style.opacity = op
-			element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-        	op -= op * 0.1;
-		}, 50)
-	}
-	function seeImage(val) {
-		munculPopup("#popupSeeImage", pengaya("#popupSeeImage", "top: 40px"))
-		pilih("#seeImage").setAttribute("src", "../aset/gbr/"+val)
-	}
-	window.addEventListener("scroll", function() {
-		var skrol = window.pageYOffset
-		if(skrol >= 40) {
-			pengaya(".atas", "background: #cb0029")
-		}else {
-			pengaya(".atas", "background: none")
-		}
-	})
-	klik("#tblMenu", function() {
-		let tbl = pilih("#tblMenu")
-		let aksi = tbl.getAttribute("aksi")
-		if(aksi == "bkMenu") {
-			pengaya(".menu", "left: 0%")
-			tbl.setAttribute("aksi", "xMenu")
-		}else {
-			pengaya(".menu", "left: 100%")
-			tbl.setAttribute("aksi", "bkMenu")
-		}
-	})
-
-	klik("#tblLogin", function() {
-		muncul(".bg")
-		muncul("#formLogin")
-	})
-	submit("#formSignIn", function() {
-		let email = pilih("#mailLog").value
-		let pwd = pilih("#pwdLog").value
-		let log = "email="+email+"&pwd="+pwd
-		if(email == "" || pwd == "") {
-			return false
-		}
-		pos("../aksi/user/login.php", log, function() {
-			location.reload()
-		})
-		return false
-	})
-	klik("#allGallery", function() {
-		scrollKe("#galeries")
-		muncul("#galeries")
-		hilang("#bawahKanan")
-		hilang("#bawahKiri")
-		loadGaleri()
-	})
-	klik("#xGaleri", function() {
-		hilang("#galeries")
-		muncul("#bawahKiri")
-		muncul("#bawahKanan")
-	})
-
-	tekan("Escape", function() {
-		hilangPopup("#popupSeeImage")
-	})
-</script>
+<script src="../aset/js/profileHotel.js"></script>
 
 </body>
 </html>
