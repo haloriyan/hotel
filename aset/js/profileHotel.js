@@ -105,4 +105,5 @@ klik("#xSeeImg", function() {
 })
 tekan("Escape", function() {
 	hilangPopup("#popupSeeImage")
+	hilang("#formLogin")
 })
