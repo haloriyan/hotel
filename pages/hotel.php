@@ -1,6 +1,8 @@
 <?php
 include 'aksi/ctrl/social.php';
 
+setcookie('idhotel', $idhotel, time() + 3900, "/");
+
 $namaHotel = $hotel->get($idhotel, "nama");
 $address = $hotel->get($idhotel, "address");
 $city = $hotel->get($idhotel, "city");
@@ -11,6 +13,8 @@ $website = $hotel->get($idhotel, "website");
 $sesi = $user->sesi();
 $nama = $user->info($sesi, "nama");
 $namaPertama = explode(" ", $nama)[0];
+
+$totExplore = $ctrl->hitung($ctrl->tabel("event")->pilih()->dimana(["idhotel" => $idhotel])->eksekusi());
 
 ?>
 <!DOCTYPE html>
@@ -24,6 +28,7 @@ $namaPertama = explode(" ", $nama)[0];
 	<link href="../aset/css/bootstrap.min.css">
 	<link href="../aset/css/style.index.css" rel="stylesheet">
 	<link href="../aset/css/style.profile.css" rel="stylesheet">
+	<link href="../aset/css/style.explore.css" rel="stylesheet">
 	<link href="../aset/css/tambahanProfile.css" rel="stylesheet">
 	<script src="../aset/js/embo.js"></script>
 </head>
@@ -71,16 +76,30 @@ $namaPertama = explode(" ", $nama)[0];
 				</p>
 			</div>
 			<div class="menuHotel">
-				<a href="#"><li class="active">Profile</li></a>
-				<a href="#"><li>Reviews <div class="tot">0</div></li></a>
-				<a href="#"><li>Explore <div class="tot">10</div></li></a>
-				<a href="#"><li>Rent <div class="tot">4</div></li></a>
+				<a href="#profiles"><li id="showprofiles" aktif="ya">Profile</li></a>
+				<a href="#"><li id="showreviews">Reviews <div class="tot">0</div></li></a>
+				<a href="#explores"><li id="showexplores">Explore <div class="tot"><?php echo $totExplore; ?></div></li></a>
+				<a href="#"><li id="showrents">Rent <div class="tot">4</div></li></a>
 			</div>
 		</div>
 	</div>
 	<div class="bawahe">
 		<div class="wrap">
-			<div id="galeries">
+			<div class="hiddenBawah" id="rents">
+				<div class="wrap">
+					<h3>Rents</h3>
+				</div>
+			</div>
+			<div class="hiddenBawah" id="reviews">
+				<div class="wrap">
+					<h3>Reviews</h3>
+				</div>
+			</div>
+			<div class="hiddenBawah" id="explores">
+				<h3>Explore</h3>
+				<div id="loadExplore"></div>
+			</div>
+			<div class="hiddenBawah" id="galeries">
 				<div class="wrap">
 					<h2>
 						Gallery
@@ -89,6 +108,7 @@ $namaPertama = explode(" ", $nama)[0];
 					<div id="loadGaleri"></div>
 				</div>
 			</div>
+			<div id="profiles">
 			<div class="ke-kiri" id="bawahKiri">
 				<div class="bagian">
 					<div class="wrap">
@@ -177,6 +197,7 @@ $namaPertama = explode(" ", $nama)[0];
 					</div>
 				</div>
 			</div>	
+			</div>
 		</div>
 	</div>
 </div>

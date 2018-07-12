@@ -61,7 +61,7 @@ body { background-color: #ecf0f1; }
 	color: #999;
 	text-decoration: underline;
 }
-.menuHotel .active {
+.menuHotel li[aktif=ya] {
 	color: #555;
 	border-bottom: 1px solid #cb0023;
 }

@@ -1,7 +1,7 @@
 <?php
-include 'hotel.php';
+include 'event.php';
 
-class social extends hotel {
+class social extends event {
 	public function test() {
 		return 'Hello embo!';
 	}

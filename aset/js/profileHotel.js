@@ -3,6 +3,11 @@ function loadGaleri() {
 		tulis("#loadGaleri", res)
 	})
 }
+function loadExplore() {
+	ambil("../aksi/hotel/ourEvent.php", function(res) {
+		tulis("#loadExplore", res)
+	})
+}
 
 function fadeOut(el) {
 	let op = 1;
@@ -21,6 +26,22 @@ function seeImage(val) {
 	munculPopup("#popupSeeImage", pengaya("#popupSeeImage", "top: 40px"))
 	pilih("#seeImage").setAttribute("src", "../aset/gbr/"+val)
 }
+function gantiMenu(kecuali) {
+	pilih("#showexplores").setAttribute("aktif", "tidak")
+	pilih("#showreviews").setAttribute("aktif", "tidak")
+	pilih("#showrents").setAttribute("aktif", "tidak")
+	pilih("#showprofiles").setAttribute("aktif", "tidak")
+
+	hilang("#explores")
+	hilang("#galeries")
+	hilang("#profiles")
+	hilang("#reviews")
+	hilang("#rents")
+
+	muncul("#"+kecuali)
+	pilih("#show"+kecuali).setAttribute("aktif", "ya")
+}
+
 window.addEventListener("scroll", function() {
 	var skrol = window.pageYOffset
 	if(skrol >= 40) {
@@ -63,6 +84,17 @@ klik("#allGallery", function() {
 	hilang("#bawahKiri")
 	loadGaleri()
 })
+klik("#showexplores", function() {
+	scrollKe("#explores")
+	gantiMenu("explores")
+	loadExplore()
+})
+klik("#showprofiles", function() {
+	scrollKe("#profiles")
+	gantiMenu("profiles")
+	loadExplore()
+})
+
 klik("#xGaleri", function() {
 	hilang("#galeries")
 	muncul("#bawahKiri")

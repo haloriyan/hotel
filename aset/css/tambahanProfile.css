@@ -31,7 +31,13 @@
 	width: 100%;
 }
 .galeri:hover li { opacity: 1; }
-#galeries { display: none; }
+.hiddenBawah {
+	background-color: #fff;
+	padding: 1px;
+	border: 1px solid #ccc;
+	display: none;
+	color: #454545;
+}
 #popupSeeImage {
 	width: 90%;left: 5%;
 }
@@ -39,3 +45,15 @@
 	width: 60%;
 }
 #popupSeeImage .popup { background: none;color: #fff; }
+
+#explores {
+	background: none;
+	border: none;
+}
+
+.list {
+	width: 32%;
+}
+.list:nth-child(1) {
+	margin-left: 0px;
+}

@@ -71,6 +71,17 @@ class event extends hotel {
 		$q = $this->tabel("event")->hapus()->dimana(["idevent" => $id])->eksekusi();
 		return $q;
 	}
+	public function ourEvent($id) {
+		$q = $this->tabel("event")->pilih()->dimana(["idhotel" => $id])->eksekusi();
+		if($this->hitung($q) == 0) {
+			return "null";
+		}else {
+			while($r = $this->ambil($q)) {
+				$hasil[] = $r;
+			}
+			return $hasil;
+		}
+	}
 }
 
 $event = new event();

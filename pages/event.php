@@ -155,60 +155,15 @@ $iconHotel = $hotel->get($idhotel, "icon");
 				</div>
 				<div class="bagian hosted">
 					<div class="wrap">
+						<a href="../hotel/<?php echo $idhotel; ?>" style="color: #444;text-decoration: none;">
 						<h3><i class="fa fa-map-marker"></i> &nbsp; Hosted by</h3>
 						<p>
 							<img src="../aset/gbr/<?php echo $iconHotel; ?>" class="iconHotel"><br />
 							<span><?php echo $namaHotel; ?></span>
 						</p>
+						</a>
 					</div>
 				</div>
-				<!--
-				<div class="bagian galeri">
-					<div class="wrap">
-						<h3><i class="fa fa-image"></i> &nbsp; Galeri</h3>
-						<div class="imgCollection">
-							<img src="../aset/gbr/gedang.jpg">
-							<img src="../aset/gbr/squid.jpg">
-							<img src="../aset/gbr/upin.jpeg">
-						</div>
-					</div>
-				</div>
-				<div class="bagian facilities">
-					<div class="wrap">
-						<h3><i class="fa fa-times-square"></i> &nbsp; Facilities</h3>
-						<div class="listFac">
-							<div class="tot"><i class="fa fa-wifi"></i></div>
-							&nbsp;
-							Wireless Internet
-						</div>
-						<div class="listFac">
-							<div class="tot"><i class="fa fa-car"></i></div>
-							&nbsp;
-							Parking Street
-						</div>
-						<div class="listFac">
-							<div class="tot"><i class="fa fa-magic"></i></div>
-							&nbsp;
-							Smoking Allowed
-						</div>
-						<div class="listFac">
-							<div class="tot"><i class="fa fa-credit-card"></i></div>
-							&nbsp;
-							Accepts Credit Cards
-						</div>
-						<div class="listFac">
-							<div class="tot"><i class="fa fa-bicycle"></i></div>
-							&nbsp;
-							Bike Parking
-						</div>
-						<div class="listFac">
-							<div class="tot"><i class="fa fa-tags"></i></div>
-							&nbsp;
-							Coupons
-						</div>
-					</div>
-				</div>
-			-->
 			</div>	
 		</div>
 	</div>
@@ -315,6 +270,10 @@ $iconHotel = $hotel->get($idhotel, "icon");
 		let book = "tgl="+tgl
 		alert(book)
 		return false
+	})
+
+	tekan("Escape", function() {
+		hilangPopup("#popupBook")
 	})
 </script>
 
