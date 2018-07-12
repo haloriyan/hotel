@@ -149,7 +149,7 @@ $namaPertama = explode(" ", $name)[0];
 
 	loadHotel()
 
-	let allowed = ["jpg","jpeg","png","bmp"]
+	let allowed = ["jpg","jpeg","png","bmp","JPG","PNG","JPEG","BMP"]
 	klik("#cta", function() {
 		mengarahkan("./add-listing")
 	})
