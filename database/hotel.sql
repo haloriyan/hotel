@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2018 at 03:34 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.3
+-- Generation Time: 13 Jul 2018 pada 04.01
+-- Versi Server: 10.1.30-MariaDB
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE `admin` (
@@ -36,17 +36,16 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `admin`
+-- Dumping data untuk tabel `admin`
 --
 
 INSERT INTO `admin` (`idadmin`, `username`, `password`, `added`) VALUES
-(1, 'adm00n', 'inikatasandi', 0),
-(308, 'riyan', 'inikatasandi', 1530460902);
+(1, 'adm00n', 'inikatasandi', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `booking`
+-- Struktur dari tabel `booking`
 --
 
 CREATE TABLE `booking` (
@@ -62,12 +61,13 @@ CREATE TABLE `booking` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `event`
+-- Struktur dari tabel `event`
 --
 
 CREATE TABLE `event` (
   `idevent` int(11) NOT NULL,
   `idhotel` int(11) NOT NULL,
+  `id_resto` int(11) NOT NULL,
   `title` varchar(55) NOT NULL,
   `tagline` varchar(100) NOT NULL,
   `description` text NOT NULL,
@@ -84,20 +84,20 @@ CREATE TABLE `event` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `event`
+-- Dumping data untuk tabel `event`
 --
 
-INSERT INTO `event` (`idevent`, `idhotel`, `title`, `tagline`, `description`, `logo`, `cover`, `region`, `address`, `tgl_mulai`, `tgl_akhir`, `tgl_posted`, `category`, `price`, `added`) VALUES
-(314660, 684889, 'Test Parties', 'hello world', 'Halo dunia', 'Screenshot (16).png', 'Screenshot (16).png', 'Surabaya', 'Jl. Bintang Diponggo Kav. 855, Surabaya', '2018-07-13', '0000-00-00', '2018-07-07 14:19:15', 'Parties', 0, 1530947955),
-(448995, 368862, 'Ujian Nasional bersama Pakde Karwo', 'SMK Bisa!!', 'Mari kita sukseskan gerakan Ujian Nasional bersama Pakde Karwo yang digagas oleh SMK Negeri 2 Surabaya ini agar kelak seluruh siswa mampu mengikuti UN dengan jujur dan hasil yang memuaskan', 'un-bersama-pakde-karwo.jpg', 'un-bersama-pakde-karwo.jpg', 'Petemon', 'Jalan Tentara Genie Pelajar No. 26', '2018-06-04', '0000-00-00', '0000-00-00 00:00:00', 'Food and Beverage', 0, 1530597145),
-(570765, 131722, 'Buka Puasa Mandiri', 'Mandiri kita hebat', 'Undangan terbuka untuk seluruh umat muslim yang berpuasa, kami mengundang kalian untuk berbuka puasa secara mandiri di rumah masing-masing. #mandiriKitaHebat', 'batman.jpg', 'buka puasa.jpeg', 'Rumah', 'Tolong diingat sendiri', '2018-07-04', '0000-00-00', '0000-00-00 00:00:00', 'Food and Beverage', 0, 1530527744),
-(825414, 684889, 'Membangun Bersama Negeri Tercinta', 'halo dunia', 'Halo dunia, gimana kabar kalian? Kita harap kalian baik-baik saja disana...\n\nOh iya... Kali ini kita hadir lagi dengan nuansa acara yang berbeda. Jika sebelumnya acara di hotel kita cuma makan-makan sambil dengerin orang gacor ngalor-ngidul, acara kita kali ini bakalan lebih banyak aksi daripada teori.\n\nMengusung tema pembangunan, tentu saja apa yang akan kita lakukan nanti di acara adalah membangun. Di sana kalian akan diberi tugas yang berbeda dengan kolega kalian. Akan ada banyak tugas nantinya, seperti mengaduk semen, memotong lantai, hingga membuat pondasi bersama-sama.\n\nPokoknya acara ini akan benar-benar menjadi acara yang membangun. Diharapkan bagi peserta setelah mengikuti acara ini dapat membangun rumahnya sendiri tanpa perlu memanggil tukang atau orang untuk bantu membangunnya.\n\nCatatan : Peralatan seperti sekop, palu, gergaji, dsb tidak disediakan oleh penyelenggara. Diharapkan kepada seluruh peserta untuk membawa sendiri-sendiri. Agar tidak ada unsur kong-kalikong, nanti semua peralatan akan dikumpulkan menjadi satu dan diacak siapa saja yang berhak memegang para peralatan itu. Oh iya, panitia tidak bertanggung jawab apabila ada yang kehilangan barang.\n\nTrims', 'tambah.jpg', 'pembangunan.png', 'Surabaya', 'Jl Bumiarjo', '2018-07-11', '2018-07-14', '2018-07-11 12:00:31', 'Parties', 0, 1531285231),
-(968129, 368862, 'Kegiatan Belajar Mengajar', 'KBM', 'Lorem ipsum dolor sit amet', 'kbm.jpg', 'kbm.jpg', 'Petemon', 'Jalan Tentara Genie Pelajar No. 26', '2018-09-19', '0000-00-00', '0000-00-00 00:00:00', 'Food and Beverage', 0, 1530597598);
+INSERT INTO `event` (`idevent`, `idhotel`, `id_resto`, `title`, `tagline`, `description`, `logo`, `cover`, `region`, `address`, `tgl_mulai`, `tgl_akhir`, `tgl_posted`, `category`, `price`, `added`) VALUES
+(314660, 684889, 0, 'Test Parties', 'hello world', 'Halo dunia', 'Screenshot (16).png', 'Screenshot (16).png', 'Surabaya', 'Jl. Bintang Diponggo Kav. 855, Surabaya', '2018-07-13', '0000-00-00', '2018-07-07 14:19:15', 'Parties', 0, 1530947955),
+(448995, 368862, 0, 'Ujian Nasional bersama Pakde Karwo', 'SMK Bisa!!', 'Mari kita sukseskan gerakan Ujian Nasional bersama Pakde Karwo yang digagas oleh SMK Negeri 2 Surabaya ini agar kelak seluruh siswa mampu mengikuti UN dengan jujur dan hasil yang memuaskan', 'un-bersama-pakde-karwo.jpg', 'un-bersama-pakde-karwo.jpg', 'Petemon', 'Jalan Tentara Genie Pelajar No. 26', '2018-06-04', '0000-00-00', '0000-00-00 00:00:00', 'Food and Beverage', 0, 1530597145),
+(570765, 131722, 0, 'Buka Puasa Mandiri', 'Mandiri kita hebat', 'Undangan terbuka untuk seluruh umat muslim yang berpuasa, kami mengundang kalian untuk berbuka puasa secara mandiri di rumah masing-masing. #mandiriKitaHebat', 'batman.jpg', 'buka puasa.jpeg', 'Rumah', 'Tolong diingat sendiri', '2018-07-04', '0000-00-00', '0000-00-00 00:00:00', 'Food and Beverage', 0, 1530527744),
+(825414, 684889, 0, 'Membangun Bersama Negeri Tercinta', 'halo dunia', 'Halo dunia, gimana kabar kalian? Kita harap kalian baik-baik saja disana...\n\nOh iya... Kali ini kita hadir lagi dengan nuansa acara yang berbeda. Jika sebelumnya acara di hotel kita cuma makan-makan sambil dengerin orang gacor ngalor-ngidul, acara kita kali ini bakalan lebih banyak aksi daripada teori.\n\nMengusung tema pembangunan, tentu saja apa yang akan kita lakukan nanti di acara adalah membangun. Di sana kalian akan diberi tugas yang berbeda dengan kolega kalian. Akan ada banyak tugas nantinya, seperti mengaduk semen, memotong lantai, hingga membuat pondasi bersama-sama.\n\nPokoknya acara ini akan benar-benar menjadi acara yang membangun. Diharapkan bagi peserta setelah mengikuti acara ini dapat membangun rumahnya sendiri tanpa perlu memanggil tukang atau orang untuk bantu membangunnya.\n\nCatatan : Peralatan seperti sekop, palu, gergaji, dsb tidak disediakan oleh penyelenggara. Diharapkan kepada seluruh peserta untuk membawa sendiri-sendiri. Agar tidak ada unsur kong-kalikong, nanti semua peralatan akan dikumpulkan menjadi satu dan diacak siapa saja yang berhak memegang para peralatan itu. Oh iya, panitia tidak bertanggung jawab apabila ada yang kehilangan barang.\n\nTrims', 'tambah.jpg', 'pembangunan.png', 'Surabaya', 'Jl Bumiarjo', '2018-07-11', '2018-07-14', '2018-07-11 12:00:31', 'Parties', 0, 1531285231),
+(968129, 368862, 0, 'Kegiatan Belajar Mengajar', 'KBM', 'Lorem ipsum dolor sit amet', 'kbm.jpg', 'kbm.jpg', 'Petemon', 'Jalan Tentara Genie Pelajar No. 26', '2018-09-19', '0000-00-00', '0000-00-00 00:00:00', 'Food and Beverage', 0, 1530597598);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `facility`
+-- Struktur dari tabel `facility`
 --
 
 CREATE TABLE `facility` (
@@ -107,7 +107,7 @@ CREATE TABLE `facility` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `facility`
+-- Dumping data untuk tabel `facility`
 --
 
 INSERT INTO `facility` (`idfacility`, `nama`, `icon`) VALUES
@@ -121,7 +121,7 @@ INSERT INTO `facility` (`idfacility`, `nama`, `icon`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `galeri`
+-- Struktur dari tabel `galeri`
 --
 
 CREATE TABLE `galeri` (
@@ -133,7 +133,7 @@ CREATE TABLE `galeri` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `galeri`
+-- Dumping data untuk tabel `galeri`
 --
 
 INSERT INTO `galeri` (`idgambar`, `idhotel`, `tipe`, `gambar`, `added`) VALUES
@@ -145,7 +145,7 @@ INSERT INTO `galeri` (`idgambar`, `idhotel`, `tipe`, `gambar`, `added`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hotel`
+-- Struktur dari tabel `hotel`
 --
 
 CREATE TABLE `hotel` (
@@ -165,11 +165,11 @@ CREATE TABLE `hotel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `hotel`
+-- Dumping data untuk tabel `hotel`
 --
 
 INSERT INTO `hotel` (`idhotel`, `nama`, `email`, `password`, `icon`, `cover`, `phone`, `website`, `city`, `address`, `facility`, `status`, `added`) VALUES
-(131722, 'Testho Hotel', 'marcom@testhotel.co.id', 'inikatasandi', 'batman.jpg', 'cara-mengatasi-grogi.jpg', '082126164429', 'https://www.facebook.com', 'Surabaya', 'Jalan Kalianak Timur No. 40', '', 2, 1530509890),
+(131722, 'Testho Hotel', 'marcom@testhotel.co.id', 'inikatasandi', 'batman.jpg', 'cara-mengatasi-grogi.jpg', '082126164429', 'https://www.facebook.com', 'Surabaya', 'Jalan Kalianak Timur No. 40', '', 1, 1530509890),
 (194215, 'Riyans Hotel', 'marcom@riyanshotel.guru', 'inikatasandi', '', '', '', '', '', '', '', 2, 1530461071),
 (368862, 'Smekda Hotel', 'smekda.surabaya@gmail.com', 'inikatasandi', 'logo-smekda.jpg', '', '62315343708', 'http://smkn2sby.sch.id', 'Surabaya', 'Jalan Tentara Genie Pelajar No. 26', '', 1, 1530595602),
 (684889, 'TokDalang Homestay', 'tokdalang@durianruntuh.my', 'inikatasandi', 'tokdalang.jpg', 'rumahTokDalang.jpg', '93743582375', 'https://durianruntuh.my', 'Kampung Durian Runtuh', 'Kampung Durian Runtuh No. 25', '2,3,4', 1, 1530595632);
@@ -177,29 +177,53 @@ INSERT INTO `hotel` (`idhotel`, `nama`, `email`, `password`, `icon`, `cover`, `p
 -- --------------------------------------------------------
 
 --
--- Table structure for table `social`
+-- Struktur dari tabel `restoran`
+--
+
+CREATE TABLE `restoran` (
+  `idresto` int(11) NOT NULL,
+  `idhotel` int(11) NOT NULL,
+  `nama_resto` varchar(55) NOT NULL,
+  `email` varchar(155) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `icon` varchar(155) NOT NULL,
+  `cover` varchar(155) NOT NULL,
+  `phone` varchar(14) NOT NULL,
+  `website` varchar(75) NOT NULL,
+  `city` varchar(50) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `facility` varchar(95) NOT NULL,
+  `status` int(1) NOT NULL,
+  `added` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `social`
 --
 
 CREATE TABLE `social` (
   `idsocial` int(11) NOT NULL,
   `idhotel` int(11) NOT NULL,
+  `idresto` int(11) NOT NULL,
   `type` varchar(25) NOT NULL,
   `url` varchar(125) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `social`
+-- Dumping data untuk tabel `social`
 --
 
-INSERT INTO `social` (`idsocial`, `idhotel`, `type`, `url`) VALUES
-(484903, 684889, 'Twitter', 'https://www.twitter.com/telkomsel'),
-(508757, 684889, 'Facebook', 'https://www.facebook.com/zuck'),
-(712041, 684889, 'Instagram', 'https://www.instagram.com/awkarin');
+INSERT INTO `social` (`idsocial`, `idhotel`, `idresto`, `type`, `url`) VALUES
+(484903, 684889, 0, 'Twitter', 'https://www.twitter.com/telkomsel'),
+(508757, 684889, 0, 'Facebook', 'https://www.facebook.com/zuck'),
+(712041, 684889, 0, 'Instagram', 'https://www.instagram.com/awkarin');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -214,7 +238,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`iduser`, `email`, `password`, `nama`, `telepon`, `alamat`, `status`, `registered`) VALUES
@@ -257,6 +281,12 @@ ALTER TABLE `hotel`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indexes for table `restoran`
+--
+ALTER TABLE `restoran`
+  ADD PRIMARY KEY (`idresto`);
+
+--
 -- Indexes for table `social`
 --
 ALTER TABLE `social`
@@ -267,6 +297,16 @@ ALTER TABLE `social`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`iduser`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `restoran`
+--
+ALTER TABLE `restoran`
+  MODIFY `idresto` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
