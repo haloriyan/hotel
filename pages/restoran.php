@@ -15,7 +15,7 @@ $nama = $user->info($sesi, "nama");
 $namaPertama = explode(" ", $nama)[0];
 
 $totExplore = $ctrl->hitung($ctrl->tabel("event")->pilih()->dimana(["id_resto" => $idresto])->eksekusi());
-
+// haodunia
 ?>
 <!DOCTYPE html>
 <html>
