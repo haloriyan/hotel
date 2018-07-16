@@ -179,7 +179,7 @@ $namaPertama = explode(" ", $name)[0];
 		let date = pilih("#date").value
 		let dateEnd = pilih("#dateEnd").value
 		let category = pilih("#category").value
-		let price = pilih("#price").value
+		let price = pilih("#priceBox").value
 		let pub = "title="+title+"&tagline="+tagline+"&description="+description+"&logo="+logo+"&cover="+cover+"&region="+region+"&address="+address+"&tgl="+date+"&tgl_akhir="+dateEnd+"&category="+category+"&price="+price
 		if(title == "" || tagline == "" || description == "" || logo == "" || cover == "" || region == "" || address == "" || date == "" || category == "" || price == "") {
 			munculPopup("#notif", pengaya("#notif", "top: 225px"))

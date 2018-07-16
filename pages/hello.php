@@ -17,9 +17,6 @@ $namaPertama = explode(" ", $name)[0];
 	<link href="aset/css/style.explore-admin.css" rel="stylesheet">
 	<style>
 		body { background-color: #ecf0f1 !important; }
-		#icon {
-			line-height: 50px;
-		}
 	</style>
 </head>
 <body>
@@ -39,31 +36,25 @@ $namaPertama = explode(" ", $name)[0];
 </div>
 
 <div class="kiri">
-	<a href="./hello"><div class="listWizard">Dashboard</div></a>
-	<a href="./my"><div class="listWizard" aktif="ya">My Listings</div></a>
+	<div class="listWizard" aktif="ya">Dashboard</div>
+	<a href="./my"><div class="listWizard">My Listings</div></a>
 	<a href="./detail"><div class="listWizard">Detail Information</div></a>
 	<a href="./social"><div class="listWizard">Social Network</div></a>
 	<a href="./logout"><div class="listWizard">Logout</div></a>
 </div>
 
 <div class="container">
-	<div>
+	<form>
 		<div class="wrap">
-			<h4><div id="icon"><i class="fa fa-home"></i></div> My Listing Event</h4>
-			<div id="load">
-				<table>
-					<thead>
-						<tr>
-							<th>Name</th>
-							<th>Date start</th>
-							<th>Date end</th>
-							<th>Price</th>
-						</tr>
-					</thead>
-				</table>
-			</div>
+			<h4><div id="icon"><i class="fa fa-home"></i></div> Dashboard</h4>
+			<p>
+				Hello <b><?php echo $name; ?></b> (not <b><?php echo $name; ?></b>? <a href="../logout">Log out</a>)
+			</p>
+			<p>
+				From your account dashboard you can view your recent orders, manage your shipping and billing addresses and edit your password and account details.
+			</p>
 		</div>
-	</div>
+	</form>
 </div>
 
 <script src="aset/js/embo.js"></script>

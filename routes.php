@@ -33,7 +33,11 @@ if($role == "" and $bag == "") {
 	}else if($role == "hotel" && is_numeric($bag)) {
 		$idhotel = $bag;
 		include 'pages/hotel.php';
-	}else {
+	}else if($role == "restoran" && is_numeric($bag)) {
+		$idresto = $bag;
+		include 'pages/restoran.php';
+	}
+	else {
 		if(file_exists($lokasi)) {
 			include $lokasi;
 		}else {
