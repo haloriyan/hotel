@@ -11,6 +11,10 @@ if(isset($q)) {
 }else {
 	$subJudul = "";
 }
+
+// delete cookie
+setcookie('tglMulai', '', time() + 1, "/");
+setcookie('tglAkhir', '', time() + 1, "/");
 ?>
 <!DOCTYPE html>
 <html>
@@ -79,12 +83,12 @@ if(isset($q)) {
 	<div class="wrap">
 		<form id="filter">
 			<h3>Filter :</h3>
-			<select class="box" onchange="order()">
-				<option value="DESC">Latest</option>
-				<option value="ASC">Oldest</option>
+			<select class="box" onchange="order(this.value)">
+				<option value="latest">Latest</option>
+				<option value="lowest">Lowest Price</option>
 			</select>
-			<select class="box" onchange="category()">
-				<option>Category...</option>
+			<select class="box" onchange="category(this.value)">
+				<option value="">Category...</option>
 				<option>Food &amp; Beverage</option>
 				<option>Room</option>
 				<option>Venue</option>
@@ -98,11 +102,11 @@ if(isset($q)) {
 			</select>
 			<div class="bag bag-5">
 				From :
-				<input type="date" class="box" id="fromDate">
+				<input type="date" class="box" id="fromDate" onchange="tglMulai(this.value)">
 			</div>
 			<div class="bag bag-5">
 				To :
-				<input type="date" class="box" id="toDate">
+				<input type="date" class="box" id="toDate" onchange="tglAkhir(this.value)">
 			</div>
 		</form>
 	</div>

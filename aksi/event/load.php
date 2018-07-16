@@ -9,7 +9,11 @@ if($event->all($keyword) == "null") {
 	exit();
 }
 
-foreach ($event->all($keyword) as $row) {
+$tglMulai = $_COOKIE['tglMulai'];
+$tglAkhir = $_COOKIE['tglAkhir'];
+$category = $_COOKIE['category'];
+
+foreach ($event->all($keyword, $tglMulai, $tglAkhir, $category) as $row) {
 	$idhotel = $row['idhotel'];
 	$namaHotel = $hotel->get($idhotel, "nama");
 	$iconHotel = $hotel->get($idhotel, "icon");

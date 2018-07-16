@@ -1,4 +1,5 @@
 <?php
+include 'aksi/ctrl/event.php';
 
 date_default_timezone_set('Asia/Jakarta');
 // echo date('Y-m-d H:i:s', time());
@@ -14,3 +15,5 @@ if(($tglStart <= $tglSkrg) && ($tglSkrg <= $tglAkhir)) {
 }
 
 $query = "SELECT * FROM event WHERE tgl_mulai <= '$tglSkrg' AND tgl_akhir => '$tglSkrg'";
+
+echo $event->all("", "", "");

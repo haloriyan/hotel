@@ -1,7 +1,7 @@
 <?php
-include 'hotel.php';
+include 'resto.php';
 
-class event extends hotel {
+class event extends resto {
 	public function info($id, $struktur) {
 		$q = $this->tabel("event")
 				  ->pilih()
@@ -46,18 +46,23 @@ class event extends hotel {
 			return $hasil;
 		}
 	}
-	public function all($keyword = NULL) {
-		if($keyword == "") {
-			$q = $this->tabel("event")
-					  ->pilih()
-					  ->urutkan("added", "DESC")
-					  ->eksekusi();
+	public function all($keyword = NULL, $tglMulai = NULL, $tglAkhir = NULL, $cat = NULL, $urut = NULL) {
+		date_default_timezone_set('Asia/Jakarta');
+		$tglSkrg = date('Y-m-d');
+		$tglMulaiDefault = date('Y-m-1');
+		$tglAkhirDefault = date('Y-m-30');
+		if($tglMulai == "" and $tglAkhir == "") {
+			$filterTgl = "tgl_mulai >= '$tglMulaiDefault' AND tgl_akhir <= '$tglAkhirDefault'";
 		}else {
-			$q = $this->tabel("event")
-					  ->pilih()
-					  ->dimana(["title" => $keyword], "like")
-					  ->eksekusi();
+			if($tglMulai == "") {
+				$tglMulai = $tglSkrg;
+			}else if($tglAkhir == "") {
+				$tglAkhir = $tglSkrg;
+			}
+			$filterTgl = "tgl_mulai >= '$tglMulai' AND tgl_akhir <= '$tglAkhir'";
 		}
+		$sqlQuery = "SELECT * FROM event WHERE title LIKE '%$keyword%' AND category LIKE '%$cat%' AND $filterTgl ORDER BY added DESC";
+		$q = $this->query($sqlQuery);
 		if($this->hitung($q) == 0) {
 			return "null";
 		}else {

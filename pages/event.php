@@ -99,7 +99,7 @@ $iconHotel = $hotel->get($idhotel, "icon");
 			<?php
 		}
 		?>
-		<a href="#tblBook"><li>Book</li></a>
+		<a href="#tblBook"><li id="tblBook">Book</li></a>
 	</nav>
 </div>
 
@@ -200,8 +200,21 @@ $iconHotel = $hotel->get($idhotel, "icon");
 				<div id="xBook" class="ke-kanan"><i class="fa fa-close"></i></div>
 			</h3>
 			<form id="formBook">
-				<div class="isi">Select date :</div>
-				<input type="date" class="box" id="tglBook">
+				<input type="hidden" id="idevent" value="<?php echo $idevent; ?>">
+				<div class="bag bag-6">
+					<div class="isi">Select date :</div>
+					<input type="date" class="box" id="tglBook" style="font-size: 17px;width: 80%">
+				</div>
+				<div class="bag bag-4">
+					<div class="isi">Quantity</div>
+					<select class="box" id="qty">
+						<?php
+						for($i = 1; $i <= 10; $i++) {
+							echo "<option>".$i."</option>";
+						}
+						?>
+					</select>
+				</div>
 				<div class="bag-tombol">
 					<button class="merah-2">Book Now!</button>
 				</div>
@@ -225,7 +238,7 @@ $iconHotel = $hotel->get($idhotel, "icon");
 
 <script src='../aset/js/embo.js'></script>
 <script>
-	munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
+	// munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
 	klik("#book", function() {
 		munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
 	})
@@ -252,6 +265,9 @@ $iconHotel = $hotel->get($idhotel, "icon");
 		muncul(".bg")
 		muncul("#formLogin")
 	})
+	klik("#tblBook", function() {
+		munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
+	})
 	submit("#formSignIn", function() {
 		let email = pilih("#mailLog").value
 		let pwd = pilih("#pwdLog").value
@@ -265,9 +281,11 @@ $iconHotel = $hotel->get($idhotel, "icon");
 		return false
 	})
 
-	submit("#popupBook", function() {
+	submit("#formBook", function() {
+		let idevent = pilih("#idevent").value
 		let tgl = pilih("#tglBook").value
-		let book = "tgl="+tgl
+		let qty = pilih("#qty").value
+		let book = "idevent="+idevent+"&tgl="+tgl+"&qty="+qty
 		alert(book)
 		return false
 	})
