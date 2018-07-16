@@ -10,11 +10,12 @@ class event extends resto {
 		$r = $this->ambil($q);
 		return $r[$struktur];
 	}
-	public function create($a, $b, $c, $d, $e, $f, $g, $h, $i, $j, $tglAkhir, $jPosted, $k, $l, $m) {
+	public function create($a, $b, $idresto, $c, $d, $e, $f, $g, $h, $i, $j, $tglAkhir, $jPosted, $k, $l, $m) {
 		$q = $this->tabel("event")
 				  ->tambah([
 				  	"idevent" => $a,
-				  	"idhotel" => $b,
+					"idhotel" => $b,
+					"id_resto" => $idresto,
 				  	"title" => $c,
 				  	"tagline" => $d,
 				  	"description" => $e,
@@ -35,7 +36,21 @@ class event extends resto {
 	public function my($id) {
 		$q = $this->tabel("event")
 				  ->pilih()
-				  ->dimana(["idhotel" => $id])
+				  ->dimana(["idhotel" => $id, "id_resto" => 0])
+				  ->eksekusi();
+		if($this->hitung($q) == "") {
+			return "kosong";
+		}else {
+			while($r = $this->ambil($q)) {
+				$hasil[] = $r;
+			}
+			return $hasil;
+		}
+	}
+	public function myForResto($id) {
+		$q = $this->tabel("event")
+				  ->pilih()
+				  ->dimana(["id_resto" => $id])
 				  ->eksekusi();
 		if($this->hitung($q) == "") {
 			return "kosong";

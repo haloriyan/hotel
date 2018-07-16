@@ -1,9 +1,9 @@
 <?php
 include 'aksi/ctrl/event.php';
 
-$sesi 	= $hotel->sesi();
-$name 	= $hotel->get($sesi, "nama");
-$myId 	= $hotel->get($sesi, "idhotel");
+$sesi 	= $resto->sesi();
+$name 	= $resto->info($sesi, "nama");
+$myId 	= $resto->info($sesi, "idresto");
 $namaPertama = explode(" ", $name)[0];
 
 $idevent = $_GET['idevent'];
@@ -81,7 +81,6 @@ $namaEvent = $event->info($idevent, "title");
 	<a href="./galeri"><div class="listWizard">Gallery</div></a>
 	<a href="./facility"><div class="listWizard">Facility</div></a>
 	<a href="./social"><div class="listWizard">Social Network</div></a>
-	<a href="./restaurant"><div class="listWizard">Restaurant</div></a>
 	<a href="./logout"><div class="listWizard">Logout</div></a>
 </div>
 

@@ -1,13 +1,13 @@
 <?php
-include 'aksi/ctrl/hotel.php';
+include 'aksi/ctrl/resto.php';
 
-$sesi 	= $hotel->sesi();
-$name 	= $hotel->get($sesi, "nama");
+$sesi 	= $resto->sesi();
+$name 	= $resto->info($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
-$phone 	= $hotel->get($sesi, "phone");
-$address 	= $hotel->get($sesi, "address");
-$city = $hotel->get($sesi, "city");
-$web = $hotel->get($sesi, "website");
+$phone 	= $resto->info($sesi, "phone");
+$address 	= $resto->info($sesi, "address");
+$city = $resto->info($sesi, "city");
+$web = $resto->info($sesi, "website");
 
 ?>
 <!DOCTYPE html>
@@ -54,7 +54,6 @@ $web = $hotel->get($sesi, "website");
 	<a href="./galeri"><div class="listWizard">Gallery</div></a>
 	<a href="./facility"><div class="listWizard">Facility</div></a>
 	<a href="./social"><div class="listWizard">Social Network</div></a>
-	<a href="./restaurant"><div class="listWizard">Restaurant</div></a>
 	<a href="./logout"><div class="listWizard">Logout</div></a>
 </div>
 
@@ -126,7 +125,7 @@ $web = $hotel->get($sesi, "website");
 		if(phone == "" || address == "" || web == "" || city == "") {
 			return false
 		}
-		pos("../aksi/hotel/edit.php", detil, function() {
+		pos("../aksi/resto/edit.php", detil, function() {
 			munculPopup("#saved", pengaya("#saved", "top: 225px"))
 		})
 		return false
@@ -138,7 +137,7 @@ $web = $hotel->get($sesi, "website");
 		if(icons == "") {
 			return false
 		}
-		pos("../aksi/hotel/edit.php", img, function() {
+		pos("../aksi/resto/edit.php", img, function() {
 			munculPopup("#saved", pengaya("#saved", "top: 225px"))
 		})
 		return false

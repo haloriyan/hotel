@@ -1,9 +1,9 @@
 <?php
-include 'aksi/ctrl/hotel.php';
+include 'aksi/ctrl/resto.php';
 
-$sesi 	= $hotel->sesi();
-$name 	= $hotel->get($sesi, "nama");
-$idhotel 	= $hotel->get($sesi, "idhotel");
+$sesi 	= $resto->sesi();
+$name 	= $resto->info($sesi, "nama");
+$idresto 	= $resto->info($sesi, "idresto");
 $namaPertama = explode(" ", $name)[0];
 ?>
 <!DOCTYPE html>
@@ -52,13 +52,12 @@ $namaPertama = explode(" ", $name)[0];
 </div>
 
 <div class="kiri">
-	<a href="./dashboard"><div class="listWizard">Dashboard</div></a>
+	<a href='./dashboard'><div class="listWizard">Dashboard</div></a>
 	<a href="./detail"><div class="listWizard">Detail Information</div></a>
 	<a href="./listing"><div class="listWizard">My Listings</div></a>
 	<a href="./galeri"><div class="listWizard">Gallery</div></a>
 	<a href="./facility"><div class="listWizard">Facility</div></a>
-	<a href="./listing"><div class="listWizard" aktif="ya">Social Network</div></a>
-	<a href="./restaurant"><div class="listWizard">Restaurant</div></a>
+	<a href="./social"><div class="listWizard" aktif="ya">Social Network</div></a>
 	<a href="./logout"><div class="listWizard">Logout</div></a>
 </div>
 
@@ -98,7 +97,7 @@ $namaPertama = explode(" ", $name)[0];
 <script src="../aset/js/embo.js"></script>
 <script>
 	function load() {
-		ambil("../aksi/social/load.php", function(res) {
+		ambil("../aksi/restosocial/load.php", function(res) {
 			tulis("#load", res)
 		})
 	}
@@ -124,7 +123,7 @@ $namaPertama = explode(" ", $name)[0];
 		if(url == "") {
 			return false
 		}
-		pos("../aksi/social/add.php", tambah, function() {
+		pos("../aksi/restosocial/add.php", tambah, function() {
 			hilangPopup("#addSocial")
 			load()
 		})

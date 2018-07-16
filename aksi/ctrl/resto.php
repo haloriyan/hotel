@@ -65,6 +65,19 @@ class resto extends hotel {
 		}
 		return $sesi;
 	}
+	public function change($id, $struktur, $value) {
+		$q = $this->tabel("restoran")
+					->ubah([$struktur => $value])
+					->dimana(["idresto" => $id])
+					->eksekusi();
+		return $q;
+	}
+
+	public function infoFac($id, $struktur) {
+		$q = $this->tabel("facility")->pilih()->dimana(["idfacility" => $id])->eksekusi();
+		$r = $this->ambil($q);
+		return $r[$struktur];
+	}
 }
 
 $resto = new resto();

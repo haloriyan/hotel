@@ -1,10 +1,21 @@
 <?php
 include '../ctrl/event.php';
 
-$sesi 	= $hotel->sesi();
-$myId 	= $hotel->get($sesi, "idhotel");
+session_start();
+$sesiHotel = $_SESSION['uhotel'];
+$sesiResto = $_SESSION['uresto'];
 
-if($event->my($myId) == "kosong") {
+if($sesiHotel == "") {
+	// nggawe resto
+	$myId = $resto->info($sesiResto, "idresto");
+	$load = $event->myForResto($myId);
+}else {
+    // nggawe hotel
+	$myId = $hotel->get($sesiHotel, "idhotel");
+	$load = $event->my($myId);
+}
+
+if($load == "kosong") {
 	echo "You dont have any listing. <a href='./add-listing'>create one</a> now!";
 }else {
 ?>
@@ -19,7 +30,7 @@ if($event->my($myId) == "kosong") {
 	</thead>
 	<tbody>
 		<?php
-		foreach ($event->my($myId) as $row) {
+		foreach ($load as $row) {
 			$tgl = explode(" ", $row['tgl_posted'])[0];
 			echo "<tr>".
 					"<td><img src='../aset/gbr/".$row['cover']."'></td>".

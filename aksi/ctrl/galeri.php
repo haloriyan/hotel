@@ -1,7 +1,7 @@
 <?php
-include 'hotel.php';
+include 'resto.php';
 
-class galeri extends hotel {
+class galeri extends resto {
 	public function add($a, $b, $c ,$d) {
 		$q = $this->tabel("galeri")
 				  ->tambah([

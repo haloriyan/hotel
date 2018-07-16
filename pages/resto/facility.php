@@ -1,8 +1,8 @@
 <?php
-include 'aksi/ctrl/hotel.php';
+include 'aksi/ctrl/resto.php';
 
-$sesi 	= $hotel->sesi();
-$name 	= $hotel->get($sesi, "nama");
+$sesi 	= $resto->sesi();
+$name 	= $resto->info($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
 
 $facility = [
@@ -14,7 +14,7 @@ $facility = [
 	"6" => "Coupons"
 ];
 
-$myFacility = $hotel->get($sesi, "facility");
+$myFacility = $resto->info($sesi, "facility");
 $fac = explode(",", $myFacility);
 
 ?>
@@ -61,9 +61,8 @@ $fac = explode(",", $myFacility);
 	<a href="./detail"><div class="listWizard">Detail Information</div></a>
 	<a href="./listing"><div class="listWizard">My Listings</div></a>
 	<a href="./galeri"><div class="listWizard">Gallery</div></a>
-	<a href="./listing"><div class="listWizard" aktif="ya">Facility</div></a>
+	<a href="./facility"><div class="listWizard" aktif="ya">Facility</div></a>
 	<a href="./social"><div class="listWizard">Social Network</div></a>
-	<a href="./restaurant"><div class="listWizard">Restaurant</div></a>
 	<a href="./logout"><div class="listWizard">Logout</div></a>
 </div>
 
@@ -115,7 +114,7 @@ $fac = explode(",", $myFacility);
 	}
 	function save(val) {
 		let save = "idfac="+val+"&bag=facility"
-		pos("../aksi/hotel/edit.php", save, function() {
+		pos("../aksi/resto/edit.php", save, function() {
 			muncul("#saved")
 			setTimeout(function() {
 				hilang("#saved")

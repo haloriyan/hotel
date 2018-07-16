@@ -1,8 +1,8 @@
 <?php
-include 'aksi/ctrl/hotel.php';
+include 'aksi/ctrl/resto.php';
 
-$sesi 	= $hotel->sesi();
-$name 	= $hotel->get($sesi, "nama");
+$sesi 	= $resto->sesi();
+$name 	= $resto->info($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
 ?>
 <!DOCTYPE html>
@@ -70,38 +70,23 @@ $namaPertama = explode(" ", $name)[0];
 </div>
 
 <div class="kiri">
-	<a href="./dashboard"><div class="listWizard">Dashboard</div></a>
+<a href="./dashboard"><div class="listWizard">Dashboard</div></a>
 	<a href="./detail"><div class="listWizard">Detail Information</div></a>
 	<a href="./listing"><div class="listWizard">My Listings</div></a>
-	<a href="./listing"><div class="listWizard" aktif="ya">Gallery</div></a>
+	<a href="./galeri"><div class="listWizard"  aktif="ya">Gallery</div></a>
 	<a href="./facility"><div class="listWizard">Facility</div></a>
 	<a href="./social"><div class="listWizard">Social Network</div></a>
-	<a href="./restaurant"><div class="listWizard">Restaurant</div></a>
 	<a href="./logout"><div class="listWizard">Logout</div></a>
 </div>
 
 <div class="container">
 	<div>
-		<div class="wrap">
-			<h4><div id="icon"><i class="fa fa-home"></i></div> Hotel Gallery
-				<button id="newHotelGallery" class="tbl merah-2 ke-kanan"><i class="fa fa-plus-circle"></i> &nbsp;Add New</button>
-			</h4>
-			<br />
-			<div id="hotelGallery">
-				<!--
-				<div class="galeri">
-					<img src="../aset/gbr/dummy.jpg">
-					<li><i class="fa fa-trash"></i></li>
-				</div>
-				-->
-			</div>
-		</div>
-	</div>
 	<div>
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-home"></i></div> Restaurant Gallery
 				<button id="newHotelGallery" class="tbl merah-2 ke-kanan"><i class="fa fa-plus-circle"></i> &nbsp;Add New</button>
 			</h4>
+			<div id="hotelGallery"></div>
 		</div>
 	</div>
 </div>
@@ -190,7 +175,7 @@ $namaPertama = explode(" ", $name)[0];
 
 	function sukses() {
 		let gambar = pilih("#hotelImgs").value
-		let change = "tipe=hotel&gambar="+gambar
+		let change = "tipe=resto&gambar="+gambar
 		pos("../aksi/galeri/tambah.php", change, function() {
 			hilang("#uploading")
 			muncul("#notice")

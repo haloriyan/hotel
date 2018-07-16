@@ -3,8 +3,21 @@ include '../ctrl/event.php';
 
 date_default_timezone_set('Asia/Jakarta');
 
+session_start();
+$sesiHotel = $_SESSION['uhotel'];
+$sesiResto = $_SESSION['uresto'];
+
+if($sesiHotel == "") {
+    // nggawe resto
+    $idhotel = $resto->info($sesiResto, "idhotel");
+    $idresto = $resto->info($sesiResto, "idresto");
+}else {
+    // nggawe hotel
+    $idhotel = $hotel->get($sesiHotel, "idhotel");
+    $idresto = 0;
+}
+
 $id 			= rand(1, 999999);
-$idhotel		= $hotel->get($hotel->sesi(), "idhotel");
 $title 			= $_POST['title'];
 $tagline 		= $_POST['tagline'];
 $description 	= $_POST['description'];
@@ -19,4 +32,4 @@ $category 		= $_POST['category'];
 $price 			= $_POST['price'];
 $added			= time();
 
-$event->create($id, $idhotel, $title, $tagline, $description, $logo, $cover, $region, $address, $tgl, $tgl_akhir, $tgl_posted, $category, $price, $added);
+$event->create($id, $idhotel, $idresto, $title, $tagline, $description, $logo, $cover, $region, $address, $tgl, $tgl_akhir, $tgl_posted, $category, $price, $added);
