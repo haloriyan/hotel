@@ -3,6 +3,7 @@ include 'aksi/ctrl/social.php';
 
 setcookie('idresto', $idresto, time() + 3900, "/");
 
+$idhotel = $resto->info($idresto, "idhotel");
 $namaResto = $resto->info($idresto, "nama");
 $address = $resto->info($idresto, "address");
 $city = $resto->info($idresto, "city");
@@ -15,7 +16,6 @@ $nama = $user->info($sesi, "nama");
 $namaPertama = explode(" ", $nama)[0];
 
 $totExplore = $ctrl->hitung($ctrl->tabel("event")->pilih()->dimana(["id_resto" => $idresto])->eksekusi());
-// haodunia
 ?>
 <!DOCTYPE html>
 <html>
@@ -155,14 +155,6 @@ $totExplore = $ctrl->hitung($ctrl->tabel("event")->pilih()->dimana(["id_resto" =
 				</div>
 			</div>
 			<div class="ke-kanan" id="bawahKanan">
-				<div class="bagian open">
-					<div class="wrap">
-						<h3><i class="fa fa-clock-o"></i> &nbsp; Open</h3>
-						<div class="openHours">
-							Open hours today: 12:00 am - 11:45 pm
-						</div>
-					</div>
-				</div>
 				<div class="bagian galeriBag">
 					<div class="wrap">
 						<h3><i class="fa fa-image"></i> &nbsp; Galeri
@@ -170,7 +162,7 @@ $totExplore = $ctrl->hitung($ctrl->tabel("event")->pilih()->dimana(["id_resto" =
 						</h3>
 						<div class="imgCollection">
 							<?php
-							$image = $ctrl->tabel("galeri")->pilih()->dimana(["idresto" => $idresto])->batas(0, 3)->eksekusi();
+							$image = $ctrl->tabel("galeri")->pilih()->dimana(["idhotel" => $idhotel, "tipe" => "resto"])->batas(0, 3)->eksekusi();
 							while($r = $ctrl->ambil($image)) {
 								echo "<img src='../aset/gbr/".$r['gambar']."'>";
 							}

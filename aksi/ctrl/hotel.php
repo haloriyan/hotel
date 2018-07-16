@@ -73,6 +73,17 @@ class hotel extends user {
 		$r = $this->ambil($q);
 		return $r[$struktur];
 	}
+	public function ourResto($id) {
+		$q = $this->tabel("restoran")->pilih()->dimana(["idhotel" => $id])->eksekusi();
+		if($this->hitung($q) == 0) {
+			return "null";
+		}else {
+			while($r = $this->ambil($q)) {
+				$hasil[] = $r;
+			}
+			return $hasil;
+		}
+	}
 }
 
 $hotel = new hotel();

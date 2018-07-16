@@ -59,30 +59,24 @@ $namaPertama = explode(" ", $nama)[0];
 		<h2>Find Great Places to Eat, Visit and Stay</h2>
 		<div class="boxTengah">
 			<div class="wrap">
-				<div class="option">
-					<input type="text" class="box" placeholder="What are you looking for?">
-				</div>
-				<div class="option">
-					<select class="box">
-						<option>All categories</option>
-						<option>Room</option>
-						<option>Food & Beverages</option>
-						<option>Event</option>
-						<option>Swimming Pool</option>
-						<option>Business Center</option>
-					</select>
-				</div>
-				<div class="option">
-					<select class="box">
-						<option>< 1 juta</option>
-						<option>1 - 2 juta</option>
-						<option>2 - 3 juta</option>
-						<option>> 3 juta</option>
-					</select>
-				</div>
-				<button id="search" class="tbl merah-2">
-					<i class="fa fa-search"></i> Search
-				</button>
+				<form id="action">
+					<div class="option">
+						<input type="text" class="box" placeholder="What are you looking for?">
+					</div>
+					<div class="option">
+						<select class="box">
+							<option>All categories</option>
+							<option>Room</option>
+							<option>Food and Beverages</option>
+							<option>Event</option>
+							<option>Swimming Pool</option>
+							<option>Business Center</option>
+						</select>
+					</div>
+					<button id="search" class="tbl merah-2">
+						<i class="fa fa-search"></i> Search
+					</button>
+				</form>
 			</div>
 		</div>
 	</div>

@@ -57,3 +57,19 @@
 .list:nth-child(1) {
 	margin-left: 0px;
 }
+
+#ourResto li {
+	list-style: none;
+	cursor: pointer;
+	width: 100%;
+	height: 80px;
+}
+#ourResto img {
+	width: 50px;
+	height: 50px;
+	border-radius: 90px;
+}
+#ourResto h3 {
+	margin-left: 2.5%;
+	font-family: OBold;
+}

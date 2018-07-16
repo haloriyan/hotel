@@ -2,6 +2,7 @@
 include 'aksi/ctrl/social.php';
 
 setcookie('idhotel', $idhotel, time() + 3900, "/");
+setcookie('idresto', '', time() + 1, "/");
 
 $namaHotel = $hotel->get($idhotel, "nama");
 $address = $hotel->get($idhotel, "address");
@@ -155,14 +156,6 @@ $totExplore = $ctrl->hitung($ctrl->tabel("event")->pilih()->dimana(["idhotel" =>
 				</div>
 			</div>
 			<div class="ke-kanan" id="bawahKanan">
-				<div class="bagian open">
-					<div class="wrap">
-						<h3><i class="fa fa-clock-o"></i> &nbsp; Open</h3>
-						<div class="openHours">
-							Open hours today: 12:00 am - 11:45 pm
-						</div>
-					</div>
-				</div>
 				<div class="bagian galeriBag">
 					<div class="wrap">
 						<h3><i class="fa fa-image"></i> &nbsp; Galeri
@@ -194,6 +187,34 @@ $totExplore = $ctrl->hitung($ctrl->tabel("event")->pilih()->dimana(["idhotel" =>
 								 "</div>";
 						}
 						?>
+					</div>
+				</div>
+				<div class="bagian">
+					<div class="wrap">
+						<h3><i class="fa fa-cutlery"></i> &nbsp; Restaurant</h3>
+						<?php
+						$ourResto = $hotel->ourResto($idhotel);
+						?>
+						<div id="ourResto">
+							<?php
+							foreach ($ourResto as $row) {
+								echo "<a href='../restoran/".$row['idresto']."'>".
+										"<li>".
+											"<img src='../aset/gbr/".$row['icon']."' class='ke-kiri'>".
+											"<h3 class='ke-kiri'>".$row['nama']."</h3>".
+										"</li>".
+									 "</a>";
+							}
+							?>
+							<!--
+							<a href="#">
+								<li>
+									<img src="../aset/gbr/download (1).jpg" class="ke-kiri">
+									<h3 class="ke-kiri">Hisana Pret Ciken</h3>
+								</li>
+							</a>
+							-->
+						</div>
 					</div>
 				</div>
 			</div>	

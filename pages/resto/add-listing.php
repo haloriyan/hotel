@@ -7,6 +7,11 @@ $namaPertama = explode(" ", $name)[0];
 
 $idresto = $resto->info($sesi, "idresto");
 
+$phone = $resto->info($sesi, "phone");
+$city = $resto->info($sesi, "city");
+$website = $resto->info($sesi, "website");
+$address = $resto->info($sesi, "address");
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -67,6 +72,17 @@ $idresto = $resto->info($sesi, "idresto");
 				<h4><div id="icon"><i class="fa fa-close"></i></div> ERROR :(</h4>
 				<p>
 					Sorry, you can't add a listing. Your account hasn't been verified by admin. Wait until admin verifying your account then you can add new listing
+				</p>
+			</div>
+		</form>
+		<?php
+		exit();
+	}else if ($phone == "" || $city == "" || $website == "" || $address == "")  { ?>
+		<form id="error!">
+			<div class="wrap">
+				<h4><div id="icon"><i class="fa fa-close"></i></div> ERROR :(</h4>
+				<p>
+					Sorry, you can't add a listing. Please fill the <a href="./detail">Detail information</a> complete
 				</p>
 			</div>
 		</form>
