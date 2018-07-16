@@ -78,11 +78,11 @@ $idresto = $resto->info($sesi, "idresto");
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-pencil"></i></div> Add Listing</h4>
 			<div class="isi">Title</div>
-			<input type="text" class="box" id="title" placeholder="Event name..." autocomplete="off" value="Inul Yakin">
+			<input type="text" class="box" id="title" placeholder="Event name..." autocomplete="off">
 			<div class="isi">Tagline</div>
-			<input type="text" class="box" id="tagline" placeholder="Tagline..." autocomplete="off" value="asede">
+			<input type="text" class="box" id="tagline" placeholder="Tagline..." autocomplete="off">
 			<div class="isi">Description</div>
-			<textarea class="box" id="description" placeholder="Event description...">hao dunia</textarea><br />
+			<textarea class="box" id="description" placeholder="Event description..."></textarea><br />
 			<button class="tbl merah-2">NEXT</button>
 		</div>
 	</form>
@@ -102,9 +102,9 @@ $idresto = $resto->info($sesi, "idresto");
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-map-marker"></i></div> Location</h4>
 			<div class="isi">Region</div>
-			<input type="text" class="box" id="region" value="Surabaya">
+			<input type="text" class="box" id="region">
 			<div class="isi">Address</div>
-			<textarea class="box" id="address">di rumah</textarea><br />
+			<textarea class="box" id="address"></textarea><br />
 			<button class="tbl merah-2">NEXT</button>
 		</div>
 	</form>
@@ -134,7 +134,7 @@ $idresto = $resto->info($sesi, "idresto");
 			<input type="hidden" id="idresto" value="<?php echo $idresto; ?>">
 			<h4><div id="icon"><i class="fa fa-map-marker"></i></div> Price</h4>
 			<div class="isi">Pricing</div>
-			<input type="text" class="box" id="priceBox" placeholder='e.g "140000"' value="500">
+			<input type="text" class="box" id="priceBox" placeholder='e.g "140000"'>
 			<button class="tbl merah-2" id="publish" type="button">PUBLISH</button>
 		</div>
 	</form>
