@@ -1,9 +1,10 @@
 <?php
-include 'aksi/ctrl/event.php';
+include 'aksi/ctrl/booking.php';
 
 $sesi = $user->sesi();
 $nama = $user->info($sesi, "nama");
 $namaPertama = explode(" ", $nama)[0];
+$iduser = $user->info($sesi, "iduser");
 
 $namaEvent = $event->info($idevent, "title");
 $cover = $event->info($idevent, "cover");
@@ -200,12 +201,18 @@ $iconHotel = $hotel->get($idhotel, "icon");
 				<div id="xBook" class="ke-kanan"><i class="fa fa-close"></i></div>
 			</h3>
 			<form id="formBook">
+			<?php
+			if($booking->cek($idevent, $iduser) == "ada")  {
+				echo "<p>You've booked this event. See your <a href='../my' target='_blank'>listing event</a></p>";
+			}else {
+			if($sesi != "") {
+			?>
 				<input type="hidden" id="idevent" value="<?php echo $idevent; ?>">
-				<div class="bag bag-6">
+				<div class="bag bag-7">
 					<div class="isi">Select date :</div>
-					<input type="date" class="box" id="tglBook" style="font-size: 17px;width: 80%">
+					<input type="date" class="box" id="tglBook" style="font-size: 17px;width: 80%" required>
 				</div>
-				<div class="bag bag-4">
+				<div class="bag bag-3">
 					<div class="isi">Quantity</div>
 					<select class="box" id="qty">
 						<?php
@@ -218,6 +225,11 @@ $iconHotel = $hotel->get($idhotel, "icon");
 				<div class="bag-tombol">
 					<button class="merah-2">Book Now!</button>
 				</div>
+			<?php
+			}else { ?>
+				<p>You must login before booking an event</p>
+			<?php } }
+			?>
 			</form>
 		</div>
 	</div>
@@ -261,12 +273,33 @@ $iconHotel = $hotel->get($idhotel, "icon");
 			tbl.setAttribute("aksi", "bkMenu")
 		}
 	})
+	klik("#tblBook", function() {
+		munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
+	})
+
+	submit("#formBook", function() {
+		let idevent = pilih("#idevent").value
+		let tgl = pilih("#tglBook").value
+		let qty = pilih("#qty").value
+		let book = "idevent="+idevent+"&tgl="+tgl+"&qty="+qty
+		pos("../aksi/booking/book.php", book, function() {
+			hilangPopup("#popupBook")
+			munculPopup("#suksesBook", pengaya("#suksesBook", "top: 230px"))
+		})
+		return false
+	})
+
+	tekan("Escape", function() {
+		hilangPopup("#popupBook")
+		hilang("#formLogin")
+	})
+	klik("#xBook", function() {
+		hilangPopup("#popupBook")
+	})
+
 	klik("#tblLogin", function() {
 		muncul(".bg")
 		muncul("#formLogin")
-	})
-	klik("#tblBook", function() {
-		munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
 	})
 	submit("#formSignIn", function() {
 		let email = pilih("#mailLog").value
@@ -279,19 +312,6 @@ $iconHotel = $hotel->get($idhotel, "icon");
 			location.reload()
 		})
 		return false
-	})
-
-	submit("#formBook", function() {
-		let idevent = pilih("#idevent").value
-		let tgl = pilih("#tglBook").value
-		let qty = pilih("#qty").value
-		let book = "idevent="+idevent+"&tgl="+tgl+"&qty="+qty
-		alert(book)
-		return false
-	})
-
-	tekan("Escape", function() {
-		hilangPopup("#popupBook")
 	})
 </script>
 
