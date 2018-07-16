@@ -1,17 +1,20 @@
 <?php
 include 'aksi/ctrl/booking.php';
 
+// Bagian User
 $sesi = $user->sesi();
 $nama = $user->info($sesi, "nama");
 $namaPertama = explode(" ", $nama)[0];
 $iduser = $user->info($sesi, "iduser");
 
+// Bagian Event
 $namaEvent = $event->info($idevent, "title");
 $cover = $event->info($idevent, "cover");
 $logo = $event->info($idevent, "logo");
 $address = $event->info($idevent, "address");
 $description = $event->info($idevent, "description");
 
+// Bagian Hotel
 $idhotel = $event->info($idevent, "idhotel");
 $hotelPhone = $hotel->get($idhotel, "phone");
 $namaHotel = $hotel->get($idhotel, "nama");
@@ -92,9 +95,9 @@ $iconHotel = $hotel->get($idhotel, "icon");
 			?>
 			<li id="adaSub">Hello <?php echo $namaPertama; ?> <i class="fa fa-angle-down"></i>
 				<ul class="sub">
-					<a href="./my"><li><div id="icon"><i class="fa fa-briefcase"></i></div> My Listing</li></a>
-					<a href="./settings"><li><div id="icon"><i class="fa fa-cog"></i></div> Settings</li></a>
-					<a href="./logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
+					<a href="../my"><li><div id="icon"><i class="fa fa-briefcase"></i></div> My Listing</li></a>
+					<a href="../settings"><li><div id="icon"><i class="fa fa-cog"></i></div> Settings</li></a>
+					<a href="../logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
 				</ul>
 			</li>
 			<?php
