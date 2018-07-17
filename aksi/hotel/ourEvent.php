@@ -27,7 +27,7 @@ foreach ($load as $row) {
 	}
 	echo "<a href='../event/".$row['idevent']."'>".
 			"<div class='list' id='loadedEvent'>".
-				"<img src='../aset/gbr/".$row['cover']."'>".
+				"<img src='../aset/gbr/".$row['covers']."'>".
 				"<div class='ket'>".
 					"<div class='wrap'>".
 						"<div id='keterangan'>".
