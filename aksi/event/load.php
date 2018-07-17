@@ -4,14 +4,14 @@ include '../ctrl/event.php';
 error_reporting(1);
 $keyword = $_COOKIE['kwExplore'];
 
-if($event->all($keyword) == "null") {
-	echo "Tidak ada event";
-	exit();
-}
-
 $tglMulai = $_COOKIE['tglMulai'];
 $tglAkhir = $_COOKIE['tglAkhir'];
 $category = $_COOKIE['category'];
+
+if($event->all($keyword, $tglMulai, $tglAkhir, $category) == "null") {
+	echo "Tidak ada event";
+	exit();
+}
 
 foreach ($event->all($keyword, $tglMulai, $tglAkhir, $category) as $row) {
 	$idhotel = $row['idhotel'];
@@ -27,7 +27,7 @@ foreach ($event->all($keyword, $tglMulai, $tglAkhir, $category) as $row) {
 	}
 	echo "<a href='./event/".$row['idevent']."'>".
 			 "<div class='list'>".
-				"<img src='aset/gbr/".$row['cover']."'>".
+				"<img src='aset/gbr/".$row['covers']."'>".
 				"<div class='ket'>".
 					"<div class='wrap'>".
 						"<div id='keterangan'>".

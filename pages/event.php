@@ -9,8 +9,8 @@ $iduser = $user->info($sesi, "iduser");
 
 // Bagian Event
 $namaEvent = $event->info($idevent, "title");
-$cover = $event->info($idevent, "cover");
-$logo = $event->info($idevent, "logo");
+$cover = $event->info($idevent, "covers");
+$logo = $event->info($idevent, "logos");
 $address = $event->info($idevent, "address");
 $description = $event->info($idevent, "description");
 

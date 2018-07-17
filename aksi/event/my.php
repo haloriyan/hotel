@@ -33,7 +33,7 @@ if($load == "kosong") {
 		foreach ($load as $row) {
 			$tgl = explode(" ", $row['tgl_posted'])[0];
 			echo "<tr>".
-					"<td><img src='../aset/gbr/".$row['cover']."'></td>".
+					"<td><img src='../aset/gbr/".$row['covers']."'></td>".
 					"<td>".
 						"<h4>".$row['title']."</h4>"."</h4>".
 						"<!-- <a href='#'>Edit</a> &nbsp;".

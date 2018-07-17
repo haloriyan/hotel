@@ -11,6 +11,9 @@ if(isset($_GET['cat'])) {
 }
 
 $q = $_GET['q'];
+if(empty($q)) {
+	$q = $_COOKIE['kwExplore'];
+}
 if(isset($q)) {
 	$subJudul = "- ".$q;
 }else {
