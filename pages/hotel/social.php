@@ -95,12 +95,35 @@ $namaPertama = explode(" ", $name)[0];
 	</div>
 </div>
 
+<div class="popupWrapper" id="popupHapus">
+	<div class="popup">
+		<div class="wrap">
+			<h3>Delete social
+				<div id="xHapus" class="ke-kanan"><i class="fa fa-close"></i></div>
+			</h3>
+			<form id="delSocial">
+				<p>
+					Sure want delete this account?
+				</p>
+				<input type="hidden" id="idsocial">
+				<div class="bag-tombol">
+					<button class="merah-2">Yes, delete this account</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
 <script src="../aset/js/embo.js"></script>
 <script>
 	function load() {
 		ambil("../aksi/social/load.php", function(res) {
 			tulis("#load", res)
 		})
+	}
+	function hapus(val) {
+		munculPopup("#popupHapus", pengaya("#popupHapus", "top: 210px"))
+		pilih("#idsocial").value = val
 	}
 
 	klik("#cta", function() {
@@ -109,6 +132,7 @@ $namaPertama = explode(" ", $name)[0];
 
 	tekan("Escape", function() {
 		hilangPopup("#addSocial")
+		hilangPopup("#popupHapus")
 	})
 	klik("#xAdd", function() {
 		hilangPopup("#addSocial")
@@ -126,6 +150,15 @@ $namaPertama = explode(" ", $name)[0];
 		}
 		pos("../aksi/social/add.php", tambah, function() {
 			hilangPopup("#addSocial")
+			load()
+		})
+		return false
+	})
+	submit("#delSocial", function() {
+		let id = pilih("#idsocial").value
+		let del = "idsocial="+id
+		pos("../aksi/social/delete.php", del, function() {
+			hilangPopup("#popupHapus")
 			load()
 		})
 		return false

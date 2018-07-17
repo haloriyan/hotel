@@ -98,11 +98,27 @@ function pengaya(select, style) {
 
 // Keyboard Event
 function tekan(key, fungsi) {
-	document.onkeydown = function(e) {
-		if(e.key == key) {
-			fungsi();
+	document.addEventListener("keydown", function(e) {
+		let ctrl = key.split(" ")
+		if(ctrl[0] == "ctrl") {
+			if(e.ctrlKey && e.key === ctrl[1]) {
+				fungsi()
+			}
+		}else if(ctrl[0] == "alt") {
+			if(e.altKey && e.key === ctrl[1]) {
+				fungsi()
+			}
+		}else if(ctrl[0] == "shift") {
+			if(e.shiftKey && e.key === ctrl[1]) {
+				fungsi()
+			}
+		}else {
+			if(e.key == key) {
+				fungsi()
+			}
 		}
-	}
+	})
+	return false
 }
 
 // Scrolling
@@ -185,13 +201,4 @@ function getCookie(cname) {
 		}
 	}
 	return ""
-}
-
-function inArray(needle, haystack) {
-	for (var key in haystack) {
-		if (needle === haystack[key]) {
-			return true
-		}
-	}
-	return false
 }

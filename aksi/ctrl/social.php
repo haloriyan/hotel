@@ -30,6 +30,10 @@ class social extends event {
 				  ->eksekusi();
 		return $q;
 	}
+	public function delete($id) {
+		$q = $this->tabel("social")->hapus()->dimana(["idsocial" => $id])->eksekusi();
+		return $q;
+	}
 }
 
 $social = new social();
