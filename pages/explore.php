@@ -5,6 +5,11 @@ $sesi = $user->sesi();
 $nama = $user->info($sesi, "nama");
 $namaPertama = explode(" ", $nama)[0];
 
+setcookie('kwExplore', $_GET['q'], time() + 3650, "/");
+if(isset($_GET['cat'])) {
+	setcookie('category', $_GET['cat'], time() + 3650, "/");
+}
+
 $q = $_GET['q'];
 if(isset($q)) {
 	$subJudul = "- ".$q;
@@ -15,6 +20,9 @@ if(isset($q)) {
 // delete cookie
 setcookie('tglMulai', '', time() + 1, "/");
 setcookie('tglAkhir', '', time() + 1, "/");
+
+// Category
+$category = ["Food & Beverage","Room","Venue","Sports & Wellness","Shopping","Recreation","Parties"];
 ?>
 <!DOCTYPE html>
 <html>
@@ -87,18 +95,23 @@ setcookie('tglAkhir', '', time() + 1, "/");
 				<option value="latest">Latest</option>
 				<option value="lowest">Lowest Price</option>
 			</select>
+			<div class="isi">Category :</div>
 			<select class="box" onchange="category(this.value)">
-				<option value="">Category...</option>
-				<option>Food &amp; Beverage</option>
-				<option>Room</option>
-				<option>Venue</option>
-				<option>Sports &amp; Wellness</option>
-				<option>Shopping</option>
-				<option>Recreation</option>
-				<option>Parties</option>
+				<option value="">All Categories</option>
+				<?php
+				foreach ($category as $key => $value) {
+					if($_COOKIE['category'] == $value) {
+						$selected = "selected";
+					}else {
+						$selected = "";
+					}
+					echo "<option ".$selected.">".$value."</option>";
+				}
+				?>
 			</select>
+			<div class="isi">City :</div>
 			<select class="box" onchange="city()">
-				<option>City...</option>
+				<option>All city</option>
 			</select>
 			<div class="bag bag-5">
 				From :

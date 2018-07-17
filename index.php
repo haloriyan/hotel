@@ -59,18 +59,20 @@ $namaPertama = explode(" ", $nama)[0];
 		<h2>Find Great Places to Eat, Visit and Stay</h2>
 		<div class="boxTengah">
 			<div class="wrap">
-				<form id="action">
+				<form id="action" style="margin-top: 50px;">
 					<div class="option">
-						<input type="text" class="box" placeholder="What are you looking for?">
+						<input type="text" class="box" placeholder="What are you looking for?" id="q">
 					</div>
 					<div class="option">
-						<select class="box">
-							<option>All categories</option>
+						<select class="box" id="cat">
+							<option value="">All categories</option>
+							<option>Food & Beverages</option>
 							<option>Room</option>
-							<option>Food and Beverages</option>
-							<option>Event</option>
-							<option>Swimming Pool</option>
-							<option>Business Center</option>
+							<option>Venue</option>
+							<option>Sports & Wellness</option>
+							<option>Shopping</option>
+							<option>Recreation</option>
+							<option>Parties</option>
 						</select>
 					</div>
 					<button id="search" class="tbl merah-2">
@@ -82,7 +84,7 @@ $namaPertama = explode(" ", $nama)[0];
 	</div>
 </div>
 
-<div class="bawah rata-tengah">
+<div class="bawah rata-tengah" style="display: none;">
 	<div class="wrap">
 		<h4>Categories</h4>
 		<h2>What do you need to find?</h2>
@@ -315,6 +317,12 @@ muncul("#formLogin")
 			hilang("#popupRegist")
 			muncul("#suksesReg")
 		})
+		return false
+	})
+	submit("#action", function() {
+		let q = pilih("#q").value
+		let cat = pilih("#cat").value
+		mengarahkan("./explore&q="+q+"&cat="+cat)
 		return false
 	})
 

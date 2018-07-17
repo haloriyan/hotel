@@ -1,9 +1,13 @@
 <?php
-include 'aksi/ctrl/hotel.php';
+include 'aksi/ctrl/event.php';
 
 $sesi 	= $hotel->sesi();
 $name 	= $hotel->get($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
+
+$idhotel = $hotel->get($sesi, "idhotel");
+$myResto = $resto->totMyResto($idhotel);
+$myEvent = $event->totMyEvent($idhotel);
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,6 +19,17 @@ $namaPertama = explode(" ", $name)[0];
 	<link href='../aset/fw/build/font-awesome.min.css' rel='stylesheet'>
 	<link href='../aset/css/style.index.css' rel='stylesheet'>
 	<link href="../aset/css/style.explore-admin.css" rel="stylesheet">
+	<style>
+		.card {
+			display: inline-block;
+			width: 31%;
+			border-radius: 6px;
+			margin-right: 15px;
+			margin-bottom: 20px;
+			cursor: pointer;
+		}
+		.card .wrap { margin: 4% 15% 8% 15%; }
+	</style>
 </head>
 <body>
 
@@ -53,6 +68,20 @@ $namaPertama = explode(" ", $name)[0];
 			</p>
 			<p>
 				From your account dashboard you can view your recent orders, manage your shipping and billing addresses and edit your password and account details.
+			</p>
+			<p>
+				<div class="card merah-2">
+					<div class="wrap">
+						<h2><?php echo $myEvent; ?></h2>
+						<p>Listings</p>
+					</div>
+				</div>
+				<div class="card merah-2">
+					<div class="wrap">
+						<h2><?php echo $myResto; ?></h2>
+						<p>Restaurant</p>
+					</div>
+				</div>
 			</p>
 		</div>
 	</form>

@@ -23,7 +23,7 @@ if($soc == "null") {
 					"<td>".$row['type']."</td>".
 					"<td><a href='".$row['url']."' target='_blank'>".$row['url']."</a></td>".
 					"<td class='rata-kanan'>".
-						"<button class='merah-2'><i class='fa fa-close'></i></button>".
+						"<button class='merah-2' onclick='hapus(this.value)' value='".$row['idsocial']."'><i class='fa fa-close'></i></button>".
 					"</td>".
 				 "</tr>";
 		}

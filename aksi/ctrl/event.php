@@ -94,6 +94,9 @@ class event extends resto {
 	public function ourEvent($id) {
 		$q = $this->tabel("event")->pilih()->dimana(["idhotel" => $id])->eksekusi();
 		if($this->hitung($q) == 0) {
+			$q = $this->tabel("event")->pilih()->dimana(["id_resto" => $id])->eksekusi();
+		}
+		if($this->hitung($q) == 0) {
 			return "null";
 		}else {
 			while($r = $this->ambil($q)) {
@@ -101,6 +104,10 @@ class event extends resto {
 			}
 			return $hasil;
 		}
+	}
+	public function totMyEvent($id) {
+		$q = $this->tabel("event")->pilih()->dimana(["idhotel" => $id])->eksekusi();
+		return $this->hitung($q);
 	}
 }
 

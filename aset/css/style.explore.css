@@ -42,8 +42,9 @@ body { background-color: #ecf0f1; }
 
 #filter {
 	overflow: auto;
-	height: 405px;
+	height: 495px;
 }
+#filter .isi { margin-top: 20px; }
 
 .container {
 	position: absolute;

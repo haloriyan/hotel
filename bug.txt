@@ -1,0 +1,14 @@
+- Delete social network
+- pencarian event berdasarkan hotel
+- booking in range
+- booking restoran
+- nampilin harga event
+- telepon dilink + tracking klik
+- nambahi capacity
+- available seat
+- bukti order
+- system refund
+
+admin :
+- verif pembayaran
+- redeem pembayaran
