@@ -1,6 +1,10 @@
 <?php
 include 'aksi/ctrl/booking.php';
 
+function toIdr($angka) {
+	return 'Rp. '.strrev(implode('.', str_split(strrev(strval($angka)), 3)));
+}
+
 // Bagian User
 $sesi = $user->sesi();
 $nama = $user->info($sesi, "nama");
@@ -13,6 +17,7 @@ $cover = $event->info($idevent, "covers");
 $logo = $event->info($idevent, "logos");
 $address = $event->info($idevent, "address");
 $description = $event->info($idevent, "description");
+$price = toIdr($event->info($idevent, "price"));
 
 // Bagian Hotel
 $idhotel = $event->info($idevent, "idhotel");
@@ -25,58 +30,12 @@ $iconHotel = $hotel->get($idhotel, "icon");
 <head>
 	<meta charset='UTF-8'>
 	<meta name='viewport' content='width=device-width, initial-scale = 1'>
-	<title><?php echo $namaEvent; ?></title>
+	<title><?php echo $namaEvent; ?> di Dailyhotels</title>
 	<link href='../aset/fw/build/fw.css' rel='stylesheet'>
 	<link href='../aset/fw/build/font-awesome.min.css' rel='stylesheet'>
 	<link href='../aset/css/style.index.css' rel='stylesheet'>
 	<link href='../aset/css/style.profile.css' rel='stylesheet'>
-	<style>
-		.open h3,.open .openHours {
-			display: block;
-			text-align: left;
-		}
-		.open .openHours {
-			float: none;
-			margin-top: 25px;
-		}
-		.atas { z-index: 6; }
-		.cta {
-			position: absolute;
-			top: 380px;right: 5%;
-			color: #fff;
-			z-index: 5;
-		}
-		.cta li,.cta button {
-			list-style: none;
-			display: inline-block;
-			border: 1px solid #fff;
-			padding: 20px 35px;
-			margin-left: 15px;
-			cursor: pointer;
-			color: #fff;
-			transition: 0.4s;
-		}
-		.cta #phone,.cta #book,.cta #booked {
-			border: none;
-		}
-		.cta #share { background: none; }
-		.iconHotel {
-			width: 60px;
-			height: 60px;
-			border-radius: 80px;
-			float: left;
-			margin-bottom: 25px;
-			margin-right: 20px;
-		}
-		.hosted span {
-			position: relative;
-			top: -15px;
-			font-size: 20px;
-			font-family: OBold;
-		}
-		.bg { z-index: 6; }
-		.popup { z-index: 16; }
-	</style>
+	<link href="../aset/css/tambahanEvent.css" rel="stylesheet">
 </head>
 <body>
 
@@ -113,7 +72,7 @@ $iconHotel = $hotel->get($idhotel, "icon");
 </div>
 
 <div class="cta">
-	<li id="phone"><i class="fa fa-phone"></i> &nbsp; <?php echo $hotelPhone; ?></li>
+	<li id="price"><i class="fa fa-money"></i> &nbsp; <?php echo $price; ?></li>
 	<button id="book" class="merah-2">Book Now!</button>
 	<button id="share"><i class="fa fa-share"></i></button>
 </div>
@@ -173,6 +132,8 @@ $iconHotel = $hotel->get($idhotel, "icon");
 	</div>
 </div>
 
+<button id="phone" class="merah-2" aksi="on"><i class="fa fa-phone"></i></button>
+
 <div class="bg"></div>
 <div class="formPopup" id="formLogin">
 	<form class="wrap" id="formSignIn">
@@ -204,13 +165,13 @@ $iconHotel = $hotel->get($idhotel, "icon");
 				<div id="xBook" class="ke-kanan"><i class="fa fa-close"></i></div>
 			</h3>
 			<form id="formBook">
+				<input type="hidden" id="idevent" value="<?php echo $idevent; ?>">
 			<?php
 			if($booking->cek($idevent, $iduser) == "ada")  {
 				echo "<p>You've booked this event. See your <a href='../my' target='_blank'>listing event</a></p>";
 			}else {
 			if($sesi != "") {
 			?>
-				<input type="hidden" id="idevent" value="<?php echo $idevent; ?>">
 				<div class="bag bag-7">
 					<div class="isi">Select date :</div>
 					<input type="date" class="box" id="tglBook" style="font-size: 17px;width: 80%" required>
@@ -251,72 +212,14 @@ $iconHotel = $hotel->get($idhotel, "icon");
 	</div>
 </div>
 
+<div class="listContact">
+	<input type="hidden" id="telepon" value="<?php echo $hotelPhone; ?>">
+	<a href="https://api.whatsapp.com/send?phone=<?php echo $hotelPhone; ?>" target="_blank" onclick='track(1)'><li id="wa"><div id="icon"><i class="fa fa-whatsapp"></i></div> Whatsapp</li></a>
+	<a href="tel:+<?php echo $hotelPhone; ?>" onclick="track(2)"><li id="call"><div id="icon"><i class="fa fa-phone"></i></div> Call</li></a>
+</div>
+
 <script src='../aset/js/embo.js'></script>
-<script>
-	// munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
-	klik("#book", function() {
-		munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
-	})
-	window.addEventListener("scroll", function() {
-		var skrol = window.pageYOffset
-		if(skrol >= 40) {
-			pengaya(".atas", "background: #cb0023")
-		}else {
-			pengaya(".atas", "background: none")
-		}
-	})
-	klik("#tblMenu", function() {
-		let tbl = pilih("#tblMenu")
-		let aksi = tbl.getAttribute("aksi")
-		if(aksi == "bkMenu") {
-			pengaya(".menu", "left: 0%")
-			tbl.setAttribute("aksi", "xMenu")
-		}else {
-			pengaya(".menu", "left: 100%")
-			tbl.setAttribute("aksi", "bkMenu")
-		}
-	})
-	klik("#tblBook", function() {
-		munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
-	})
-
-	submit("#formBook", function() {
-		let idevent = pilih("#idevent").value
-		let tgl = pilih("#tglBook").value
-		let qty = pilih("#qty").value
-		let book = "idevent="+idevent+"&tgl="+tgl+"&qty="+qty
-		pos("../aksi/booking/book.php", book, function() {
-			hilangPopup("#popupBook")
-			munculPopup("#suksesBook", pengaya("#suksesBook", "top: 230px"))
-		})
-		return false
-	})
-
-	tekan("Escape", function() {
-		hilangPopup("#popupBook")
-		hilang("#formLogin")
-	})
-	klik("#xBook", function() {
-		hilangPopup("#popupBook")
-	})
-
-	klik("#tblLogin", function() {
-		muncul(".bg")
-		muncul("#formLogin")
-	})
-	submit("#formSignIn", function() {
-		let email = pilih("#mailLog").value
-		let pwd = pilih("#pwdLog").value
-		let log = "email="+email+"&pwd="+pwd
-		if(email == "" || pwd == "") {
-			return false
-		}
-		pos("../aksi/user/login.php", log, function() {
-			location.reload()
-		})
-		return false
-	})
-</script>
+<script src="../aset/js/script.event.js"></script>
 
 </body>
 </html>

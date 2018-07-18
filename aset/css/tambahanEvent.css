@@ -1,0 +1,86 @@
+.open h3,.open .openHours {
+	display: block;
+	text-align: left;
+}
+.open .openHours {
+	float: none;
+	margin-top: 25px;
+}
+.atas { z-index: 6; }
+.cta {
+	position: absolute;
+	top: 380px;right: 5%;
+	color: #fff;
+	z-index: 5;
+}
+.cta li,.cta button {
+	list-style: none;
+	display: inline-block;
+	border: 1px solid #fff;
+	padding: 20px 35px;
+	margin-left: 15px;
+	cursor: pointer;
+	color: #fff;
+	transition: 0.4s;
+}
+.cta #price,.cta #book,.cta #booked {
+	border: none;
+}
+.cta #share { background: none; }
+.iconHotel {
+	width: 60px;
+	height: 60px;
+	border-radius: 80px;
+	float: left;
+	margin-bottom: 25px;
+	margin-right: 20px;
+}
+.hosted span {
+	position: relative;
+	top: -15px;
+	font-size: 20px;
+	font-family: OBold;
+}
+.bg { z-index: 6; }
+.popup { z-index: 16; }
+#phone {
+	position: fixed;
+	bottom: 60px;right: 2.5%;
+	width: 60px;
+	height: 60px;
+	font-size: 22px;
+	border-radius: 90px;
+	border: none;
+	transition: 0.44s;
+	cursor: pointer;
+	z-index: 16;
+}
+#phone[aksi=off] { background-color: #444; }
+#phone:focus { outline: none; }
+
+.listContact {
+	position: fixed;
+	bottom: 125px;right: 2.5%;
+	z-index: 15;
+	width: 15%;
+}
+.listContact a { text-decoration: none; }
+.listContact li{
+	background-color: #fff;
+	color: #555;
+	list-style: none;
+	margin-top: 20px;
+	margin-bottom: 15px;
+	line-height: 55px;
+	border-radius: 6px;
+	position: relative;
+	left: 300px;
+	cursor: pointer;
+	padding: 1px 20px;
+	transition: 0.4s;
+}
+.listContact li:hover { color: #cb0023; }
+.listContact #icon {
+	display: inline-block;
+	width: 30px;
+}
