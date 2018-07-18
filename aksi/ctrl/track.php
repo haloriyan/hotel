@@ -3,18 +3,7 @@ include 'user.php';
 
 class track extends user {
 	public function hit($idevent, $iduser, $tipe) {
-		$cek = $this->tabel("track")
-					->pilih()
-					->dimana([
-						"idevent" => $idevent,
-						"iduser" => $iduser,
-						"tipe" => $tipe
-					])->eksekusi();
-		if($this->hitung($cek) != 0) {
-			return "ada";
-		}else {
-			return "tiada";
-		}
+		$cek = $this->query("SELECT * FROM track WHERE idevent = '$idevent' AND iduser = '$iduser' AND tipe = '$tipe'");
 		if($this->hitung($cek) != 0) {
 			// pernah
 			$r = $this->ambil($cek);

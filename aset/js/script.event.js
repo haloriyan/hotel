@@ -30,7 +30,6 @@ function track(tipe) {
 	let param = "tipe="+tipe+"&idevent="+idevent
 	pos("../aksi/track.php", param, function() {
 		console.log('tracked')
-		console.log(param)
 	})
 }
 klik("#book", function() {
