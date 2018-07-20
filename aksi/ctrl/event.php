@@ -10,7 +10,7 @@ class event extends resto {
 		$r = $this->ambil($q);
 		return $r[$struktur];
 	}
-	public function create($a, $b, $idresto, $c, $d, $e, $f, $g, $h, $i, $j, $tglAkhir, $jPosted, $k, $l, $m) {
+	public function create($a, $b, $idresto, $c, $d, $e, $f, $g, $h, $i, $j, $tglAkhir, $jPosted, $k, $seat, $l, $m) {
 		$q = $this->tabel("event")
 				  ->tambah([
 				  	"idevent" => $a,
@@ -26,7 +26,8 @@ class event extends resto {
 				  	"tgl_mulai" => $j,
 				  	"tgl_akhir" => $tglAkhir,
 				  	"tgl_posted" => $jPosted,
-				  	"category" => $k,
+					"category" => $k,
+					"avaibleseat" => $seat,
 				  	"price" => $l,
 				  	"added" => $m
 				  ])

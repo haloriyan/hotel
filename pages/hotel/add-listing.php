@@ -123,6 +123,8 @@ $namaPertama = explode(" ", $name)[0];
 				<option>Recreation</option>
 				<option>Parties</option>
 			</select>
+			<div class="isi">Avaible Seat</div>
+			<input type="text" class="box" placeholder="Avaible Seat..." id="seat">
 			<br />
 			<button class="tbl merah-2">NEXT</button>
 		</div>
@@ -179,9 +181,10 @@ $namaPertama = explode(" ", $name)[0];
 		let date = pilih("#date").value
 		let dateEnd = pilih("#dateEnd").value
 		let category = pilih("#category").value
+		let seat = pilih("#seat").value
 		let price = pilih("#priceBox").value
-		let pub = "title="+title+"&tagline="+tagline+"&description="+description+"&logo="+logo+"&cover="+cover+"&region="+region+"&address="+address+"&tgl="+date+"&tgl_akhir="+dateEnd+"&category="+category+"&price="+price
-		if(title == "" || tagline == "" || description == "" || logo == "" || cover == "" || region == "" || address == "" || date == "" || category == "" || price == "") {
+		let pub = "title="+title+"&tagline="+tagline+"&description="+description+"&logo="+logo+"&cover="+cover+"&region="+region+"&address="+address+"&tgl="+date+"&tgl_akhir="+dateEnd+"&category="+category+"&avaibleseat="+seat+"&price="+price
+		if(title == "" || tagline == "" || description == "" || logo == "" || cover == "" || region == "" || address == "" || date == "" || category == "" || seat == "" || price == "") {
 			munculPopup("#notif", pengaya("#notif", "top: 225px"))
 			tulis("#isiNotif", "All field must be filled")
 			return false
@@ -230,7 +233,8 @@ $namaPertama = explode(" ", $name)[0];
 	submit("#detail", function() {
 		let date = pilih("#date").value
 		let cat = pilih("#category").value
-		if(date == "" || cat == "") {
+		let seat = pilih("#seat").value
+		if(date == "" || cat == "" || seat == "") {
 			munculPopup("#notif", pengaya("#notif", "top: 225px"))
 			tulis("#isiNotif", "All field must be filled")
 			return false
