@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2018 at 05:43 AM
+-- Generation Time: Jul 20, 2018 at 03:45 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -56,10 +56,18 @@ CREATE TABLE `booking` (
   `bukti` varchar(155) NOT NULL,
   `status` int(11) NOT NULL,
   `hadir` int(11) NOT NULL,
-  `tgl` datetime NOT NULL,
+  `tgl` date NOT NULL,
   `tgl_book` datetime NOT NULL,
   `added` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `booking`
+--
+
+INSERT INTO `booking` (`idbooking`, `idevent`, `iduser`, `qty`, `bukti`, `status`, `hadir`, `tgl`, `tgl_book`, `added`) VALUES
+(791115, 1488, 378558272, 1, '', 0, 0, '2018-07-17', '2018-07-16 00:00:00', 1531714337),
+(924303, 301178, 378558272, 5, '', 0, 0, '2018-07-18', '2018-07-17 00:00:00', 1531786324);
 
 -- --------------------------------------------------------
 
@@ -74,8 +82,8 @@ CREATE TABLE `event` (
   `title` varchar(55) NOT NULL,
   `tagline` varchar(100) NOT NULL,
   `description` text NOT NULL,
-  `logo` varchar(155) NOT NULL,
-  `cover` varchar(155) NOT NULL,
+  `logos` varchar(155) NOT NULL,
+  `covers` varchar(155) NOT NULL,
   `region` varchar(55) NOT NULL,
   `address` varchar(300) NOT NULL,
   `tgl_mulai` date NOT NULL,
@@ -90,8 +98,10 @@ CREATE TABLE `event` (
 -- Dumping data for table `event`
 --
 
-INSERT INTO `event` (`idevent`, `idhotel`, `id_resto`, `title`, `tagline`, `description`, `logo`, `cover`, `region`, `address`, `tgl_mulai`, `tgl_akhir`, `tgl_posted`, `category`, `price`, `added`) VALUES
+INSERT INTO `event` (`idevent`, `idhotel`, `id_resto`, `title`, `tagline`, `description`, `logos`, `covers`, `region`, `address`, `tgl_mulai`, `tgl_akhir`, `tgl_posted`, `category`, `price`, `added`) VALUES
 (1488, 684889, 0, 'Akan Datang', 'initagline', 'lorem ipsum', 'zuck.png', 'startup-593327_1920.jpg', 'Kalianak', 'Jl. Kalianak Timur', '2018-07-17', '2018-07-26', '2018-07-16 08:04:57', 'Food and Beverage', 0, 1531703097),
+(193424, 684889, 0, 'Pelatihan Ngeblog SEO Friendly', 'seo', 'Ikuti pelatihan Internet Marketing & SEO! Optimasi website agar masuk halaman 1 Google untuk Melipatgandakan Penjualan.', 'zuck.png', 'workshopKapitalis.jpg', 'Surabaya', 'Jl. Pandegiling No. 45, Surabaya', '2018-07-18', '2018-07-22', '2018-07-16 14:48:35', 'Parties', 2500000, 1531727315),
+(218974, 368862, 0, 'Lomba Fotografi', 'Lomba foto', 'Tema : Warisan dari Pahlawan\n\nPersyaratan : \n- FC KTP dan KK\n- Membayar Biaya Pendaftaran Rp 100.000\n\n1st Prize : Rp 120.000\n2nd Prize : Rp 110.000\n3rd Prize : Rp 105.000', 'f9b9c35ceb57fb9f18400bff7dafb3e9.png', 'lomba fotografi.jpg', 'Petemon', 'Jl. Tentara Genie Pelajar No. 26, Surabaya', '2018-07-18', '2018-07-21', '2018-07-18 01:31:13', 'Parties', 100000, 1531852273),
 (390630, 684889, 0, 'Event Expired', 'initagline', 'halo dunia', 'database.png', 'f9b9c35ceb57fb9f18400bff7dafb3e9.png', 'Petemon', 'Jl. Petemon Barat', '2018-06-27', '2018-07-01', '2018-07-16 07:39:13', 'Food and Beverage', 0, 1531701553);
 
 -- --------------------------------------------------------
@@ -140,7 +150,10 @@ INSERT INTO `galeri` (`idgambar`, `idhotel`, `tipe`, `gambar`, `added`) VALUES
 (556900, 684889, 'hotel', 'samisanov ok.jpg', 1531280032),
 (469912, 684889, 'hotel', 'koridor-co-working-space-surabaya-koridor-2.jpg', 1531302839),
 (332003, 684889, 'hotel', '34696265_585925761794440_605698145170489344_n.jpg', 1531370302),
-(180883, 684889, 'hotel', '_SAM1139.JPG', 1531371685);
+(180883, 684889, 'hotel', '_SAM1139.JPG', 1531371685),
+(604308, 684889, 'resto', 'nguntal.jpg', 1531741349),
+(189640, 684889, 'resto', 'hisana.jpg', 1531741462),
+(200358, 684889, 'hotel', 'hisana.jpg', 1531786597);
 
 -- --------------------------------------------------------
 
@@ -172,7 +185,7 @@ INSERT INTO `hotel` (`idhotel`, `nama`, `email`, `password`, `icon`, `cover`, `p
 (131722, 'Testho Hotel', 'marcom@testhotel.co.id', 'inikatasandi', 'batman.jpg', 'cara-mengatasi-grogi.jpg', '082126164429', 'https://www.facebook.com', 'Surabaya', 'Jalan Kalianak Timur No. 40', '', 1, 1530509890),
 (194215, 'Riyans Hotel', 'marcom@riyanshotel.guru', 'inikatasandi', '', '', '', '', '', '', '', 2, 1530461071),
 (368862, 'Smekda Hotel', 'smekda.surabaya@gmail.com', 'inikatasandi', 'logo-smekda.jpg', '', '62315343708', 'http://smkn2sby.sch.id', 'Surabaya', 'Jalan Tentara Genie Pelajar No. 26', '', 1, 1530595602),
-(684889, 'TokDalang Homestay', 'tokdalang@durianruntuh.my', 'inikatasandi', 'tokdalang.jpg', 'rumahTokDalang.jpg', '93743582375', 'https://durianruntuh.my', 'Kampung Durian Runtuh', 'Kampung Durian Runtuh No. 25', '2,3,4', 1, 1530595632);
+(684889, 'TokDalang Homestay', 'tokdalang@durianruntuh.my', 'inikatasandi', 'tokdalang.jpg', 'rumahTokDalang.jpg', '93743582375', 'https://durianruntuh.my', 'Kampung Durian Runtuh', 'Kampung Durian Runtuh No. 25', '1,2,3,4,6', 1, 1530595632);
 
 -- --------------------------------------------------------
 
@@ -201,8 +214,8 @@ CREATE TABLE `restoran` (
 --
 
 INSERT INTO `restoran` (`idresto`, `idhotel`, `nama`, `email`, `password`, `icon`, `cover`, `phone`, `website`, `city`, `address`, `facility`, `added`) VALUES
-(726644, 684889, 'Hisana Pret Ciken', 'hisana@tokdalanghomesate.my', 'inikatasandi', '', '', '', '', '', '', '', 1531478058),
-(882867, 684889, 'Indofood Sarimi Isidua State', 'isis@tokdalanghomestay.my', 'inikatasandi', '', '', '', '', '', '', '', 1531480351);
+(519863, 684889, 'Restoran Baru', 'resto@tokdalang.com', 'inikatasandi', '', '', '', '', '', '', '1,2,3,4,5,6', 1531786764),
+(726644, 684889, 'Hisana Pret Ciken', 'hisana@tokdalanghomesate.my', 'inikatasandi', 'download (1).jpg', 'download.jpg', '082126164429', 'https://hisana.id', 'Surabaya', 'Jl. Genteng Kali No. 55', '5,6,3,4,2,1', 1531783891);
 
 -- --------------------------------------------------------
 
@@ -223,9 +236,35 @@ CREATE TABLE `social` (
 --
 
 INSERT INTO `social` (`idsocial`, `idhotel`, `idresto`, `type`, `url`) VALUES
-(484903, 684889, 0, 'Twitter', 'https://www.twitter.com/telkomsel'),
-(508757, 684889, 0, 'Facebook', 'https://www.facebook.com/zuck'),
-(712041, 684889, 0, 'Instagram', 'https://www.instagram.com/awkarin');
+(237927, 684889, 0, 'Twitter', 'https://twitter.com/telkomsel'),
+(701779, 726644, 0, 'Facebook', 'https://www.facebook.com/zuck'),
+(797624, 726644, 0, 'Instagram', 'https://www.instagram.com/hisana'),
+(842860, 684889, 0, 'Facebook', 'https://www.facebook.com/zuck'),
+(997566, 684889, 0, 'Instagram', 'https://www.instagram.com/mesxx_');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `track`
+--
+
+CREATE TABLE `track` (
+  `idtrack` int(11) NOT NULL,
+  `idevent` int(11) NOT NULL,
+  `iduser` varchar(25) NOT NULL,
+  `tipe` int(11) NOT NULL,
+  `hint` int(11) NOT NULL,
+  `last_tracked` int(11) NOT NULL,
+  `added` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `track`
+--
+
+INSERT INTO `track` (`idtrack`, `idevent`, `iduser`, `tipe`, `hint`, `last_tracked`, `added`) VALUES
+(272363224, 1488, '::1', 1, 2, 1531944410, 1531944328),
+(879020637, 0, '::1', 0, 1, 1531944339, 1531944339);
 
 -- --------------------------------------------------------
 
@@ -250,6 +289,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`iduser`, `email`, `password`, `nama`, `telepon`, `alamat`, `status`, `registered`) VALUES
 (1, '', '', '', '', '', 1, 0),
+(49280222, 'riyan2@riyan.com', 'inikatasandi', 'Riyan Satria', '', '', 0, 1531786268),
 (378558272, 'halo@riyansatria.tk', 'sandinepodo', 'Riyan Satria', '', '', 1, 1530359712);
 
 --
@@ -300,6 +340,12 @@ ALTER TABLE `social`
   ADD PRIMARY KEY (`idsocial`);
 
 --
+-- Indexes for table `track`
+--
+ALTER TABLE `track`
+  ADD PRIMARY KEY (`idtrack`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -313,7 +359,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `restoran`
 --
 ALTER TABLE `restoran`
-  MODIFY `idresto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=882868;
+  MODIFY `idresto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=726645;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
