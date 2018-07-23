@@ -1,4 +1,15 @@
 // munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
+// Date picker
+$(function() {
+	$("#tglBook").datepicker({
+		minDate: $("#minDate").val(),
+		maxDate: $("#maxDate").val(),
+		dateFormat: 'yy-mm-dd',
+		useCurrent: false,
+    	showClose: true
+	})
+})
+
 function munculContact() {
 	muncul(".bg")
 	pengaya("#wa", "left: 0px")
@@ -15,6 +26,7 @@ function hilangContact() {
 		hilang(".bg")
 	}, 750)
 }
+
 klik("#phone", function() {
 	let aksi = pilih("#phone").getAttribute("aksi")
 	if(aksi == "on") {

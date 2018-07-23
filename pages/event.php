@@ -18,6 +18,8 @@ $logo = $event->info($idevent, "logos");
 $address = $event->info($idevent, "address");
 $description = $event->info($idevent, "description");
 $price = toIdr($event->info($idevent, "price"));
+$tglMulai = $event->info($idevent, "tgl_mulai");
+$tglAkhir = $event->info($idevent, "tgl_akhir");
 
 // Bagian Hotel
 $idhotel = $event->info($idevent, "idhotel");
@@ -33,6 +35,7 @@ $iconHotel = $hotel->get($idhotel, "icon");
 	<title><?php echo $namaEvent; ?> di Dailyhotels</title>
 	<link href='../aset/fw/build/fw.css' rel='stylesheet'>
 	<link href='../aset/fw/build/font-awesome.min.css' rel='stylesheet'>
+	<link href='../aset/css/jquery-ui.min.css' rel='stylesheet'>
 	<link href='../aset/css/style.index.css' rel='stylesheet'>
 	<link href='../aset/css/style.profile.css' rel='stylesheet'>
 	<link href="../aset/css/tambahanEvent.css" rel="stylesheet">
@@ -174,7 +177,9 @@ $iconHotel = $hotel->get($idhotel, "icon");
 			?>
 				<div class="bag bag-7">
 					<div class="isi">Select date :</div>
-					<input type="date" class="box" id="tglBook" style="font-size: 17px;width: 80%" required>
+					<input type="hidden" id="minDate" value="<?php echo $tglMulai; ?>">
+					<input type="hidden" id="maxDate" value="<?php echo $tglAkhir; ?>">
+					<input type="text" class="box" id="tglBook" style="font-size: 17px;width: 80%" required placeholder="YYYY-MM-DD">
 				</div>
 				<div class="bag bag-3">
 					<div class="isi">Quantity</div>
@@ -219,6 +224,8 @@ $iconHotel = $hotel->get($idhotel, "icon");
 </div>
 
 <script src='../aset/js/embo.js'></script>
+<script src='../aset/js/jquery-3.1.1.js'></script>
+<script src='../aset/js/jquery-ui.min.js'></script>
 <script src="../aset/js/script.event.js"></script>
 
 </body>

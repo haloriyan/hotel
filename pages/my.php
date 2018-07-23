@@ -2,6 +2,9 @@
 include 'aksi/ctrl/event.php';
 
 $sesi 	= $user->sesi();
+if(empty($sesi)) {
+	header("location: ./");
+}
 $name 	= $user->info($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
 ?>
@@ -20,6 +23,28 @@ $namaPertama = explode(" ", $name)[0];
 		#icon {
 			line-height: 50px;
 		}
+		#myListing img {
+			width: 50px;
+			height: 50px;
+		}
+		#myListing li {
+			display: inline-block;
+			color: #cb0023;
+			cursor: pointer;
+		}
+		td a { font-size: 15px; }
+		th {
+			text-align: left;
+			padding: 5px;
+			background-color: #fff;
+			border-bottom: 1px solid #ccc;
+		}
+		td {
+			padding: 10px;
+			border-bottom: 1px solid #ddd;
+			background-color: #fff;
+		}
+		td h4 { margin-top: 5px; }
 	</style>
 </head>
 <body>
@@ -50,25 +75,23 @@ $namaPertama = explode(" ", $name)[0];
 	<div>
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-home"></i></div> My Listing Event</h4>
-			<div id="load">
-				<table>
-					<thead>
-						<tr>
-							<th>Name</th>
-							<th>Date start</th>
-							<th>Date end</th>
-							<th>Price</th>
-						</tr>
-					</thead>
-				</table>
-			</div>
+			<div id="load"></div>
+			<p>
+				* click "UNPAID" button to pay it
+			</p>
 		</div>
 	</div>
 </div>
 
 <script src="aset/js/embo.js"></script>
 <script>
-	//
+	function load() {
+		ambil("aksi/user/myBooking.php", function(res) {
+			tulis("#load", res)
+		})
+	}
+
+	load()
 </script>
 
 </body>
