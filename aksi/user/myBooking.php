@@ -49,7 +49,7 @@ if($myBook == "null") {
 				$tglAkhir 	= $event->info($idevent, "tgl_akhir");
 				$de 		= explode("-", $tglAkhir);
 				$dateEnd 	= $bln[$de['1']] . ", ". $de['2'];
-				$price 		= $event->info($idevent, "price");
+				$price 		= $event->info($idevent, "price") * $row['qty'];
 				if($row['status'] == 0) {
 					// belum dibayar
 					$btn = "<a href='./invoice/".$row['idbooking']."' target='_blank'><button class='tbl merah-2'>UNPAID</button></a>";
