@@ -20,6 +20,7 @@ $description = $event->info($idevent, "description");
 $price = toIdr($event->info($idevent, "price"));
 $tglMulai = $event->info($idevent, "tgl_mulai");
 $tglAkhir = $event->info($idevent, "tgl_akhir");
+$qty = $event->info($idevent, "availableseat");
 
 // Bagian Hotel
 $idhotel = $event->info($idevent, "idhotel");
@@ -74,9 +75,18 @@ $iconHotel = $hotel->get($idhotel, "icon");
 	<img src="../aset/gbr/<?php echo $cover; ?>">
 </div>
 
+<input type="hidden" id="availableseat" value="<?php echo $qty; ?>">
+
 <div class="cta">
 	<li id="price"><i class="fa fa-money"></i> &nbsp; <?php echo $price; ?></li>
-	<button id="book" class="merah-2">Book Now!</button>
+	<li id="price"><i class="fa fa-user"></i> &nbsp; <?php echo $qty; ?> available</li>
+	<?php
+	if($qty >= 1) {
+		?>
+		<button id="book" class="merah-2">Book Now!</button>
+		<?php
+	}
+	?>
 	<button id="share"><i class="fa fa-share"></i></button>
 </div>
 
@@ -185,7 +195,11 @@ $iconHotel = $hotel->get($idhotel, "icon");
 					<div class="isi">Quantity</div>
 					<select class="box" id="qty">
 						<?php
-						for($i = 1; $i <= 10; $i++) {
+						$till = $qty;
+						if($qty >= 10) {
+							$till = 10;
+						}
+						for($i = 1; $i <= $till; $i++) {
 							echo "<option>".$i."</option>";
 						}
 						?>

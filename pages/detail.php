@@ -1,8 +1,10 @@
 <?php
 include 'aksi/ctrl/event.php';
 
-$sesi 	= $user->sesi();
+$sesi 	= $user->sesi(1);
 $name 	= $user->info($sesi, "nama");
+$phone 	= $user->info($sesi, "phone");
+$address 	= $user->info($sesi, "address");
 $namaPertama = explode(" ", $name)[0];
 ?>
 <!DOCTYPE html>
@@ -24,7 +26,7 @@ $namaPertama = explode(" ", $name)[0];
 			padding-bottom: 12px;
 		}
 		.container { margin-bottom: 45px; }
-		.box { width: 100%;font-size: 16px;height: 50px; }
+		.box { width: 100%;font-size: 16px;height: 50px;color: #555; }
 	</style>
 </head>
 <body>
@@ -57,11 +59,11 @@ $namaPertama = explode(" ", $name)[0];
 			<h4><div id="icon"><i class="fa fa-pencil"></i></div> Detail Information</h4>
 			<form id="formDetail">
 				<div class="isi">Name :</div>
-				<input type="text" class="box" id="name">
+				<input type="text" class="box" id="name" value="<?php echo $name; ?>">
 				<div class="isi">Phone :</div>
-				<input type="text" class="box" id="phone">
+				<input type="text" class="box" id="phone" value="<?php echo $phone; ?>">
 				<div class="isi">Address :</div>
-				<textarea class="box" id="address"></textarea>
+				<textarea class="box" id="address"><?php echo $address; ?></textarea>
 				<br /><br />
 				<button class="tbl merah-2">Save</button>
 			</form>

@@ -12,6 +12,7 @@ $(function() {
 
 function munculContact() {
 	muncul(".bg")
+	pengaya(".listContact", "right: 2.5%")
 	pengaya("#wa", "left: 0px")
 	setTimeout(function() {
 		pengaya("#call", "left: 0px")
@@ -24,6 +25,7 @@ function hilangContact() {
 	}, 400)
 	setTimeout(function() {
 		hilang(".bg")
+		pengaya(".listContact", "right: -25%")
 	}, 750)
 }
 
@@ -44,9 +46,6 @@ function track(tipe) {
 		console.log('tracked')
 	})
 }
-klik("#book", function() {
-	munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
-})
 window.addEventListener("scroll", function() {
 	var skrol = window.pageYOffset
 	if(skrol >= 40) {
@@ -54,6 +53,9 @@ window.addEventListener("scroll", function() {
 	}else {
 		pengaya(".atas", "background: none")
 	}
+})
+klik("#book", function() {
+	munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
 })
 klik("#tblMenu", function() {
 	let tbl = pilih("#tblMenu")
@@ -67,7 +69,7 @@ klik("#tblMenu", function() {
 	}
 })
 klik("#tblBook", function() {
-		munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
+	munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
 })
 submit("#formBook", function() {
 	let idevent = pilih("#idevent").value

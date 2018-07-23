@@ -34,8 +34,14 @@ class user extends controller {
 			setcookie('kukiLogin', 'Wrong email and/or password!', time() + 45, "/");
 		}
 	}
-	public function sesi() {
+	public function sesi($opt = NULL) {
 		session_start();
+		$sesi = $_SESSION['upublic'];
+		if($opt != "") {
+			if(empty($sesi)) {
+				header("location: ./");
+			}
+		}
 		return $_SESSION['upublic'];
 	}
 	public function register($a, $b, $c, $d, $e) {

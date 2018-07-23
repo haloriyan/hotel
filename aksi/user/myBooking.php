@@ -71,5 +71,8 @@ if($myBook == "null") {
 			?>
 		</tbody>
 	</table>
+	<p>
+		* click "UNPAID" button to pay it
+	</p>
 	<?php
 }

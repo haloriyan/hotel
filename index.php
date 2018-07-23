@@ -32,7 +32,7 @@ $namaPertama = explode(" ", $nama)[0];
 	<div id="tblMenu" aksi="bkMenu"><i class="fa fa-bars"></i></div>
 	<nav class="menu">
 		<a href="#"><li>Home</li></a>
-		<a href="#"><li>Explore</li></a>
+		<a href="./explore"><li>Explore</li></a>
 		<a href="#"><li>City</li></a>
 		<?php
 		if(empty($sesi)) { ?>

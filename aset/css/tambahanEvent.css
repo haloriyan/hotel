@@ -61,6 +61,7 @@
 .listContact {
 	position: fixed;
 	bottom: 125px;right: 2.5%;
+	right: -25%;
 	z-index: 15;
 	width: 15%;
 }

@@ -76,9 +76,6 @@ $namaPertama = explode(" ", $name)[0];
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-home"></i></div> My Listing Event</h4>
 			<div id="load"></div>
-			<p>
-				* click "UNPAID" button to pay it
-			</p>
 		</div>
 	</div>
 </div>

@@ -1,7 +1,7 @@
 <?php
 include 'aksi/ctrl/event.php';
 
-$sesi 	= $user->sesi();
+$sesi 	= $user->sesi(1);
 $name 	= $user->info($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
 ?>
