@@ -3,8 +3,8 @@ include 'aksi/ctrl/event.php';
 
 $sesi 	= $user->sesi(1);
 $name 	= $user->info($sesi, "nama");
-$phone 	= $user->info($sesi, "phone");
-$address 	= $user->info($sesi, "address");
+$phone 	= $user->info($sesi, "telepon");
+$address 	= $user->info($sesi, "alamat");
 $namaPertama = explode(" ", $name)[0];
 ?>
 <!DOCTYPE html>
@@ -27,6 +27,9 @@ $namaPertama = explode(" ", $name)[0];
 		}
 		.container { margin-bottom: 45px; }
 		.box { width: 100%;font-size: 16px;height: 50px;color: #555; }
+		.bg { z-index: 4; }
+		.atas { z-index: 3; }
+		.popup { border-radius: 6px; }
 	</style>
 </head>
 <body>
@@ -59,14 +62,26 @@ $namaPertama = explode(" ", $name)[0];
 			<h4><div id="icon"><i class="fa fa-pencil"></i></div> Detail Information</h4>
 			<form id="formDetail">
 				<div class="isi">Name :</div>
-				<input type="text" class="box" id="name" value="<?php echo $name; ?>">
+				<input type="text" class="box" id="name" autocomplete="off" value="<?php echo $name; ?>">
 				<div class="isi">Phone :</div>
-				<input type="text" class="box" id="phone" value="<?php echo $phone; ?>">
+				<input type="text" class="box" id="phone" autocomplete="off" value="<?php echo $phone; ?>">
 				<div class="isi">Address :</div>
-				<textarea class="box" id="address"><?php echo $address; ?></textarea>
+				<textarea class="box" id="address" autocomplete="off"><?php echo $address; ?></textarea>
 				<br /><br />
 				<button class="tbl merah-2">Save</button>
 			</form>
+		</div>
+	</div>
+</div>
+
+<div class="bg"></div>
+<div class="popupWrapper" id="notif">
+	<div class="popup">
+		<div class="wrap">
+			<h3><i class="fa fa-info"></i> &nbsp; Alert!
+				<div id="xNotif" class="ke-kanan"><i class="fa fa-close"></i></div>
+			</h3>
+			<p id="isiNotif">Setelan berhasil disimpan!</p>
 		</div>
 	</div>
 </div>
@@ -78,6 +93,17 @@ $namaPertama = explode(" ", $name)[0];
 		let phone = pilih("#phone").value
 		let address = pilih("#address").value
 		let detail = "name="+name+"&phone="+phone+"&address="+address
+		pos("aksi/user/change.php", detail, function() {
+			munculPopup("#notif", pengaya("#notif", "top: 210px"))
+		})
+		return false
+	})
+
+	tekan("Escape", function() {
+		hilangPopup("#notif")
+	})
+	klik("#xNotif", function() {
+		hilangPopup("#notif")
 	})
 </script>
 

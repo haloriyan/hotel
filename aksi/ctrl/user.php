@@ -2,9 +2,6 @@
 include 'controller.php';
 
 class user extends controller {
-	public function test() {
-		return 'Hello embo!';
-	}
 	public function info($e, $struktur) {
 		$q = $this->tabel("user")
 				  ->pilih()
@@ -63,6 +60,10 @@ class user extends controller {
 				  ->ubah(["status" => 1])
 				  ->dimana(["iduser" => $iduser])
 				  ->eksekusi();
+	}
+	public function ganti($id, $kolom, $value) {
+		$q = $this->tabel("user")->ubah([$kolom => $value])->dimana(["iduser" => $id])->eksekusi();
+		return $q;
 	}
 
 	// LISTING EVENT
