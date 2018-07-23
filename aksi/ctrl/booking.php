@@ -20,7 +20,7 @@ class booking extends event {
 				  	"added" => time()
 				  ])->eksekusi();
 		// ngubah
-		$ubah = $this->query("UPDATE event SET avaibleseat = avaibleseat - $d WHERE idevent = '$b'");
+		$ubah = $this->query("UPDATE event SET available = available - $d WHERE idevent = '$b'");
 		return $q;
 	}
 	public function cek($idevent, $iduser) {

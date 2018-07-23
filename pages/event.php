@@ -197,7 +197,8 @@ $iconHotel = $hotel->get($idhotel, "icon");
 			<?php
 			}else { ?>
 				<p>You must login before booking an event</p>
-			<?php } }
+			<?php } 
+			}
 			?>
 			</form>
 		</div>
