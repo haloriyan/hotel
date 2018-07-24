@@ -54,10 +54,6 @@ window.addEventListener("scroll", function() {
 		pengaya(".atas", "background: none")
 	}
 })
-klik("#tblLogin", function() {
-	muncul(".bg")
-	muncul("#formLogin")
-})
 klik("#tblMenu", function() {
 	let tbl = pilih("#tblMenu")
 	let aksi = tbl.getAttribute("aksi")
@@ -88,4 +84,8 @@ submit("#formSignIn", function() {
 		location.reload()
 	})
 	return false
+})
+klik("#tblLogin", function() {
+	muncul(".bg")
+	muncul("#formLogin")
 })
