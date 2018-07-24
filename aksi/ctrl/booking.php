@@ -16,11 +16,11 @@ class booking extends event {
 				  	"qty" => $d,
 				  	"status" => 0,
 				  	"tgl" => $e,
-				  	"tgl_book" => date('Y-m-d'),
+				  	"tgl_book" => date('Y-m-d H:i:s'),
 				  	"added" => time()
 				  ])->eksekusi();
 		// ngubah
-		$ubah = $this->query("UPDATE event SET available = available - $d WHERE idevent = '$b'");
+		$ubah = $this->query("UPDATE event SET availableseat = availableseat - $d WHERE idevent = '$b'");
 		return $q;
 	}
 	public function cek($idevent, $iduser) {

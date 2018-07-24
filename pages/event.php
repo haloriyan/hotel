@@ -40,6 +40,7 @@ $iconHotel = $hotel->get($idhotel, "icon");
 	<link href='../aset/css/style.index.css' rel='stylesheet'>
 	<link href='../aset/css/style.profile.css' rel='stylesheet'>
 	<link href="../aset/css/tambahanEvent.css" rel="stylesheet">
+	<script src='../aset/js/embo.js'></script>
 </head>
 <body>
 
@@ -238,10 +239,34 @@ $iconHotel = $hotel->get($idhotel, "icon");
 	<a href="tel:+<?php echo $hotelPhone; ?>" onclick="track(2)"><li id="call"><div id="icon"><i class="fa fa-phone"></i></div> Call</li></a>
 </div>
 
-<script src='../aset/js/embo.js'></script>
 <script src='../aset/js/jquery-3.1.1.js'></script>
 <script src='../aset/js/jquery-ui.min.js'></script>
 <script src="../aset/js/script.event.js"></script>
+<?php
+if($qty >= 1) {
+	?>
+	<script>
+			klik("#tblBook", function() {
+				munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
+			})
+			klik("#book", function() {
+				munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
+			})
+			submit("#formBook", function() {
+				let idevent = pilih("#idevent").value
+				let tgl = pilih("#tglBook").value
+				let qty = pilih("#qty").value
+				let book = "idevent="+idevent+"&tgl="+tgl+"&qty="+qty
+				pos("../aksi/booking/book.php", book, function() {
+					hilangPopup("#popupBook")
+					munculPopup("#suksesBook", pengaya("#suksesBook", "top: 230px"))
+				})
+				return false
+			})
+		</script>
+	<?php
+}
+?>
 
 </body>
 </html>

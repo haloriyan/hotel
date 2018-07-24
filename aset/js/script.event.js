@@ -54,8 +54,9 @@ window.addEventListener("scroll", function() {
 		pengaya(".atas", "background: none")
 	}
 })
-klik("#book", function() {
-	munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
+klik("#tblLogin", function() {
+	muncul(".bg")
+	muncul("#formLogin")
 })
 klik("#tblMenu", function() {
 	let tbl = pilih("#tblMenu")
@@ -68,20 +69,6 @@ klik("#tblMenu", function() {
 		tbl.setAttribute("aksi", "bkMenu")
 	}
 })
-klik("#tblBook", function() {
-	munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
-})
-submit("#formBook", function() {
-	let idevent = pilih("#idevent").value
-	let tgl = pilih("#tglBook").value
-	let qty = pilih("#qty").value
-	let book = "idevent="+idevent+"&tgl="+tgl+"&qty="+qty
-	pos("../aksi/booking/book.php", book, function() {
-		hilangPopup("#popupBook")
-		munculPopup("#suksesBook", pengaya("#suksesBook", "top: 230px"))
-	})
-	return false
-})
 tekan("Escape", function() {
 	hilangContact()
 	hilangPopup("#popupBook")
@@ -89,10 +76,6 @@ tekan("Escape", function() {
 })
 klik("#xBook", function() {
 	hilangPopup("#popupBook")
-})
-klik("#tblLogin", function() {
-	muncul(".bg")
-	muncul("#formLogin")
 })
 submit("#formSignIn", function() {
 	let email = pilih("#mailLog").value
