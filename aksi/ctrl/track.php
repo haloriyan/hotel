@@ -34,7 +34,11 @@ class track extends booking {
 	public function tot($idevent, $tipe) {
 		$q = $this->query("SELECT SUM(hint) AS valHint FROM track WHERE idevent = '$idevent' AND tipe = '$tipe'");
 		$r = $this->ambil($q);
-		return $r['valHint'];
+		if($r['valHint'] == "") {
+			return "0";
+		}else {
+			return $r['valHint'];
+		}
 	}
 }
 

@@ -13,7 +13,7 @@ $myEvent = $event->my($idhotel);
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale = 1">
-	<title>Dashboard</title>
+	<title>Detail Event</title>
 	<link href='../aset/fw/build/fw.css' rel='stylesheet'>
 	<link href='../aset/fw/build/font-awesome.min.css' rel='stylesheet'>
 	<link href='../aset/css/style.index.css' rel='stylesheet'>
@@ -94,6 +94,10 @@ $myEvent = $event->my($idhotel);
             load()
         })
     }
+
+    klik("#cta", function() {
+        mengarahkan("../hotel/add-listing")
+    })
 </script>
 </body>
 </html>

@@ -14,6 +14,7 @@ $namaPertama = explode(" ", $name)[0];
 	<title>Add Listing</title>
 	<link href='../aset/fw/build/fw.css' rel='stylesheet'>
 	<link href='../aset/fw/build/font-awesome.min.css' rel='stylesheet'>
+	<link href='../aset/css/jquery-ui.min.css' rel='stylesheet'>
 	<link href='../aset/css/style.index.css' rel='stylesheet'>
 	<link href="../aset/css/style.explore-admin.css" rel="stylesheet">
 	<style>
@@ -110,9 +111,9 @@ $namaPertama = explode(" ", $name)[0];
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-map-marker"></i></div> Event Details</h4>
 			<div class="isi">Date Start</div>
-			<input type="date" class="box" placeholder="yyyy-mm-dd" id="date" data-date-format="YYYY MM DD">
+			<input type="text" class="box" placeholder="yyyy-mm-dd" id="date" onchange="dateStart(this.value)" data-date-format="YYYY MM DD">
 			<div class="isi">Date End</div>
-			<input type="date" class="box" placeholder="yyyy-mm-dd" id="dateEnd" data-date-format="YYYY MM DD">
+			<input type="text" class="box" placeholder="yyyy-mm-dd" id="dateEnd" data-date-format="YYYY MM DD">
 			<div class="isi">Category</div>
 			<select class="box" id="category">
 				<option>Food and Beverage</option>
@@ -123,8 +124,8 @@ $namaPertama = explode(" ", $name)[0];
 				<option>Recreation</option>
 				<option>Parties</option>
 			</select>
-			<div class="isi">Avaible Seat</div>
-			<input type="text" class="box" placeholder="Avaible Seat..." id="seat">
+			<div class="isi">Quota :</div>
+			<input type="text" class="box" placeholder="Quota Seat..." id="seat">
 			<br />
 			<button class="tbl merah-2">NEXT</button>
 		</div>
@@ -153,6 +154,7 @@ $namaPertama = explode(" ", $name)[0];
 
 <script src="../aset/js/embo.js"></script>
 <script src="../aset/js/jquery-3.1.1.js"></script>
+<script src='../aset/js/jquery-ui.min.js'></script>
 <script src="../aset/js/insert.js"></script>
 <script>
 	function hilangKecuali(y) {
@@ -173,7 +175,7 @@ $namaPertama = explode(" ", $name)[0];
 	function publish() {
 		let title = encodeURIComponent(pilih("#title").value)
 		let tagline = encodeURIComponent(pilih("#tagline").value)
-		let description = encodeURIComponent(pilih("#description").value)
+		let description = pilih("#description").value
 		let logo = pilih("#logos").value
 		let cover = pilih("#covers").value
 		let region = pilih("#region").value
@@ -324,6 +326,26 @@ $namaPertama = explode(" ", $name)[0];
 		let re =/(?:\.([^.]+))?$/
 		let ext = re.exec(val)[1]
 		return ext
+	}
+
+	$(function() {
+		$("#date").datepicker({
+			dateFormat: "yy-mm-dd",
+			useCurrent: false,
+			showClose: true
+		})
+	})
+
+	function dateStart(val) {
+		$(function() {
+			$("#dateEnd").datepicker({
+				minDate: val,
+				maxDate: "2025-12-31",
+				dateFormat: 'yy-mm-dd',
+				useCurrent: false,
+				showClose: true
+			})
+		})
 	}
 </script>
 
