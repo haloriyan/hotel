@@ -28,6 +28,7 @@ class event extends resto {
 				  	"tgl_posted" => $jPosted,
 					"category" => $k,
 					"availableseat" => $seat,
+					"quota" => $seat,
 				  	"price" => $l,
 				  	"added" => $m
 				  ])

@@ -97,13 +97,6 @@ $namaPertama = explode(" ", $name)[0];
 			</div>
 		</div>
 	</div>
-	<div>
-		<div class="wrap">
-			<h4><div id="icon"><i class="fa fa-home"></i></div> Restaurant Gallery
-				<button id="newHotelGallery" class="tbl merah-2 ke-kanan"><i class="fa fa-plus-circle"></i> &nbsp;Add New</button>
-			</h4>
-		</div>
-	</div>
 </div>
 
 <div class="bg"></div>

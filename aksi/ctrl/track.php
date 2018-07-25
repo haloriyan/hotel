@@ -1,7 +1,7 @@
 <?php
-include 'user.php';
+include 'booking.php';
 
-class track extends user {
+class track extends booking {
 	public function hit($idevent, $iduser, $tipe) {
 		$cek = $this->query("SELECT * FROM track WHERE idevent = '$idevent' AND iduser = '$iduser' AND tipe = '$tipe'");
 		if($this->hitung($cek) != 0) {
@@ -30,6 +30,11 @@ class track extends user {
 							"added"	  => time()
 						])->eksekusi();
 		}
+	}
+	public function tot($idevent, $tipe) {
+		$q = $this->query("SELECT SUM(hint) AS valHint FROM track WHERE idevent = '$idevent' AND tipe = '$tipe'");
+		$r = $this->ambil($q);
+		return $r['valHint'];
 	}
 }
 

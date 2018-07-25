@@ -68,6 +68,7 @@ input[type=file].box {
 	color: #444;
 	border: 1px solid #ccc;
 	margin-bottom: 25px;
+	padding-bottom: 35px;
 }
 .bagForm #icon,.container #icon {
 	background-color: #cb0023;
