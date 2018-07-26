@@ -35,11 +35,15 @@ $category = ["Food & Beverage","Room","Venue","Sports & Wellness","Shopping","Re
 	<title>Explore <?php echo $subJudul; ?></title>
 	<link href='aset/fw/build/fw.css' rel='stylesheet'>
 	<link href='aset/fw/build/font-awesome.min.css' rel='stylesheet'>
+	<link href='aset/css/jquery-ui.min.css' rel='stylesheet'>
 	<link href='aset/css/style.index.css' rel='stylesheet'>
 	<link href='aset/css/style.explore.css' rel='stylesheet'>
 	<style>
+		.container,.kiri {
+			top: 75px;
+		}
 		.list {
-			width: 47.5%;
+			width: 47%;
 			margin: 5px 10px;
 			margin-bottom: 75px;
 			height: 300px;
@@ -94,6 +98,7 @@ $category = ["Food & Beverage","Room","Venue","Sports & Wellness","Shopping","Re
 	<div class="wrap">
 		<form id="filter">
 			<h3>Filter :</h3>
+			<input type="hidden" id="tglSkrg" value="<?php echo date('Y-m-d'); ?>">
 			<select class="box" onchange="order(this.value)">
 				<option value="latest">Latest</option>
 				<option value="lowest">Lowest Price</option>
@@ -118,11 +123,11 @@ $category = ["Food & Beverage","Room","Venue","Sports & Wellness","Shopping","Re
 			</select>
 			<div class="bag bag-5">
 				From :
-				<input type="date" class="box" id="fromDate" onchange="tglMulai(this.value)">
+				<input type="text" class="box" id="fromDate" onchange="tglMulai(this.value);tglMulai2(this.value)" placeholder='YYYY-MM-DD'>
 			</div>
 			<div class="bag bag-5">
 				To :
-				<input type="date" class="box" id="toDate" onchange="tglAkhir(this.value)">
+				<input type="text" class="box" style="display: none" id="toDate" onchange="tglAkhir(this.value)" placeholder='YYYY-MM-DD'>
 			</div>
 		</form>
 	</div>
@@ -135,7 +140,31 @@ $category = ["Food & Beverage","Room","Venue","Sports & Wellness","Shopping","Re
 </div>
 
 <script src='aset/js/embo.js'></script>
+<script src='aset/js/jquery-3.1.1.js'></script>
+<script src='aset/js/jquery-ui.min.js'></script>
 <script src='aset/js/script.explore.js'></script>
+<script>
+	// datepicker
+	console.log($("#tglSkrg").val())
+	$("#fromDate").datepicker({
+		dateFormat: 'yy-mm-dd',
+		minDate: $("#tglSkrg").val(),
+		maxDate: '2025-12-31',
+		useCurrent: false,
+		showClose: true
+	})
+	
+	function tglMulai2(val) {
+		console.log(val)
+		$("#toDate").fadeIn(300).datepicker({
+			minDate: val,
+			maxDate: '2025-12-31',
+			useCurrent: false,
+			showClose: true,
+			dateFormat: 'yy-mm-dd',
+		})
+	}
+</script>
 
 </body>
 </html>

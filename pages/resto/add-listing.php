@@ -21,6 +21,7 @@ $address = $resto->info($sesi, "address");
 	<title>Add Listing</title>
 	<link href='../aset/fw/build/fw.css' rel='stylesheet'>
 	<link href='../aset/fw/build/font-awesome.min.css' rel='stylesheet'>
+	<link href='../aset/css/jquery-ui.min.css' rel='stylesheet'>
 	<link href='../aset/css/style.index.css' rel='stylesheet'>
 	<link href="../aset/css/style.explore-admin.css" rel="stylesheet">
 	<style>
@@ -37,6 +38,7 @@ $address = $resto->info($sesi, "address");
 		#image,#location,#detail,#price { display: none; }
 		.atas { z-index: 2; }
 		.bg { z-index: 4; }
+		.box[readonly] { background: #ecf0f1; }
 	</style>
 </head>
 <body>
@@ -128,9 +130,9 @@ $address = $resto->info($sesi, "address");
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-map-marker"></i></div> Event Details</h4>
 			<div class="isi">Date Start</div>
-			<input type="date" class="box" placeholder="yyyy-mm-dd" id="date" data-date-format="YYYY MM DD">
+			<input type="text" class="box" placeholder="yyyy-mm-dd" onchange="dateStart(this.value)" id="date" data-date-format="YYYY MM DD">
 			<div class="isi">Date End</div>
-			<input type="date" class="box" placeholder="yyyy-mm-dd" id="dateEnd" data-date-format="YYYY MM DD">
+			<input type="text" class="box" placeholder="yyyy-mm-dd" id="dateEnd" data-date-format="YYYY MM DD" readonly>
 			<div class="isi">Category</div>
 			<select class="box" id="category">
 				<option>Food and Beverage</option>
@@ -141,8 +143,8 @@ $address = $resto->info($sesi, "address");
 				<option>Recreation</option>
 				<option>Parties</option>
 			</select>
-			<div class="isi">Avaible Seat</div>
-			<input type="text" class="box" placeholder="Avaible Seat..." id="seat">
+			<div class="isi">Available Seat</div>
+			<input type="text" class="box" placeholder="Available Seat..." id="seat">
 			<br />
 			<button class="tbl merah-2">NEXT</button>
 		</div>
@@ -172,6 +174,7 @@ $address = $resto->info($sesi, "address");
 
 <script src="../aset/js/embo.js"></script>
 <script src="../aset/js/jquery-3.1.1.js"></script>
+<script src='../aset/js/jquery-ui.min.js'></script>
 <script src="../aset/js/insert.js"></script>
 <script>
 	function hilangKecuali(y) {
@@ -344,6 +347,26 @@ $address = $resto->info($sesi, "address");
 		let re =/(?:\.([^.]+))?$/
 		let ext = re.exec(val)[1]
 		return ext
+	}
+	$(function() {
+		$("#date").datepicker({
+			dateFormat: "yy-mm-dd",
+			useCurrent: false,
+			showClose: true
+		})
+	})
+
+	function dateStart(val) {
+		$(function() {
+			$("#dateEnd").removeAttr('readonly')
+			$("#dateEnd").datepicker({
+				minDate: val,
+				maxDate: "2025-12-31",
+				dateFormat: 'yy-mm-dd',
+				useCurrent: false,
+				showClose: true
+			})
+		})
 	}
 </script>
 

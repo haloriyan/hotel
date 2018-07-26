@@ -75,7 +75,7 @@ class event extends resto {
 			if($tglMulai == "") {
 				$tglMulai = $tglSkrg;
 			}else if($tglAkhir == "") {
-				$tglAkhir = $tglSkrg;
+				$tglAkhir = '2025-12-31';
 			}
 			$filterTgl = "tgl_mulai >= '$tglMulai' AND tgl_akhir <= '$tglAkhir'";
 		}

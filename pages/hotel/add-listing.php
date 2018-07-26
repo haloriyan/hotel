@@ -31,6 +31,7 @@ $namaPertama = explode(" ", $name)[0];
 		#image,#location,#detail,#price { display: none; }
 		.atas { z-index: 2; }
 		.bg { z-index: 4; }
+		.box[readonly] { background: #ecf0f1; }
 	</style>
 </head>
 <body>
@@ -113,7 +114,7 @@ $namaPertama = explode(" ", $name)[0];
 			<div class="isi">Date Start</div>
 			<input type="text" class="box" placeholder="yyyy-mm-dd" id="date" onchange="dateStart(this.value)" data-date-format="YYYY MM DD">
 			<div class="isi">Date End</div>
-			<input type="text" class="box" placeholder="yyyy-mm-dd" id="dateEnd" data-date-format="YYYY MM DD">
+			<input type="text" class="box" placeholder="yyyy-mm-dd" id="dateEnd" data-date-format="YYYY MM DD" readonly>
 			<div class="isi">Category</div>
 			<select class="box" id="category">
 				<option>Food and Beverage</option>

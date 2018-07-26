@@ -67,7 +67,6 @@ $iconHotel = $hotel->get($idhotel, "icon");
 			<?php
 		}
 		?>
-		<a href="#tblBook"><li id="tblBook">Book</li></a>
 	</nav>
 </div>
 
@@ -246,9 +245,6 @@ $iconHotel = $hotel->get($idhotel, "icon");
 if($qty >= 1) {
 	?>
 	<script>
-			klik("#tblBook", function() {
-				munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
-			})
 			klik("#book", function() {
 				munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
 			})
