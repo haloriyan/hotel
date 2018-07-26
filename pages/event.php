@@ -5,6 +5,8 @@ function toIdr($angka) {
 	return 'Rp. '.strrev(implode('.', str_split(strrev(strval($angka)), 3)));
 }
 
+$event->hint($idevent);
+
 // Bagian User
 $sesi = $user->sesi();
 $nama = $user->info($sesi, "nama");

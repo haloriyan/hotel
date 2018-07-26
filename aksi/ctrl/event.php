@@ -29,7 +29,8 @@ class event extends resto {
 					"category" => $k,
 					"availableseat" => $seat,
 					"quota" => $seat,
-				  	"price" => $l,
+					"price" => $l,
+					"hint" => 0,
 				  	"added" => $m
 				  ])
 				  ->eksekusi();
@@ -114,6 +115,10 @@ class event extends resto {
 	public function totMyEvent($id) {
 		$q = $this->tabel("event")->pilih()->dimana(["idhotel" => $id])->eksekusi();
 		return $this->hitung($q);
+	}
+	public function hint($idevent) {
+		$q = $this->query("upDaTE event sET hint = hint + 1 wHERe idevent = '$idevent'");
+		return $q;
 	}
 }
 
