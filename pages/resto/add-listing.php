@@ -206,7 +206,7 @@ $address = $resto->info($sesi, "address");
 		let seat = pilih("#seat").value
 		let category = pilih("#category").value
 		let price = pilih("#priceBox").value
-		let pub = "idresto="+idresto+"&title="+title+"&tagline="+tagline+"&description="+description+"&logo="+logo+"&cover="+cover+"&region="+region+"&address="+address+"&tgl="+date+"&tgl_akhir="+dateEnd+"&category="+"&avaibleseat"+seat+category+"&price="+price
+		let pub = "idresto="+idresto+"&title="+title+"&tagline="+tagline+"&description="+description+"&logo="+logo+"&cover="+cover+"&region="+region+"&address="+address+"&tgl="+date+"&tgl_akhir="+dateEnd+"&category="+category+"&availableseat"+seat+"&price="+price
 		if(title == "" || tagline == "" || description == "" || logo == "" || cover == "" || region == "" || address == "" || date == "" || category == "" || seat == "" || price == "") {
 			munculPopup("#notif", pengaya("#notif", "top: 225px"))
 			tulis("#isiNotif", "All field must be filled")

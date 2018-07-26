@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: 22 Jul 2018 pada 21.38
--- Versi Server: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- Host: localhost
+-- Generation Time: Jul 26, 2018 at 11:24 AM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -36,7 +36,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`idadmin`, `username`, `password`, `added`) VALUES
@@ -45,7 +45,7 @@ INSERT INTO `admin` (`idadmin`, `username`, `password`, `added`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `booking`
+-- Table structure for table `booking`
 --
 
 CREATE TABLE `booking` (
@@ -62,17 +62,19 @@ CREATE TABLE `booking` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `booking`
+-- Dumping data for table `booking`
 --
 
 INSERT INTO `booking` (`idbooking`, `idevent`, `iduser`, `qty`, `bukti`, `status`, `hadir`, `tgl`, `tgl_book`, `added`) VALUES
+(2177, 401921, 378558272, 5, '', 0, 0, '2018-07-20', '2018-07-24 06:28:31', 1532406511),
+(715980, 251246, 378558272, 7, '', 0, 0, '2018-07-28', '2018-07-25 12:38:07', 1532515087),
 (791115, 1488, 378558272, 1, '', 0, 0, '2018-07-17', '2018-07-16 00:00:00', 1531714337),
 (924303, 301178, 378558272, 5, '', 0, 0, '2018-07-18', '2018-07-17 00:00:00', 1531786324);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `event`
+-- Table structure for table `event`
 --
 
 CREATE TABLE `event` (
@@ -90,26 +92,29 @@ CREATE TABLE `event` (
   `tgl_akhir` date NOT NULL,
   `tgl_posted` datetime NOT NULL,
   `category` varchar(55) NOT NULL,
-  `avaibleseat` int(11) NOT NULL,
+  `availableseat` int(11) NOT NULL,
+  `quota` int(11) NOT NULL,
   `price` int(20) NOT NULL,
+  `hint` int(11) NOT NULL,
   `added` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `event`
+-- Dumping data for table `event`
 --
 
-INSERT INTO `event` (`idevent`, `idhotel`, `id_resto`, `title`, `tagline`, `description`, `logos`, `covers`, `region`, `address`, `tgl_mulai`, `tgl_akhir`, `tgl_posted`, `category`, `avaibleseat`, `price`, `added`) VALUES
-(1488, 684889, 0, 'Akan Datang', 'initagline', 'lorem ipsum', 'zuck.png', 'startup-593327_1920.jpg', 'Kalianak', 'Jl. Kalianak Timur', '2018-07-17', '2018-07-26', '2018-07-16 08:04:57', 'Food and Beverage', 0, 0, 1531703097),
-(193424, 684889, 0, 'Pelatihan Ngeblog SEO Friendly', 'seo', 'Ikuti pelatihan Internet Marketing & SEO! Optimasi website agar masuk halaman 1 Google untuk Melipatgandakan Penjualan.', 'zuck.png', 'workshopKapitalis.jpg', 'Surabaya', 'Jl. Pandegiling No. 45, Surabaya', '2018-07-18', '2018-07-22', '2018-07-16 14:48:35', 'Parties', 0, 2500000, 1531727315),
-(218974, 368862, 0, 'Lomba Fotografi', 'Lomba foto', 'Tema : Warisan dari Pahlawan\n\nPersyaratan : \n- FC KTP dan KK\n- Membayar Biaya Pendaftaran Rp 100.000\n\n1st Prize : Rp 120.000\n2nd Prize : Rp 110.000\n3rd Prize : Rp 105.000', 'f9b9c35ceb57fb9f18400bff7dafb3e9.png', 'lomba fotografi.jpg', 'Petemon', 'Jl. Tentara Genie Pelajar No. 26, Surabaya', '2018-07-18', '2018-07-21', '2018-07-18 01:31:13', 'Parties', 0, 100000, 1531852273),
-(390630, 684889, 0, 'Event Expired', 'initagline', 'halo dunia', 'database.png', 'f9b9c35ceb57fb9f18400bff7dafb3e9.png', 'Petemon', 'Jl. Petemon Barat', '2018-06-27', '2018-07-01', '2018-07-16 07:39:13', 'Food and Beverage', 0, 0, 1531701553),
-(401921, 684889, 0, 'cvnm,.', 'cvnm,.', 'zxcvnm,.', 'a1817939184_10.jpg', 'pasangan_20151008_125035.jpg', 'omah e inul', 'cvnm,./', '2018-07-20', '2018-07-22', '2018-07-20 10:01:41', 'Shopping', 100, 150000000, 1532055701);
+INSERT INTO `event` (`idevent`, `idhotel`, `id_resto`, `title`, `tagline`, `description`, `logos`, `covers`, `region`, `address`, `tgl_mulai`, `tgl_akhir`, `tgl_posted`, `category`, `availableseat`, `quota`, `price`, `hint`, `added`) VALUES
+(1488, 684889, 0, 'Akan Datang', 'initagline', 'lorem ipsum', 'zuck.png', 'startup-593327_1920.jpg', 'Kalianak', 'Jl. Kalianak Timur', '2018-07-17', '2018-07-26', '2018-07-16 08:04:57', 'Food and Beverage', 0, 0, 0, 0, 1531703097),
+(193424, 684889, 0, 'Pelatihan Ngeblog SEO Friendly', 'seo', 'Ikuti pelatihan Internet Marketing & SEO! Optimasi website agar masuk halaman 1 Google untuk Melipatgandakan Penjualan.', 'zuck.png', 'workshopKapitalis.jpg', 'Surabaya', 'Jl. Pandegiling No. 45, Surabaya', '2018-07-18', '2018-07-22', '2018-07-16 14:48:35', 'Parties', 0, 0, 2500000, 0, 1531727315),
+(218974, 368862, 0, 'Lomba Fotografi', 'Lomba foto', 'Tema : Warisan dari Pahlawan\n\nPersyaratan : \n- FC KTP dan KK\n- Membayar Biaya Pendaftaran Rp 100.000\n\n1st Prize : Rp 120.000\n2nd Prize : Rp 110.000\n3rd Prize : Rp 105.000', 'f9b9c35ceb57fb9f18400bff7dafb3e9.png', 'lomba fotografi.jpg', 'Petemon', 'Jl. Tentara Genie Pelajar No. 26, Surabaya', '2018-07-18', '2018-07-21', '2018-07-18 01:31:13', 'Parties', 0, 0, 100000, 0, 1531852273),
+(251246, 684889, 0, 'Smekda Party', 'smekda liar', 'Halo dunia\n\nini deskripsi', 'logo-smkn-2-sby.jpg', '36960883_347363322465081_444489030206226432_n.jpg', 'Surabaya', 'Jl. Tentara Genie Pelajar, No. 26', '2018-07-26', '2018-08-04', '2018-07-25 17:33:53', 'Parties', 1, 8, 5000, 0, 1532514833),
+(390630, 684889, 0, 'Event Expired', 'initagline', 'halo dunia', 'database.png', 'f9b9c35ceb57fb9f18400bff7dafb3e9.png', 'Petemon', 'Jl. Petemon Barat', '2018-06-27', '2018-07-01', '2018-07-16 07:39:13', 'Food and Beverage', 0, 0, 0, 0, 1531701553),
+(401921, 684889, 0, 'cvnm,.', 'cvnm,.', 'zxcvnm,.', 'a1817939184_10.jpg', 'pasangan_20151008_125035.jpg', 'omah e inul', 'cvnm,./', '2018-07-20', '2018-07-22', '2018-07-20 10:01:41', 'Shopping', 95, 0, 150000000, 0, 1532055701);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `facility`
+-- Table structure for table `facility`
 --
 
 CREATE TABLE `facility` (
@@ -119,7 +124,7 @@ CREATE TABLE `facility` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `facility`
+-- Dumping data for table `facility`
 --
 
 INSERT INTO `facility` (`idfacility`, `nama`, `icon`) VALUES
@@ -133,7 +138,7 @@ INSERT INTO `facility` (`idfacility`, `nama`, `icon`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `galeri`
+-- Table structure for table `galeri`
 --
 
 CREATE TABLE `galeri` (
@@ -145,13 +150,12 @@ CREATE TABLE `galeri` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `galeri`
+-- Dumping data for table `galeri`
 --
 
 INSERT INTO `galeri` (`idgambar`, `idhotel`, `tipe`, `gambar`, `added`) VALUES
 (556900, 684889, 'hotel', 'samisanov ok.jpg', 1531280032),
 (469912, 684889, 'hotel', 'koridor-co-working-space-surabaya-koridor-2.jpg', 1531302839),
-(332003, 684889, 'hotel', '34696265_585925761794440_605698145170489344_n.jpg', 1531370302),
 (180883, 684889, 'hotel', '_SAM1139.JPG', 1531371685),
 (604308, 684889, 'resto', 'nguntal.jpg', 1531741349),
 (189640, 684889, 'resto', 'hisana.jpg', 1531741462),
@@ -160,7 +164,7 @@ INSERT INTO `galeri` (`idgambar`, `idhotel`, `tipe`, `gambar`, `added`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `hotel`
+-- Table structure for table `hotel`
 --
 
 CREATE TABLE `hotel` (
@@ -180,7 +184,7 @@ CREATE TABLE `hotel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `hotel`
+-- Dumping data for table `hotel`
 --
 
 INSERT INTO `hotel` (`idhotel`, `nama`, `email`, `password`, `icon`, `cover`, `phone`, `website`, `city`, `address`, `facility`, `status`, `added`) VALUES
@@ -192,7 +196,7 @@ INSERT INTO `hotel` (`idhotel`, `nama`, `email`, `password`, `icon`, `cover`, `p
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `restoran`
+-- Table structure for table `restoran`
 --
 
 CREATE TABLE `restoran` (
@@ -212,17 +216,16 @@ CREATE TABLE `restoran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `restoran`
+-- Dumping data for table `restoran`
 --
 
 INSERT INTO `restoran` (`idresto`, `idhotel`, `nama`, `email`, `password`, `icon`, `cover`, `phone`, `website`, `city`, `address`, `facility`, `added`) VALUES
-(519863, 684889, 'Restoran Baru', 'resto@tokdalang.com', 'inikatasandi', '', '', '', '', '', '', '1,2,3,4,5,6', 1531786764),
 (726644, 684889, 'Hisana Pret Ciken', 'hisana@tokdalanghomesate.my', 'inikatasandi', 'download (1).jpg', 'download.jpg', '082126164429', 'https://hisana.id', 'Surabaya', 'Jl. Genteng Kali No. 55', '5,6,3,4,2,1', 1531783891);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `social`
+-- Table structure for table `social`
 --
 
 CREATE TABLE `social` (
@@ -234,7 +237,7 @@ CREATE TABLE `social` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `social`
+-- Dumping data for table `social`
 --
 
 INSERT INTO `social` (`idsocial`, `idhotel`, `idresto`, `type`, `url`) VALUES
@@ -247,7 +250,7 @@ INSERT INTO `social` (`idsocial`, `idhotel`, `idresto`, `type`, `url`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `track`
+-- Table structure for table `track`
 --
 
 CREATE TABLE `track` (
@@ -261,7 +264,7 @@ CREATE TABLE `track` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `track`
+-- Dumping data for table `track`
 --
 
 INSERT INTO `track` (`idtrack`, `idevent`, `iduser`, `tipe`, `hint`, `last_tracked`, `added`) VALUES
@@ -272,7 +275,7 @@ INSERT INTO `track` (`idtrack`, `idevent`, `iduser`, `tipe`, `hint`, `last_track
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -287,13 +290,13 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`iduser`, `email`, `password`, `nama`, `telepon`, `alamat`, `status`, `registered`) VALUES
 (1, '', '', '', '', '', 1, 0),
 (49280222, 'riyan2@riyan.com', 'inikatasandi', 'Riyan Satria', '', '', 0, 1531786268),
-(378558272, 'halo@riyansatria.tk', 'sandinepodo', 'Riyan Satria', '', '', 1, 1530359712);
+(378558272, 'halo@riyansatria.tk', 'sandinepodo', 'Riyan Satria', '082126164429', 'di rumah', 1, 1530359712);
 
 --
 -- Indexes for dumped tables
