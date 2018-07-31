@@ -8,7 +8,7 @@ $tglMulai = $_COOKIE['tglMulai'];
 $tglAkhir = $_COOKIE['tglAkhir'];
 $category = $_COOKIE['category'];
 
-if($event->all($keyword, $tglMulai, $tglAkhir, $category) == "null") {
+if($event->all($keyword, $tglMulai, $tglAkhir, $category, $region) == "null") {
 	echo "Tidak ada event<br />";
 	echo $tglAkhir;
 	exit();

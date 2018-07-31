@@ -1,0 +1,69 @@
+body { background-color: #ecf0f1; }
+.atas {
+    position: fixed;
+    top: 0px;left: 0px;right: 0px;
+    line-height: 60px;
+    z-index: 2;
+}
+.logoHome {
+    margin-left: 5%;
+    width: 20%;
+}
+
+.container {
+    position: absolute;
+    top: 140px;left: 5%;
+    width: 55%;
+    background-color: #fff;
+    color: #454545;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 50px;
+}
+.ringkasan {
+    position: fixed;
+    top: 140px;right: 5%;
+    width: 30%;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    color: #454545;
+    background-color: #fff;
+}
+.ringkasan table { color: #444; }
+.container .wrap { margin: 4% 5% 4.5% 5%; }
+.ringkasan .wrap { margin: 5% 10% 6% 10%; }
+.container p {
+    font-size: 20px;
+    font-family: OLight;
+    line-height: 35px;
+    color: #555;
+}
+.container p b { font-family: OBold;}
+
+.box[type=file] {
+    padding-top: 7px;
+    height: 50px;
+    font-size: 15px;
+    width: 100%;
+}
+
+@media (max-width: 720px) {
+    .ringkasan,.container {
+        right: 5%;left: 5%;
+        width: 90%;
+        position: absolute;
+    }
+    .ringkasan { top: 115px; }
+    .container {
+        top: 375px;
+    }
+    .container p {
+        font-size: 17px;
+        line-height: 30px;
+    }
+    .container .wrap {
+        margin-left: 10%;
+        margin-right: 10%;
+        margin: 6% 10% 7.5% 10%;
+    }
+}

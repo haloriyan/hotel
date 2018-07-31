@@ -48,6 +48,10 @@ function category(val) {
 	setKuki("category", val)
 }
 
+function city(val) {
+    setKuki("region", val)
+}
+
 load()
 
 let val = pilih("#q").value

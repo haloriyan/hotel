@@ -118,8 +118,20 @@ $category = ["Food & Beverage","Room","Venue","Sports & Wellness","Shopping","Re
 				?>
 			</select>
 			<div class="isi">City :</div>
-			<select class="box" onchange="city()">
-				<option>All city</option>
+			<select class='box' id='region' onchange='city(this.value)'>
+				<option>Bali</option>
+				<option>Bandung</option>
+				<option>Batam</option>
+				<option>Bogor</option>
+				<option>Jakarta</option>
+				<option>Lombok</option>
+				<option>Makassar</option>
+				<option>Malang</option>
+				<option>Pekalongan</option>
+				<option>Semarang</option>
+				<option>Solo</option>
+				<option>Surabaya</option>
+				<option>Yogyakarta</option>
 			</select>
 			<div class="bag bag-5">
 				From :

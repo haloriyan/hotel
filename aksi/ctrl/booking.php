@@ -3,7 +3,7 @@ include 'event.php';
 
 class booking extends event {
 	public function info($id, $struktur) {
-		$q = $this->tabel("booking")->pilih()->dimana(["idbooking" => $id])->eksekusi();
+		$q = $this->tabel("booking")->pilih($struktur)->dimana(["idbooking" => $id])->eksekusi();
 		$r = $this->ambil($q);
 		return $r[$struktur];
 	}
@@ -42,6 +42,9 @@ class booking extends event {
 			return $hasil;
 		}
 	}
+
+	// Payment
+	
 }
 
 $booking = new booking();

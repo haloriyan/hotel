@@ -102,7 +102,21 @@ $namaPertama = explode(" ", $name)[0];
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-map-marker"></i></div> Location</h4>
 			<div class="isi">Region</div>
-			<input type="text" class="box" id="region">
+			<select class='box' id='region'>
+				<option>Bali</option>
+				<option>Bandung</option>
+				<option>Batam</option>
+				<option>Bogor</option>
+				<option>Jakarta</option>
+				<option>Lombok</option>
+				<option>Makassar</option>
+				<option>Malang</option>
+				<option>Pekalongan</option>
+				<option>Semarang</option>
+				<option>Solo</option>
+				<option>Surabaya</option>
+				<option>Yogyakarta</option>
+			</select>
 			<div class="isi">Address</div>
 			<textarea class="box" id="address"></textarea><br />
 			<button class="tbl merah-2">NEXT</button>
@@ -285,7 +299,7 @@ $namaPertama = explode(" ", $name)[0];
 		let allowed = ["jpg","jpeg","png","bmp"]
 		var logo = $("#logo").val();
 		var p = logo.split("fakepath");
-		var nama = p[1].substr(1, 2585);
+		var nama = p[1].substr(1, 2999);
 		$("#logos").val(nama);
 		let logoExt = getExt(nama)
 		if(!inArray(logoExt, allowed)) {

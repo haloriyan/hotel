@@ -64,7 +64,7 @@ class event extends resto {
 			return $hasil;
 		}
 	}
-	public function all($keyword = NULL, $tglMulai = NULL, $tglAkhir = NULL, $cat = NULL, $urut = NULL) {
+	public function all($keyword = NULL, $tglMulai = NULL, $tglAkhir = NULL, $cat = NULL, $region = NULL) {
 		date_default_timezone_set('Asia/Jakarta');
 		$tglSkrg = date('Y-m-d');
 		$tglMulaiDefault = date('Y-m-1');
@@ -81,7 +81,7 @@ class event extends resto {
 			$filterTgl = "tgl_mulai >= '$tglMulai' AND tgl_akhir <= '$tglAkhir'";
 		}
 		// $sqlQuery = "SELECT * FROM event WHERE title LIKE '%$keyword%' AND category LIKE '%$cat%' AND $filterTgl ORDER BY added DESC";
-		$sqlQuery = $this->query("SELECT * FROM event LEFT JOIN hotel ON event.idhotel = hotel.idhotel WHERE nama LIKE '%$keyword%' AND category LIKE '%$cat%' AND $filterTgl ORDER BY event.added DESC");
+		$sqlQuery = $this->query("SELECT * FROM event LEFT JOIN hotel ON event.idhotel = hotel.idhotel WHERE nama LIKE '%$keyword%' AND category LIKE '%$cat%' AND $filterTgl AND region LIKE '%$region%' ORDER BY event.added DESC");
 		if($this->hitung($sqlQuery) == 0) {
 			$sqlQuery = $this->query("SELECT * FROM event WHERE title LIKE '%$keyword%' AND category LIKE '%$cat%' AND $filterTgl ORDER BY event.added DESC");
 		}
@@ -96,6 +96,7 @@ class event extends resto {
 	}
 	public function delete($id) {
 		$q = $this->tabel("event")->hapus()->dimana(["idevent" => $id])->eksekusi();
+		$y = $this->tabel("booking")->hapus()->dimana(["idevent" => $id])->eksekusi();
 		return $q;
 	}
 	public function ourEvent($id) {

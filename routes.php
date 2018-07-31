@@ -36,6 +36,9 @@ if($role == "" and $bag == "") {
 	}else if ($role == "restoran" && is_numeric($bag)) {
 		$idresto = $bag;
 		include 'pages/restoran.php';
+	}else if ($role == "invoice" && is_numeric($bag)) {
+		$idinvoice = $bag;
+		include 'pages/invoice.php';
 	}
 	else {
 		if(file_exists($lokasi)) {

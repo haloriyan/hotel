@@ -267,10 +267,6 @@ muncul("#formLogin")
 		hilang("#formLogin")
 		hilang("#notif")
 	})
-	klik("#tblLogin", function() {
-		muncul(".bg")
-		muncul("#formLogin")
-	})
 	klik("#xNotif", function() {
 		hilang(".bg")
 		hilang("#notif")
@@ -341,6 +337,10 @@ muncul("#formLogin")
 	})
 	klik("#xReg", function() {
 		hilangForm()
+	})
+	klik("#tblLogin", function() {
+		muncul(".bg")
+		muncul("#formLogin")
 	})
 </script>
 
