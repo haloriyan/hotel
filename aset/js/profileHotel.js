@@ -65,18 +65,7 @@ klik("#tblLogin", function() {
 	muncul(".bg")
 	muncul("#formLogin")
 })
-submit("#formSignIn", function() {
-	let email = pilih("#mailLog").value
-	let pwd = pilih("#pwdLog").value
-	let log = "email="+email+"&pwd="+pwd
-	if(email == "" || pwd == "") {
-		return false
-	}
-	pos("../aksi/user/login.php", log, function() {
-		location.reload()
-	})
-	return false
-})
+
 klik("#allGallery", function() {
 	scrollKe("#galeries")
 	muncul("#galeries")
@@ -106,4 +95,17 @@ klik("#xSeeImg", function() {
 tekan("Escape", function() {
 	hilangPopup("#popupSeeImage")
 	hilang("#formLogin")
+})
+
+submit("#formSignIn", function() {
+	let email = pilih("#mailLog").value
+	let pwd = pilih("#pwdLog").value
+	let log = "email="+email+"&pwd="+pwd
+	if(email == "" || pwd == "") {
+		return false
+	}
+	pos("../aksi/user/login.php", log, function() {
+		location.reload()
+	})
+	return false
 })

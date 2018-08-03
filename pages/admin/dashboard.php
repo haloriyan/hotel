@@ -55,6 +55,7 @@ if(isset($_GET['idhotel'])) {
 	<div class="listWizard" aktif="ya">Dashboard</div>
 	<a href="../admin/addadmin"><div class="listWizard">Add Admin</div></a>
   <a href="../admin/delete-events"><div class="listWizard">Delete Event</div></a>
+  <a href="./payment"><div class='listWizard'>Payments</div></a>
 	<a href="../logout"><div class="listWizard">Logout</div></a>
 </div>
 

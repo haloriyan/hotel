@@ -10,6 +10,7 @@ $qty = $booking->info($idinvoice, "qty");
 $price = $event->info($idevent, "price");
 $title = $event->info($idevent, "title");
 $total = $price * $qty;
+$bukti = $booking->info($idinvoice, "bukti");
 
 if ($idevent == "") {
     die("error");
@@ -53,7 +54,15 @@ if ($idevent == "") {
         <p>
             After sending payment, you can confirm your payment by clicking these button
             <br /><br />
-            <button class='tbl merah-2' id='confirmBtn'>Confirm</button>
+            <?php
+            if($bukti == "") {
+            ?>
+                <button class='tbl merah-2' id='confirmBtn'>Confirm</button>
+            <?php
+            }else {
+                echo "This is invoice was paid";
+            }
+            ?>
         </p>
     </div>
 </div>
@@ -89,6 +98,7 @@ if ($idevent == "") {
             </h3>
             <form id='pay'>
                 <div class='isi'>Upload evidence</div>
+                <input type="hidden" id='idbooking' value='<?php echo $idinvoice; ?>'>
                 <input type="hidden" id='buktis'>
                 <input type="file" class='box' id='bukti'>
                 <div class='bag-tombol'>
@@ -143,7 +153,7 @@ if ($idevent == "") {
         let bukti = pilih("#buktis").value
         let id = pilih("#idbooking").value
         let pays = "id="+id+"&bukti="+bukti
-        pos("../aksi/booking/bukti.php", pays, () => {
+        pos("../aksi/booking/confirmation.php", pays, () => {
             hilangPopup("#formPay")
         })
         hilangPopup("#formPay")

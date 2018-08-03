@@ -7,14 +7,16 @@ $keyword = $_COOKIE['kwExplore'];
 $tglMulai = $_COOKIE['tglMulai'];
 $tglAkhir = $_COOKIE['tglAkhir'];
 $category = $_COOKIE['category'];
+$region   = $_COOKIE['region'];
 
-if($event->all($keyword, $tglMulai, $tglAkhir, $category, $region) == "null") {
+$all = $event->all($keyword, $tglMulai, $tglAkhir, $category, $region);
+
+if($all == "null") {
 	echo "Tidak ada event<br />";
-	echo $tglAkhir;
 	exit();
 }
 
-foreach ($event->all($keyword, $tglMulai, $tglAkhir, $category) as $row) {
+foreach ($all as $row) {
 	$idhotel = $row['idhotel'];
 	$idresto = $row['id_resto'];
 	if($idresto != 0) {

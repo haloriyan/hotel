@@ -44,7 +44,32 @@ class booking extends event {
 	}
 
 	// Payment
-	
+	public function confirm($id, $bukti) {
+		$q = $this->tabel("booking")
+				  ->ubah([
+					  "bukti" => $bukti
+				  ])
+				  ->dimana([
+					  "idbooking" => $id
+				  ])->eksekusi();
+	}
+
+	// For Admin
+	public function all() {
+		$q = $this->query("SELECT * FROM booking WHERE bukti != '' AND status = 0");
+		if($this->hitung($q) == 0) {
+			return "null";
+		}else {
+			while($r = $this->ambil($q)) {
+				$hasil[] = $r;
+			}
+			return $hasil;
+		}
+	}
+	public function cawang($id) {
+		$q = $this->tabel("booking")->ubah(["status" => 1])->dimana(["idbooking" => $id])->eksekusi();
+		return $q;
+	}
 }
 
 $booking = new booking();

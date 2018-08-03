@@ -50,11 +50,15 @@ if($myBook == "null") {
 				$de 		= explode("-", $tglAkhir);
 				$dateEnd 	= $bln[$de['1']] . ", ". $de['2'];
 				$price 		= $event->info($idevent, "price") * $row['qty'];
-				if($row['status'] == 0) {
+				if($row['bukti'] == "") {
 					// belum dibayar
 					$btn = "<a href='./invoice/".$row['idbooking']."' target='_blank'><button class='tbl merah-2'>UNPAID</button></a>";
-				}else {
-					$btn = "<a href='./invoice/".$row['idbooking']."' target='_blank'><button class='tbl hijau'>UNPAID</button></a>";
+				}else if($row['bukti'] != "" && $row['status'] == 0) {
+					// belum dikonfirmasi
+					$btn = "<a href='./invoice/".$row['idbooking']."' target='_blank'><button class='tbl kuning'>PAID</button></a>";
+				}
+				else {
+					$btn = "<a href='./invoice/".$row['idbooking']."' target='_blank'><button class='tbl hijau'>CONFIRMED</button></a>";
 				}
 				echo "<tr>".
 					 	"<td><img src='aset/gbr/".$icon."'></td>".
@@ -71,8 +75,28 @@ if($myBook == "null") {
 			?>
 		</tbody>
 	</table>
-	<p>
+	<p style='margin-top: 50px;'>
 		* click "UNPAID" button to pay it
+	</p>
+	<p>
+		<div class='bag bag-3'>
+			<div class='ke-kiri'>
+				<div class='tbl merah'>&nbsp;</div>
+			</div>
+			<div class='tbl' style='margin-left: 50px;'>UNPAID</div>
+		</div>
+		<div class='bag bag-3'>
+			<div class='ke-kiri'>
+				<div class='tbl kuning'>&nbsp;</div>
+			</div>
+			<div class='tbl' style='margin-left: 50px;'>PAID</div>
+		</div>
+		<div class='bag bag-3'>
+			<div class='ke-kiri'>
+				<div class='tbl hijau'>&nbsp;</div>
+			</div>
+			<div class='tbl' style='margin-left: 50px;'>CONFIRMED</div>
+		</div>
 	</p>
 	<?php
 }

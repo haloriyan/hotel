@@ -10,6 +10,10 @@ if(isset($_GET['cat'])) {
 	setcookie('category', $_GET['cat'], time() + 3650, "/");
 }
 
+setcookie('region', '', time() + 1, "/");
+setcookie('tglMulai', '', time() + 1, "/");
+setcookie('tglAkhir', '', time() + 1, "/");
+
 $q = $_GET['q'];
 if(empty($q)) {
 	$q = $_COOKIE['kwExplore'];
@@ -65,7 +69,7 @@ $category = ["Food & Beverage","Room","Venue","Sports & Wellness","Shopping","Re
 <body>
 
 <div class="atas merah-2">
-	<img src= "aset/gbr/logo.png" class="logoHome">
+	<img src="aset/gbr/logo.png" class="logoHome">
 	<div id="tblMenu" aksi="bkMenu"><i class="fa fa-bars"></i></div>
 	<div class="pencarian">
 		<i class="fa fa-search"></i>
@@ -119,6 +123,7 @@ $category = ["Food & Beverage","Room","Venue","Sports & Wellness","Shopping","Re
 			</select>
 			<div class="isi">City :</div>
 			<select class='box' id='region' onchange='city(this.value)'>
+				<option value="">City</option>
 				<option>Bali</option>
 				<option>Bandung</option>
 				<option>Batam</option>
@@ -133,13 +138,15 @@ $category = ["Food & Beverage","Room","Venue","Sports & Wellness","Shopping","Re
 				<option>Surabaya</option>
 				<option>Yogyakarta</option>
 			</select>
+			<!--
 			<div class="bag bag-5">
 				From :
 				<input type="text" class="box" id="fromDate" onchange="tglMulai(this.value);tglMulai2(this.value)" placeholder='YYYY-MM-DD'>
 			</div>
-			<div class="bag bag-5">
-				To :
-				<input type="text" class="box" style="display: none" id="toDate" onchange="tglAkhir(this.value)" placeholder='YYYY-MM-DD'>
+			-->
+			<div>
+				Until :
+				<input type="text" class="box" id="toDate" onchange="tglAkhir(this.value)" placeholder='YYYY-MM-DD'>
 			</div>
 		</form>
 	</div>
@@ -166,16 +173,13 @@ $category = ["Food & Beverage","Room","Venue","Sports & Wellness","Shopping","Re
 		showClose: true
 	})
 	
-	function tglMulai2(val) {
-		console.log(val)
-		$("#toDate").fadeIn(300).datepicker({
-			minDate: val,
-			maxDate: '2025-12-31',
-			useCurrent: false,
-			showClose: true,
-			dateFormat: 'yy-mm-dd',
-		})
-	}
+	$("#toDate").datepicker({
+		minDate: $("#tglSkrg").val(),
+		maxDate: '2025-12-31',
+		useCurrent: false,
+		showClose: true,
+		dateFormat: 'yy-mm-dd',
+	})
 </script>
 
 </body>

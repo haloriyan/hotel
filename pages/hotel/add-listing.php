@@ -125,6 +125,7 @@ $namaPertama = explode(" ", $name)[0];
 	<form id="detail">
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-map-marker"></i></div> Event Details</h4>
+			<input type="hidden" id='tglSkrg' value='<?php echo date('Y-m-d'); ?>'>
 			<div class="isi">Date Start</div>
 			<input type="text" class="box" placeholder="yyyy-mm-dd" id="date" onchange="dateStart(this.value)" data-date-format="YYYY MM DD">
 			<div class="isi">Date End</div>
@@ -345,6 +346,8 @@ $namaPertama = explode(" ", $name)[0];
 
 	$(function() {
 		$("#date").datepicker({
+			minDate: $("#tglSkrg").val(),
+			maxDate: '2025-12-31',
 			dateFormat: "yy-mm-dd",
 			useCurrent: false,
 			showClose: true

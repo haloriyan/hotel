@@ -202,3 +202,8 @@ function getCookie(cname) {
 	}
 	return ""
 }
+
+let baseUrl = "http://localhost/hotel"
+klik(".logoHome", () => {
+	mengarahkan(baseUrl)
+})
