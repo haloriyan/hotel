@@ -7,12 +7,13 @@ class booking extends event {
 		$r = $this->ambil($q);
 		return $r[$struktur];
 	}
-	public function book($a, $b, $c, $d, $e) {
+	public function book($a, $b, $c, $nama, $d, $e) {
 		$q = $this->tabel("booking")
 				  ->tambah([
 				  	"idbooking" => $a,
 				  	"idevent" => $b,
-				  	"iduser" => $c,
+					"iduser" => $c,
+					"nama" => $nama,
 				  	"qty" => $d,
 				  	"status" => 0,
 				  	"tgl" => $e,
@@ -33,6 +34,21 @@ class booking extends event {
 	}
 	public function myBooking($iduser) {
 		$q = $this->tabel("booking")->pilih()->dimana(["iduser" => $iduser])->eksekusi();
+		if($this->hitung($q) == 0) {
+			return "null";
+		}else {
+			while($r = $this->ambil($q)) {
+				$hasil[] = $r;
+			}
+			return $hasil;
+		}
+	}
+
+	public function guest($idevent, $hadir, $nama) {
+		if($hadir == "") {
+			$hadir = 0;
+		}
+		$q = $this->query("SELECT * FROM booking WHERE nama LIKE '%$nama%' AND idevent = '$idevent' AND hadir = '$hadir' ORDER BY nama ASC");
 		if($this->hitung($q) == 0) {
 			return "null";
 		}else {
@@ -68,6 +84,11 @@ class booking extends event {
 	}
 	public function cawang($id) {
 		$q = $this->tabel("booking")->ubah(["status" => 1])->dimana(["idbooking" => $id])->eksekusi();
+		return $q;
+	}
+
+	public function hadir($id) {
+		$q = $this->tabel("booking")->ubah(["hadir" => 1])->dimana(["idbooking" => $id])->eksekusi();
 		return $q;
 	}
 }
