@@ -3,7 +3,7 @@ include 'booking.php';
 
 class redeem extends booking {
 	public function my($idhotel) {
-		$q = $this->tabel("redeem")->pilih()->dimana(["idhotel" => $idhotel])->eksekusi();
+		$q = $this->tabel("redeem")->pilih()->dimana(["idhotel" => $idhotel, "status" => 0])->eksekusi();
 		if($this->hitung($q) == 0) {
 			return "null";
 		}else {
@@ -27,6 +27,19 @@ class redeem extends booking {
 	public function cancel($id) {
 		$q = $this->tabel("redeem")->hapus()->dimana(["idredeem" => $id])->eksekusi();
 		return $q;
+	}
+
+	// For Admin
+	public function all($status) {
+		$q = $this->tabel("redeem")->pilih()->dimana(["status" => $status])->eksekusi();
+		if($this->hitung($q) == 0) {
+			return "null";
+		}else {
+			while($r = $this->ambil($q)) {
+				$hasil[] = $r;
+			}
+			return $hasil;
+		}
 	}
 }
 

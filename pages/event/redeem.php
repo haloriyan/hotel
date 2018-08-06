@@ -1,5 +1,5 @@
 <?php
-include 'aksi/ctrl/booking.php';
+include 'aksi/ctrl/redeem.php';
 
 $sesi 	= $hotel->sesi();
 $name 	= $hotel->get($sesi, "nama");
@@ -7,6 +7,7 @@ $namaPertama = explode(" ", $name)[0];
 
 $idhotel = $hotel->get($sesi, "idhotel");
 $myEvent = $event->my($idhotel);
+$myRedeem = $redeem->my($idhotel);
 
 function toIdr($angka) {
 	return 'Rp. '.strrev(implode('.', str_split(strrev(strval($angka)), 3)));
@@ -14,8 +15,14 @@ function toIdr($angka) {
 
 foreach($myEvent as $row) {
     $laku = $row['quota'] - $row['availableseat'];
-    $mySaldo += $laku * $row['price'];
+    $saldo += $laku * $row['price'];
 }
+
+foreach($myRedeem as $red) {
+    $saldoRedeem += $red['saldo'];
+}
+
+$mySaldo = $saldo - $saldoRedeem;
 
 ?>
 <!DOCTYPE html>
@@ -78,8 +85,9 @@ foreach($myEvent as $row) {
 
 <div class="kiri">
     <a href="./dashboard"><div class="listWizard">Dashboard</div></a>
-    <a href="./detail"><div class="listWizard" aktif="ya">Detail Event</div></a>
+    <a href="./detail"><div class="listWizard">Detail Event</div></a>
     <a href="./guest-list"><div class="listWizard">Guest List</div></a>
+    <a href="./redeem"><div class="listWizard" aktif="ya">Redeem</div></a>
 	<a href="../hotel/logout"><div class="listWizard">Logout</div></a>
 </div>
 
@@ -88,14 +96,14 @@ foreach($myEvent as $row) {
         <div class="wrap">
             <h4><div id="icon"><i class="fa fa-money"></i></div> Redeem Saldo
                 <div class='ke-kanan'>
-                    <h3>Available Saldo : <?php echo toIdr($mySaldo); ?></h3>
+                    <h3>Available Saldo : <span id='mySaldo'><?php echo toIdr($mySaldo); ?></span></h3>
                 </div>
             </h4>
             <br />
             <div id="load">
-                <input type="hidden" id='mySaldo' value='<?php echo $mySaldo; ?>'>
+                <input type="hidden" id='mySaldoInput' value='<?php echo $mySaldo; ?>'>
                 <form id='formRedeem'>
-                    <input type="number" class='box' id='saldo' placeholder='Saldo' style='width: 74.5%;'> &nbsp;
+                    <input type="number" class='box' id='saldo' placeholder='Saldo (Rp)' style='width: 74%;'> &nbsp;
                     <button class='tbl merah-2'>Redeem</button>
                 </form>
                 <div id='myRedeem'></div>
@@ -141,6 +149,9 @@ foreach($myEvent as $row) {
         ambil("../aksi/redeem/myRedeem.php", (res) => {
             tulis("#myRedeem", res)
         })
+        ambil("../aksi/redeem/mySaldo.php", (sal) => {
+            tulis("#mySaldo", sal)
+        })
     }
     function abort(val) {
         munculPopup("#abortRedeem", pengaya("#abortRedeem", "top: 190px"))
@@ -149,12 +160,12 @@ foreach($myEvent as $row) {
 
     submit("#formRedeem", () => {
         let saldo = pilih("#saldo").value
-        let mySaldo = pilih("#mySaldo").value
+        let mySaldo = pilih("#mySaldoInput").value
         let req = "saldo="+saldo
-        alert(mySaldo)
-        if(saldo < mySaldo) {
+        if(parseInt(saldo) >= parseInt(mySaldo)) {
             munculPopup("#notif", pengaya("#notif", "top: 190px"))
             tulis("#isiNotif", "Your saldo is not enough")
+            return false
         }else if(saldo == 0 || saldo == "") {
             return false
         }

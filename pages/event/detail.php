@@ -54,6 +54,7 @@ $myEvent = $event->my($idhotel);
     <a href="./dashboard"><div class="listWizard">Dashboard</div></a>
     <a href="./detail"><div class="listWizard" aktif="ya">Detail Event</div></a>
     <a href="./guest-list"><div class="listWizard">Guest List</div></a>
+    <a href="./redeem"><div class="listWizard">Redeem</div></a>
 	<a href="../hotel/logout"><div class="listWizard">Logout</div></a>
 </div>
 
