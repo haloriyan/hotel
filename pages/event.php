@@ -258,6 +258,9 @@ if($qty >= 1) {
 				pos("../aksi/booking/book.php", book, function() {
 					hilangPopup("#popupBook")
 					munculPopup("#suksesBook", pengaya("#suksesBook", "top: 230px"))
+					setTimeout(() => {
+						location.reload()
+					}, 1200)
 				})
 				return false
 			})

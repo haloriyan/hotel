@@ -15,13 +15,16 @@ function toIdr($angka) {
 $title = $event->info($idevent, "title");
 $covers = $event->info($idevent, "covers");
 $availSeat = $event->info($idevent, "availableseat");
-$quota = $event->info($idevent, "quota");
 $price = $event->info($idevent, "price");
 
 $totWA = $track->tot($idevent, "1");
 $totCall = $track->tot($idevent, "2");
 
-$laku = $quota - $availSeat;
+// Ngitung Price
+foreach($booking->allBook($idevent) as $row) {
+    $laku += $row['qty'];
+}
+
 $priceLaku = $laku * $price;
 
 ?>

@@ -155,9 +155,11 @@ if ($idevent == "") {
         let pays = "id="+id+"&bukti="+bukti
         pos("../aksi/booking/confirmation.php", pays, () => {
             hilangPopup("#formPay")
+            munculPopup("#afterPay", pengaya("#afterPay", "top: 150px"))
+            setTimeout(() => {
+                mengarahkan("../my")
+            }, 1200)
         })
-        hilangPopup("#formPay")
-        munculPopup("#afterPay", pengaya("#afterPay", "top: 150px"))
         return false
     })
     
@@ -171,7 +173,7 @@ if ($idevent == "") {
         hilangPopup("#notif")
     })
 
-    $("#bukti").on("change", () => {
+    $("#bukti").on("change", function() {
         let allowed = ["jpg","jpeg","png","bmp"]
         let bukti = $("#bukti").val()
         let p = bukti.split("fakepath")

@@ -48,7 +48,19 @@ class booking extends event {
 		if($hadir == "") {
 			$hadir = 0;
 		}
-		$q = $this->query("SELECT * FROM booking WHERE nama LIKE '%$nama%' AND idevent = '$idevent' AND hadir = '$hadir' ORDER BY nama ASC");
+		$q = $this->query("SELECT * FROM booking WHERE nama LIKE '%$nama%' AND idevent = '$idevent' AND hadir = '$hadir' AND status = '1' ORDER BY nama ASC");
+		if($this->hitung($q) == 0) {
+			return "null";
+		}else {
+			while($r = $this->ambil($q)) {
+				$hasil[] = $r;
+			}
+			return $hasil;
+		}
+	}
+
+	public function allBook($idevent) {
+		$q = $this->tabel("booking")->pilih()->dimana(["idevent" => $idevent])->eksekusi();
 		if($this->hitung($q) == 0) {
 			return "null";
 		}else {

@@ -13,16 +13,23 @@ function toIdr($angka) {
 	return 'Rp. '.strrev(implode('.', str_split(strrev(strval($angka)), 3)));
 }
 
+/* saldo lama
 foreach($myEvent as $row) {
     $laku = $row['quota'] - $row['availableseat'];
     $saldo += $laku * $row['price'];
 }
-
 foreach($myRedeem as $red) {
     $saldoRedeem += $red['saldo'];
 }
 
 $mySaldo = $saldo - $saldoRedeem;
+*/
+
+// ngitung saldo
+$get = $ctrl->query("SELECT * FROM booking LEFT JOIN event ON idhotel = '$idhotel'");
+while($row = $ctrl->ambil($get)) {
+    $mySaldo += $row['qty'] * $row['price'];
+}
 
 ?>
 <!DOCTYPE html>
