@@ -25,6 +25,11 @@ class redeem extends booking {
 				  ])->eksekusi();
 	}
 	public function cancel($id) {
+		// rung rampung
+		$get = $this->tabel("redeem")->pilih()->dimana(["idredeem" => $id])->eksekusi();
+		$r = $this->ambil($get);
+		$saldo = $r['saldo'];
+		$ubah = 
 		$q = $this->tabel("redeem")->hapus()->dimana(["idredeem" => $id])->eksekusi();
 		return $q;
 	}

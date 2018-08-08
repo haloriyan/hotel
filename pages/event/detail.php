@@ -7,6 +7,10 @@ $namaPertama = explode(" ", $name)[0];
 
 $idhotel = $hotel->get($sesi, "idhotel");
 $myEvent = $event->my($idhotel);
+
+if(isset($_GET['id'])) {
+    setcookie('idevent', $_GET['id'], time() + 3666, "/");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -99,6 +103,8 @@ $myEvent = $event->my($idhotel);
     klik("#cta", function() {
         mengarahkan("../hotel/add-listing")
     })
+
+    load()
 </script>
 </body>
 </html>

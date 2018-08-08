@@ -12,16 +12,17 @@ if($idevent == "null") {
     exit();
 }
 if($all == "null") {
-    echo "No people attended on this event";
+    echo "No people with this filter";
     exit();
 }
 ?>
 <table id='myListing'>
     <thead>
         <tr>
-            <th>Name</th>
+            <th style='width: 35%;'>Name</th>
             <th>Date</th>
             <th>Qty</th>
+            <th>Status</th>
             <th style='width: 20%;'></th>
         </tr>
     </thead>
@@ -34,10 +35,23 @@ if($all == "null") {
             }else {
                 $btnHadir = "";
             }
+            if($row['bukti'] == "") {
+                $status = 'UNPAID';
+                $style = "background-color: #cb0029;color: #fff;";
+                $btnHadir = "";
+            }else if($row['bukti'] != "" && $row['status'] == 0) {
+                $status = "UNVERIFIED";
+                $style = "background-color: #fcd840;color: #343434;";
+                $btnHadir = "";
+            }else if($row['bukti'] != "" && $row['status'] == 1) {
+                $status = "OK";
+                $style = "background-color: #2ecc71;color: #fff;";
+            }
             echo "<tr>".
                     "<td>".$row['nama']."</td>".
                     "<td>".$row['tgl']."</td>".
                     "<td>".$row['qty']."</td>".
+                    "<td><div class='tbl' style='display: inline-block;".$style."font-family: OBold;'>".$status."</div></td>".
                     "<td>".
                         $btnHadir.
                     "</td>".
