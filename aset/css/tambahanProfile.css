@@ -79,3 +79,24 @@
 	margin-bottom: 30px;
 	margin-top: 30px;
 }
+
+.cta {
+	position: absolute;
+	top: 380px;right: 5%;
+	color: #fff;
+	z-index: 5;
+}
+.cta li,.cta button {
+	list-style: none;
+	display: inline-block;
+	border: 1px solid #fff;
+	padding: 20px 35px;
+	margin-left: 15px;
+	cursor: pointer;
+	color: #fff;
+	transition: 0.4s;
+}
+.cta #price,.cta #book,.cta #booked {
+	border: none;
+}
+.cta #share { background: none; }

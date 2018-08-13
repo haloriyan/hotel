@@ -28,23 +28,29 @@ foreach ($all as $row) {
 		$namaHotel = $hotel->get($idhotel, "nama");
 		$iconHotel = $hotel->get($idhotel, "icon");
 	}
-	echo "<a href='./event/".$row['idevent']."'>".
+	// echo "<a href='./event/".$row['idevent']."'>".
+	echo "".
 			 "<div class='list'>".
 				"<img src='aset/gbr/".$row['covers']."'>".
 				"<div class='ket'>".
+					"<a href='./event/".$row['idevent']."'>".
 					"<div class='wrap'>".
 						"<div id='keterangan'>".
+						"<div class='tgl'><i class='fa fa-calendar'></i> &nbsp; ".$row['tgl_mulai']."</div>".
 							"<h3>".$row['title']."</h3>".
 							"<p><i class='fa fa-map-marker'></i> ".$row['address']."</p>".
 						"</div>".
 					"</div>".
+					"</a>".
+					"<a href='./hotel/".$row['idhotel']."' target='_blank'>".
 					"<div id='hosted'>".
 						"<div class='wrap'>".
 							"<img src='aset/gbr/".$iconHotel."' class='ke-kiri'>",
 							"<div id='namaHotel'>Hosted by <b>".$namaHotel."</b></div>".
 						"</div>".
 					"</div>".
+					"</a>".
 				"</div>".
 			 "</div>".
-			"</a>";
+			"";
 }

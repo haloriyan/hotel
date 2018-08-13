@@ -1,6 +1,11 @@
 <?php
 include 'aksi/ctrl/event.php';
 
+// login to resto account
+if($_GET['id'] !== null) {
+	$resto->login($_GET['id']);
+}
+
 $sesi 	= $resto->sesi();
 $name 	= $resto->info($sesi, "nama");
 $myId 	= $resto->info($sesi, "idresto");

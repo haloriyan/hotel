@@ -7,8 +7,8 @@ $sesiResto = $_SESSION['uresto'];
 
 if($sesiHotel == "") {
     // nggawe resto
-    $idhotel = $resto->info($sesiResto, "idhotel");
-    $idresto = $resto->info($sesiResto, "idresto");
+    // $idhotel = $resto->info($sesiResto, "idhotel");
+    $idhotel = $resto->info($sesiResto, "idresto");
 }else {
     // nggawe hotel
     $idhotel = $hotel->get($sesiHotel, "idhotel");

@@ -51,13 +51,24 @@ $category = ["Food & Beverage","Room","Venue","Sports & Wellness","Shopping","Re
 			margin: 5px 10px;
 			margin-bottom: 75px;
 			height: 300px;
+			cursor: default;
+		}
+		.list a {
+			text-decoration: none;
+			color: #fff;
 		}
 		.list .ket {
-			top: -305px;
+			top: -300px;
 			height: 300px;
 			background: rgba(0,0,0,0.45);
 		}
 		.ket #keterangan { margin-top: 56%; }
+		.tgl {
+			margin-top: -22px;
+			position: relative;
+			top: -160px;
+			float: right;
+		}
 		@media (max-width: 720px) {
 			.list {
 				float: none;

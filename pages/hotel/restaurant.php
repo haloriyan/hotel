@@ -78,8 +78,6 @@ $namaPertama = explode(" ", $name)[0];
 			</h3>
 			<form id="formAdd">
 				<input type="text" class="box" id="nameAdd" placeholder="Resto name" autocomplete="off" required>
-				<input type="email" class="box" id="mailAdd" placeholder="Email login" autocomplete="off" required>
-				<input type="password" class="box" id="pwdAdd" placeholder="Password login" autocomplete="off" required>
 				<div class="bag-tombol">
 					<button class="merah-2">Add</button>
 				</div>
@@ -142,13 +140,9 @@ $namaPertama = explode(" ", $name)[0];
 
 	submit("#formAdd", function() {
 		let name = pilih("#nameAdd").value
-		let mail = pilih("#mailAdd").value
-		let pwd  = pilih("#pwdAdd").value
-		let add = "name="+name+"&email="+mail+"&pwd="+pwd
+		let add = "name="+name
 		pos("../aksi/resto/add.php", add, function() {
 			pilih("#nameAdd").value = ""
-			pilih("#mailAdd").value = ""
-			pilih("#pwdAdd").value = ""
 			hilangPopup("#popupNew")
 			munculPopup("#suksesAdd", pengaya("#suksesAdd", "top: 190px"))
 			loadResto()

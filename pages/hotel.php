@@ -66,6 +66,12 @@ $totExplore = $ctrl->hitung($ctrl->tabel("event")->pilih()->dimana(["idhotel" =>
 	<img src="../aset/gbr/<?php echo $cover; ?>">
 </div>
 
+<div class="cta">
+	<input type="hidden" id='idevent' value='<?php echo $idhotel; ?>'>
+	<a href='<?php echo $website; ?>' target='_blank' onclick='track(3)'><button id="book" class="merah-2">Book Hotel</button></a>
+	<button id="share"><i class="fa fa-share"></i></button>
+</div>
+
 <div class="bawah">
 	<div class="nav">
 		<div class="wrap">
@@ -261,6 +267,15 @@ $totExplore = $ctrl->hitung($ctrl->tabel("event")->pilih()->dimana(["idhotel" =>
 </div>
 
 <script src="../aset/js/profileHotel.js"></script>
+<script>
+	function track(tipe) {
+		let idevent = pilih("#idevent").value
+		let param = "tipe="+tipe+"&idevent="+idevent
+		pos("../aksi/track.php", param, function() {
+			console.log('tracked')
+		})
+	}
+</script>
 
 </body>
 </html>

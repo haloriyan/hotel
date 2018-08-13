@@ -9,8 +9,8 @@ $sesiResto = $_SESSION['uresto'];
 
 if($sesiHotel == "") {
     // nggawe resto
-    $idhotel = $resto->info($sesiResto, "idhotel");
-	$idresto = $resto->info($sesiResto, "idresto");
+    // $idhotel = $resto->info($sesiResto, "idhotel");
+	$idhotel = $resto->info($sesiResto, "idresto");
 	$tipe = "resto";
 }else {
     // nggawe hotel
@@ -22,7 +22,7 @@ if($sesiHotel == "") {
 $load = $galeri->load($idhotel, $tipe);
 
 if($load == "null") {
-	die("kosong");
+	echo "<h3>No any image available</h3>";
 }
 
 foreach ($load as $row) {

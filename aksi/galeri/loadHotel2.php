@@ -2,15 +2,17 @@
 include '../ctrl/galeri.php';
 
 $idhotel = $_COOKIE['idhotel'];
-if (isset($_COOKIE['idresto'])) {
+if ($_COOKIE['idresto'] !== null) {
+	$idhotel = $_COOKIE['idresto'];
 	$tipe = "resto";
 }else {
 	$tipe = "hotel";
 }
+
 $load = $galeri->load($idhotel, $tipe);
 
 if($load == "null") {
-	die("ya");
+	die("<h3>No any image available</h3>");
 }
 
 foreach ($load as $row) {

@@ -16,15 +16,13 @@ class resto extends hotel {
 		$r = $this->ambil($q);
 		return $r[$struktur];
 	}
-	public function add($a, $b, $c, $d, $e, $f) {
+	public function add($a, $b, $c, $d) {
 		$q = $this->tabel("restoran")
 				  ->tambah([
 				  	"idresto" => $a,
 				  	"idhotel" => $b,
 				  	"nama" => $c,
-				  	"email" => $d,
-				  	"password" => $e,
-				  	"added" => $f
+				  	"added" => $d
 				  ])
 				  ->eksekusi();
 		return $q;
@@ -47,6 +45,8 @@ class resto extends hotel {
 		$q = $this->tabel("restoran")->hapus()->dimana(["idresto" => $id])->eksekusi();
 		return $q;
 	}
+	/*
+	login resto lama
 	public function login($e, $p) {
 		$em = $this->info($e, "email");
 		$pw = $this->info($e, "password");
@@ -56,6 +56,12 @@ class resto extends hotel {
 		}else {
 			setcookie('loginResto', 'Email and/or Password wrong!', time() + 35, "/");
 		}
+	}
+	*/
+	public function login($id) {
+		session_start();
+		$_SESSION['uresto']=$id;
+		unset($_SESSION['uhotel']);
 	}
 	public function sesi() {
 		session_start();

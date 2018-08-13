@@ -18,7 +18,7 @@ if($myResto == "null") {
 	<?php
 	foreach ($myResto as $row) {
 		echo "<tr>".
-				"<td>".$row['nama']."</td>".
+				"<td><a href='../resto/dashboard&id=".$row['idresto']."' target='_blank'>".$row['nama']."</a></td>".
 				"<td>".
 					"<button class='merah-2' onclick='hapus(this.value)' value='".$row['idresto']."'><i class='fa fa-trash'></i></button>".
 				"</td>".

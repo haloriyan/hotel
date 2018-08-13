@@ -1,6 +1,11 @@
 <?php
 include 'aksi/ctrl/resto.php';
 
+// login to resto account
+if($_GET['id'] !== null) {
+	$resto->login($_GET['id']);
+}
+
 $sesi 	= $resto->sesi();
 $name 	= $resto->info($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
@@ -95,7 +100,7 @@ $namaPertama = explode(" ", $name)[0];
 <div class="popupWrapper" id="addHotelImage">
 	<div class="popup">
 		<div class="wrap">
-			<h3>Upload New Image for Hotel
+			<h3>Upload New Image for Restaurant
 				<div class="ke-kanan" id="xUploadHotel"><i class="fa fa-close"></i></div>
 			</h3>
 			<input type="file" class="box" style="font-size: 16px;" id="hotelImg">

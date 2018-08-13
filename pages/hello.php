@@ -1,6 +1,10 @@
 <?php
 include 'aksi/ctrl/event.php';
 
+$id = "";
+echo $hotel->get("tokdalang@durianruntuh.my", "nama");
+exit();
+
 $sesi 	= $user->sesi(1);
 $name 	= $user->info($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
