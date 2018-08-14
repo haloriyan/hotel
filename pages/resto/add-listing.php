@@ -119,8 +119,22 @@ $address = $resto->info($sesi, "address");
 	<form id="location">
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-map-marker"></i></div> Location</h4>
-			<div class="isi">Region</div>
-			<input type="text" class="box" id="region">
+			<div class='isi'>Region</div>
+			<select class='box' id='region'>
+				<option>Bali</option>
+				<option>Bandung</option>
+				<option>Batam</option>
+				<option>Bogor</option>
+				<option>Jakarta</option>
+				<option>Lombok</option>
+				<option>Makassar</option>
+				<option>Malang</option>
+				<option>Pekalongan</option>
+				<option>Semarang</option>
+				<option>Solo</option>
+				<option>Surabaya</option>
+				<option>Yogyakarta</option>
+			</select>
 			<div class="isi">Address</div>
 			<textarea class="box" id="address"></textarea><br />
 			<button class="tbl merah-2">NEXT</button>

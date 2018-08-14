@@ -1,14 +1,25 @@
 <?php
 include 'aksi/ctrl/redeem.php';
 
-$sesi 	= $hotel->sesi();
-$name 	= $hotel->get($sesi, "nama");
-$namaPertama = explode(" ", $name)[0];
+session_start();
+$sesiHotel = $_SESSION['uhotel'];
+$sesiResto = $_SESSION['uresto'];
 
-$idhotel = $hotel->get($sesi, "idhotel");
-$myEvent = $event->my($idhotel);
-$myRedeem = $redeem->my($idhotel);
+if($sesiHotel == "" && $sesiResto == "") {
+    header("location: ../hotel/login");
+}
 
+if($sesiHotel == "") {
+	// nggawe resto
+	$myId = $resto->info($sesiResto, "idresto");
+    $myEvent = $event->myForResto($myId);
+    $linkCta = "../resto/add-listing";
+}else {
+    // nggawe hotel
+	$myId = $hotel->get($sesiHotel, "idhotel");
+    $myEvent = $event->my($myId);
+    $linkCta = "../hotel/add-listing";
+}
 function toIdr($angka) {
 	return 'Rp. '.strrev(implode('.', str_split(strrev(strval($angka)), 3)));
 }

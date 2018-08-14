@@ -5,7 +5,25 @@ function toIdr($angka) {
 	return 'Rp. '.strrev(implode('.', str_split(strrev(strval($angka)), 3)));
 }
 
-$idhotel = $hotel->get($hotel->sesi(), "idhotel");
+session_start();
+$sesiHotel = $_SESSION['uhotel'];
+$sesiResto = $_SESSION['uresto'];
+
+if($sesiHotel == "" && $sesiResto == "") {
+    header("location: ../hotel/login");
+}
+
+if($sesiHotel == "") {
+	// nggawe resto
+	$idhotel = $resto->info($sesiResto, "idresto");
+    $myEvent = $event->myForResto($myId);
+    $linkCta = "../resto/add-listing";
+}else {
+    // nggawe hotel
+	$idhotel = $hotel->get($sesiHotel, "idhotel");
+    $myEvent = $event->my($myId);
+    $linkCta = "../hotel/add-listing";
+}
 
 $myRedeem = $redeem->my($idhotel);
 if($myRedeem == "null") {

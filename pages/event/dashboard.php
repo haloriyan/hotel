@@ -1,12 +1,25 @@
 <?php
 include 'aksi/ctrl/booking.php';
 
-$sesi 	= $hotel->sesi();
-$name 	= $hotel->get($sesi, "nama");
-$namaPertama = explode(" ", $name)[0];
+session_start();
+$sesiHotel = $_SESSION['uhotel'];
+$sesiResto = $_SESSION['uresto'];
 
-$idhotel = $hotel->get($sesi, "idhotel");
-$myEvent = $event->my($idhotel);
+if($sesiHotel == "" && $sesiResto == "") {
+    header("location: ../hotel/login");
+}
+
+if($sesiHotel == "") {
+	// nggawe resto
+	$myId = $resto->info($sesiResto, "idresto");
+    $myEvent = $event->myForResto($myId);
+    $linkCta = "../resto/add-listing";
+}else {
+    // nggawe hotel
+	$myId = $hotel->get($sesiHotel, "idhotel");
+    $myEvent = $event->my($myId);
+    $linkCta = "../hotel/add-listing";
+}
 ?>
 <html>
 <head>
@@ -74,7 +87,7 @@ $myEvent = $event->my($idhotel);
         <div class='wrap'>
             <h4><div id='icon'>&nbsp;<i class='fa fa-home'></i>&nbsp;</div> Dashboard
                 <div class='ke-kanan'>
-                    <input type="text" class='box' placeholder='Search event...'>
+                    <input type="text" class='box' placeholder='Search event...' oninput='cari(this.value)'>
                 </div>
             </h4>
             <div id='load'>
@@ -105,6 +118,13 @@ $myEvent = $event->my($idhotel);
     function load() {
         ambil("../aksi/event/myEvent.php", (res) => {
             tulis("#load", res)
+        })
+    }
+
+    function cari(val) {
+        let set = "namakuki=kwSearchDasbor&value="+val+"&durasi=3666"
+        pos("../aksi/setCookie.php", set, () => {
+            load()
         })
     }
 

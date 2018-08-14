@@ -1,12 +1,25 @@
 <?php
 include 'aksi/ctrl/booking.php';
 
-$sesi 	= $hotel->sesi();
-$name 	= $hotel->get($sesi, "nama");
-$namaPertama = explode(" ", $name)[0];
+session_start();
+$sesiHotel = $_SESSION['uhotel'];
+$sesiResto = $_SESSION['uresto'];
 
-$idhotel = $hotel->get($sesi, "idhotel");
-$myEvent = $event->my($idhotel);
+if($sesiHotel == "" && $sesiResto == "") {
+    header("location: ../hotel/login");
+}
+
+if($sesiHotel == "") {
+	// nggawe resto
+	$myId = $resto->info($sesiResto, "idresto");
+    $myEvent = $event->myForResto($myId);
+    $linkCta = "../resto/add-listing";
+}else {
+    // nggawe hotel
+	$myId = $hotel->get($sesiHotel, "idhotel");
+    $myEvent = $event->my($myId);
+    $linkCta = "../hotel/add-listing";
+}
 
 if(isset($_GET['id'])) {
     setcookie('idevent', $_GET['id'], time() + 3666, "/");
@@ -50,7 +63,7 @@ if(isset($_GET['id'])) {
 		<a href="#"><li>Explore</li></a>
 		<a href="#"><li>City</li></a>
 		<li>Hello <?php echo $namaPertama; ?> !</li>
-		<button id="cta" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
+		<a href='<?php echo $linkCta; ?>' target='_blank'><button id="cta" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button></a>
 	</nav>
 </div>
 

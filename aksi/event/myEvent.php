@@ -9,12 +9,12 @@ if($sesiHotel == "") {
     // nggawe resto
     $idhotel = $resto->info($sesiResto, "idhotel");
 	$idresto = $resto->info($sesiResto, "idresto");
-	$myEvent = $event->myForResto($idresto);
+	$myEvent = $event->myForResto($idresto, $_COOKIE['kwSearchDasbor']);
 }else {
     // nggawe hotel
     $idhotel = $hotel->get($sesiHotel, "idhotel");
 	$idresto = 0;
-	$myEvent = $event->my($idhotel);
+	$myEvent = $event->my($idhotel, $_COOKIE['kwSearchDasbor']);
 }
 
 if($myEvent == "null") {

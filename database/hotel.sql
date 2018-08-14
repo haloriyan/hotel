@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 07, 2018 at 11:20 AM
+-- Generation Time: Aug 14, 2018 at 08:31 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -68,7 +68,8 @@ CREATE TABLE `booking` (
 
 INSERT INTO `booking` (`idbooking`, `idevent`, `iduser`, `nama`, `qty`, `bukti`, `status`, `hadir`, `tgl`, `tgl_book`, `added`) VALUES
 (29013, 961541, 378558272, 'Riyan Satria', 5, 'Nomor 1.png', 1, 0, '2018-08-07', '2018-08-07 05:46:40', 1533613600),
-(168275, 295607, 378558272, 'Riyan Satria', 1, 'Screenshot (3).png', 1, 1, '2018-08-09', '2018-08-07 05:17:20', 1533611840);
+(168275, 295607, 378558272, 'Riyan Satria', 1, 'Screenshot (3).png', 1, 1, '2018-08-09', '2018-08-07 05:17:20', 1533611840),
+(586720, 295607, 96468212, 'Yoga Agung', 4, 'Screenshot from 2018-05-13 02-59-22.png', 1, 1, '2018-08-09', '2018-08-08 11:49:28', 1533721768);
 
 -- --------------------------------------------------------
 
@@ -103,7 +104,8 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`idevent`, `idhotel`, `id_resto`, `title`, `tagline`, `description`, `logos`, `covers`, `region`, `address`, `tgl_mulai`, `tgl_akhir`, `tgl_posted`, `category`, `availableseat`, `quota`, `price`, `hint`, `added`) VALUES
-(295607, 684889, 0, 'Seminar Keagamaan', 'halo dunia', 'Lorem ipsum dolor sit amet', 'perjalananKehidupan.jpg', 'perjalananKehidupan.jpg', 'Surabaya', 'Jl. Tentara Genie Pelajar No. 26', '2018-08-08', '2018-08-10', '2018-08-07 10:01:51', 'Parties', 138, 150, 2000, 12, 1533610911),
+(295607, 684889, 0, 'Seminar Keagamaan', 'halo dunia', 'Lorem ipsum dolor sit amet', 'perjalananKehidupan.jpg', 'perjalananKehidupan.jpg', 'Surabaya', 'Jl. Tentara Genie Pelajar No. 26', '2018-08-08', '2018-08-10', '2018-08-07 10:01:51', 'Parties', 134, 150, 2000, 24, 1533610911),
+(705496, 684889, 671577, 'Event Resto', 'ini tagline', 'Lorem ipsum dolor sit amet', 'sam-dan-agenda-kota.jpg', 'Samsul.png', 'Surabaya', 'Jln. Tentara Genie Pelajar No. 26', '2018-08-15', '2018-08-18', '2018-08-14 12:49:30', 'Food and Beverage', 0, 0, 250000, 0, 1534225770),
 (961541, 684889, 0, 'Training Pake Firebase', '#gerakansejutafirebase', 'Hello firebase', 'firebase.png', 'firebase.png', 'Surabaya', 'Jl. Tentara Genie Pelajar, No. 26', '2018-08-04', '2018-08-07', '2018-08-02 17:30:48', 'Food and Beverage', 24, 50, 20000, 15, 1533205848);
 
 -- --------------------------------------------------------
@@ -196,6 +198,7 @@ INSERT INTO `hotel` (`idhotel`, `nama`, `email`, `password`, `icon`, `cover`, `p
 CREATE TABLE `redeem` (
   `idredeem` int(11) NOT NULL,
   `idhotel` int(11) NOT NULL,
+  `id_resto` int(11) NOT NULL,
   `saldo` int(11) NOT NULL,
   `tgl` datetime NOT NULL,
   `status` int(1) NOT NULL,
@@ -206,9 +209,8 @@ CREATE TABLE `redeem` (
 -- Dumping data for table `redeem`
 --
 
-INSERT INTO `redeem` (`idredeem`, `idhotel`, `saldo`, `tgl`, `status`, `added`) VALUES
-(23819, 684889, 15000, '2018-08-05 13:04:30', 0, 1533467070),
-(718177, 684889, 2000, '2018-08-06 12:02:16', 0, 1533549736);
+INSERT INTO `redeem` (`idredeem`, `idhotel`, `id_resto`, `saldo`, `tgl`, `status`, `added`) VALUES
+(884678, 684889, 0, 25000, '2018-08-08 04:02:19', 0, 1533693739);
 
 -- --------------------------------------------------------
 
@@ -220,8 +222,6 @@ CREATE TABLE `restoran` (
   `idresto` int(11) NOT NULL,
   `idhotel` int(11) NOT NULL,
   `nama` varchar(55) NOT NULL,
-  `email` varchar(155) NOT NULL,
-  `password` varchar(50) NOT NULL,
   `icon` varchar(155) NOT NULL,
   `cover` varchar(155) NOT NULL,
   `phone` varchar(14) NOT NULL,
@@ -236,9 +236,9 @@ CREATE TABLE `restoran` (
 -- Dumping data for table `restoran`
 --
 
-INSERT INTO `restoran` (`idresto`, `idhotel`, `nama`, `email`, `password`, `icon`, `cover`, `phone`, `website`, `city`, `address`, `facility`, `added`) VALUES
-(294080, 684889, 'Test Restaurant', 'test@tokdalanghomestay.my', 'inikatasandi', '', '', '', '', '', '', '', 1533401604),
-(726644, 684889, 'Hisana Pret Ciken', 'hisana@tokdalanghomesate.my', 'inikatasandi', 'download (1).jpg', 'download.jpg', '082126164429', 'https://hisana.id', 'Surabaya', 'Jl. Genteng Kali No. 55', '5,6,3,4,2,1', 1531783891);
+INSERT INTO `restoran` (`idresto`, `idhotel`, `nama`, `icon`, `cover`, `phone`, `website`, `city`, `address`, `facility`, `added`) VALUES
+(671577, 684889, 'Resto Baru', '', '', '6282126164429', ' No. 26', 'https://durianruntuh.my', 'Jl. Tentara Genie Pelajar', '1,3,4,2,5,6', 1534160575),
+(726644, 684889, 'Hisana Pret Ciken', 'download (1).jpg', 'download.jpg', '082126164429', 'https://hisana.id', 'Surabaya', 'Jl. Genteng Kali No. 55', '5,6,3,4,2,1', 1531783891);
 
 -- --------------------------------------------------------
 
@@ -288,6 +288,7 @@ CREATE TABLE `track` (
 INSERT INTO `track` (`idtrack`, `idevent`, `iduser`, `tipe`, `hint`, `last_tracked`, `added`) VALUES
 (272363224, 1488, '::1', 1, 3, 1532051445, 1531944328),
 (584936578, 961541, '', 1, 1, 1533381724, 1533381724),
+(666252629, 684889, '127.0.0.1', 3, 2, 1533900975, 1533900960),
 (738528415, 1488, '::1', 2, 2, 1532051471, 1532051452),
 (879020637, 0, '::1', 0, 1, 1531944339, 1531944339);
 
@@ -315,7 +316,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`iduser`, `email`, `password`, `nama`, `telepon`, `alamat`, `status`, `registered`) VALUES
 (1, '', '', '', '', '', 1, 0),
 (49280222, 'riyan2@riyan.com', 'inikatasandi', 'Riyan Satria', '', '', 0, 1531786268),
-(378558272, 'halo@riyansatria.tk', 'sandinepodo', 'Riyan Satria', '082126164429', 'di rumah', 1, 1530359712),
+(96468212, 'yoga@dailyhotels.id', 'inikatasandi', 'Yoga Agung', '', '', 1, 1533721697),
+(378558272, 'halo@riyansatria.tk', 'inikatasandi', 'Riyan Satria', '082126164429', 'di rumah', 1, 1530359712),
 (677895980, 'yprasetiyo335@gmail.com', 'inikatasandi', 'Yoga Agung', '', '', 1, 1533381520);
 
 --

@@ -36,11 +36,8 @@ class event extends resto {
 				  ->eksekusi();
 		return $q;
 	}
-	public function my($id) {
-		$q = $this->tabel("event")
-				  ->pilih()
-				  ->dimana(["idhotel" => $id, "id_resto" => 0])
-				  ->eksekusi();
+	public function my($id, $keyword = NULL) {
+		$q = $this->query("SELECT * FROM event WHERE idhotel = '$id' AND id_resto = '0' AND title LIKE '%$keyword%'");
 		if($this->hitung($q) == "") {
 			return "kosong";
 		}else {
@@ -50,11 +47,12 @@ class event extends resto {
 			return $hasil;
 		}
 	}
-	public function myForResto($id) {
+	public function myForResto($id, $keyword = NULL) {
 		$q = $this->tabel("event")
 				  ->pilih()
 				  ->dimana(["id_resto" => $id])
 				  ->eksekusi();
+		$q = $this->query("SELECT * FROM event WHERE id_resto = '$id' AND title LIKE '%$keyword%'");
 		if($this->hitung($q) == "") {
 			return "kosong";
 		}else {
