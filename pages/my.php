@@ -74,7 +74,7 @@ $namaPertama = explode(" ", $name)[0];
 <div class="container">
 	<div>
 		<div class="wrap">
-			<h4><div id="icon"><i class="fa fa-home"></i></div> My Listing Event</h4>
+			<h4><div id="icon">&nbsp;<i class="fa fa-home"></i>&nbsp;</div> My Listing Event</h4>
 			<div id="load"></div>
 		</div>
 	</div>

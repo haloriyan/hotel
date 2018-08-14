@@ -169,6 +169,30 @@ $category = ["Food & Beverage","Room","Venue","Sports & Wellness","Shopping","Re
 	</div>
 </div>
 
+<div class="bg"></div>
+<div class="formPopup" id="formLogin">
+	<form class="wrap" id="formSignIn">
+		<h4><i class="fa fa-user"></i> &nbsp; Sign in
+			<div id="xLog" class="ke-kanan"><i class="fa fa-close"></i></div>
+		</h4>
+		<input type="text" class="box" placeholder="Email" id="mailLog"><br />
+		<input type="password" class="box" placeholder="Password" id="pwdLog"><br />
+		<div class="bag-tombol">
+			<button class="merah-2">Sign in</button>
+		</div>
+		<div class="bag bag-5">
+			<input type="checkbox" id="rememberMe"> <label for="rememberMe">Remember me</label>
+		</div>
+		<div class="bag bag-5 rata-kanan">
+			<a href="#">Forgot password?</a>
+		</div>
+		<br />
+		<div class="rata-tengah" style="margin-bottom: 15px;">
+			<a href="#popupRegist" id="linkLogin">Register</a> | <a href="./hotel/login">Marcom</a>
+		</div>
+	</form>
+</div>
+
 <script src='aset/js/embo.js'></script>
 <script src='aset/js/jquery-3.1.1.js'></script>
 <script src='aset/js/jquery-ui.min.js'></script>
