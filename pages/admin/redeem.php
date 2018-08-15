@@ -52,10 +52,11 @@ $namaPertama = 'adm00n';
 
 <div class='kiri'>
     <a href="./dashboard"><div class='listWizard'>Dashboard</div></a>
-    <a href="./addadmin"><div class='listWizard'>Add Admin</div></a>
+    <a href="./addadmin"><div class='listWizard'>Admin</div></a>
     <a href="./delete-events"><div class='listWizard'>Events</div></a>
     <a href="./payment"><div class='listWizard'>Payments</div></a>
     <a href="./redeem"><div class='listWizard' aktif='ya'>Redeem</div></a>
+    <a href="./refund"><div class='listWizard'>Refunds</div></a>
     <a href="../logout"><div class='listWizard'>Logout</div></a>
 </div>
 

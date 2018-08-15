@@ -76,9 +76,12 @@ if($_GET['idadmin']) {
 
 <div class="kiri">
 	<a href="../admin/dashboard"><div class="listWizard">Dashboard</div>
-	<div class="listWizard" aktif="ya">Add Admin</div></a>
-  <a href="../admin/delete-events"><div class="listWizard">Delete Events</div></a>
-	<a href="../logout"><div class="listWizard">Logout</div></a>
+	<a href="./addadmin"><div class='listWizard' aktif='ya'>Admin</div></a>
+    <a href="#"><div class='listWizard'>Events</div></a>
+    <a href="./payment"><div class='listWizard'>Payments</div></a>
+    <a href="./redeem"><div class='listWizard'>Redeem</div></a>
+    <a href="./refund"><div class='listWizard'>Refunds</div></a>
+    <a href="../logout"><div class='listWizard'>Logout</div></a>
 </div>
 
 <div class="container">

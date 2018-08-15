@@ -52,11 +52,13 @@ if(isset($_GET['idhotel'])) {
 </div>
 
 <div class="kiri">
-	<div class="listWizard" aktif="ya">Dashboard</div>
-	<a href="../admin/addadmin"><div class="listWizard">Add Admin</div></a>
-  <a href="../admin/delete-events"><div class="listWizard">Delete Event</div></a>
-  <a href="./payment"><div class='listWizard'>Payments</div></a>
-	<a href="../logout"><div class="listWizard">Logout</div></a>
+<a href="./dashboard"><div class='listWizard' aktif='ya'>Dashboard</div></a>
+    <a href="./addadmin"><div class='listWizard'>Admin</div></a>
+    <a href="#"><div class='listWizard'>Events</div></a>
+    <a href="./payment"><div class='listWizard'>Payments</div></a>
+    <a href="./redeem"><div class='listWizard'>Redeem</div></a>
+    <a href="./refund"><div class='listWizard'>Refunds</div></a>
+    <a href="../logout"><div class='listWizard'>Logout</div></a>
 </div>
 
 <div class="container">

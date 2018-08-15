@@ -75,15 +75,18 @@ if($_GET['idevent']) {
 </div>
 
 <div class="kiri">
-	<a href="../admin/dashboard"><div class="listWizard">Dashboard</div></a>
-	<a href="../admin/addadmin"><div class="listWizard">Add Admin</div></a>
-  <div class="listWizard" aktif="ya">Delete Events</div>
-	<a href="../logout"><div class="listWizard">Logout</div></a>
+<a href="./dashboard"><div class='listWizard'>Dashboard</div></a>
+    <a href="./addadmin"><div class='listWizard'>Admin</div></a>
+    <a href="#"><div class='listWizard' aktif='ya'>Events</div></a>
+    <a href="./payment"><div class='listWizard'>Payments</div></a>
+    <a href="./redeem"><div class='listWizard'>Redeem</div></a>
+    <a href="./refund"><div class='listWizard'>Refunds</div></a>
+    <a href="../logout"><div class='listWizard'>Logout</div></a>
 </div>
 
 <div class="container">
 	<div class="wrap">
-		<h4><div id="icon"><i class="fa fa-warning"></i></div> Delete Event</h4>
+		<h4><div id="icon">&nbsp;<i class="fa fa-warning"></i>&nbsp;</div> Delete Event</h4>
     <table>
       <thead>
         <tr>
@@ -94,7 +97,7 @@ if($_GET['idevent']) {
         <?php
         foreach ($admin->event() as $row) {
           echo "<tr>".
-                "<td>".$row['title'].
+                "<td><a href='../event/".$row['idevent']."' target='_blank'>".$row['title']."</a>".
                   "<a href='delete-events&idevent=".$row['idevent']."' class='ke-kanan'><i class='fa fa-close'></i></a>".
                 "</td>".
                "</tr>";
