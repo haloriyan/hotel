@@ -13,7 +13,7 @@ $namaPertama = explode(" ", $name)[0];
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale = 1">
-	<title>Dashboard</title>
+	<title>My Listing</title>
 	<link href='aset/fw/build/fw.css' rel='stylesheet'>
 	<link href='aset/fw/build/font-awesome.min.css' rel='stylesheet'>
 	<link href='aset/css/style.index.css' rel='stylesheet'>
@@ -45,6 +45,10 @@ $namaPertama = explode(" ", $name)[0];
 			background-color: #fff;
 		}
 		td h4 { margin-top: 5px; }
+		#tblStatus {
+			padding: 15px 13px;
+			font-size: 15px;
+		}
 	</style>
 </head>
 <body>
@@ -66,6 +70,7 @@ $namaPertama = explode(" ", $name)[0];
 <div class="kiri">
 	<a href="./hello"><div class="listWizard">Dashboard</div></a>
 	<a href="./my"><div class="listWizard" aktif="ya">My Listings</div></a>
+	<a href="./refund"><div class="listWizard">My Refunds</div></a>
 	<a href="./detail"><div class="listWizard">Detail Information</div></a>
 	<a href="./social"><div class="listWizard">Social Network</div></a>
 	<a href="./logout"><div class="listWizard">Logout</div></a>

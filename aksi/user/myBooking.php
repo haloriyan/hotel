@@ -52,13 +52,13 @@ if($myBook == "null") {
 				$price 		= $event->info($idevent, "price") * $row['qty'];
 				if($row['bukti'] == "") {
 					// belum dibayar
-					$btn = "<a href='./invoice/".$row['idbooking']."' target='_blank'><button class='tbl merah-2'>UNPAID</button></a>";
+					$btn = "<a href='./invoice/".$row['idbooking']."' target='_blank'><button class='tbl merah-2' id='tblStatus'>UNPAID</button></a>";
 				}else if($row['bukti'] != "" && $row['status'] == 0) {
 					// belum dikonfirmasi
-					$btn = "<a href='./invoice/".$row['idbooking']."' target='_blank'><button class='tbl kuning'>PAID</button></a>";
+					$btn = "<a href='./invoice/".$row['idbooking']."' target='_blank'><button class='tbl kuning' id='tblStatus'>PAID</button></a>";
 				}
 				else {
-					$btn = "<a href='./invoice/".$row['idbooking']."' target='_blank'><button class='tbl hijau'>CONFIRMED</button></a>";
+					$btn = "<a href='./invoice/".$row['idbooking']."' target='_blank'><button class='tbl hijau' id='tblStatus'>CONFIRMED</button></a>";
 				}
 				echo "<tr>".
 					 	"<td><img src='aset/gbr/".$icon."'></td>".
