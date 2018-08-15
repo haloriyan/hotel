@@ -73,6 +73,12 @@ $namaPertama = 'adm00n';
             tulis("#load", res)
         })
     }
+    function cawang(val) {
+        let set = "idredeem="+val
+        pos("../aksi/redeem/cawang.php", set, () => {
+            load()
+        })
+    }
 
     load()
 </script>

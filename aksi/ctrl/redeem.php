@@ -58,6 +58,10 @@ class redeem extends booking {
 			return $hasil;
 		}
 	}
+	public function cawang($id) {
+		$q = $this->tabel("redeem")->ubah(["status" => 1])->dimana(["idredeem" => $id])->eksekusi();
+		return $q;
+	}
 }
 
 $redeem = new redeem();

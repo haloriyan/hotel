@@ -1,5 +1,8 @@
 <?php
 include '../ctrl/redeem.php';
+function toIdr($angka) {
+	return 'Rp. '.strrev(implode('.', str_split(strrev(strval($angka)), 3)));
+}
 
 $all = $redeem->all(0);
 if($all == "null") {
@@ -23,9 +26,9 @@ if($all == "null") {
             echo "<tr>".
                     "<td>".explode(" ", $row['tgl'])[0]."</td>".
                     "<td>".$namaHotel."</td>".
-                    "<td>".$row['saldo']."</td>".
+                    "<td>".toIdr($row['saldo'])."</td>".
                     "<td>".
-                        "<button class='tbl hijau'><i class='fa fa-check'></i></button>".
+                        "<button class='tbl hijau' onclick='cawang(this.value)' value='".$row['idredeem']."'><i class='fa fa-check'></i></button>".
                     "</td>".
                  "</tr>";
         }
