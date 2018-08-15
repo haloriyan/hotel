@@ -119,6 +119,7 @@ input[type=file].box {
 	display: none;
 	width: 20%;
 }
+.atas h1.logoHome { font-size: 21px !important; }
 
 @media (max-width: 720px) {
 	.menuMob {

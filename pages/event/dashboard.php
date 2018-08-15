@@ -14,25 +14,24 @@ if($sesiHotel == "") {
 	$myId = $resto->info($sesiResto, "idresto");
     $myEvent = $event->myForResto($myId);
     $linkCta = "../resto/add-listing";
+    $nama = $resto->info($sesiResto, "nama");
 }else {
     // nggawe hotel
 	$myId = $hotel->get($sesiHotel, "idhotel");
     $myEvent = $event->my($myId);
     $linkCta = "../hotel/add-listing";
+    
+    $nama = $hotel->get($sesiHotel, "nama");
 }
+$namaPertama = explode(" ", $nama)[0];
+
 ?>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale = 1'>
-    <title>Dashboard - Events Dailyhotels</title>
-</head>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale = 1">
-	<title>Detail Event</title>
+	<title>Dashboard - Events Dailyhotels</title>
 	<link href='../aset/fw/build/fw.css' rel='stylesheet'>
 	<link href='../aset/fw/build/font-awesome.min.css' rel='stylesheet'>
 	<link href='../aset/css/style.index.css' rel='stylesheet'>
