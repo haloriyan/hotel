@@ -144,7 +144,7 @@ $namaPertama = explode(" ", $name)[0];
         return false
     })
 
-	load()
+	load() // komentar
 </script>
 
 </body>
