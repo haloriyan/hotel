@@ -39,7 +39,7 @@ $namaPertama = explode(" ", $nama)[0];
 	<style>
         .box { font-size: 16px;}
         .myList {
-            width: 31.6%;
+            width: 31.46%;
             float: left;
             box-shadow: 1px 1px 5px 1px #ddd;
             margin: 0px 10px;
@@ -88,25 +88,7 @@ $namaPertama = explode(" ", $nama)[0];
                     <input type="text" class='box' placeholder='Search event...' oninput='cari(this.value)'>
                 </div>
             </h4>
-            <div id='load'>
-                <div class='myList'>
-                    <img src="http://localhost/hotel/aset/gbr/paulWalkerCover.jpg">
-                    <div class='wrap'>
-                        <h3>Meet and Greet with Paul Walker on the heaven</h3>
-                        <button class='tbl merah-2'>Detail</button>
-                    </div>
-                </div>
-                <div class='myList'>
-                    <img src="http://localhost/hotel/aset/gbr/koridor-co-working-space-surabaya-koridor-2.jpg">
-                    <div class='wrap'>
-                        <h3>Meet and Greet with Paul Walker on the heaven</h3>
-                        <button class='tbl merah-2'>Detail</button>
-                    </div>
-                </div>
-                <div class='bag-tombol'>
-                    <button class='merah-2'>load more</button>
-                </div>
-            </div>
+            <div id='load'></div>
         </div>
     </div>
 </div>
