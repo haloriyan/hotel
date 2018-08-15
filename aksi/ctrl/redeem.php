@@ -2,8 +2,8 @@
 include 'booking.php';
 
 class redeem extends booking {
-	public function my($idhotel) {
-		$q = $this->tabel("redeem")->pilih()->dimana(["idhotel" => $idhotel, "id_resto" => 0, "status" => 0])->eksekusi();
+	public function my($idhotel, $status = NULL) {
+		$q = $this->tabel("redeem")->pilih()->dimana(["idhotel" => $idhotel, "id_resto" => 0, "status" => $status])->eksekusi();
 		if($this->hitung($q) == 0) {
 			return "null";
 		}else {

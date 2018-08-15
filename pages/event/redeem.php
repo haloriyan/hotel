@@ -5,6 +5,8 @@ session_start();
 $sesiHotel = $_SESSION['uhotel'];
 $sesiResto = $_SESSION['uresto'];
 
+setcookie('statusRedeem', '0', time() + 3666, "/");
+
 if($sesiHotel == "" && $sesiResto == "") {
     header("location: ../hotel/login");
 }
@@ -116,6 +118,14 @@ $mySaldo = $saldo - $saldoRedeem;
                     <input type="number" class='box' id='saldo' placeholder='Saldo (Rp)' style='width: 74%;'> &nbsp;
                     <button class='tbl merah-2'>Redeem</button>
                 </form>
+                <h3>My Redeem
+                    <div class='ke-kanan'>
+                        <select class='box' id="statusRedeem" onchange='status(this.value)' style='height: 45px;'>
+                            <option value="0">Requested</option>
+                            <option value="1">Paid</option>
+                        </select>
+                    </div>
+                </h3>
                 <div id='myRedeem'></div>
             </div>
         </div>
@@ -166,6 +176,12 @@ $mySaldo = $saldo - $saldoRedeem;
     function abort(val) {
         munculPopup("#abortRedeem", pengaya("#abortRedeem", "top: 190px"))
         pilih("#idredeem").value = val
+    }
+    function status(val) {
+        let set = "namakuki=statusRedeem&value="+val+"&durasi=3666"
+        pos("../aksi/setCookie.php", set, () => {
+            load()
+        })
     }
 
     submit("#formRedeem", () => {

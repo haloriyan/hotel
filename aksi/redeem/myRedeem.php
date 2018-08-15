@@ -25,14 +25,17 @@ if($sesiHotel == "") {
     $linkCta = "../hotel/add-listing";
 }
 
-$myRedeem = $redeem->my($idhotel);
+$status = $_COOKIE['statusRedeem'];
+if($status == null) {
+    $status = 0;
+}
+$myRedeem = $redeem->my($idhotel, $status);
 if($myRedeem == "null") {
     echo "You haven't asked for redeem";
     exit();
 }
 
 ?>
-<h3>My Redeem</h3>
 <table>
     <thead>
         <tr>
@@ -48,13 +51,17 @@ if($myRedeem == "null") {
             $echoCalendar = explode(" ", $row['tgl'])[0];
             if($row['status'] == 0) {
                 $status = "Pending";
+                $btn = "<button class='tbl merah-2' id='abort' onclick='abort(this.value)' value='".$row['idredeem']."'><i class='fa fa-close'></i></button>";
+            }else if($row['status'] == 1) {
+                $status = "Paid";
+                $btn = "";
             }
             echo "<tr>".
                     "<td>".$echoCalendar."</td>".
                     "<td>".toIdr($row['saldo'])."</td>".
                     "<td>".$status."</td>".
                     "<td>".
-                        "<button class='tbl merah-2' id='abort' onclick='abort(this.value)' value='".$row['idredeem']."'><i class='fa fa-close'></i></button>".
+                        $btn.
                     "</td>".
                  "</tr>";
         }
