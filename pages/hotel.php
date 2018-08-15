@@ -169,7 +169,7 @@ $totExplore = $ctrl->hitung($ctrl->tabel("event")->pilih()->dimana(["idhotel" =>
 						</h3>
 						<div class="imgCollection">
 							<?php
-							$image = $ctrl->tabel("galeri")->pilih()->dimana(["idhotel" => $idhotel])->batas(0, 3)->eksekusi();
+							$image = $ctrl->tabel("galeri")->pilih()->dimana(["idhotel" => $idhotel, "tipe" => "hotel"])->batas(0, 3)->eksekusi();
 							while($r = $ctrl->ambil($image)) {
 								echo "<img src='../aset/gbr/".$r['gambar']."'>";
 							}
