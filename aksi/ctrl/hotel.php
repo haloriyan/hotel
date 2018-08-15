@@ -19,7 +19,7 @@ class hotel extends user {
 	public function register($a, $b, $c, $d, $e) {
 		$q = $this->tabel("hotel")
 				  ->tambah([
-				  	"iduser" => $a,
+				  	"idhotel" => $a,
 				  	"nama" => $b,
 				  	"email" => $c,
 				  	"password" => $d,

@@ -54,7 +54,11 @@ $namaEvent = $event->info($idevent, "title");
 			border-bottom: 1px solid #ddd;
 			background-color: #fff;
 		}
-		td h4 { margin-top: 5px; }
+		td h4 { margin-top: 5px; 
+		}
+		#list-event{
+			margin-top: -62px;
+		}
 	</style>
 </head>
 <body>
@@ -88,6 +92,7 @@ $namaEvent = $event->info($idevent, "title");
 <div class="container">
 	<div class="wrap">
 		<h4><div id="icon"><i class="fa fa-home"></i></div> My Listing</h4>
+		<a href="/hotel/event/detail"><button id="list-event" class="tbl merah-2 ke-kanan">&nbsp;List Event</button></a>
 		<p>
 			Your listing are shown in the table below
 		</p>
