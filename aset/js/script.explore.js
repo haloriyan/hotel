@@ -57,7 +57,7 @@ load()
 tekan("Escape", () => {
     hilang(".bg")
     hilang("#formLogin")
-    muncul("#popupRegist")
+    hilang("#popupRegist")
 })
 klik("#xLog", () => {
     hilang(".bg")
