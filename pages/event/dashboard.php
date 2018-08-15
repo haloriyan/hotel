@@ -58,7 +58,6 @@ if($sesiHotel == "") {
 	</style>
 </head>
 <body>
-
 <div class="atas merah-2">
 	<h1 class="logoHome" style="margin: 0;margin-left: 5%;font-size: 23px;font-family: OBold;">Event Management</h1>
 	<div class="pencarian">
@@ -70,7 +69,7 @@ if($sesiHotel == "") {
 		<a href="#"><li>Explore</li></a>
 		<a href="#"><li>City</li></a>
 		<li>Hello <?php echo $namaPertama; ?> !</li>
-		<button id="cta" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
+		<a href='<?php echo $linkCta; ?>' target='_blank'><button id="cta" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button></a>
 	</nav>
 </div>
 

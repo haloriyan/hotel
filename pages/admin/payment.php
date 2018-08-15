@@ -43,8 +43,8 @@ $namaPertama = 'adm00n';
 <div class='atas merah-2'>
     <img src="../aset/gbr/logo.png" class='logoHome'>
     <nav class='menu'>
-        <a href="#"><li>Home</li></a>
-        <a href="#"><li>Explore</li></a>
+        <a href="/hotel"><li>Home</li></a>
+		<a href="../explore"><li>Explore</li></a>
         <a href="#"><li>City</li></a>
         <li>Hello <?php echo $namaPertama; ?>!</li>
     </nav>
