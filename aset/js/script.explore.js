@@ -54,6 +54,24 @@ function city(val) {
 
 load()
 
+tekan("Escape", () => {
+    hilang(".bg")
+    hilang("#formLogin")
+    muncul("#popupRegist")
+})
+klik("#xLog", () => {
+    hilang(".bg")
+    hilang("#formLogin")
+})
+klik("#xReg", () => {
+    hilang(".bg")
+    hilang("#popupRegist")
+})
+klik("#linkLogin", () => {
+    hilang("#formLogin")
+    muncul("#popupRegist")
+})
+
 let val = pilih("#q").value
 let set = "namakuki=kwExplore&value="+val+"&durasi=1000"
 pos("aksi/setCookie.php", set, function() {
