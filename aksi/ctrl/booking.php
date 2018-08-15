@@ -30,6 +30,10 @@ class booking extends event {
 		$ubah = $this->query("UPDATE event SET availableseat = availableseat - $d WHERE idevent = '$b'");
 		return $q;
 	}
+	public function delete($id) {
+		$q = $this->tabel("booking")->hapus()->dimana(["idbooking" => $id])->eksekusi();
+		return $q;
+	}
 	public function cek($idevent, $iduser) {
 		$q = $this->query("SELECT * FROM booking WHERE idevent = '$idevent' AND iduser = '$iduser' AND status != '9' AND status != '8'");
 		if($this->hitung($q) != 0) {
@@ -100,6 +104,20 @@ class booking extends event {
 			return $hasil;
 		}
 	}
+	public function refundReq($status = NULL) {
+		if($status == NULL) {
+			$status = 9;
+		}
+		$q = $this->query("SELECT * FROM booking WHERE status = '$status'");
+		if($this->hitung($q) == 0) {
+			return "null";
+		}else {
+			while($r = $this->ambil($q)) {
+				$hasil[] = $r;
+			}
+			return $hasil;
+		}
+	}
 	public function cawang($id) {
 		$q = $this->tabel("booking")->ubah(["status" => 1])->dimana(["idbooking" => $id])->eksekusi();
 		return $q;
@@ -132,6 +150,17 @@ class booking extends event {
 			$hasil[] = $r;
 		}
 		return $hasil;
+	}
+	public function cawangRefund($id) {
+		$q = $this->tabel("booking")->ubah(["status" => 8])->dimana(["idbooking" => $id])->eksekusi();
+
+		$sel = $this->query("SELECT * FROM booking WHERE idbooking = '$id'");
+		$r = $this->ambil($sel);
+		$qty = $r['qty'];
+		$idevent = $r['idevent'];
+		$ubah = $this->query("UPDATE event SET availableseat = availableseat + $qty WHERE idevent = '$idevent'");
+		
+		return $q;
 	}
 }
 
