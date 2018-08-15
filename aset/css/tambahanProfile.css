@@ -84,7 +84,7 @@
 	position: absolute;
 	top: 380px;right: 5%;
 	color: #fff;
-	z-index: 5;
+	z-index: 4;
 }
 .cta li,.cta button {
 	list-style: none;
