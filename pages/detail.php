@@ -53,7 +53,6 @@ $namaPertama = explode(" ", $name)[0];
 	<a href="./my"><div class="listWizard">My Listings</div></a>
 	<a href="./refund"><div class="listWizard">My Refunds</div></a>
 	<a href="./detail"><div class="listWizard" aktif="ya">Detail Information</div></a>
-	<a href="./social"><div class="listWizard">Social Network</div></a>
 	<a href="./logout"><div class="listWizard">Logout</div></a>
 </div>
 
@@ -67,7 +66,7 @@ $namaPertama = explode(" ", $name)[0];
 				<div class="isi">Phone :</div>
 				<input type="text" class="box" id="phone" autocomplete="off" value="<?php echo $phone; ?>">
 				<div class="isi">Address :</div>
-				<textarea class="box" id="address" autocomplete="off"><?php echo $address; ?></textarea>
+				<input class="box" id="address" autocomplete="off" value="<?php echo $address; ?>">
 				<br /><br />
 				<button class="tbl merah-2">Save</button>
 			</form>

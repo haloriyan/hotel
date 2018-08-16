@@ -8,7 +8,7 @@ setcookie('statusRefund', '9', time() + 3666, "/");
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale = 1'>
-    <title>Redeem Request</title>
+    <title>Refund Request</title>
     <link href='../aset/fw/build/fw.css' rel='stylesheet'>
     <link href='../aset/fw/build/font-awesome.min.css' rel='stylesheet'>
     <link href='../aset/css/style.index.css' rel='stylesheet'>
@@ -62,7 +62,7 @@ setcookie('statusRefund', '9', time() + 3666, "/");
 
 <div class='container'>
     <div class='wrap'>
-        <h4><div id="icon"><i class="fa fa-money"></i></div> Redeem Request
+        <h4><div id="icon"><i class="fa fa-money"></i></div> Refund Request
             <div class='ke-kanan'>
                 Status
                 <select id="status" class='box' style='font-size: 16px;height: 45px;' onchange='status(this.value)'>

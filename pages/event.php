@@ -168,9 +168,24 @@ $iconHotel = $hotel->get($idhotel, "icon");
 		</div>
 		<br />
 		<div class="rata-tengah" style="margin-bottom: 15px;">
-			<a href="#popupRegist" id="linkLogin">Register</a> | <a href="./hotel/login">Marcom</a>
+			<a href="#popupRegist" id="linkLogin">Register</a> | <a href="../hotel/login">Marcom</a>
 		</div>
 	</form>
+</div>
+<div class="formPopup" id="popupRegist">
+	<div class="wrap">
+		<h4><i class="fa fa-user"></i> &nbsp; Register
+			<div id="xReg" class="ke-kanan"><i class="fa fa-close"></i></div>
+		</h4>
+		<form id="formRegist">
+			<input type="text" class="box" id="nameReg" placeholder="Name"><br />
+			<input type="email" class="box" id="mailReg" placeholder="Email"><br />
+			<input type="password" class="box" id="pwdReg" placeholder="Password"><br />
+			<div class="bag-tombol" style="margin-top: 10px;">
+				<button class="merah-2" id="register">REGISTER</button>
+			</div>
+		</form>
+	</div>
 </div>
 
 <div class="popupWrapper" id="popupBook">
@@ -243,6 +258,13 @@ $iconHotel = $hotel->get($idhotel, "icon");
 <script src='../aset/js/jquery-3.1.1.js'></script>
 <script src='../aset/js/jquery-ui.min.js'></script>
 <script src="../aset/js/script.event.js"></script>
+<script>
+
+klik("#linkLogin", function() {
+	hilang("#formLogin")
+	muncul("#popupRegist")
+})
+</script>
 <?php
 if($qty >= 1) {
 	?>

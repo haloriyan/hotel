@@ -1,10 +1,6 @@
 <?php
 include 'aksi/ctrl/event.php';
 
-$id = "";
-echo $hotel->get("tokdalang@durianruntuh.my", "nama");
-exit();
-
 $sesi 	= $user->sesi(1);
 $name 	= $user->info($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
@@ -42,8 +38,8 @@ $namaPertama = explode(" ", $name)[0];
 <div class="kiri">
 	<div class="listWizard" aktif="ya">Dashboard</div>
 	<a href="./my"><div class="listWizard">My Listings</div></a>
+	<a href="./refund"><div class="listWizard">My Refunds</div></a>
 	<a href="./detail"><div class="listWizard">Detail Information</div></a>
-	<a href="./social"><div class="listWizard">Social Network</div></a>
 	<a href="./logout"><div class="listWizard">Logout</div></a>
 </div>
 

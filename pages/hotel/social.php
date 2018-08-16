@@ -150,6 +150,7 @@ $namaPertama = explode(" ", $name)[0];
 		}
 		pos("../aksi/social/add.php", tambah, function() {
 			hilangPopup("#addSocial")
+			pilih("#urlAdd").value = ""
 			load()
 		})
 		return false

@@ -130,7 +130,7 @@ class booking extends event {
 
 	// refund
 	public function myRefund($iduser) {
-		$q = $this->query("SELECT * FROM booking WHERE iduser = '$iduser' AND status = '9' OR status = '8'");
+		$q = $this->query("SELECT * FROM booking WHERE iduser = '$iduser' AND status = '9' OR iduser = '$iduser' AND status = '8'");
 		if($this->hitung($q) == 0) {
 			return "null";
 		}else {

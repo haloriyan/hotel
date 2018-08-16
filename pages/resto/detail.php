@@ -13,6 +13,7 @@ $phone 	= $resto->info($sesi, "phone");
 $address 	= $resto->info($sesi, "address");
 $city = $resto->info($sesi, "city");
 $web = $resto->info($sesi, "website");
+$description = $resto->info($sesi, "description");
 
 ?>
 <!DOCTYPE html>
@@ -66,6 +67,8 @@ $web = $resto->info($sesi, "website");
 	<form id="formDetil">
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-pencil"></i></div> Detail Information</h4>
+			<div class="isi">Resto description</div>
+			<textarea class='box' id='description'><?php echo $description; ?></textarea>
 			<div class="isi">City :</div>
 			<input type="text" class="box" id="city" value="<?php echo $city; ?>">
 			<div class="isi">Phone :</div>
@@ -73,7 +76,7 @@ $web = $resto->info($sesi, "website");
 			<div class="isi">Website url :</div>
 			<input type="text" class="box" id="web" placeholder="e.g https://dailyhotels.id" value="<?php echo $web; ?>">
 			<div class="isi">Address :</div>
-			<textarea class="box" id="address"><?php echo $address; ?></textarea>
+			<input class="box" id="address" value="<?php echo $address; ?>">
 			<div class="bag-tombol">
 				<button class="tbl merah-2">SAVE</button>
 			</div>
@@ -126,7 +129,8 @@ $web = $resto->info($sesi, "website");
 		let address = pilih("#address").value
 		let city 	= pilih("#city").value
 		let web 	= pilih("#web").value
-		let detil 	= "phone="+phone+"&address="+address+"&bag=detil&city="+city+"&web="+web
+		let description = pilih("#description").value
+		let detil 	= "phone="+phone+"&address="+address+"&bag=detil&city="+city+"&web="+web+"&description="+description
 		if(phone == "" || address == "" || web == "" || city == "") {
 			return false
 		}

@@ -10,9 +10,10 @@ if($bag == "detil") {
 	$address 	= $_POST['address'];
 	$web 		= $_POST['web'];
 	$city 		= $_POST['city'];
+	$description	= $_POST['description'];
 
-	$val = $phone.",".$address.",".$web.",".$city;
-	$change = "phone,address,website,city";
+	$val = $phone.",".$address.",".$web.",".$city.",".$description;
+	$change = "phone,address,website,city,description";
 
 	$v = explode(",", $val);
 	$c = explode(",", $change);

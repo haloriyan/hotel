@@ -75,7 +75,6 @@ $namaPertama = explode(" ", $name)[0];
 	<a href="./my"><div class="listWizard">My Listings</div></a>
     <a href="./refund"><div class="listWizard" aktif="ya">My Refunds</div></a>
 	<a href="./detail"><div class="listWizard">Detail Information</div></a>
-	<a href="./social"><div class="listWizard">Social Network</div></a>
 	<a href="./logout"><div class="listWizard">Logout</div></a>
 </div>
 
