@@ -188,7 +188,7 @@ $category = ["Food & Beverage","Room","Venue","Sports & Wellness","Shopping","Re
 		</div>
 		<br />
 		<div class="rata-tengah" style="margin-bottom: 15px;">
-			<a href="#popupRegist" id="linkLogin">Register</a> | <a href="./hotel/login">Marcom</a>
+			<a href="#popupRegist" id="linkLogin">Register</a> | <a href="./hotel/login">Hotel</a>
 		</div>
 	</form>
 </div>

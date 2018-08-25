@@ -14,20 +14,18 @@ class galeri extends resto {
 				  ->eksekusi();
 		return $q;
 	}
-	public function load($id, $tipe) {
-		$q = $this->tabel("galeri")
-				  ->pilih()
-				  ->dimana([
-				  	"idhotel" => $id,
-				  	"tipe" => $tipe
-				  ])->eksekusi();
+	public function load($id) {
+		$q = $this->query("SELECT * FROM galeri INNER JOIN album WHERE idalbums = '$id'");
 		if($this->hitung($q) == 0) {
 			return "null";
 		}else {
 			while($r = $this->ambil($q)) {
-				$hasil[] = $r;
+				// $hasil[] = $r;
+				echo "<div class='galeri'>".
+						"<img src='../aset/gbr/".$r['gambar']."'>".
+                     "</div>";
 			}
-			return $hasil;
+			// return $hasil;
 		}
 	}
 	public function delete($id) {
@@ -38,6 +36,56 @@ class galeri extends resto {
 		$q = $this->tabel("galeri")->pilih()->dimana(["idgambar" => $id])->eksekusi();
 		$r = $this->ambil($q);
 		return $r[$struktur];
+	}
+
+	// Urusan Album
+	public function infoAlbum($id, $kolom) {
+		$q = $this->tabel("album")
+				  ->pilih($kolom)
+				  ->dimana(["idalbum" => $id])
+				  ->eksekusi();
+		$r = $this->ambil($q);
+		return $r[$kolom];
+	}
+	public function create($idHotel, $idResto, $nama) {
+		$q = $this->tabel("album")
+				  ->tambah([
+					  "idalbum" => rand(1, 99999),
+					  "idhotel" => $idHotel,
+					  "id_resto" => $idResto,
+					  "nama" => $nama,
+					  "created" => time()
+				  ])->eksekusi();
+		return $q;
+	}
+	public function deleteAlbum($id) {
+		$q = $this->tabel("album")
+				  ->hapus()
+				  ->dimana(["idalbum" => $id])
+				  ->eksekusi();
+		$del = $this->tabel("galeri")
+					->hapus()
+					->dimana(["idalbum" => $id])
+					->eksekusi();
+	}
+	public function myAlbum($id, $tipe) {
+		if($tipe == "hotel") {
+			$where = ["idhotel" => $id];
+		}else {
+			$where = ["id_resto" => $id];
+		}
+		$q = $this->tabel("album")
+				  ->pilih()
+				  ->dimana($where)
+				  ->eksekusi();
+		if($this->hitung($q) == 0) {
+			echo "You dont have any album";
+		}else {
+			while($r = $this->ambil($q)) {
+				$hasil[] = $r;
+			}
+			return $hasil;
+		}
 	}
 }
 

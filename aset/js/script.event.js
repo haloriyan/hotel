@@ -66,6 +66,7 @@ klik("#tblMenu", function() {
 	}
 })
 tekan("Escape", function() {
+	hilang(".bg")
 	hilangContact()
 	hilangPopup("#popupBook")
 	hilangPopup("#suksesBook")
@@ -74,6 +75,14 @@ tekan("Escape", function() {
 
 klik("#xBook", function() {
 	hilangPopup("#popupBook")
+})
+klik("#xLog", () => {
+	hilang(".bg")
+	hilang("#formLogin")
+})
+klik("#xReg", () => {
+	hilang(".bg")
+	hilang("#popupRegist")
 })
 submit("#formSignIn", function() {
 	let email = pilih("#mailLog").value

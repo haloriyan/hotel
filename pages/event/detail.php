@@ -23,7 +23,10 @@ if($sesiHotel == "") {
 
 if(isset($_GET['id'])) {
     setcookie('idevent', $_GET['id'], time() + 3666, "/");
+}else {
+    setcookie('idevent', '', time() + 3666, "/");
 }
+
 ?>
 <!DOCTYPE html>
 <html>

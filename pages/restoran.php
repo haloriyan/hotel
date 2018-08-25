@@ -209,7 +209,7 @@ $totExplore = $ctrl->hitung($ctrl->tabel("event")->pilih()->dimana(["id_resto" =
 		</div>
 		<br />
 		<div class="rata-tengah" style="margin-bottom: 15px;">
-			<a href="#popupRegist" id="linkLogin">Register</a> | <a href="./hotel/login">Marcom</a>
+			<a href="#popupRegist" id="linkLogin">Register</a> | <a href="../hotel/login">Hotel</a>
 		</div>
 	</form>
 </div>
