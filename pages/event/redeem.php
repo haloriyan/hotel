@@ -22,19 +22,6 @@ if($sesiHotel == "") {
     $myEvent = $event->my($myId);
     $linkCta = "../hotel/add-listing";
 }
-function toIdr($angka) {
-	return 'Rp. '.strrev(implode('.', str_split(strrev(strval($angka)), 3)));
-}
-
-foreach($myEvent as $row) {
-    $laku = $row['quota'] - $row['availableseat'];
-    $saldo += $laku * $row['price'];
-}
-foreach($myRedeem as $red) {
-    $saldoRedeem += $red['saldo'];
-}
-
-$mySaldo = $saldo - $saldoRedeem;
 
 ?>
 <!DOCTYPE html>
@@ -77,6 +64,21 @@ $mySaldo = $saldo - $saldoRedeem;
         #abort {
             padding: 8px 30px 10px 30px;
         }
+        .myList {
+            width: 31.46%;
+            display: inline-block;
+            box-shadow: 1px 1px 5px 1px #ddd;
+            margin: 0px 10px;
+            margin-bottom: 25px;
+        }
+        .myList:nth-child(1),.myList:nth-child(3n + 1) { margin-left: 0px; }
+        .myList:nth-child(3n) { margin-right: 0px; }
+        .myList img {
+            width: 100%;
+            height: 180px;
+        }
+        .myList .wrap { margin: 6% 10% 8% 10%; }
+        .myList h3 { line-height: 35px; }
 	</style>
 </head>
 <body>
@@ -106,28 +108,14 @@ $mySaldo = $saldo - $saldoRedeem;
 <div class="container">
     <div>
         <div class="wrap">
-            <h4><div id="icon"><i class="fa fa-money"></i></div> Redeem Saldo
-                <div class='ke-kanan'>
-                    <h3>Available Saldo : <span id='mySaldo'><?php echo toIdr($mySaldo); ?></span></h3>
-                </div>
-            </h4>
+            <h4><div id="icon"><i class="fa fa-money"></i></div> Redeem</h4>
             <br />
             <div id="load">
                 <input type="hidden" id='mySaldoInput' value='<?php echo $mySaldo; ?>'>
-                <form id='formRedeem'>
-                    <input type="number" class='box' id='saldo' placeholder='Saldo (Rp)' style='width: 74%;'> &nbsp;
-                    <button class='tbl merah-2'>Redeem</button>
-                </form>
-                <h3>My Redeem
-                    <div class='ke-kanan'>
-                        <select class='box' id="statusRedeem" onchange='status(this.value)' style='height: 45px;'>
-                            <option value="0">Requested</option>
-                            <option value="1">Paid</option>
-                        </select>
-                    </div>
-                </h3>
-                <div id='myRedeem'></div>
+                <div id="loads"></div>
             </div>
+            <h3>My Request</h3>
+            <div id='myRedeem'></div>
         </div>
     </div>
 </div>
@@ -166,54 +154,20 @@ $mySaldo = $saldo - $saldoRedeem;
 <script src="../aset/js/embo.js"></script>
 <script>
     function load() {
+        ambil("../aksi/event/redeemable.php", (res) => {
+            tulis("#loads", res)
+        })
         ambil("../aksi/redeem/myRedeem.php", (res) => {
             tulis("#myRedeem", res)
         })
-        ambil("../aksi/redeem/mySaldo.php", (sal) => {
-            tulis("#mySaldo", sal)
-        })
     }
-    function abort(val) {
-        munculPopup("#abortRedeem", pengaya("#abortRedeem", "top: 190px"))
-        pilih("#idredeem").value = val
-    }
-    function status(val) {
-        let set = "namakuki=statusRedeem&value="+val+"&durasi=3666"
-        pos("../aksi/setCookie.php", set, () => {
+    function request(id) {
+        let param = "idevent="+id
+        pos("../aksi/redeem/request.php", param, () => {
             load()
         })
     }
 
-    submit("#formRedeem", () => {
-        let saldo = pilih("#saldo").value
-        let mySaldo = pilih("#mySaldoInput").value
-        let req = "saldo="+saldo
-        if(parseInt(saldo) >= parseInt(mySaldo)) {
-            munculPopup("#notif", pengaya("#notif", "top: 190px"))
-            tulis("#isiNotif", "Your saldo is not enough")
-            return false
-        }else if(saldo == 0 || saldo == "") {
-            return false
-        }
-        pos("../aksi/redeem/request.php", req, () => {
-            munculPopup("#notif", pengaya("#notif", "top: 190px"))
-            tulis("#isiNotif", "Success to ask for redeem")
-            pilih("#saldo").value = ""
-            load()
-        })
-        return false
-    })
-    submit("#formAbort", () => {
-        let idredeem = pilih("#idredeem").value
-        let cancel = "idredeem="+idredeem
-        pos("../aksi/redeem/cancel.php", cancel, () => {
-            hilangPopup("#abortRedeem")
-            munculPopup("#notif", pengaya("#notif", "top: 190px"))
-            tulis("#isiNotif", "Success canceling this redeem request")
-            load()
-        })
-        return false
-    })
     
     tekan("Escape", () => {
         hilangPopup("#notif")
@@ -221,9 +175,6 @@ $mySaldo = $saldo - $saldoRedeem;
     })
     klik("#xNotif", () => {
         hilangPopup("#notif")
-    })
-    klik("#xAbort", () => {
-        hilangPopup("#abortRedeem")
     })
 
     load()

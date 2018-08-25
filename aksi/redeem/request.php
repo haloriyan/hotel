@@ -1,6 +1,7 @@
 <?php
 include '../ctrl/redeem.php';
 
+$idevent = $_POST['idevent'];
 $idhotel = $hotel->get($hotel->sesi(), "idhotel");
 
 session_start();
@@ -16,6 +17,5 @@ if($sesiHotel == "") {
 	$idhotel = $hotel->get($sesiHotel, "idhotel");
     $myEvent = $event->my($myId);
 }
-$saldo = $_POST['saldo'];
 
-$redeem->request($idhotel, $idResto, $saldo);
+$redeem->request($idhotel, $idResto, $idevent);

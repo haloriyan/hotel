@@ -162,6 +162,30 @@ class booking extends event {
 		
 		return $q;
 	}
+
+	public function redeemable($id, $tipe) {
+		if($tipe == "resto") {
+			$tipes = "event.id_resto = '$id'";
+		}else {
+			$tipes = "event.idhotel = '$id'";
+		}
+		date_default_timezone_set('Asia/Jakarta');
+		$tglSkrg = date('Y-m-d');
+		$q = $this->query("SELECT * FROM event WHERE $tipes AND status != '9' AND tgl_akhir < '$tglSkrg'");
+		if($this->hitung($q) == 0) {
+			return "null";
+		}else {
+			while($r = $this->ambil($q)) {
+				$hasil[] = $r;
+			}
+			return $hasil;
+		}
+	}
+	public function countQty($id) {
+		$q = $this->query("SELECT SUM(qty) AS countQty FROM booking WHERE idevent = '$id' AND status = '1'");
+		$r = $this->ambil($q);
+		return $r['countQty'];
+	}
 }
 
 $booking = new booking();

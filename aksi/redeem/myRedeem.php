@@ -35,36 +35,28 @@ if($myRedeem == "null") {
     exit();
 }
 
-?>
-<table>
-    <thead>
-        <tr>
-            <th><i class='fa fa-calendar'></i></th>
-            <th><i class='fa fa-money'></i></th>
-            <th style='width: 20%;'>Status</th>
-            <th style='width: 10%;'></th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        foreach($myRedeem as $row) {
-            $echoCalendar = explode(" ", $row['tgl'])[0];
-            if($row['status'] == 0) {
-                $status = "Pending";
-                $btn = "<button class='tbl merah-2' id='abort' onclick='abort(this.value)' value='".$row['idredeem']."'><i class='fa fa-close'></i></button>";
-            }else if($row['status'] == 1) {
-                $status = "Paid";
-                $btn = "";
-            }
-            echo "<tr>".
-                    "<td>".$echoCalendar."</td>".
-                    "<td>".toIdr($row['saldo'])."</td>".
-                    "<td>".$status."</td>".
-                    "<td>".
-                        $btn.
-                    "</td>".
-                 "</tr>";
-        }
-        ?>
-    </tbody>
-</table>
+foreach($myRedeem as $row) {
+    $idevent = $row['idevents'];
+    $coverImage = $event->info($idevent, "covers");
+    $title = $event->info($idevent, "title");
+    $price = $event->info($idevent, "price");
+    $qty = $booking->countQty($idevent);
+    $fixedSaldo = $price * $qty;
+    $status = $row['status'];
+
+    if($status == 0) {
+        $statusMsg = "Pending";
+        $warna = "kuning";
+    }else if($status == 1) {
+        $statusMsg = "<i class='fa fa-check'></i> &nbsp; Confirmed";
+        $warna = "hijau";
+    }
+    echo "<div class='myList'>".
+            "<img src='../aset/gbr/".$coverImage."'>".
+            "<div class='wrap'>".
+                "<h3>".$title."</h3>".
+                "<p><i class='fa fa-money'></i> &nbsp; ".toIdr($fixedSaldo)."</p>".
+                "<button class='tbl $warna' style='cursor: default;'>".$statusMsg."</button>".
+            "</div>".
+         "</div>";
+}

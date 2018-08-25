@@ -18,24 +18,27 @@ $namaPertama = 'adm00n';
 			width: 50px;
 			height: 50px;
 		}
-		#myListing li {
-			display: inline-block;
-			color: #cb0023;
-			cursor: pointer;
-		}
-		td a { font-size: 15px; }
-		th {
-			text-align: left;
-			padding: 5px;
-			background-color: #fff;
-			border-bottom: 1px solid #ccc;
-		}
-		td {
-			padding: 10px;
-			border-bottom: 1px solid #ddd;
-			background-color: #fff;
-		}
-		td h4 { margin-top: 5px; }
+        .myList {
+            width: 31.46%;
+            display: inline-block;
+            box-shadow: 1px 1px 5px 1px #ddd;
+            margin: 0px 10px;
+            margin-bottom: 25px;
+        }
+        .myList:nth-child(1),.myList:nth-child(3n + 1) { margin-left: 0px; }
+        .myList:nth-child(3n) { margin-right: 0px; }
+        .myList img {
+            width: 100%;
+            height: 180px;
+        }
+        .myList .wrap { margin: 6% 10% 8% 10%; }
+        .myList h3 { line-height: 35px; }
+        .myList #icon {
+            width: 20px;
+            line-height: 30px;
+            background: none;
+            color: #444;
+        }
     </style>
 </head>
 <body>
@@ -56,7 +59,6 @@ $namaPertama = 'adm00n';
     <a href="./delete-events"><div class='listWizard'>Events</div></a>
     <a href="./payment"><div class='listWizard'>Payments</div></a>
     <a href="./redeem"><div class='listWizard' aktif='ya'>Redeem</div></a>
-    <a href="./refund"><div class='listWizard'>Refunds</div></a>
     <a href="../logout"><div class='listWizard'>Logout</div></a>
 </div>
 

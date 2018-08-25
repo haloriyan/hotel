@@ -92,7 +92,6 @@ $namaEvent = $event->info($idevent, "title");
 <div class="container">
 	<div class="wrap">
 		<h4><div id="icon"><i class="fa fa-home"></i></div> My Listing</h4>
-		<a href="/hotel/event/detail" target='_blank'><button id="list-event" class="tbl merah-2 ke-kanan">&nbsp;See details</button></a>
 		<p>
 			Your listing are shown in the table below
 		</p>

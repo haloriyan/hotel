@@ -117,7 +117,7 @@ class event extends resto {
 		return $this->hitung($q);
 	}
 	public function hint($idevent) {
-		$q = $this->query("upDaTE event sET hint = hint + 1 wHERe idevent = '$idevent'");
+		$q = $this->query("UPDATE event SET hint = hint + 1 WHERE idevent = '$idevent'");
 		return $q;
 	}
 }
