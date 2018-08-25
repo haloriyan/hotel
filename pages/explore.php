@@ -29,7 +29,7 @@ setcookie('tglMulai', '', time() + 1, "/");
 setcookie('tglAkhir', '', time() + 1, "/");
 
 // Category
-$category = ["Food & Beverage","Room","Venue","Sports & Wellness","Shopping","Recreation","Parties"];
+$category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping","Recreation","Parties","Others"];
 ?>
 <!DOCTYPE html>
 <html>

@@ -139,6 +139,7 @@ $namaPertama = explode(" ", $name)[0];
 				<option>Shopping</option>
 				<option>Recreation</option>
 				<option>Parties</option>
+				<option>Others</option>
 			</select>
 			<div class="isi">Quota :</div>
 			<input type="text" class="box" placeholder="Quota Seat..." id="seat">

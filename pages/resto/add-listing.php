@@ -156,6 +156,7 @@ $address = $resto->info($sesi, "address");
 				<option>Shopping</option>
 				<option>Recreation</option>
 				<option>Parties</option>
+				<option>Others</option>
 			</select>
 			<div class="isi">Available Seat</div>
 			<input type="text" class="box" placeholder="Available Seat..." id="seat">
