@@ -144,7 +144,7 @@ $namaPertama = explode(" ", $name)[0];
 		pos("../aksi/resto/add.php", add, function() {
 			pilih("#nameAdd").value = ""
 			hilangPopup("#popupNew")
-			munculPopup("#suksesAdd", pengaya("#suksesAdd", "top: 190px"))
+			mengarahkan("../resto/dashboard"+name)
 			loadResto()
 		})
 		return false

@@ -60,8 +60,13 @@ class resto extends hotel {
 	*/
 	public function login($id) {
 		session_start();
-		$_SESSION['uresto']=$id;
-		unset($_SESSION['uhotel']);
+		$cek = $this->query("SELECT * FROM restoran WHERE idresto = '$id' OR nama = '$id'");
+		if($cek != 0) {
+			$_SESSION['uresto']=$id;
+			unset($_SESSION['uhotel']);
+		}else {
+			die("error 403");
+		}
 	}
 	public function sesi() {
 		session_start();

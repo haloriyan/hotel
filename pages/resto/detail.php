@@ -4,6 +4,8 @@ include 'aksi/ctrl/resto.php';
 // login to resto account
 if($_GET['id'] !== null) {
 	$resto->login($_GET['id']);
+}else if($_GET['namaResto'] != null) {
+	$resto->login($_GET['namaResto']);
 }
 
 $sesi 	= $resto->sesi();
