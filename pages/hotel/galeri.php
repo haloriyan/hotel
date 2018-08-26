@@ -195,6 +195,10 @@ $namaPertama = explode(" ", $name)[0];
 				tulis("#hotelGallery", res)
 			})
 		})
+		let setPublic = "namakuki=public&value=0&durasi=1"
+		pos("../aksi/setCookie.php", setPublic, () => {
+			console.log("hello")
+		})
 	}
 	function loadHotel() {
 		ambil("../aksi/galeri/loadHotel.php", function(res) {
@@ -268,7 +272,6 @@ $namaPertama = explode(" ", $name)[0];
 		hilangPopup("#hapusImg")
 		hilangPopup("#addNewAlbum")
 		hilangPopup("#delAlbum")
-		loadHotel()
 	})
 	klik("#xUploadHotel", function() {
 		hilangPopup("#addPhoto")
@@ -325,6 +328,9 @@ $namaPertama = explode(" ", $name)[0];
 		})
 		return false
 	})
+	function seeImage() {
+		console.log("none")
+	}
 </script>
 
 </body>

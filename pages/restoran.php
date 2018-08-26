@@ -2,6 +2,7 @@
 include 'aksi/ctrl/social.php';
 
 setcookie('idresto', $idresto, time() + 3900, "/");
+setcookie('idhotel', '', time() + 1, "/");
 
 $idhotel = $resto->info($idresto, "idhotel");
 $namaResto = $resto->info($idresto, "nama");
@@ -103,7 +104,7 @@ $totExplore = $ctrl->hitung($ctrl->tabel("event")->pilih()->dimana(["id_resto" =
 			<div class="hiddenBawah" id="galeries">
 				<div class="wrap">
 					<h2>
-						Gallery
+						Album photos
 						<div id="xGaleri" class="ke-kanan"><i class="fa fa-close"></i></div>
 					</h2>
 					<div id="loadGaleri"></div>
@@ -153,12 +154,12 @@ $totExplore = $ctrl->hitung($ctrl->tabel("event")->pilih()->dimana(["id_resto" =
 			<div class="ke-kanan" id="bawahKanan">
 				<div class="bagian galeriBag">
 					<div class="wrap">
-						<h3><i class="fa fa-image"></i> &nbsp; Galeri
+						<h3><i class="fa fa-image"></i> &nbsp; Gallery
 							<a id="allGallery" class="ke-kanan" style="font-family: OLight;cursor: pointer;">see more images</a>
 						</h3>
 						<div class="imgCollection">
 							<?php
-							$image = $ctrl->tabel("galeri")->pilih()->dimana(["idhotel" => $idresto, "tipe" => "resto"])->batas(0, 3)->eksekusi();
+							$image = $ctrl->tabel("galeri")->pilih()->dimana(["idhotel" => $idresto])->batas(0, 3)->eksekusi();
 							while($r = $ctrl->ambil($image)) {
 								echo "<img src='../aset/gbr/".$r['gambar']."'>";
 							}

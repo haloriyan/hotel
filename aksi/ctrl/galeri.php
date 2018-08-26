@@ -80,7 +80,7 @@ class galeri extends resto {
 	}
 	public function myAlbum($id, $tipe) {
 		if($tipe == "hotel") {
-			$where = ["idhotel" => $id];
+			$where = ["idhotel" => $id,"id_resto" => 0];
 		}else {
 			$where = ["id_resto" => $id];
 		}

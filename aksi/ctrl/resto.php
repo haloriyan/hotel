@@ -62,7 +62,16 @@ class resto extends hotel {
 		session_start();
 		$cek = $this->query("SELECT * FROM restoran WHERE idresto = '$id' OR nama = '$id'");
 		if($cek != 0) {
-			$_SESSION['uresto']=$id;
+			if(!is_numeric($id)) {
+				$sesiHotel = $_SESSION['uhotel'];
+				$idhotel = $this->get($sesiHotel, "idhotel");
+				$getId = $this->query("SELECT idresto FROM restoran WHERE nama = '$id' AND idhotel = '$idhotel'");
+				$r = $this->ambil($getId);
+				$idresto = $r['idresto'];
+				$_SESSION['uresto']=$idresto;
+			}else {
+				$_SESSION['uresto']=$id;
+			}
 			unset($_SESSION['uhotel']);
 		}else {
 			die("error 403");

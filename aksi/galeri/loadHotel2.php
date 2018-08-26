@@ -1,24 +1,46 @@
 <?php
+error_reporting(0);
 include '../ctrl/galeri.php';
 
-$idhotel = $_COOKIE['idhotel'];
-if ($_COOKIE['idresto'] !== null) {
-	$idhotel = $_COOKIE['idresto'];
-	$tipe = "resto";
+session_start();
+$sesiHotel = $_COOKIE['idhotel'];
+$sesiResto = $_COOKIE['idresto'];
+
+if($sesiResto == "") {
+    // nggawe hotel
+    $tipe = "hotel";
+    $id = $sesiHotel;
 }else {
-	$tipe = "hotel";
+    // nggawe resto
+    $tipe = "resto";
+    $id = $sesiResto;
 }
 
-$load = $galeri->load($idhotel, $tipe);
+$myAlbum = $galeri->myAlbum($id, $tipe);
+$totMyAlbum = count($myAlbum);
 
-if($load == "null") {
-	die("<h3>No any image available</h3>");
+function loadImage($my) {
+    foreach($my as $row) {
+        $gambar = $row['gambar'];
+        if($gambar == "") {
+            return "No any image on this album";
+        }else {
+            return "<img src='../aset/gbr/".$gambar."'>";
+        }
+    }
 }
 
-foreach ($load as $row) {
-	?>
-	<li class="galeri" onclick="seeImage(this.getAttribute('isi'))" isi="<?php echo $row['gambar']; ?>">
-		<img src="../aset/gbr/<?php echo $row['gambar']; ?>">
-	</li>
-	<?php
+foreach($myAlbum as $row) {
+    $myImage = $galeri->load($row['idalbum']);
+    echo "<div class='listAlbum galeri'>".
+            "<div class='wrap'>".
+                "<h3>".$row['nama']."</h3>".
+                loadImage($myImage);
+                ?>
+                <br /><br />
+                <button class='tbl merah-2' onclick='loadAlbum(this.value)' value='<?php echo $row['idalbum']; ?>'> See all images</button>
+                <?php
+                echo
+            "</div>".
+         "</div>";
 }

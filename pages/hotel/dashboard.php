@@ -70,13 +70,13 @@ $myEvent = $event->totMyEvent($idhotel);
 				From your account dashboard you can view your recent orders, manage your shipping and billing addresses and edit your password and account details.
 			</p>
 			<p>
-				<div class="card merah-2">
+				<div class="card merah-2" id='events'>
 					<div class="wrap">
 						<h2><?php echo $myEvent; ?></h2>
 						<p>Listings</p>
 					</div>
 				</div>
-				<div class="card merah-2">
+				<div class="card merah-2" id='resto'>
 					<div class="wrap">
 						<h2><?php echo $myResto; ?></h2>
 						<p>Restaurant</p>
@@ -91,6 +91,12 @@ $myEvent = $event->totMyEvent($idhotel);
 <script>
 	klik("#cta", function() {
 		mengarahkan("./add-listing")
+	})
+	klik("#events", () => {
+		mengarahkan("./listing")
+	})
+	klik("#resto", () => {
+		mengarahkan("./restaurant")
 	})
 </script>
 

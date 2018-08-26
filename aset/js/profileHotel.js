@@ -3,6 +3,18 @@ function loadGaleri() {
 		tulis("#loadGaleri", res)
 	})
 }
+function loadAlbum(val) {
+	let set = "namakuki=idalbum&value="+val+"&durasi=3666"
+	pos("../aksi/setCookie.php", set, () => {
+		ambil("../aksi/galeri/loadAlbum.php", (res) => {
+			tulis("#loadGaleri", res)
+		})
+	})
+	let setPublic = "namakuki=public&value=1&durasi=3666"
+	pos("../aksi/setCookie.php", setPublic, () => {
+		console.log("hello")
+	})
+}
 function loadExplore() {
 	ambil("../aksi/hotel/ourEvent.php", function(res) {
 		tulis("#loadExplore", res)

@@ -2,6 +2,7 @@
 include '../ctrl/galeri.php';
 
 $idalbum = $_COOKIE['idalbum'];
+$public = $_COOKIE['public'];
 $nama = $galeri->infoAlbum($idalbum, "nama");
 
 
@@ -9,21 +10,40 @@ $load = $galeri->loadFromAlbum($idalbum);
 echo "<div class='listAlbum'>".
         "<div class='wrap'>".
             "<input type='hidden' id='idalbums' value='".$idalbum."'>".
-            "<h3>".$nama."
+            "<h3>".$nama;
+                if($public == 0 or $public == "") {
+                    echo "
                 <div class='ke-kanan'>
                     <button id='tblDel' onclick='delAlbum(this.value)' value='".$idalbum."'>delete</button> | <span id='tblDel' onclick='loadHotel()'>close</span>
-                </div>
+                </div>";
+                }else if($public == 1) {
+                    echo "";
+                }
+                echo "
             </h3>";
 foreach($load as $row) {
-    echo "<div class='galeri' style='display: inline-block;float: none;'>".
-            "<img src='../aset/gbr/".$row['gambar']."'>".
-            "<li onclick='hapus(this.value)' value='".$row['idgambar']."'><i class='fa fa-trash'></i></li>".
+    ?>
+    <div class='galeri' style='display: inline-block;float: none;' onclick='seeImage(this.getAttribute("isi"))' isi='<?php echo $row['gambar']; ?>'>
+    <?php
+    echo "<img src='../aset/gbr/".$row['gambar']."'>";
+            if($public != 1) {
+            ?>
+            <li onclick='hapus(this.value, "<?php echo $idalbum; ?>")' value='<?php echo $row['idgambar']; ?>'><i class='fa fa-trash'></i></li>
+            <?php
+            }else {
+                echo "";
+            }
+            echo
          "</div>";
 }
 echo "<div class='bag-tombol'>";
+                if($public != 1) {
                 ?>
                 <button class='merah-2' onclick='addPhoto(this.value, "<?php echo $nama; ?>")' value='<?php echo $idalbum; ?>'>Add Photo</button>
             <?php
+                }else {
+                    echo "<button class='merah-2' onclick='loadGaleri()'>See other album</button>";
+                }
             echo
         "</div>".
     "</div>".

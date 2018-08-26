@@ -16,7 +16,9 @@ foreach($all as $row) {
     $title = $event->info($idevent, "title");
     $price = $event->info($idevent, "price");
     $qty = $booking->countQty($idevent);
-    $fixedPrice = $price * $qty;
+    $saldo = $price * $qty;
+    $potongan = 5 / 100 * $saldo;
+    $fixedSaldo = $saldo - $potongan;
     if($row['id_resto'] == 0) {
         // pakai hotel
         $idhotel = $row['idhotel'];
@@ -32,7 +34,7 @@ foreach($all as $row) {
             "<div class='wrap'>".
                 "<h3>".$title."</h3>".
                 "<p>".
-                    "<div id='icon'><i class='fa fa-money'></i></div> ".toIdr($fixedPrice).
+                    "<div id='icon'><i class='fa fa-money'></i></div> ".toIdr($fixedSaldo).
                 "</p>".
                 "<p>".
                     "<div id='icon'><i class='fa fa-user'></i></div> ".$name." - 115601021344500 (BRI)".
@@ -41,35 +43,3 @@ foreach($all as $row) {
             "</div>".
          "</div>";
 }
-
-/*
-<table id='myListing'>
-    <thead>
-        <tr>
-            <th><i class='fa fa-user'></i></th>
-            <th><i class='fa fa-money'></i></th>
-            <th><i class='fa fa-calendar'></i></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        foreach($all as $row) {
-            $idevent = $row['idevents'];
-            $namaHotel = $hotel->get($row['idhotel'], "nama");
-            $price = $event->info($idevent, "price");
-            $qty = $booking->countQty($idevent);
-            $fixedPrice = $price * $qty;
-            echo "<tr>".
-                    "<td>".$namaHotel."</td>".
-                    "<td>".toIdr($fixedPrice)."</td>".
-                    "<td>".explode(" ", $row['tgl'])[0]."</td>".
-                    "<td>".
-                        "<button class='tbl hijau' onclick='cawang(this.value)' value='".$row['idredeem']."'><i class='fa fa-check'></i></button>".
-                    "</td>".
-                 "</tr>";
-        }
-        ?>
-    </tbody>
-</table>
-*/

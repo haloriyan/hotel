@@ -27,12 +27,14 @@ if($load == "null") {
         $idevent = $row['idevent'];
         $qty = $booking->countQty($idevent);
         $price = $row['price'];
-        $fixedPrice = $qty * $price;
+        $saldo = $qty * $price;
+        $potongan = 5 / 100 * $saldo;
+        $fixedSaldo = $saldo - $potongan;
         echo "<div class='myList'>".
                 "<img src='../aset/gbr/".$row['covers']."'>".
                 "<div class='wrap'>".
                     "<h3>".$row['title']."</h3>".
-                    "<p><i class='fa fa-money'></i> &nbsp; ".toIdr($fixedPrice)."</p>".
+                    "<p><i class='fa fa-money'></i> &nbsp; ".toIdr($fixedSaldo)."</p>".
                     "<button class='tbl merah-2' onclick='request(this.value)' value='".$row['idevent']."'>Redeem</button>".
                 "</div>".
              "</div>";

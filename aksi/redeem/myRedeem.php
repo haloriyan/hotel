@@ -41,7 +41,9 @@ foreach($myRedeem as $row) {
     $title = $event->info($idevent, "title");
     $price = $event->info($idevent, "price");
     $qty = $booking->countQty($idevent);
-    $fixedSaldo = $price * $qty;
+    $saldo = $price * $qty;
+    $potongan = 5 / 100 * $saldo;
+    $fixedSaldo = $saldo - $potongan;
     $status = $row['status'];
 
     if($status == 0) {
