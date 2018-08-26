@@ -2,10 +2,11 @@
 include 'resto.php';
 
 class galeri extends resto {
-	public function add($a, $b, $c ,$d) {
+	public function add($a, $idAlbum, $b, $c ,$d) {
 		$q = $this->tabel("galeri")
 				  ->tambah([
-				  	"idgambar" => $a,
+					"idgambar" => $a,
+					"idalbums" => $idAlbum,
 				  	"idhotel" => $b,
 				  	"tipe" => $c,
 				  	"gambar" => $d,
@@ -20,12 +21,20 @@ class galeri extends resto {
 			return "null";
 		}else {
 			while($r = $this->ambil($q)) {
-				// $hasil[] = $r;
-				echo "<div class='galeri'>".
-						"<img src='../aset/gbr/".$r['gambar']."'>".
-                     "</div>";
+				$hasil[] = $r;
 			}
-			// return $hasil;
+			return $hasil;
+		}
+	}
+	public function loadFromAlbum($id) {
+		$q = $this->tabel("galeri")->pilih()->dimana(["idalbums" => $id])->eksekusi();
+		if($this->hitung($q) == 0) {
+			return "null";
+		}else {
+			while($r = $this->ambil($q)) {
+				$hasil[] = $r;
+			}
+			return $hasil;
 		}
 	}
 	public function delete($id) {
@@ -65,8 +74,9 @@ class galeri extends resto {
 				  ->eksekusi();
 		$del = $this->tabel("galeri")
 					->hapus()
-					->dimana(["idalbum" => $id])
+					->dimana(["idalbums" => $id])
 					->eksekusi();
+		return $q;
 	}
 	public function myAlbum($id, $tipe) {
 		if($tipe == "hotel") {

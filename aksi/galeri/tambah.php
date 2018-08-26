@@ -16,7 +16,8 @@ if($sesiHotel == "") {
 }
 
 $id = rand(1, 999999);
+$idalbum = $_POST['idalbum'];
 $tipe = $_POST['tipe'];
 $gambar = $_POST['gambar'];
 
-$galeri->add($id, $idhotel, $tipe, $gambar);
+$galeri->add($id, $idalbum, $idhotel, $tipe, $gambar);

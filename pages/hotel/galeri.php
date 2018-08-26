@@ -21,7 +21,7 @@ $namaPertama = explode(" ", $name)[0];
 		.galeri {
 			width: 31.25%;
 			text-align: center;
-			display: inline-block;
+			float: left;
 			margin: 10px 10px;
 		}
 		.galeri img {
@@ -57,11 +57,13 @@ $namaPertama = explode(" ", $name)[0];
 			margin-bottom: 30px;
 		}
 		.listAlbum #tblDel {
+			background: none;
+			border: none;
 			list-style: none;
 			font-size: 16px;
 			cursor: pointer;
 			color: #cb0023;
-			font-family: OLight;
+			font-family: OSans;
 		}
 	</style>
 </head>
@@ -113,16 +115,19 @@ $namaPertama = explode(" ", $name)[0];
 </div>
 
 <div class="bg"></div>
-<div class="popupWrapper" id="addHotelImage">
+<div id="addPhoto" class='popupWrapper'>
 	<div class="popup">
 		<div class="wrap">
-			<h3>Upload New Image for Hotel
+			<h3>Upload Photo for <span id='namaAlbum'></span>
 				<div class="ke-kanan" id="xUploadHotel"><i class="fa fa-close"></i></div>
 			</h3>
-			<input type="file" class="box" style="font-size: 16px;" id="hotelImg">
-			<input type="hidden" id="hotelImgs">
-			<div id="uploading"><i class="fa fa-spinner"></i> &nbsp; Uploading...</div>
-			<div id="notice"><i class="fa fa-check"></i> &nbsp; Uploaded</div>
+			<form id='uploadPhoto'>
+				<input type="hidden" id='idalbum'>
+				<input type="hidden" id="hotelImgs">
+				<input type="file" class='box' style='font-size: 16px' id='hotelImg'>
+				<div id="uploading"><i class="fa fa-spinner"></i> &nbsp; Uploading...</div>
+				<div id="notice"><i class="fa fa-check"></i> &nbsp; Uploaded</div>
+			</form>
 		</div>
 	</div>
 </div>
@@ -183,6 +188,14 @@ $namaPertama = explode(" ", $name)[0];
 <script src="../aset/js/jquery-3.1.1.js"></script>
 <script src="../aset/js/insert.js"></script>
 <script>
+	function loadAlbum(val) {
+		let set = "namakuki=idalbum&value="+val+"&durasi=3666"
+		pos("../aksi/setCookie.php", set, () => {
+			ambil("../aksi/galeri/loadAlbum.php", (res) => {
+				tulis("#hotelGallery", res)
+			})
+		})
+	}
 	function loadHotel() {
 		ambil("../aksi/galeri/loadHotel.php", function(res) {
 			tulis("#hotelGallery", res)
@@ -193,6 +206,11 @@ $namaPertama = explode(" ", $name)[0];
 		pos("../aksi/setCookie.php", set, () => {
 			munculPopup("#delAlbum", pengaya("#delAlbum", "top: 190px"))
 		})
+	}
+	function addPhoto(idAlbum, namaAlbum) {
+		munculPopup("#addPhoto", pengaya("#addPhoto", "top: 220px"))
+		pilih("#idalbum").value = idAlbum
+		tulis("#namaAlbum", namaAlbum)
 	}
 
 	loadHotel()
@@ -231,8 +249,9 @@ $namaPertama = explode(" ", $name)[0];
 	})
 
 	function sukses() {
+		let idalbum = pilih("#idalbum").value
 		let gambar = pilih("#hotelImgs").value
-		let change = "tipe=hotel&gambar="+gambar
+		let change = "tipe=hotel&gambar="+gambar+"&idalbum="+idalbum
 		pos("../aksi/galeri/tambah.php", change, function() {
 			hilang("#uploading")
 			muncul("#notice")
@@ -240,18 +259,19 @@ $namaPertama = explode(" ", $name)[0];
 				hilang("#notice")
 			}, 1800)
 			$("#hotelImg").val("")
-			loadHotel()
+			loadAlbum(idalbum)
 		})
 	}
 
 	tekan("Escape", function() {
-		hilangPopup("#addHotelImage")
+		hilangPopup("#addPhoto")
 		hilangPopup("#hapusImg")
 		hilangPopup("#addNewAlbum")
 		hilangPopup("#delAlbum")
+		loadHotel()
 	})
 	klik("#xUploadHotel", function() {
-		hilangPopup("#addHotelImage")
+		hilangPopup("#addPhoto")
 	})
 	klik("#xDel", function() {
 		hilangPopup("#hapusImg")
@@ -279,11 +299,12 @@ $namaPertama = explode(" ", $name)[0];
 	})
 
 	submit("#formHapus", function() {
+		let idalbum = pilih("#idalbums").value
 		let id = pilih("#idgambar").value
 		let del = "idgambar="+id
 		pos("../aksi/galeri/delete.php", del, function() {
 			hilangPopup("#hapusImg")
-			loadHotel()
+			loadAlbum(idalbum)
 		})
 		return false
 	})
