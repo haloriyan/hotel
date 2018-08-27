@@ -5,6 +5,14 @@ session_start();
 $sesiHotel = $_SESSION['uhotel'];
 $sesiResto = $_SESSION['uresto'];
 
+$idevent = $_GET['idevent'];
+if($idevent == null) {
+	header("location: ./dashboard&from=guest-list");
+}
+setcookie('idevent', $_GET['idevent'], time() + 3666, "/");
+
+$namaEvent = $event->info($idevent, "title");
+
 if($sesiHotel == "" && $sesiResto == "") {
     header("location: ../hotel/login");
 }
@@ -22,7 +30,6 @@ if($sesiHotel == "") {
 }
 
 // Set Cookie jadi kosong
-setcookie('idevent', 'null', time() + 1, "/");
 setcookie('hadir', '0', time() + 1, "/");
 ?>
 <!DOCTYPE html>
@@ -90,15 +97,15 @@ setcookie('hadir', '0', time() + 1, "/");
 
 <div class="kiri">
     <a href="./dashboard"><div class="listWizard">Dashboard</div></a>
-    <a href="./detail"><div class="listWizard">Detail Event</div></a>
-    <a href="./guest-list"><div class="listWizard" aktif="ya">Guest List</div></a>
+    <a href="./detail&idevent=<?php echo $idevent; ?>"><div class="listWizard">Detail Event</div></a>
+    <a href="#"><div class="listWizard" aktif="ya">Guest List</div></a>
 	<a href="./redeem"><div class="listWizard">Redeem</div></a>
 	<a href="../hotel/logout"><div class="listWizard">Logout</div></a>
 </div>
 
 <div class='container'>
 	<div class='wrap'>
-		<h4><div id="icon"><i class="fa fa-list"></i></div> Guest Lists</h4>
+		<h4><div id="icon"><i class="fa fa-list"></i></div> Guest Lists for <?php echo $namaEvent; ?></h4>
 		<div>
 			<div class='bag bag-4'>
 				<input type="text" class='box' id='name' oninput='cari(this.value)' placeholder='Search by name'>
@@ -109,16 +116,20 @@ setcookie('hadir', '0', time() + 1, "/");
 					<option value="1">Attended</option>
 				</select>
 			</div>
+			<!--
 			<div class='bag bag-3'>
 				<select id="event" onchange="selectEvt(this.value)" class="box">
 					<option value="">Select event...</option>
 					<?php
+					/*
 					foreach ($myEvent as $row) {
 						echo "<option value='".$row['idevent']."'>".$row['title']."</option>";
 					}
+					*/
 					?>
 				</select>
 			</div>
+			-->
 		</div>
 		<br /><br /><br /><br /><br />
 		<div id='load'></div>

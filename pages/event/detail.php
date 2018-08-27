@@ -21,10 +21,10 @@ if($sesiHotel == "") {
     $linkCta = "../hotel/add-listing";
 }
 
-if(isset($_GET['id'])) {
-    setcookie('idevent', $_GET['id'], time() + 3666, "/");
+if(isset($_GET['idevent'])) {
+    setcookie('idevent', $_GET['idevent'], time() + 3666, "/");
 }else {
-    setcookie('idevent', '', time() + 3666, "/");
+    header("location: ./dashboard&from=detail");
 }
 
 ?>
@@ -72,8 +72,8 @@ if(isset($_GET['id'])) {
 
 <div class="kiri">
     <a href="./dashboard"><div class="listWizard">Dashboard</div></a>
-    <a href="./detail"><div class="listWizard" aktif="ya">Detail Event</div></a>
-    <a href="./guest-list"><div class="listWizard">Guest List</div></a>
+    <a href="#"><div class="listWizard" aktif="ya">Detail Event</div></a>
+    <a href="./guest-list&idevent=<?php echo $_GET['idevent']; ?>"><div class="listWizard">Guest List</div></a>
     <a href="./redeem"><div class="listWizard">Redeem</div></a>
 	<a href="../hotel/logout"><div class="listWizard">Logout</div></a>
 </div>

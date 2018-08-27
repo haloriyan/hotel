@@ -9,6 +9,13 @@ if($sesiHotel == "" && $sesiResto == "") {
     header("location: ../hotel/login");
 }
 
+$from = $_GET['from'];
+if($from == "guest-list") {
+    $msgFrom = "Select event first before see guest list";
+}else if($from == "detail") {
+    $msgFrom = "Select event first before see detail";
+}
+
 if($sesiHotel == "") {
 	// nggawe resto
 	$myId = $resto->info($sesiResto, "idresto");
@@ -54,6 +61,14 @@ $namaPertama = explode(" ", $nama)[0];
         .myList .wrap { margin: 6% 10% 8% 10%; }
         .myList h3 { line-height: 35px; }
         #load { margin-top: 45px; }
+        #ctaDashboard {
+            font-size: 17px;
+            padding: 10px 17px 12px 17px;
+            margin-right: 10px;
+        }
+        #ctaDashboard:nth-child(3) {
+            margin-right: 0px;
+        }
 	</style>
 </head>
 <body>
@@ -88,6 +103,12 @@ $namaPertama = explode(" ", $nama)[0];
                     <input type="text" class='box' placeholder='Search event...' oninput='cari(this.value)'>
                 </div>
             </h4>
+            <div class="merah-2" style='margin-top: 30px;padding: 1px;display: none;' id='alert'>
+                <div class="wrap">
+                    <?php echo $msgFrom; ?>
+                    <div class='ke-kanan' id='xAlert'><i class='fa fa-close'></i></div>
+                </div>
+            </div>
             <div id='load'></div>
         </div>
     </div>
@@ -109,11 +130,29 @@ $namaPertama = explode(" ", $nama)[0];
     }
 
     function see(val) {
-        mengarahkan("./detail&id="+val)
+        mengarahkan("./detail&idevent="+val)
     }
+    function guest(val) {
+        mengarahkan("./guest-list&idevent="+val)
+    }
+    klik("#xAlert", () => {
+        hilang("#alert")
+    })
 
     load()
 </script>
+
+<?php
+
+if($from != null) {
+    echo '<script>
+setTimeout(function() {
+muncul("#alert")
+}, 500)
+</script>';
+}
+
+?>
 
 </body>
 </html>

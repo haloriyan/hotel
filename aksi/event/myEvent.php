@@ -26,7 +26,8 @@ if($myEvent == "null") {
                 "<img src='../aset/gbr/".$row['covers']."'>".
                 "<div class='wrap'>".
                     "<h3>".$row['title']."</h3>".
-                    "<button class='tbl merah-2' onclick='see(this.value)' value='".$row['idevent']."'>Detail</button>".
+                    "<button id='ctaDashboard' class='tbl merah-2' onclick='see(this.value)' value='".$row['idevent']."'>Detail</button>".
+                    "<button id='ctaDashboard' class='tbl merah-2' onclick='guest(this.value)' value='".$row['idevent']."'>Guest List</button>".
                 "</div>".
              "</div>";
     }
