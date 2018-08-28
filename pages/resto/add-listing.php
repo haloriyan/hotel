@@ -143,6 +143,7 @@ $address = $resto->info($sesi, "address");
 	<form id="detail">
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-map-marker"></i></div> Event Details</h4>
+			<input type="hidden" id='tglSkrg' value='<?php echo date('Y-m-d'); ?>'>
 			<div class="isi">Date Start</div>
 			<input type="text" class="box" placeholder="yyyy-mm-dd" onchange="dateStart(this.value)" id="date" data-date-format="YYYY MM DD">
 			<div class="isi">Date End</div>
@@ -363,6 +364,7 @@ $address = $resto->info($sesi, "address");
 		let ext = re.exec(val)[1]
 		return ext
 	}
+	/* datepicker lama
 	$(function() {
 		$("#date").datepicker({
 			dateFormat: "yy-mm-dd",
@@ -370,17 +372,19 @@ $address = $resto->info($sesi, "address");
 			showClose: true
 		})
 	})
+	*/
+	flatpickr("#date", {
+		minDate: pilih("#tglSkrg").value,
+		maxDate: '2025-12-31',
+		dateFormat: "Y-m-d"
+	}
 
 	function dateStart(val) {
-		$(function() {
-			$("#dateEnd").removeAttr('readonly')
-			$("#dateEnd").datepicker({
-				minDate: val,
-				maxDate: "2025-12-31",
-				dateFormat: 'yy-mm-dd',
-				useCurrent: false,
-				showClose: true
-			})
+		pilih("#dateEnd").removeAttribute("readonly")
+		flatpickr("#dateEnd", {
+			minDate: val,
+			maxDate: "2025-12-31",
+			dateFormat: "Y-m-d"
 		})
 	}
 </script>

@@ -14,9 +14,10 @@ $namaPertama = explode(" ", $name)[0];
 	<title>Add Listing</title>
 	<link href='../aset/fw/build/fw.css' rel='stylesheet'>
 	<link href='../aset/fw/build/font-awesome.min.css' rel='stylesheet'>
-	<link href='../aset/css/jquery-ui.min.css' rel='stylesheet'>
 	<link href='../aset/css/style.index.css' rel='stylesheet'>
 	<link href="../aset/css/style.explore-admin.css" rel="stylesheet">
+	<link rel="stylesheet" href="../aset/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="../aset/flatpickr/dist/themes/material_red.css">
 	<style>
 		.box,textarea.box {
 			border-radius: 0px;
@@ -127,9 +128,9 @@ $namaPertama = explode(" ", $name)[0];
 			<h4><div id="icon"><i class="fa fa-map-marker"></i></div> Event Details</h4>
 			<input type="hidden" id='tglSkrg' value='<?php echo date('Y-m-d'); ?>'>
 			<div class="isi">Date Start</div>
-			<input type="text" class="box" placeholder="yyyy-mm-dd" id="date" onchange="dateStart(this.value)" data-date-format="YYYY MM DD">
+			<input type="text" class="box" placeholder="yyyy-mm-dd" id="date" onchange="dateStart(this.value)">
 			<div class="isi">Date End</div>
-			<input type="text" class="box" placeholder="yyyy-mm-dd" id="dateEnd" data-date-format="YYYY MM DD" readonly>
+			<input type="text" class="box" placeholder="yyyy-mm-dd" id="dateEnd" readonly>
 			<div class="isi">Category</div>
 			<select class="box" id="category">
 				<option>Food and Beverage</option>
@@ -171,7 +172,7 @@ $namaPertama = explode(" ", $name)[0];
 
 <script src="../aset/js/embo.js"></script>
 <script src="../aset/js/jquery-3.1.1.js"></script>
-<script src='../aset/js/jquery-ui.min.js'></script>
+<script src="../aset/flatpickr/dist/flatpickr.js"></script>
 <script src="../aset/js/insert.js"></script>
 <script>
 	function hilangKecuali(y) {
@@ -345,6 +346,7 @@ $namaPertama = explode(" ", $name)[0];
 		return ext
 	}
 
+	/* datepicker lama
 	$(function() {
 		$("#date").datepicker({
 			minDate: $("#tglSkrg").val(),
@@ -354,16 +356,20 @@ $namaPertama = explode(" ", $name)[0];
 			showClose: true
 		})
 	})
+	*/
+
+	flatpickr("#date", {
+		minDate: pilih("#tglSkrg").value,
+		maxDate: '2025-12-31',
+		dateFormat: "Y-m-d"
+	})
 
 	function dateStart(val) {
-		$(function() {
-			$("#dateEnd").datepicker({
-				minDate: val,
-				maxDate: "2025-12-31",
-				dateFormat: 'yy-mm-dd',
-				useCurrent: false,
-				showClose: true
-			})
+		pilih("#dateEnd").removeAttribute("readonly")
+		flatpickr("#dateEnd", {
+			minDate: val,
+			maxDate: "2025-12-31",
+			dateFormat: "Y-m-d"
 		})
 	}
 </script>

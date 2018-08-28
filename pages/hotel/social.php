@@ -85,6 +85,11 @@ $namaPertama = explode(" ", $name)[0];
 					<option>Facebook</option>
 					<option>Instagram</option>
 					<option>Twitter</option>
+					<option>LinkedIn</option>
+					<option>Youtube</option>
+					<option>Google+</option>
+					<option>Snapchat</option>
+					<option>Pinterest</option>
 				</select>
 				<input type="text" class="box" placeholder="URL" style="width: 100%" autocomplete="off" id="urlAdd">
 				<div class="bag-tombol">

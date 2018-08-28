@@ -1,5 +1,6 @@
 // munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
 // Date picker
+/*
 $(function() {
 	$("#tglBook").datepicker({
 		minDate: $("#minDate").val(),
@@ -8,6 +9,13 @@ $(function() {
 		useCurrent: false,
     	showClose: true
 	})
+})
+*/
+
+flatpickr("#tglBook", {
+	dateFormat: "Y-m-d",
+	minDate: pilih("#minDate").value,
+	maxDate: pilih("#maxDate").value
 })
 
 function munculContact() {

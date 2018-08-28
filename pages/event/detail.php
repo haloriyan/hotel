@@ -21,11 +21,14 @@ if($sesiHotel == "") {
     $linkCta = "../hotel/add-listing";
 }
 
+$idevent = $_GET['idevent'];
 if(isset($_GET['idevent'])) {
     setcookie('idevent', $_GET['idevent'], time() + 3666, "/");
 }else {
     header("location: ./dashboard&from=detail");
 }
+
+$eventName = $event->info($idevent, "title");
 
 ?>
 <!DOCTYPE html>
@@ -81,18 +84,7 @@ if(isset($_GET['idevent'])) {
 <div class="container">
     <div>
         <div class="wrap">
-            <h4><div id="icon"><i class="fa fa-list"></i></div> Detail Event
-                <div class="ke-kanan">
-                    <select id="event" onchange="selectEvt(this.value)" class="box">
-                        <option value="">Select event...</option>
-                        <?php
-                        foreach ($myEvent as $row) {
-                            echo "<option value='".$row['idevent']."'>".$row['title']."</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-            </h4>
+            <h4><div id="icon"><i class="fa fa-list"></i></div> Detail Event for <?php echo $eventName; ?></h4>
             <br />
             <div id="load">
                 Select event before see the details

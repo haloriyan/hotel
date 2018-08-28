@@ -38,7 +38,7 @@ if($load == "kosong") {
 						"<h4>".$row['title']."</h4>"."</h4>".
 						"<!-- <a href='#'>Edit</a> &nbsp;".
 						"<i class='fa fa-angle-right'></i> &nbsp; -->".
-						"<a href='../event/detail&id=".$row['idevent']."' target='_blank'><li>Detail</li></a> | ".
+						"<a href='../event/detail&idevent=".$row['idevent']."' target='_blank'><li>Detail</li></a> | ".
 						"<a><li onclick='hapus(this.value)' value='".$row['idevent']."'>Delete</li></a>".
 					"</td>".
 					"<td>".$row['category']."</td>".

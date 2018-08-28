@@ -42,7 +42,8 @@ $iconHotel = $hotel->get($idhotel, "icon");
 	<link href='../aset/css/style.index.css' rel='stylesheet'>
 	<link href='../aset/css/style.profile.css' rel='stylesheet'>
 	<link href="../aset/css/tambahanEvent.css" rel="stylesheet">
-	<script src='../aset/js/embo.js'></script>
+	<link rel="stylesheet" href="../aset/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="../aset/flatpickr/dist/themes/material_red.css">
 </head>
 <body>
 
@@ -206,7 +207,7 @@ $iconHotel = $hotel->get($idhotel, "icon");
 					<div class="isi">Select date :</div>
 					<input type="hidden" id="minDate" value="<?php echo $tglMulai; ?>">
 					<input type="hidden" id="maxDate" value="<?php echo $tglAkhir; ?>">
-					<input type="text" class="box" id="tglBook" style="font-size: 17px;width: 80%" required placeholder="YYYY-MM-DD">
+					<input type="text" class="box" id="tglBook" style="font-size: 17px;width: 80%;background: #fff;" required placeholder="YYYY-MM-DD">
 				</div>
 				<div class="bag bag-3">
 					<div class="isi">Quantity</div>
@@ -255,8 +256,9 @@ $iconHotel = $hotel->get($idhotel, "icon");
 	<a href="tel:+<?php echo $hotelPhone; ?>" onclick="track(2)"><li id="call"><div id="icon"><i class="fa fa-phone"></i></div> Call</li></a>
 </div>
 
+<script src='../aset/js/embo.js'></script>
 <script src='../aset/js/jquery-3.1.1.js'></script>
-<script src='../aset/js/jquery-ui.min.js'></script>
+<script src="../aset/flatpickr/dist/flatpickr.js"></script>
 <script src="../aset/js/script.event.js"></script>
 <script>
 
