@@ -81,6 +81,20 @@ class booking extends event {
 		}
 	}
 
+	public function cekAvailable($idevent) {
+		$event = new event();
+		$disabledDate = [];
+		$maxQty = $event->info($idevent, "quota");
+		foreach($this->getDateRange($idevent) as $key => $tgl) {
+			$sumQty = $this->query("SELECT SUM(qty) AS qty FROM booking WHERE tgl = '$tgl' AND idevent = '$idevent'");
+			$r = $this->ambil($sumQty);
+			if($r['qty'] >= $maxQty) {
+				array_push($disabledDate, $tgl);
+			}
+		}
+		return $disabledDate;
+	}
+
 	// Payment
 	public function confirm($id, $bukti) {
 		$q = $this->tabel("booking")

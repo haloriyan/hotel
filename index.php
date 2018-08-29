@@ -10,7 +10,7 @@ $namaPertama = explode(" ", $nama)[0];
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale = 1">
-	<title>DAILYHOTEL</title>
+	<title>Dailyhotels</title>
 	<link href="aset/fw/build/fw.css" rel="stylesheet">
 	<link href="aset/fw/build/font-awesome.min.css" rel="stylesheet">
 	<link href="aset/css/bootstrap.min.css">
@@ -55,7 +55,7 @@ $namaPertama = explode(" ", $nama)[0];
 
 <div class="container rata-tengah">
 	<div class="wrap">
-		<h1 style="color: #cb0023;">Discover What's New in Hotel</h1>
+		<h1>Discover What's New in Hotel</h1>
 		<h2>Find Great Places to Eat, Visit and Stay</h2>
 		<div class="boxTengah">
 			<div class="wrap">

@@ -10,6 +10,22 @@ class event extends resto {
 		$r = $this->ambil($q);
 		return $r[$struktur];
 	}
+	public function getDateRange($idevent) {
+		$q = $this->tabel("event")->pilih()->dimana(["idevent" => $idevent])->eksekusi();
+		$r = $this->ambil($q);
+		$tglMulai = $r['tgl_mulai'];
+		$tglAkhir = $r['tgl_akhir'];
+		$rangeDate = new DatePeriod(
+			new DateTime($tglMulai),
+			new DateInterval('P1D'),
+			new DateTime($tglAkhir)
+		);
+
+		foreach($rangeDate as $key => $value) {
+			$res[] = $value->format('Y-m-d');
+		}
+		return $res;
+	}
 	public function create($a, $b, $idresto, $c, $d, $e, $f, $g, $h, $i, $j, $tglAkhir, $jPosted, $k, $seat, $l, $m) {
 		$q = $this->tabel("event")
 				  ->tambah([

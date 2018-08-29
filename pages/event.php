@@ -29,6 +29,17 @@ $idhotel = $event->info($idevent, "idhotel");
 $hotelPhone = $hotel->get($idhotel, "phone");
 $namaHotel = $hotel->get($idhotel, "nama");
 $iconHotel = $hotel->get($idhotel, "icon");
+
+// Disabled dates
+function getDisabledDate() {
+	$booking = new booking();
+	$cekDate = $booking->cekAvailable("18846");
+	foreach($cekDate as $key => $value) {
+		$res .= '"'.$value.'",';
+	}
+	return $res;
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -196,6 +207,8 @@ $iconHotel = $hotel->get($idhotel, "icon");
 				<div id="xBook" class="ke-kanan"><i class="fa fa-close"></i></div>
 			</h3>
 			<form id="formBook">
+				<input type="hidden" id="minDate" value="<?php echo $tglMulai; ?>">
+				<input type="hidden" id="maxDate" value="<?php echo $tglAkhir; ?>">
 				<input type="hidden" id="idevent" value="<?php echo $idevent; ?>">
 			<?php
 			if($booking->cek($idevent, $iduser) == "ada")  {
@@ -205,9 +218,7 @@ $iconHotel = $hotel->get($idhotel, "icon");
 			?>
 				<div class="bag bag-7">
 					<div class="isi">Select date :</div>
-					<input type="hidden" id="minDate" value="<?php echo $tglMulai; ?>">
-					<input type="hidden" id="maxDate" value="<?php echo $tglAkhir; ?>">
-					<input type="text" class="box" id="tglBook" style="font-size: 17px;width: 80%;background: #fff;" required placeholder="YYYY-MM-DD">
+					<input type="text" class="box" id="tglBook" style="font-size: 17px;width: 80%;background: #fff;" required placeholder="YYYY-MM-DD" value=''>
 				</div>
 				<div class="bag bag-3">
 					<div class="isi">Quantity</div>
@@ -277,6 +288,9 @@ if($qty >= 1) {
 			submit("#formBook", function() {
 				let idevent = pilih("#idevent").value
 				let tgl = pilih("#tglBook").value
+				if(tgl == "0000-00-00" || tgl == "") {
+					return false
+				}
 				let qty = pilih("#qty").value
 				let book = "idevent="+idevent+"&tgl="+tgl+"&qty="+qty
 				pos("../aksi/booking/book.php", book, function() {
@@ -292,6 +306,19 @@ if($qty >= 1) {
 	<?php
 }
 ?>
+
+<script>
+flatpickr("#tglBook", {
+	dateFormat: "Y-m-d",
+	minDate: pilih("#minDate").value,
+	maxDate: pilih("#maxDate").value,
+	disable: [<?php echo getDisabledDate(); ?>]
+})
+klik("#tblLogin", function() {
+	muncul(".bg")
+	muncul("#formLogin")
+})
+</script>
 
 </body>
 </html>

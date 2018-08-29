@@ -18,7 +18,7 @@ $address = $resto->info($sesi, "address");
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale = 1">
-	<title>Add Listing</title>
+	<title>Add Listing | Dailyhotels</title>
 	<link href='../aset/fw/build/fw.css' rel='stylesheet'>
 	<link href='../aset/fw/build/font-awesome.min.css' rel='stylesheet'>
 	<link href='../aset/css/jquery-ui.min.css' rel='stylesheet'>
@@ -159,8 +159,8 @@ $address = $resto->info($sesi, "address");
 				<option>Parties</option>
 				<option>Others</option>
 			</select>
-			<div class="isi">Available Seat</div>
-			<input type="text" class="box" placeholder="Available Seat..." id="seat">
+			<div class="isi">Quota :</div>
+			<input type="text" class="box" placeholder="Quota seat per day..." id="seat">
 			<br />
 			<button class="tbl merah-2">NEXT</button>
 		</div>

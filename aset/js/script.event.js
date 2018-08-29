@@ -12,12 +12,6 @@ $(function() {
 })
 */
 
-flatpickr("#tglBook", {
-	dateFormat: "Y-m-d",
-	minDate: pilih("#minDate").value,
-	maxDate: pilih("#maxDate").value
-})
-
 function munculContact() {
 	muncul(".bg")
 	pengaya(".listContact", "right: 2.5%")
@@ -78,6 +72,7 @@ tekan("Escape", function() {
 	hilangContact()
 	hilangPopup("#popupBook")
 	hilangPopup("#suksesBook")
+	hilang("#formLogin")
 	hilang("#popupRegist")
 })
 
@@ -104,7 +99,5 @@ submit("#formSignIn", function() {
 	})
 	return false
 })
-klik("#tblLogin", function() {
-	muncul(".bg")
-	muncul("#formLogin")
-})
+let disabledDate = pilih('#disabledDate').value
+console.log(disabledDate)
