@@ -29,7 +29,6 @@ $tgl 			= $_POST['tgl'];
 $tgl_akhir		= $_POST['tgl_akhir'];
 $tgl_posted		= date('Y-m-d H:i:s');
 $category 		= $_POST['category'];
-$seat           = $_POST['avaibleseat'];
 $price 			= $_POST['price'];
 $added			= time();
 

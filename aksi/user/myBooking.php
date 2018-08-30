@@ -42,33 +42,33 @@ if($myBook == "null") {
 				$idevent	= $row['idevent'];
 				$icon 		= $event->info($idevent, "logos");
 				$title 		= $event->info($idevent, "title");
-				$tglMulai 	= $event->info($idevent, "tgl_mulai");
-				$ds			= explode("-", $tglMulai);
-				$dateStart 	= $bln[$ds['1']] . ", ". $ds['2'];
-
-				$tglAkhir 	= $event->info($idevent, "tgl_akhir");
-				$de 		= explode("-", $tglAkhir);
-				$dateEnd 	= $bln[$de['1']] . ", ". $de['2'];
+				$tgl		= $row['tgl'];
+				$ds			= explode("-", $tgl);
+				$tgls 	= $bln[$ds['1']] . ", ". $ds['2'];
 				$price 		= $event->info($idevent, "price") * $row['qty'];
 				if($row['bukti'] == "") {
 					// belum dibayar
 					$btn = "<a href='./invoice/".$row['idbooking']."' target='_blank'><button class='tbl merah-2' id='tblStatus'>UNPAID</button></a>";
+					$reschedule = "";
 				}else if($row['bukti'] != "" && $row['status'] == 0) {
 					// belum dikonfirmasi
 					$btn = "<a href='./invoice/".$row['idbooking']."' target='_blank'><button class='tbl kuning' id='tblStatus'>PAID</button></a>";
+					$reschedule = "";
 				}
 				else {
 					$btn = "<a href='./invoice/".$row['idbooking']."' target='_blank'><button class='tbl hijau' id='tblStatus'>CONFIRMED</button></a>";
+					$reschedule = "<a href='#'>reschedule</a>";
 				}
 				echo "<tr>".
 					 	"<td><img src='aset/gbr/".$icon."'></td>".
 					 	"<td>".$title."</td>".
-					 	"<td class='rata-tengah'>".
-					 		$dateStart . " to " . $dateEnd.
-					 	"</td>".
-					 	"<td>".toIdr($price)."</td>".
 					 	"<td>".
-					 		$btn.
+					 		$tgls.
+					 	"</td>".
+					 	"<td>".toIdr($price)." (".$row['qty'].")</td>".
+					 	"<td>".
+							$btn.
+							$reschedule.
 					 	"</td>".
 					 "</tr>";
 			}

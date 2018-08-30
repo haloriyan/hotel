@@ -52,7 +52,7 @@ $totExplore = $ctrl->hitung($ctrl->tabel("event")->pilih()->dimana(["idhotel" =>
 			<li id="adaSub">Hello <?php echo $namaPertama; ?> <i class="fa fa-angle-down"></i>
 				<ul class="sub">
 					<a href="./my"><li><div id="icon"><i class="fa fa-briefcase"></i></div> My Listing</li></a>
-					<a href="./settings"><li><div id="icon"><i class="fa fa-cog"></i></div> Settings</li></a>
+					<a href="./detail"><li><div id="icon"><i class="fa fa-cog"></i></div> Settings</li></a>
 					<a href="./logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
 				</ul>
 			</li>

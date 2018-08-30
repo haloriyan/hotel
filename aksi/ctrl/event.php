@@ -43,7 +43,6 @@ class event extends resto {
 				  	"tgl_akhir" => $tglAkhir,
 				  	"tgl_posted" => $jPosted,
 					"category" => $k,
-					"availableseat" => $seat,
 					"quota" => $seat,
 					"price" => $l,
 					"hint" => 0,

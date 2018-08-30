@@ -40,6 +40,8 @@ function getDisabledDate() {
 	return $res;
 }
 
+setcookie('idevents', $idevent, time() + 3666, "/");
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -74,7 +76,7 @@ function getDisabledDate() {
 			<li id="adaSub">Hello <?php echo $namaPertama; ?> <i class="fa fa-angle-down"></i>
 				<ul class="sub">
 					<a href="../my"><li><div id="icon"><i class="fa fa-briefcase"></i></div> My Listing</li></a>
-					<a href="../settings"><li><div id="icon"><i class="fa fa-cog"></i></div> Settings</li></a>
+					<a href="../detail"><li><div id="icon"><i class="fa fa-cog"></i></div> Settings</li></a>
 					<a href="../logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
 				</ul>
 			</li>
@@ -93,7 +95,6 @@ function getDisabledDate() {
 
 <div class="cta">
 	<li id="price"><i class="fa fa-money"></i> &nbsp; <?php echo $price; ?></li>
-	<li id="price"><i class="fa fa-user"></i> &nbsp; <?php echo $qty; ?> available</li>
 	<?php
 	if($qty >= 1) {
 		?>
@@ -218,21 +219,10 @@ function getDisabledDate() {
 			?>
 				<div class="bag bag-7">
 					<div class="isi">Select date :</div>
-					<input type="text" class="box" id="tglBook" style="font-size: 17px;width: 80%;background: #fff;" required placeholder="YYYY-MM-DD" value=''>
+					<input type="text" class="box" id="tglBook" style="font-size: 17px;width: 80%;background: #fff;" required onchange='selectDate(this.value)' placeholder="YYYY-MM-DD" value=''>
 				</div>
 				<div class="bag bag-3">
-					<div class="isi">Quantity</div>
-					<select class="box" id="qty">
-						<?php
-						$till = $qty;
-						if($qty >= 10) {
-							$till = 10;
-						}
-						for($i = 1; $i <= $till; $i++) {
-							echo "<option>".$i."</option>";
-						}
-						?>
-					</select>
+					<div id="loadBoxQty"></div>
 				</div>
 				<div class="bag-tombol">
 					<button class="merah-2">Book Now!</button>
@@ -308,6 +298,17 @@ if($qty >= 1) {
 ?>
 
 <script>
+function loadBoxQty() {
+	ambil("../aksi/event/loadBoxQty.php", (res) => {
+		tulis("#loadBoxQty", res)
+	})
+}
+function selectDate(val) {
+	let set = "namakuki=tglevent&value="+val+"&durasi=3666"
+	pos("../aksi/setCookie.php", set, () => {
+		loadBoxQty()
+	})
+}
 flatpickr("#tglBook", {
 	dateFormat: "Y-m-d",
 	minDate: pilih("#minDate").value,

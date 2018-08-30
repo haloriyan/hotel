@@ -26,8 +26,6 @@ class booking extends event {
 				  	"tgl_book" => date('Y-m-d H:i:s'),
 				  	"added" => time()
 				  ])->eksekusi();
-		// ngubah
-		$ubah = $this->query("UPDATE event SET availableseat = availableseat - $d WHERE idevent = '$b'");
 		return $q;
 	}
 	public function delete($id) {
@@ -81,18 +79,23 @@ class booking extends event {
 		}
 	}
 
-	public function cekAvailable($idevent) {
+	public function cekAvailable($idevent, $opt = NULL) {
 		$event = new event();
 		$disabledDate = [];
 		$maxQty = $event->info($idevent, "quota");
 		foreach($this->getDateRange($idevent) as $key => $tgl) {
 			$sumQty = $this->query("SELECT SUM(qty) AS qty FROM booking WHERE tgl = '$tgl' AND idevent = '$idevent'");
 			$r = $this->ambil($sumQty);
+			$rQty[] = $r['qty'] - $maxQty;
 			if($r['qty'] >= $maxQty) {
 				array_push($disabledDate, $tgl);
 			}
 		}
-		return $disabledDate;
+		if($opt == "") {
+			return $disabledDate;
+		}else {
+			return $rQty;
+		}
 	}
 
 	// Payment
@@ -142,41 +145,6 @@ class booking extends event {
 		return $q;
 	}
 
-	// refund
-	public function myRefund($iduser) {
-		$q = $this->query("SELECT * FROM booking WHERE iduser = '$iduser' AND status = '9' OR iduser = '$iduser' AND status = '8'");
-		if($this->hitung($q) == 0) {
-			return "null";
-		}else {
-			while($r = $this->ambil($q)) {
-				$hasil[] = $r;
-			}
-			return $hasil;
-		}
-	}
-	public function reqRefund($idbook) {
-		$q = $this->tabel("booking")->ubah(["status" => 9])->dimana(["idbooking" => $idbook])->eksekusi();
-		return $q;
-	}
-	public function bisaRefund($iduser) {
-		$q = $this->query("SELECT * FROM booking WHERE iduser = '$iduser' AND status = '1'");
-		while($r = $this->ambil($q)) {
-			$hasil[] = $r;
-		}
-		return $hasil;
-	}
-	public function cawangRefund($id) {
-		$q = $this->tabel("booking")->ubah(["status" => 8])->dimana(["idbooking" => $id])->eksekusi();
-
-		$sel = $this->query("SELECT * FROM booking WHERE idbooking = '$id'");
-		$r = $this->ambil($sel);
-		$qty = $r['qty'];
-		$idevent = $r['idevent'];
-		$ubah = $this->query("UPDATE event SET availableseat = availableseat + $qty WHERE idevent = '$idevent'");
-		
-		return $q;
-	}
-
 	public function redeemable($id, $tipe) {
 		if($tipe == "resto") {
 			$tipes = "event.id_resto = '$id'";
@@ -199,6 +167,17 @@ class booking extends event {
 		$q = $this->query("SELECT SUM(qty) AS countQty FROM booking WHERE idevent = '$id' AND status = '1'");
 		$r = $this->ambil($q);
 		return $r['countQty'];
+	}
+	public function countQtyFromTgl($id, $tgl) {
+		$event = new event();
+		$q = $this->query("SELECT SUM(qty) AS countQty FROM booking WHERE idevent = '$id' AND tgl = '$tgl'");
+		$r = $this->ambil($q);
+		if($r['countQty'] == "") {
+			$q = $event->info($id, "quota");
+			return $q;
+		}else {
+			return $r['countQty'];
+		}
 	}
 }
 
