@@ -99,5 +99,3 @@ submit("#formSignIn", function() {
 	})
 	return false
 })
-let disabledDate = pilih('#disabledDate').value
-console.log(disabledDate)

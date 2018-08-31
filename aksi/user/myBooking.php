@@ -78,25 +78,5 @@ if($myBook == "null") {
 	<p style='margin-top: 50px;'>
 		* click "UNPAID" button to pay it
 	</p>
-	<p>
-		<div class='bag bag-3'>
-			<div class='ke-kiri'>
-				<div class='tbl merah'>&nbsp;</div>
-			</div>
-			<div class='tbl' style='margin-left: 50px;'>UNPAID</div>
-		</div>
-		<div class='bag bag-3'>
-			<div class='ke-kiri'>
-				<div class='tbl kuning'>&nbsp;</div>
-			</div>
-			<div class='tbl' style='margin-left: 50px;'>PAID</div>
-		</div>
-		<div class='bag bag-3'>
-			<div class='ke-kiri'>
-				<div class='tbl hijau'>&nbsp;</div>
-			</div>
-			<div class='tbl' style='margin-left: 50px;'>CONFIRMED</div>
-		</div>
-	</p>
 	<?php
 }

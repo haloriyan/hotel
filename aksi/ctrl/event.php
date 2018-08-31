@@ -84,7 +84,7 @@ class event extends resto {
 		$tglAkhirDefault = date('Y-m-31');
 		if($tglMulai == "" and $tglAkhir == "") {
 			// lama $filterTgl = "tgl_mulai >= '$tglMulaiDefault' AND tgl_akhir <= '$tglAkhirDefault'";
-			$filterTgl = "tgl_akhir >= '$tglMulaiDefault'";
+			$filterTgl = "tgl_akhir >= '$tglAkhirDefault'";
 		}else {
 			if($tglMulai == "") {
 				$tglMulai = $tglSkrg;

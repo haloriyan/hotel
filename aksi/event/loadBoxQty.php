@@ -4,7 +4,10 @@ include '../ctrl/booking.php';
 $idevent = $_COOKIE['idevents'];
 $tgl     = $_COOKIE['tglevent'];
 
-$till = $booking->countQtyFromTgl($idevent, $tgl);
+$count = $booking->countQtyFromTgl($idevent, $tgl);
+$quota = $event->info($idevent, "quota");
+
+$till = $quota - $count;
 
 ?>
 <div class="isi">Quantity</div>

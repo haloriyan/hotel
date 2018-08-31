@@ -15,6 +15,9 @@ $iduser = $user->info($sesi, "iduser");
 
 // Bagian Event
 $namaEvent = $event->info($idevent, "title");
+if($namaEvent == "") {
+	die("error");
+}
 $cover = $event->info($idevent, "covers");
 $logo = $event->info($idevent, "logos");
 $address = $event->info($idevent, "address");
@@ -23,6 +26,7 @@ $price = toIdr($event->info($idevent, "price"));
 $tglMulai = $event->info($idevent, "tgl_mulai");
 $tglAkhir = $event->info($idevent, "tgl_akhir");
 $qty = $event->info($idevent, "availableseat");
+$quota = $event->info($idevent, "quota");
 
 // Bagian Hotel
 $idhotel = $event->info($idevent, "idhotel");
@@ -48,7 +52,7 @@ setcookie('idevents', $idevent, time() + 3666, "/");
 <head>
 	<meta charset='UTF-8'>
 	<meta name='viewport' content='width=device-width, initial-scale = 1'>
-	<title><?php echo $namaEvent; ?> di Dailyhotels</title>
+	<title><?php echo $namaEvent; ?> on Dailyhotels</title>
 	<link href='../aset/fw/build/fw.css' rel='stylesheet'>
 	<link href='../aset/fw/build/font-awesome.min.css' rel='stylesheet'>
 	<link href='../aset/css/jquery-ui.min.css' rel='stylesheet'>
@@ -57,6 +61,7 @@ setcookie('idevents', $idevent, time() + 3666, "/");
 	<link href="../aset/css/tambahanEvent.css" rel="stylesheet">
 	<link rel="stylesheet" href="../aset/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="../aset/flatpickr/dist/themes/material_red.css">
+	<script src='../aset/js/embo.js'></script>
 </head>
 <body>
 
@@ -70,6 +75,16 @@ setcookie('idevents', $idevent, time() + 3666, "/");
 		<?php
 		if(empty($sesi)) { ?>
 			<a href="#formLogin" id="tblLogin"><li><i class="fa fa-user"></i> &nbsp;Sign in</li></a>
+			<script>
+				klik("#tblLogin", function() {
+					muncul(".bg")
+					muncul("#formLogin")
+				})
+				klik("#linkLogin", function() {
+					hilang("#formLogin")
+					muncul("#popupRegist")
+				})
+			</script>
 			<?php
 		}else {
 			?>
@@ -95,13 +110,7 @@ setcookie('idevents', $idevent, time() + 3666, "/");
 
 <div class="cta">
 	<li id="price"><i class="fa fa-money"></i> &nbsp; <?php echo $price; ?></li>
-	<?php
-	if($qty >= 1) {
-		?>
-		<button id="book" class="merah-2">Book Now!</button>
-		<?php
-	}
-	?>
+	<button id="book" class="merah-2">Book Now!</button>
 	<button id="share"><i class="fa fa-share"></i></button>
 </div>
 
@@ -257,47 +266,31 @@ setcookie('idevents', $idevent, time() + 3666, "/");
 	<a href="tel:+<?php echo $hotelPhone; ?>" onclick="track(2)"><li id="call"><div id="icon"><i class="fa fa-phone"></i></div> Call</li></a>
 </div>
 
-<script src='../aset/js/embo.js'></script>
 <script src='../aset/js/jquery-3.1.1.js'></script>
 <script src="../aset/flatpickr/dist/flatpickr.js"></script>
 <script src="../aset/js/script.event.js"></script>
-<script>
 
-klik("#linkLogin", function() {
-	hilang("#formLogin")
-	muncul("#popupRegist")
+<script>
+klik("#book", function() {
+	munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
 })
-</script>
-<?php
-if($qty >= 1) {
-	?>
-	<script>
-			klik("#book", function() {
-				munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
-			})
-			submit("#formBook", function() {
-				let idevent = pilih("#idevent").value
-				let tgl = pilih("#tglBook").value
-				if(tgl == "0000-00-00" || tgl == "") {
-					return false
-				}
-				let qty = pilih("#qty").value
-				let book = "idevent="+idevent+"&tgl="+tgl+"&qty="+qty
-				pos("../aksi/booking/book.php", book, function() {
-					hilangPopup("#popupBook")
-					munculPopup("#suksesBook", pengaya("#suksesBook", "top: 230px"))
-					setTimeout(() => {
-						location.reload()
-					}, 1200)
-				})
-				return false
-			})
-		</script>
-	<?php
-}
-?>
-
-<script>
+submit("#formBook", function() {
+	let idevent = pilih("#idevent").value
+	let tgl = pilih("#tglBook").value
+	if(tgl == "0000-00-00" || tgl == "") {
+		return false
+	}
+	let qty = pilih("#qty").value
+	let book = "idevent="+idevent+"&tgl="+tgl+"&qty="+qty
+	pos("../aksi/booking/book.php", book, function() {
+		hilangPopup("#popupBook")
+		munculPopup("#suksesBook", pengaya("#suksesBook", "top: 230px"))
+		setTimeout(() => {
+			location.reload()
+		}, 1200)
+	})
+	return false
+})
 function loadBoxQty() {
 	ambil("../aksi/event/loadBoxQty.php", (res) => {
 		tulis("#loadBoxQty", res)
@@ -314,10 +307,6 @@ flatpickr("#tglBook", {
 	minDate: pilih("#minDate").value,
 	maxDate: pilih("#maxDate").value,
 	disable: [<?php echo getDisabledDate(); ?>]
-})
-klik("#tblLogin", function() {
-	muncul(".bg")
-	muncul("#formLogin")
 })
 </script>
 

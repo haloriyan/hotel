@@ -36,7 +36,7 @@ $category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping"
 <head>
 	<meta charset='UTF-8'>
 	<meta name='viewport' content='width=device-width, initial-scale = 1'>
-	<title>Explore <?php echo $subJudul; ?></title>
+	<title>Explore <?php echo $subJudul; ?> on Dailyhotels</title>
 	<link href='aset/fw/build/fw.css' rel='stylesheet'>
 	<link href='aset/fw/build/font-awesome.min.css' rel='stylesheet'>
 	<link href='aset/css/jquery-ui.min.css' rel='stylesheet'>

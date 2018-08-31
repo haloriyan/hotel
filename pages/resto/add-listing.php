@@ -21,9 +21,10 @@ $address = $resto->info($sesi, "address");
 	<title>Add Listing | Dailyhotels</title>
 	<link href='../aset/fw/build/fw.css' rel='stylesheet'>
 	<link href='../aset/fw/build/font-awesome.min.css' rel='stylesheet'>
-	<link href='../aset/css/jquery-ui.min.css' rel='stylesheet'>
 	<link href='../aset/css/style.index.css' rel='stylesheet'>
 	<link href="../aset/css/style.explore-admin.css" rel="stylesheet">
+	<link rel="stylesheet" href="../aset/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="../aset/flatpickr/dist/themes/material_red.css">
 	<style>
 		.box,textarea.box {
 			border-radius: 0px;
@@ -145,9 +146,9 @@ $address = $resto->info($sesi, "address");
 			<h4><div id="icon"><i class="fa fa-map-marker"></i></div> Event Details</h4>
 			<input type="hidden" id='tglSkrg' value='<?php echo date('Y-m-d'); ?>'>
 			<div class="isi">Date Start</div>
-			<input type="text" class="box" placeholder="yyyy-mm-dd" onchange="dateStart(this.value)" id="date" data-date-format="YYYY MM DD">
+			<input type="text" class="box" placeholder="yyyy-mm-dd" onchange="dateStart(this.value)" id="date">
 			<div class="isi">Date End</div>
-			<input type="text" class="box" placeholder="yyyy-mm-dd" id="dateEnd" data-date-format="YYYY MM DD" readonly>
+			<input type="text" class="box" placeholder="yyyy-mm-dd" id="dateEnd" readonly>
 			<div class="isi">Category</div>
 			<select class="box" id="category">
 				<option>Food and Beverage</option>
@@ -190,7 +191,7 @@ $address = $resto->info($sesi, "address");
 
 <script src="../aset/js/embo.js"></script>
 <script src="../aset/js/jquery-3.1.1.js"></script>
-<script src='../aset/js/jquery-ui.min.js'></script>
+<script src="../aset/flatpickr/dist/flatpickr.js"></script>
 <script src="../aset/js/insert.js"></script>
 <script>
 	function hilangKecuali(y) {
@@ -222,14 +223,19 @@ $address = $resto->info($sesi, "address");
 		let seat = pilih("#seat").value
 		let category = pilih("#category").value
 		let price = pilih("#priceBox").value
-		let pub = "idresto="+idresto+"&title="+title+"&tagline="+tagline+"&description="+description+"&logo="+logo+"&cover="+cover+"&region="+region+"&address="+address+"&tgl="+date+"&tgl_akhir="+dateEnd+"&category="+category+"&availableseat"+seat+"&price="+price
+		let pub = "idresto="+idresto+"&title="+title+"&tagline="+tagline+"&description="+description+"&logo="+logo+"&cover="+cover+"&region="+region+"&address="+address+"&tgl="+date+"&tgl_akhir="+dateEnd+"&category="+category+"&quota="+seat+"&price="+price
 		if(title == "" || tagline == "" || description == "" || logo == "" || cover == "" || region == "" || address == "" || date == "" || category == "" || seat == "" || price == "") {
 			munculPopup("#notif", pengaya("#notif", "top: 225px"))
 			tulis("#isiNotif", "All field must be filled")
 			return false
 		}
-		pos("../aksi/event/create.php", pub, function() {
-			mengarahkan("./listing")
+		$.ajax({
+			type: "POST",
+			url: "../aksi/event/create.php",
+			data: pub,
+			success: () => {
+				mengarahkan("./listing")
+			}
 		})
 	}
 	submit("#basic", function() {
@@ -377,7 +383,7 @@ $address = $resto->info($sesi, "address");
 		minDate: pilih("#tglSkrg").value,
 		maxDate: '2025-12-31',
 		dateFormat: "Y-m-d"
-	}
+	})
 
 	function dateStart(val) {
 		pilih("#dateEnd").removeAttribute("readonly")

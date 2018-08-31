@@ -173,8 +173,7 @@ class booking extends event {
 		$q = $this->query("SELECT SUM(qty) AS countQty FROM booking WHERE idevent = '$id' AND tgl = '$tgl'");
 		$r = $this->ambil($q);
 		if($r['countQty'] == "") {
-			$q = $event->info($id, "quota");
-			return $q;
+			return 0;
 		}else {
 			return $r['countQty'];
 		}
