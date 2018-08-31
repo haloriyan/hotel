@@ -105,3 +105,12 @@
 	box-shadow: 1px 1px 5px 1px #ddd;
 	padding: 1px;
 }
+
+@media (max-width: 720px) {
+	.cta {
+		top: 290px;left: 35%;
+	}
+	.cta li,.cta button {
+		padding: 20px 25px;
+	}
+}

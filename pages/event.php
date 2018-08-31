@@ -132,7 +132,7 @@ setcookie('idevents', $idevent, time() + 3666, "/");
 	</div>
 	<div class="bawahe">
 		<div class="wrap">
-			<div class="ke-kiri" id="bawahKiri">
+			<div id="bawahKiri">
 				<div class="bagian">
 					<div class="wrap">
 						<h3><i class="fa fa-align-justify"></i> &nbsp; Description</h3>
@@ -144,7 +144,7 @@ setcookie('idevents', $idevent, time() + 3666, "/");
 					</div>
 				</div>
 			</div>
-			<div class="ke-kanan" id="bawahKanan">
+			<div id="bawahKanan">
 				<div class="bagian location">
 					<div class="wrap">
 						<h3><i class="fa fa-map-marker"></i> &nbsp; Location</h3>

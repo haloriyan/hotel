@@ -78,6 +78,8 @@ body { background-color: #ecf0f1; }
 	color: #555;
 }
 #bawahKiri,#bawahKanan { width: 49%; }
+#bawahKiri { float: left; }
+#bawahKanan { float: right; }
 .bagian h3 {
 	font-size: 16px;
 }
@@ -106,11 +108,20 @@ body { background-color: #ecf0f1; }
 @media (max-width: 720px) {
 	.bawahe .bagian,.openHours {
 		float: none;
+		display: none;
 		width: 95%;
 		display: block;
 	}
 	.nav .menuHotel {
 		float: none;
 	}
-	
+	#bawahKiri,#bawahKanan {
+		width: 100%;
+	}
+	.menu li {
+		display: block;
+		list-style: none;
+		width: 100%;
+		color: #cb0023;
+	}
 }

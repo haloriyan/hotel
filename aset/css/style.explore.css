@@ -113,6 +113,7 @@ body { background-color: #ecf0f1; }
 .list img {
 	width: 100%;
 	height: 100%;
+	position: relative;
 	z-index: -1;
 }
 .list .ket {
@@ -151,6 +152,10 @@ body { background-color: #ecf0f1; }
 #tblMenu { display: none; }
 
 @media (max-width: 720px) {
+	.pencarian {
+		width: 70%;
+	}
+	.logoHome { display: none; }
 	.kiri {
 		display: none;
 	}
@@ -179,6 +184,7 @@ body { background-color: #ecf0f1; }
 		display: block;
 		float: right;
 		margin-right: 2.5%;
+		margin-top: 25px;
 		font-size: 25px;
 	}
 

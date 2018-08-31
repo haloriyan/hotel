@@ -44,23 +44,28 @@ $category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping"
 	<link href='aset/css/style.explore.css' rel='stylesheet'>
 	<style>
 		.container,.kiri {
-			top: 75px;
+			top: 72px;
 		}
+		.contaienr { top: 95px; }
 		.list {
 			width: 47%;
 			margin: 5px 10px;
 			margin-bottom: 75px;
 			height: 300px;
 			cursor: default;
+			position: relative;
+			z-index: 1;
 		}
 		.list a {
 			text-decoration: none;
 			color: #fff;
 		}
 		.list .ket {
-			top: -300px;
+			position: static;
+			margin-top: -300px;
 			height: 300px;
 			background: rgba(0,0,0,0.45);
+			z-index: 5;
 		}
 		.ket #keterangan { margin-top: 56%; }
 		.tgl {
@@ -73,7 +78,9 @@ $category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping"
 			.list {
 				float: none;
 				width: 94%;
+				margin-bottom: 55px;
 			}
+			.tgl { margin-top: 0px;top: -130px; }
 		}
 	</style>
 </head>

@@ -67,7 +67,7 @@ a { color: #cb0023; }
 	width: 25px;
 }
 #adaSub { cursor: pointer; }
-#adaSub:hover .sub { top: 65px; }
+#adaSub:hover .sub { top: 65px;display: block; }
 
 .container {
 	position: absolute;
@@ -161,7 +161,7 @@ select.box {
 	#tblMenu {
 		display: block;
 	}
-	.logoHome { width: 50%; }
+	.logoHome { width: 50%;margin-top: 6px; }
 	.menu {
 		position: fixed !important;
 		transition: 0.45s;
@@ -192,5 +192,13 @@ select.box {
 	}
 	.formPopup {
 		width: 80%;left: 10%;
+	}
+
+	.sub {
+		position: static;
+		right: 0px;
+		width: 100%;
+		display: none;
+		border: none;
 	}
 }
