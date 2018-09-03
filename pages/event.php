@@ -58,10 +58,10 @@ setcookie('idevents', $idevent, time() + 3666, "/");
 	<link href='../aset/css/jquery-ui.min.css' rel='stylesheet'>
 	<link href='../aset/css/style.index.css' rel='stylesheet'>
 	<link href='../aset/css/style.profile.css' rel='stylesheet'>
+	<link href="../aset/css/tambahanIndex.css" rel="stylesheet">
 	<link href="../aset/css/tambahanEvent.css" rel="stylesheet">
 	<link rel="stylesheet" href="../aset/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="../aset/flatpickr/dist/themes/material_red.css">
-	<script src='../aset/js/embo.js'></script>
 </head>
 <body>
 
@@ -75,16 +75,6 @@ setcookie('idevents', $idevent, time() + 3666, "/");
 		<?php
 		if(empty($sesi)) { ?>
 			<a href="#formLogin" id="tblLogin"><li><i class="fa fa-user"></i> &nbsp;Sign in</li></a>
-			<script>
-				klik("#tblLogin", function() {
-					muncul(".bg")
-					muncul("#formLogin")
-				})
-				klik("#linkLogin", function() {
-					hilang("#formLogin")
-					muncul("#popupRegist")
-				})
-			</script>
 			<?php
 		}else {
 			?>
@@ -172,41 +162,73 @@ setcookie('idevents', $idevent, time() + 3666, "/");
 <button id="phone" class="merah-2" aksi="on"><i class="fa fa-phone"></i></button>
 
 <div class="bg"></div>
-<div class="formPopup" id="formLogin">
-	<form class="wrap" id="formSignIn">
-		<h4><i class="fa fa-user"></i> &nbsp; Sign in
-			<div id="xLog" class="ke-kanan"><i class="fa fa-close"></i></div>
-		</h4>
-		<input type="text" class="box" placeholder="Email" id="mailLog"><br />
-		<input type="password" class="box" placeholder="Password" id="pwdLog"><br />
-		<div class="bag-tombol">
-			<button class="merah-2">Sign in</button>
-		</div>
-		<div class="bag bag-5">
-			<input type="checkbox" id="rememberMe"> <label for="rememberMe">Remember me</label>
-		</div>
-		<div class="bag bag-5 rata-kanan">
-			<a href="#">Forgot password?</a>
-		</div>
-		<br />
-		<div class="rata-tengah" style="margin-bottom: 15px;">
-			<a href="#popupRegist" id="linkLogin">Register</a> | <a href="../hotel/login">Hotel</a>
-		</div>
-	</form>
-</div>
-<div class="formPopup" id="popupRegist">
-	<div class="wrap">
-		<h4><i class="fa fa-user"></i> &nbsp; Register
-			<div id="xReg" class="ke-kanan"><i class="fa fa-close"></i></div>
-		</h4>
-		<form id="formRegist">
-			<input type="text" class="box" id="nameReg" placeholder="Name"><br />
-			<input type="email" class="box" id="mailReg" placeholder="Email"><br />
-			<input type="password" class="box" id="pwdReg" placeholder="Password"><br />
-			<div class="bag-tombol" style="margin-top: 10px;">
-				<button class="merah-2" id="register">REGISTER</button>
+<div class="popupWrapper" id="formLoginBaru">
+	<div id="xLog"><i class="fa fa-close"></i> UASU</div>
+	<div class="popup">
+		<div id="loginPublic" class="bagLogin">
+			<div class="wrap"> 
+				<form id="formLoginPublic">
+					<h3>Login User</h3>
+					<div>E-Mail :</div>
+					<input type="email" class="box" id="emailLogPublic">
+					<div>Password :</div>
+					<input type="password" class="box" id="pwdLogPublic">
+					<div class="bag bag-3">
+						<button class="tbl tblLogins">LOGIN</button>
+					</div>
+					<div class="bag bag-4" id="optLogin">
+						or <a href="#" id="linkRegPublic">register</a>
+					</div>
+				</form>
+				<form id="formRegPublic">
+					<h3>Register User</h3>
+					<div>Name :</div>
+					<input type="text" class="box" id="nameRegPublic">
+					<div>E-Mail :</div>
+					<input type="email" class="box" id="emailRegPublic">
+					<div>Password :</div>
+					<input type="password" class="box" id="pwdRegPublic">
+					<div class="bag bag-4">
+						<button class="tbl tblLogins">REGISTER</button>
+					</div>
+					<div class="bag bag-4" id="optLogin">
+						or <a href="#" id="linkLogPublic">login</a>
+					</div>
+				</form>
 			</div>
-		</form>
+		</div>
+		<div id="loginMarcom" class="bagLogin">
+			<div class="wrap"> 
+				<form id="formLoginMarcom">
+					<h3>Login as Hotel</h3>
+					<div>E-Mail :</div>
+					<input type="email" class="box" id="emailLogMarcom" required>
+					<div>Password :</div>
+					<input type="password" class="box" id="pwdLogMarcom" required>
+					<div class="bag bag-5">
+						<button class="tbl putih tblLogins">LOGIN</button>
+					</div>
+					<div class="bag bag-4" id="optLogin">
+						or <a href="#" id="linkRegMarcom">register</a>
+					</div>
+				</form>
+				<form id="formRegMarcom">
+					<h3>Register as Hotel</h3>
+					<div>Hotel's name :</div>
+					<input type="text" class="box" id="nameRegMarcom" required>
+					<div>E-Mail :</div>
+					<input type="email" class="box" id="emailRegMarcom" required>
+					<div>Password :</div>
+					<input type="password" class="box" id="pwdRegMarcom" required>
+					<div class="bag bag-5">
+						<button class="tbl putih tblLogins">REGISTER</button>
+					</div>
+					<div class="bag bag-4" id="optLogin">
+						or <a href="#" id="linkLogMarcom">login</a>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
 </div>
 
@@ -266,8 +288,10 @@ setcookie('idevents', $idevent, time() + 3666, "/");
 	<a href="tel:+<?php echo $hotelPhone; ?>" onclick="track(2)"><li id="call"><div id="icon"><i class="fa fa-phone"></i></div> Call</li></a>
 </div>
 
+<script src='../aset/js/embo.js'></script>
 <script src='../aset/js/jquery-3.1.1.js'></script>
 <script src="../aset/flatpickr/dist/flatpickr.js"></script>
+<script src="../aset/js/script.index.js"></script>
 <script src="../aset/js/script.event.js"></script>
 
 <script>
@@ -307,6 +331,33 @@ flatpickr("#tglBook", {
 	minDate: pilih("#minDate").value,
 	maxDate: pilih("#maxDate").value,
 	disable: [<?php echo getDisabledDate(); ?>]
+})
+submit("#formLoginPublic", () => {
+	let email = pilih("#emailLogPublic").value
+	let pwd = pilih("#pwdLogPublic").value
+	let log = "email="+email+"&pwd="+pwd
+	if (email == "" || pwd == "") {
+		return false
+	}
+	pos("../aksi/user/login.php", log, (err) => {
+		location.reload()
+	})
+	return false
+})
+submit("#formRegPublic", () => {
+	let name = pilih("#nameRegPublic").value
+	let email = pilih("#emailRegPublic").value
+	let pwd = pilih("#pwdRegPublic").value
+	let reg = "name="+name+"&email="+email+"&pwd="+pwd
+	if(name == "" || email == "" || pwd == "") {
+		return false
+	}
+	pos("../aksi/user/register.php", reg, () => {
+		hilangPopup("#formLoginBaru")
+		muncul(".bg")
+		muncul("#suksesReg")
+	})
+	return false	
 })
 </script>
 

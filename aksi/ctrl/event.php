@@ -77,14 +77,20 @@ class event extends resto {
 			return $hasil;
 		}
 	}
+	public function alls($keyword = NULL, $tglMulai = NULL, $tglAkhir = NULL, $cat = NULL, $region = NULL) {
+		date_default_timezone_set('Asia/Jakarta');
+		$query = "SELECT * FROM event LEFT JOIN hotel ON event.idhotel = hotel.idhotel WHERE nama LIKE '%$keyword%' AND category LIKE '%$cat%' AND $filterTgl region LIKE '%$region%' ORDER BY event.added DESC";
+		return $query;
+	}
 	public function all($keyword = NULL, $tglMulai = NULL, $tglAkhir = NULL, $cat = NULL, $region = NULL) {
 		date_default_timezone_set('Asia/Jakarta');
 		$tglSkrg = date('Y-m-d');
 		$tglMulaiDefault = date('Y-m-1');
 		$tglAkhirDefault = date('Y-m-31');
+		// basic query SELECT * FROM `event` WHERE tgl_akhir <= '2018-09-31' AND tgl_akhir >= '2018-09-02'
 		if($tglMulai == "" and $tglAkhir == "") {
 			// lama $filterTgl = "tgl_mulai >= '$tglMulaiDefault' AND tgl_akhir <= '$tglAkhirDefault'";
-			$filterTgl = "tgl_akhir >= '$tglAkhirDefault'";
+			$filterTgl = "tgl_akhir <= '$tglAkhirDefault' AND tgl_akhir >= '$tglSkrg'";
 		}else {
 			if($tglMulai == "") {
 				$tglMulai = $tglSkrg;
@@ -92,7 +98,7 @@ class event extends resto {
 				// $tglAkhir = '2105-12-31';
 				$tglAkhir = date('Y-m-31');
 			}
-			$filterTgl = "tgl_akhir >= '$tglAkhir'";
+			$filterTgl = "tgl_akhir <= '$tglAkhir'";
 		}
 		// $sqlQuery = "SELECT * FROM event WHERE title LIKE '%$keyword%' AND category LIKE '%$cat%' AND $filterTgl ORDER BY added DESC";
 		$sqlQuery = $this->query("SELECT * FROM event LEFT JOIN hotel ON event.idhotel = hotel.idhotel WHERE nama LIKE '%$keyword%' AND category LIKE '%$cat%' AND $filterTgl AND region LIKE '%$region%' ORDER BY event.added DESC");

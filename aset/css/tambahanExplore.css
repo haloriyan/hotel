@@ -1,0 +1,63 @@
+body { background-color: #ecf0f1; }
+.atas {
+	position: fixed !important;
+	background-color: #cb0029 !important;
+}
+.container,.kiri {
+	top: 72px;
+}
+.contaienr { top: 95px; }
+.list {
+	width: 47%;
+	margin: 5px 10px;
+	margin-bottom: 75px;
+	height: 300px;
+	cursor: default;
+	position: relative;
+	z-index: 1;
+}
+.list a {
+	text-decoration: none;
+	color: #fff;
+}
+.list .ket {
+	position: static;
+	margin-top: -300px;
+	height: 300px;
+	background: rgba(0,0,0,0.45);
+	z-index: 5;
+}
+.ket #keterangan { margin-top: 56%; }
+.tgl {
+	margin-top: -22px;
+	position: relative;
+	top: -160px;
+	float: right;
+}
+.atas { position: absolute; }
+		#subCity { top: -2500px;position: absolute;right: 8.5%;transition: 0.5s; }
+		#subUser { right: 0%; }
+		.atas:hover { background: #cb0029;border: none; }
+		.atas:hover .sub { background: #cb0029;border: none; }
+		#adaSub:hover #subCity { top: 80px; }
+
+		#subCity li {
+			float: none;
+			transition: 0.5s;
+			line-height: 55px;
+		}
+		#subCity li:hover {
+			background-color: #444;
+		}
+#subUser { right: 0px;width: 17.5%; }
+#subUser li {
+	width: 100%;
+}
+@media (max-width: 720px) {
+	.list {
+		float: none;
+		width: 94%;
+		margin-bottom: 55px;
+	}
+	.tgl { margin-top: 0px;top: -130px; }
+}

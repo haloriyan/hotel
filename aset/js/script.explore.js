@@ -56,41 +56,11 @@ load()
 
 tekan("Escape", () => {
     hilang(".bg")
-    hilang("#formLogin")
-    hilang("#popupRegist")
-})
-klik("#xLog", () => {
-    hilang(".bg")
-    hilang("#formLogin")
-})
-klik("#xReg", () => {
-    hilang(".bg")
-    hilang("#popupRegist")
-})
-klik("#linkLogin", () => {
-    hilang("#formLogin")
-    muncul("#popupRegist")
+    hilangPopup("#formLoginBaru")
 })
 
 let val = pilih("#q").value
 let set = "namakuki=kwExplore&value="+val+"&durasi=1000"
 pos("aksi/setCookie.php", set, function() {
 	load()
-})
-
-klik("#tblLogin", function() {
-	muncul(".bg")
-	muncul("#formLogin")
-})
-submit("#formSignIn", function() {
-    let email = pilih("#mailLog").value
-    let pwd = pilih("#pwdLog").value
-    let log = "email="+email+"&pwd="+pwd
-    if(email == "" || pwd == "") {
-        return false
-    }
-    pos("aksi/user/login.php", log, function() {
-        location.reload()
-    })
-    return false
 })

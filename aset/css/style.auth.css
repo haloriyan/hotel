@@ -1,0 +1,80 @@
+body {
+	background-color: #ecf0f1;
+}
+
+.logoHome {
+	background-color: #cb0023;
+	text-align: center;
+	position: absolute;
+	top: 0px;left: 0px;right: 0px;
+}
+
+.container {
+	position: absolute;
+	top: 133px;left: 15%;right: 15%;
+	background-color: #fff;
+	border-radius: 6px;
+}
+.bagLogin {
+	float: left;
+	height: 453px;
+}
+.bagLogin { padding: 15px 0px; }
+.bagLogin form {
+	margin-top: 25px;
+}
+.bagLogin form h2 {
+	margin-bottom: 35px;
+}
+.bagTombol { margin-top: 20px; }
+.box {
+	border-radius: 0px;
+	border: none;
+	padding: 0px;
+	font-size: 18px;
+	width: 100%;
+	color: #555;
+}
+
+#loginPublic {
+	color: #444;
+	width: 59.76%;
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+	border: 1px solid #ddd;
+}
+#loginMarcom {
+	width: 40%;
+	background-color: #cb0023;
+	color: #fff;
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+#loginPublic button {
+	background-color: #cb0023;
+	color: #fff;
+}
+#loginMarcom button {
+	background-color: #fff;
+	color: #cb0023;
+	font-family: OBold;
+}
+#formLoginPublic .box,#formRegPublic .box {
+	border-bottom: 1px solid #ddd;
+}
+#formLoginMarcom .box,#formRegMarcom .box {
+	background: none;
+	color: #fff;
+	border-bottom: 1px solid #fff;
+}
+
+#optLogin {
+	margin-top: 14px;
+}
+#loginMarcom #optLogin a { color: #fff; }
+#loginPublic #optLogin a { color: #cb0023; }
+
+
+#formRegPublic,#formRegMarcom,#suksesRegMarcom,#suksesRegPublic {
+	display: none;
+}

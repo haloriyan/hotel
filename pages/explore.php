@@ -6,11 +6,9 @@ $nama = $user->info($sesi, "nama");
 $namaPertama = explode(" ", $nama)[0];
 
 setcookie('kwExplore', $_GET['q'], time() + 3650, "/");
-if(isset($_GET['cat'])) {
+if(isset($_GET['cat']) && $_GET['cat'] != "") {
 	setcookie('category', $_GET['cat'], time() + 3650, "/");
 }
-
-setcookie('region', '', time() + 1, "/");
 setcookie('tglMulai', '', time() + 1, "/");
 setcookie('tglAkhir', '', time() + 1, "/");
 
@@ -24,12 +22,18 @@ if(isset($q)) {
 	$subJudul = "";
 }
 
+if($_GET['city'] != null) {
+	setcookie('region', $_GET['city'], time() + 3666, "/");
+}
+
 // delete cookie
 setcookie('tglMulai', '', time() + 1, "/");
 setcookie('tglAkhir', '', time() + 1, "/");
 
 // Category
 $category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping","Recreation","Parties","Others"];
+$cities = ["Bali","Bandung","Batam","Bogor","Jakarta","Lombok","Makassar","Malang","Pekalongan","Semarang","Solo","Surabaya","Yogyakarta"];
+$city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Surabaya","Yogyakarta"];
 ?>
 <!DOCTYPE html>
 <html>
@@ -42,47 +46,8 @@ $category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping"
 	<link href='aset/css/jquery-ui.min.css' rel='stylesheet'>
 	<link href='aset/css/style.index.css' rel='stylesheet'>
 	<link href='aset/css/style.explore.css' rel='stylesheet'>
-	<style>
-		.container,.kiri {
-			top: 72px;
-		}
-		.contaienr { top: 95px; }
-		.list {
-			width: 47%;
-			margin: 5px 10px;
-			margin-bottom: 75px;
-			height: 300px;
-			cursor: default;
-			position: relative;
-			z-index: 1;
-		}
-		.list a {
-			text-decoration: none;
-			color: #fff;
-		}
-		.list .ket {
-			position: static;
-			margin-top: -300px;
-			height: 300px;
-			background: rgba(0,0,0,0.45);
-			z-index: 5;
-		}
-		.ket #keterangan { margin-top: 56%; }
-		.tgl {
-			margin-top: -22px;
-			position: relative;
-			top: -160px;
-			float: right;
-		}
-		@media (max-width: 720px) {
-			.list {
-				float: none;
-				width: 94%;
-				margin-bottom: 55px;
-			}
-			.tgl { margin-top: 0px;top: -130px; }
-		}
-	</style>
+	<link href="aset/css/tambahanIndex.css" rel="stylesheet">
+	<link href="aset/css/tambahanExplore.css" rel="stylesheet">
 </head>
 <body>
 
@@ -95,8 +60,24 @@ $category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping"
 	</div>
 	<nav class="menu">
 		<a href="./"><li>Home</li></a>
-		<a href="./explore"><li>Explore</li></a>
-		<a href="#"><li>City</li></a>
+		<a href="./explore"><li id="adaSub">Explore &nbsp; <i class="fa fa-angle-down"></i>
+			<nav class="sub" id="subCat">
+				<?php
+				foreach ($category as $key => $value) {
+					echo "<a href='./explore&q=&cat=".$value."'><li>".$value."</li></a>";
+				}
+				?>
+			</nav>
+		</li></a>
+		<a href="#"><li id="adaSub">City &nbsp; <i class="fa fa-angle-down"></i>
+			<nav class="sub" id="subCity">
+				<?php
+				foreach ($city as $key => $value) {
+					echo "<a href='./explore&q=&cat=&city=".$value."'><li>".$value."</li></a>";
+				}
+				?>
+			</nav>
+		</li></a>
 		<?php
 		if(empty($sesi)) { ?>
 			<a href="#formLogin" id="tblLogin"><li><i class="fa fa-user"></i> &nbsp;Sign in</li></a>
@@ -104,11 +85,11 @@ $category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping"
 		}else {
 			?>
 			<li id="adaSub">Hello <?php echo $namaPertama; ?> <i class="fa fa-angle-down"></i>
-				<ul class="sub merah-2">
+				<nav class="sub merah-2" id="subUser">
 					<a href="./my"><li><div id="icon"><i class="fa fa-briefcase"></i></div> My Listing</li></a>
 					<a href="./detail"><li><div id="icon"><i class="fa fa-cog"></i></div> Settings</li></a>
 					<a href="./logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
-				</ul>
+				</nav>
 			</li>
 			<?php
 		}
@@ -142,19 +123,16 @@ $category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping"
 			<div class="isi">City :</div>
 			<select class='box' id='region' onchange='city(this.value)'>
 				<option value="">City</option>
-				<option>Bali</option>
-				<option>Bandung</option>
-				<option>Batam</option>
-				<option>Bogor</option>
-				<option>Jakarta</option>
-				<option>Lombok</option>
-				<option>Makassar</option>
-				<option>Malang</option>
-				<option>Pekalongan</option>
-				<option>Semarang</option>
-				<option>Solo</option>
-				<option>Surabaya</option>
-				<option>Yogyakarta</option>
+				<?php
+				foreach ($cities as $key => $value) {
+					if($_COOKIE['region'] == $value) {
+						$selected = "selected";
+					}else {
+						$selected = "";
+					}
+					echo "<option ".$selected.">".$value."</option>";
+				}
+				?>
 			</select>
 			<!--
 			<div class="bag bag-5">
@@ -177,46 +155,79 @@ $category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping"
 </div>
 
 <div class="bg"></div>
-<div class="formPopup" id="formLogin">
-	<form class="wrap" id="formSignIn">
-		<h4><i class="fa fa-user"></i> &nbsp; Sign in
-			<div id="xLog" class="ke-kanan"><i class="fa fa-close"></i></div>
-		</h4>
-		<input type="text" class="box" placeholder="Email" id="mailLog"><br />
-		<input type="password" class="box" placeholder="Password" id="pwdLog"><br />
-		<div class="bag-tombol">
-			<button class="merah-2">Sign in</button>
-		</div>
-		<div class="bag bag-5">
-			<input type="checkbox" id="rememberMe"> <label for="rememberMe">Remember me</label>
-		</div>
-		<div class="bag bag-5 rata-kanan">
-			<a href="#">Forgot password?</a>
-		</div>
-		<br />
-		<div class="rata-tengah" style="margin-bottom: 15px;">
-			<a href="#popupRegist" id="linkLogin">Register</a> | <a href="./hotel/login">Hotel</a>
-		</div>
-	</form>
-</div>
-<div class="formPopup" id="popupRegist">
-	<div class="wrap">
-		<h4><i class="fa fa-user"></i> &nbsp; Register
-			<div id="xReg" class="ke-kanan"><i class="fa fa-close"></i></div>
-		</h4>
-		<form id="formRegist">
-			<input type="text" class="box" id="nameReg" placeholder="Name"><br />
-			<input type="email" class="box" id="mailReg" placeholder="Email"><br />
-			<input type="password" class="box" id="pwdReg" placeholder="Password"><br />
-			<div class="bag-tombol" style="margin-top: 10px;">
-				<button class="merah-2" id="register">REGISTER</button>
+<div class="popupWrapper" id="formLoginBaru">
+	<div id="xLog"><i class="fa fa-close"></i> UASU</div>
+	<div class="popup">
+		<div id="loginPublic" class="bagLogin">
+			<div class="wrap"> 
+				<form id="formLoginPublic">
+					<h3>Login User</h3>
+					<div>E-Mail :</div>
+					<input type="email" class="box" id="emailLogPublic" required>
+					<div>Password :</div>
+					<input type="password" class="box" id="pwdLogPublic" required>
+					<div class="bag bag-3">
+						<button class="tbl tblLogins">LOGIN</button>
+					</div>
+					<div class="bag bag-4" id="optLogin">
+						or <a href="#" id="linkRegPublic">register</a>
+					</div>
+				</form>
+				<form id="formRegPublic">
+					<h3>Register User</h3>
+					<div>Name :</div>
+					<input type="text" class="box" id="nameRegPublic" required>
+					<div>E-Mail :</div>
+					<input type="email" class="box" id="emailRegPublic" required>
+					<div>Password :</div>
+					<input type="password" class="box" id="pwdRegPublic" required>
+					<div class="bag bag-4">
+						<button class="tbl tblLogins">REGISTER</button>
+					</div>
+					<div class="bag bag-4" id="optLogin">
+						or <a href="#" id="linkLogPublic">login</a>
+					</div>
+				</form>
 			</div>
-		</form>
+		</div>
+		<div id="loginMarcom" class="bagLogin">
+			<div class="wrap"> 
+				<form id="formLoginMarcom">
+					<h3>Login as Hotel</h3>
+					<div>E-Mail :</div>
+					<input type="email" class="box" id="emailLogMarcom">
+					<div>Password :</div>
+					<input type="password" class="box" id="pwdLogMarcom">
+					<div class="bag bag-5">
+						<button class="tbl putih tblLogins">LOGIN</button>
+					</div>
+					<div class="bag bag-4" id="optLogin">
+						or <a href="#" id="linkRegMarcom">register</a>
+					</div>
+				</form>
+				<form id="formRegMarcom">
+					<h3>Register as Hotel</h3>
+					<div>Hotel's name :</div>
+					<input type="text" class="box" id="nameRegMarcom">
+					<div>E-Mail :</div>
+					<input type="email" class="box" id="emailRegMarcom">
+					<div>Password :</div>
+					<input type="password" class="box" id="pwdRegMarcom">
+					<div class="bag bag-5">
+						<button class="tbl putih tblLogins">REGISTER</button>
+					</div>
+					<div class="bag bag-4" id="optLogin">
+						or <a href="#" id="linkLogMarcom">login</a>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
 </div>
 
 <script src='aset/js/embo.js'></script>
 <script src='aset/js/jquery-3.1.1.js'></script>
+<script src="aset/js/script.index.js"></script>
 <script src='aset/js/jquery-ui.min.js'></script>
 <script src='aset/js/script.explore.js'></script>
 <script>
@@ -236,6 +247,27 @@ $category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping"
 		useCurrent: false,
 		showClose: true,
 		dateFormat: 'yy-mm-dd',
+	})
+	submit("#formLoginPublic", () => {
+		let email = pilih("#emailLogPublic").value
+		let pwd = pilih("#pwdLogPublic").value
+		let log = "email="+email+"&pwd="+pwd
+		pos("aksi/user/login.php", log, (err) => {
+			location.reload()
+		})
+		return false
+	})
+	submit("#formRegPublic", () => {
+		let name = pilih("#nameRegPublic").value
+		let email = pilih("#emailRegPublic").value
+		let pwd = pilih("#pwdRegPublic").value
+		let reg = "name="+name+"&email="+email+"&pwd="+pwd
+		pos("aksi/user/register.php", reg, () => {
+			hilangPopup("#formLoginBaru")
+			muncul(".bg")
+			muncul("#suksesReg")
+		})
+		return false	
 	})
 </script>
 

@@ -1,0 +1,77 @@
+.bg { z-index: 5; }
+.popup { z-index: 6; }
+.atas { position: absolute; }
+#subCity { top: -2500px;position: absolute;right: 8.5%;transition: 0.5s; }
+#subUser { right: 0%; }
+.atas:hover { background: #cb0029;border: none; }
+.atas:hover .sub { background: #cb0029;border: none; }
+#adaSub:hover .sub { top: 80px; }
+#subCity li,#subCat li {
+	float: none;
+	transition: 0.5s;
+	line-height: 55px;
+}
+.sub li:hover {
+	background-color: #444;
+}
+#subCat {
+	width: 20%;right: 10%;
+}
+
+.bagLogin {
+	float: left;
+}
+#loginPublic {
+	width: 60%;
+}
+#loginMarcom {
+	width: 40%;
+	background-color: #cb0029;
+	color: #fff;
+}
+#formLoginBaru {
+	width: 70%;left: 15%;
+}
+#formLoginBaru .wrap { margin: 35px 5% 40px 5%; }
+#formLoginBaru .popup { padding-bottom: 0px; }
+
+#formLoginBaru .box {
+	background: none;
+	border: none;
+	border-bottom: 1px solid #fff;
+	margin-bottom: 25px;
+	border-radius: 0px;
+	padding: 0px;
+	width: 100%;
+	color: #fff;
+	font-size: 18px;
+	transition: 0.4s;
+}
+#formLoginPublic .box,#formRegPublic .box {
+	border-bottom: 1px solid #ddd;
+	color: #555;
+}
+#formLoginPublic button,#formRegPublic button { background-color: #cb0029;color: #fff; }
+#formLoginBaru form { margin-top: 20px;margin-bottom: 100px; }
+#formLoginBaru form h3 { margin-bottom: 50px; }
+#formLoginPublic .box:focus,#formRegPublic .box:focus { border-bottom: 1px solid #cb0029; }
+.tblLogins {
+	border-radius: 0px;
+	background-color: #fff;
+	color: #cb0029;
+	font-family: OBold;
+	margin-top: 15px;
+}
+#optLogin {
+	margin-top: 28px;
+}
+#formLoginMarcom a,#formRegMarcom a { color: #fff; }
+#formLoginMarcom .wrap {
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+#formRegPublic,#formRegMarcom,#suksesRegMarcom,#suksesRegPublic {
+	display: none;
+}
+#formLoginMarcom { height: 375px; }

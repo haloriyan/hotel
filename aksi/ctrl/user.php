@@ -36,7 +36,7 @@ class user extends controller {
 		$sesi = $_SESSION['upublic'];
 		if($opt != "") {
 			if(empty($sesi)) {
-				header("location: ./");
+				header("location: ./auth");
 			}
 		}
 		return $_SESSION['upublic'];

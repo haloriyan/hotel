@@ -4,6 +4,10 @@ error_reporting(1);
 $sesi = $user->sesi();
 $nama = $user->info($sesi, "nama");
 $namaPertama = explode(" ", $nama)[0];
+
+$city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Surabaya","Yogyakarta"];
+$category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping","Recreation","Parties","Others"];
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,15 +17,15 @@ $namaPertama = explode(" ", $nama)[0];
 	<title>Dailyhotels</title>
 	<link href="aset/fw/build/fw.css" rel="stylesheet">
 	<link href="aset/fw/build/font-awesome.min.css" rel="stylesheet">
-	<link href="aset/css/bootstrap.min.css">
 	<link href="aset/css/style.home.css" rel="stylesheet">
 	<link href="aset/css/style.index.css" rel="stylesheet">
+	<link href="aset/css/tambahanIndex.css" rel="stylesheet">
 	<style>
 		body {
 			background: url(aset/gbr/bg.png) no-repeat top center;
 			background-size: cover;
+			background-attachment: fixed;
 		}
-		.sub { right: 0%; }
 	</style>
 </head>
 <body>
@@ -32,8 +36,24 @@ $namaPertama = explode(" ", $nama)[0];
 	<div id="tblMenu" aksi="bkMenu"><i class="fa fa-bars"></i></div>
 	<nav class="menu">
 		<a href="#"><li>Home</li></a>
-		<a href="./explore"><li>Explore</li></a>
-		<a href="#"><li>City</li></a>
+		<a href="./explore"><li id="adaSub">Explore &nbsp; <i class="fa fa-angle-down"></i>
+			<nav class="sub" id="subCat">
+				<?php
+				foreach ($category as $key => $value) {
+					echo "<a href='./explore&q=&cat=".$value."'><li>".$value."</li></a>";
+				}
+				?>
+			</nav>
+		</li></a>
+		<a href="#"><li id="adaSub">City &nbsp; <i class="fa fa-angle-down"></i>
+			<nav class="sub" id="subCity">
+				<?php
+				foreach ($city as $key => $value) {
+					echo "<a href='./explore&q=&cat=&city=".$value."'><li>".$value."</li></a>";
+				}
+				?>
+			</nav>
+		</li></a>
 		<?php
 		if(empty($sesi)) { ?>
 			<a href="#formLogin" id="tblLogin"><li><i class="fa fa-user"></i> &nbsp;Sign in</li></a>
@@ -41,7 +61,7 @@ $namaPertama = explode(" ", $nama)[0];
 		}else {
 			?>
 			<li id="adaSub">Hello <?php echo $namaPertama; ?> <i class="fa fa-angle-down"></i>
-				<ul class="sub">
+				<ul class="sub" id="subUser">
 					<a href="./my"><li><div id="icon"><i class="fa fa-briefcase"></i></div> My Listing</li></a>
 					<a href="./detail"><li><div id="icon"><i class="fa fa-cog"></i></div> Settings</li></a>
 					<a href="./logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
@@ -73,6 +93,7 @@ $namaPertama = explode(" ", $nama)[0];
 							<option>Shopping</option>
 							<option>Recreation</option>
 							<option>Parties</option>
+							<option>Others</option>
 						</select>
 					</div>
 					<button id="search" class="tbl merah-2">
@@ -84,133 +105,7 @@ $namaPertama = explode(" ", $nama)[0];
 	</div>
 </div>
 
-<div class="bawah rata-tengah" style="display: none;">
-	<div class="wrap">
-		<h4>Categories</h4>
-		<h2>What do you need to find?</h2>
-		<div id="index">
-			<div class="list">
-				<img src="aset/gbr/squid.jpg">
-				<div class="ket">
-					<div class="wrap">
-						<div id="iconKet"><i class="fa fa-facebook"></i></div>
-						<div id="keterangan">
-							<h3>Room</h3>
-							<p>4 listings</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="list">
-				<img src="aset/gbr/squid.jpg">
-				<div class="ket">
-					<div class="wrap">
-						<div id="iconKet"><i class="fa fa-facebook"></i></div>
-						<div id="keterangan">
-							<h3>Room</h3>
-							<p>4 listings</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="list">
-				<img src="aset/gbr/squid.jpg">
-				<div class="ket">
-					<div class="wrap">
-						<div id="iconKet"><i class="fa fa-facebook"></i></div>
-						<div id="keterangan">
-							<h3>Room</h3>
-							<p>4 listings</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<h4>Latest</h4>
-		<h2>Explore Hotels</h2>
-		<div id="index">
-			<div class="listHotel">
-				<img src="aset/gbr/sponbob.jpg">
-				<div class="ketBuka">
-					<div id="open">OPEN</div>
-				</div>
-				<div class="ketHotel rata-tengah">
-					<img src="aset/gbr/sponbob.jpg" id="iconHotel">
-					<h4>ARTOTEL Surabaya</h4>
-					<p>
-						Designed with colonial architecture and twist of
-					</p>
-				</div>
-			</div>
-			<div class="listHotel">
-				<img src="aset/gbr/sponbob.jpg">
-				<div class="ketBuka">
-					<div id="open">OPEN</div>
-				</div>
-				<div class="ketHotel rata-tengah">
-					<img src="aset/gbr/sponbob.jpg" id="iconHotel">
-					<h4>ARTOTEL Surabaya</h4>
-					<p>
-						Designed with colonial architecture and twist of
-					</p>
-				</div>
-			</div>
-			<div class="listHotel">
-				<img src="aset/gbr/sponbob.jpg">
-				<div class="ketBuka">
-					<div id="open">OPEN</div>
-				</div>
-				<div class="ketHotel rata-tengah">
-					<img src="aset/gbr/sponbob.jpg" id="iconHotel">
-					<h4>ARTOTEL Surabaya</h4>
-					<p>
-						Designed with colonial architecture and twist of
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
 <div class="bg"></div>
-<div class="formPopup" id="formLogin">
-	<form class="wrap" id="formSignIn">
-		<h4><i class="fa fa-user"></i> &nbsp; Sign in
-			<div id="xLog" class="ke-kanan"><i class="fa fa-close"></i></div>
-		</h4>
-		<input type="text" class="box" placeholder="Email" id="mailLog"><br />
-		<input type="password" class="box" placeholder="Password" id="pwdLog"><br />
-		<div class="bag-tombol">
-			<button class="merah-2">Sign in</button>
-		</div>
-		<div class="bag bag-5">
-			<input type="checkbox" id="rememberMe"> <label for="rememberMe">Remember me</label>
-		</div>
-		<div class="bag bag-5 rata-kanan">
-			<a href="#">Forgot password?</a>
-		</div>
-		<br />
-		<div class="rata-tengah" style="margin-bottom: 15px;">
-			<a href="#popupRegist" id="linkLogin">Register</a> | <a href="./hotel/login">Hotel</a>
-		</div>
-	</form>
-</div>
-
-<div class="formPopup" id="popupRegist">
-	<div class="wrap">
-		<h4><i class="fa fa-user"></i> &nbsp; Register
-			<div id="xReg" class="ke-kanan"><i class="fa fa-close"></i></div>
-		</h4>
-		<form id="formRegist">
-			<input type="text" class="box" id="nameReg" placeholder="Name"><br />
-			<input type="email" class="box" id="mailReg" placeholder="Email"><br />
-			<input type="password" class="box" id="pwdReg" placeholder="Password"><br />
-			<div class="bag-tombol" style="margin-top: 10px;">
-				<button class="merah-2" id="register">REGISTER</button>
-			</div>
-		</form>
-	</div>
-</div>
 <div class="formPopup" id="notif">
 	<div class="wrap">
 		<h4><i class="fa fa-info"></i> &nbsp; Alert!</h4>
@@ -235,6 +130,81 @@ $namaPertama = explode(" ", $nama)[0];
 	</div>
 </div>
 
+<div class="popupWrapper" id="formLoginBaru">
+	<div class="popup">
+		<div id="loginPublic" class="bagLogin">
+			<div class="wrap"> 
+				<form id="formLoginPublic">
+					<h3>Login User</h3>
+					<div>E-Mail :</div>
+					<input type="email" class="box" id="emailLogPublic">
+					<div>Password :</div>
+					<input type="password" class="box" id="pwdLogPublic">
+					<div class="bag bag-3">
+						<button class="tbl tblLogins">LOGIN</button>
+					</div>
+					<div class="bag bag-4" id="optLogin">
+						or <a href="#" id="linkRegPublic">register</a>
+					</div>
+				</form>
+				<form id="formRegPublic">
+					<h3>Register User</h3>
+					<div>Name :</div>
+					<input type="text" class="box" id="nameRegPublic">
+					<div>E-Mail :</div>
+					<input type="email" class="box" id="emailRegPublic">
+					<div>Password :</div>
+					<input type="password" class="box" id="pwdRegPublic">
+					<div class="bag bag-4">
+						<button class="tbl tblLogins">REGISTER</button>
+					</div>
+					<div class="bag bag-4" id="optLogin">
+						or <a href="#" id="linkLogPublic">login</a>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div id="loginMarcom" class="bagLogin">
+			<div class="wrap"> 
+				<form id="formLoginMarcom">
+					<h3>Login as Hotel</h3>
+					<div>E-Mail :</div>
+					<input type="email" class="box" id="emailLogMarcom">
+					<div>Password :</div>
+					<input type="password" class="box" id="pwdLogMarcom">
+					<div class="bag bag-5">
+						<button class="tbl putih tblLogins">LOGIN</button>
+					</div>
+					<div class="bag bag-4" id="optLogin">
+						or <a href="#" id="linkRegMarcom">register</a>
+					</div>
+				</form>
+				<form id="formRegMarcom">
+					<h3>Register as Hotel</h3>
+					<div>Hotel's name :</div>
+					<input type="text" class="box" id="nameRegMarcom">
+					<div>E-Mail :</div>
+					<input type="email" class="box" id="emailRegMarcom">
+					<div>Password :</div>
+					<input type="password" class="box" id="pwdRegMarcom">
+					<div class="bag bag-5">
+						<button class="tbl putih tblLogins">REGISTER</button>
+					</div>
+					<div class="bag bag-4" id="optLogin">
+						or <a href="#" id="linkLogMarcom">login</a>
+					</div>
+				</form>
+				<form id="suksesRegMarcom">
+					<h3>You've been registered !</h3>
+					<p>
+						Next, you must verify your email address and then complete more information about your hotel before you can add an event
+					</p>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
 <script src="aset/js/embo.js"></script>
 <?php
 if(isset($_COOKIE['kukiLogin'])) {
@@ -245,75 +215,15 @@ muncul("#notif")
 }
 if($_GET['auth']) {
 	echo '<script>
-muncul(".bg")
-muncul("#formLogin")
+munculPopup("#formLoginBaru", pengaya("#formLoginBaru", "top: 90px"))
 </script>';
 }
 ?>
+<script src="aset/js/script.index.js"></script>
 <script>
-	window.addEventListener("scroll", function() {
-		var skrol = window.pageYOffset
-		if(skrol >= 40) {
-			pengaya(".atas", "background: #cb0029")
-			pengaya(".sub", "background: #cb0029")
-		}else {
-			pengaya(".atas", "background: none")
-			pengaya(".sub", "background: none")
-		}
-	})
-
-	klik(".bg", function() {
-		hilang(".bg")
-		hilang("#formLogin")
-		hilang("#notif")
-	})
 	klik("#xNotif", function() {
 		hilang(".bg")
 		hilang("#notif")
-	})
-
-	klik("#linkLogin", function() {
-		hilang("#formLogin")
-		muncul("#popupRegist")
-	})
-
-	klik("#tblMenu", function() {
-		let tbl = pilih("#tblMenu")
-		let aksi = tbl.getAttribute("aksi")
-		if(aksi == "bkMenu") {
-			pengaya(".menu", "left: 0%")
-			tbl.setAttribute("aksi", "xMenu")
-		}else {
-			pengaya(".menu", "left: 100%")
-			tbl.setAttribute("aksi", "bkMenu")
-		}
-	})
-
-	submit("#formSignIn", function() {
-		let email = pilih("#mailLog").value
-		let pwd = pilih("#pwdLog").value
-		let log = "email="+email+"&pwd="+pwd
-		if(email == "" || pwd == "") {
-			return false
-		}
-		pos("aksi/user/login.php", log, function() {
-			mengarahkan("./")
-		})
-		return false
-	})
-	submit("#formRegist", function() {
-		let name = pilih("#nameReg").value
-		let email = pilih("#mailReg").value
-		let pwd = pilih("#pwdReg").value
-		let reg = "name="+name+"&email="+email+"&pwd="+pwd
-		if(name == "" || email == "" || pwd == "") {
-			return false
-		}
-		pos("aksi/user/register.php", reg, function() {
-			hilang("#popupRegist")
-			muncul("#suksesReg")
-		})
-		return false
 	})
 	submit("#action", function() {
 		let q = pilih("#q").value
@@ -321,26 +231,46 @@ muncul("#formLogin")
 		mengarahkan("./explore&q="+q+"&cat="+cat)
 		return false
 	})
-
-	function hilangForm() {
-		hilang(".bg")
-		hilang(".formPopup")
-		hilang("#popupRegist")
-		hilang("#notif")
-		hilang("#suksesReg")
-	}
-	tekan("Escape", function() {
-		hilangForm()
+	submit("#formLoginPublic", () => {
+		let email = pilih("#emailLogPublic").value
+		let pwd = pilih("#pwdLogPublic").value
+		let log = "email="+email+"&pwd="+pwd
+		pos("aksi/user/login.php", log, (err) => {
+			location.reload()
+		})
+		return false
 	})
-	klik("#xLog", function() {
-		hilangForm()
+	submit("#formRegPublic", () => {
+		let name = pilih("#nameRegPublic").value
+		let email = pilih("#emailRegPublic").value
+		let pwd = pilih("#pwdRegPublic").value
+		let reg = "name="+name+"&email="+email+"&pwd="+pwd
+		pos("aksi/user/register.php", reg, () => {
+			hilangPopup("#formLoginBaru")
+			muncul(".bg")
+			muncul("#suksesReg")
+		})
+		return false	
 	})
-	klik("#xReg", function() {
-		hilangForm()
+	submit("#formLoginMarcom", () => {
+		let email = pilih("#emailLogMarcom").value
+		let pwd = pilih("#pwdLogMarcom").value
+		let log = "email="+email+"&pwd="+pwd
+		pos("aksi/hotel/login.php", log, () => {
+			mengarahkan("./hotel/dashboard")
+		})
+		return false
 	})
-	klik("#tblLogin", function() {
-		muncul(".bg")
-		muncul("#formLogin")
+	submit("#formRegMarcom", () => {
+		let name = pilih("#nameRegMarcom").value
+		let email = pilih("#emailRegMarcom").value
+		let pwd = pilih("#pwdRegMarcom").value
+		let reg = "name="+name+"&email="+email+"&pwd="+pwd
+		pos("aksi/hotel/register.php", reg, () => {
+			hilang("#formRegMarcom")
+			muncul("#suksesRegMarcom")
+		})
+		return false
 	})
 </script>
 

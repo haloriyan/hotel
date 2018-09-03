@@ -1,3 +1,6 @@
+.atas {
+	position: fixed;
+}
 .open h3,.open .openHours {
 	display: block;
 	text-align: left;

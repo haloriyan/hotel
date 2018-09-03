@@ -7,12 +7,18 @@ $keyword = $_COOKIE['kwExplore'];
 $tglMulai = $_COOKIE['tglMulai'];
 $tglAkhir = $_COOKIE['tglAkhir'];
 $category = $_COOKIE['category'];
-$region   = $_COOKIE['region'];
+$city   = $_COOKIE['region'];
 
-$all = $event->all($keyword, $tglMulai, $tglAkhir, $category, $region);
+$all = $event->all($keyword, $tglMulai, $tglAkhir, $category, $city);
 
 if($all == "null") {
-	echo "Tidak ada event<br />";
+	if($category != "") {
+		$resNull = "for ".$category;
+	}
+	if($city != "") {
+		$resCity = " in ".$city;
+	}
+	echo "No result ".$resNull.$resCity."<br />";
 	exit();
 }
 

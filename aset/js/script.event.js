@@ -72,30 +72,9 @@ tekan("Escape", function() {
 	hilangContact()
 	hilangPopup("#popupBook")
 	hilangPopup("#suksesBook")
-	hilang("#formLogin")
-	hilang("#popupRegist")
+	hilangPopup("#formLoginBaru")
 })
 
 klik("#xBook", function() {
 	hilangPopup("#popupBook")
-})
-klik("#xLog", () => {
-	hilang(".bg")
-	hilang("#formLogin")
-})
-klik("#xReg", () => {
-	hilang(".bg")
-	hilang("#popupRegist")
-})
-submit("#formSignIn", function() {
-	let email = pilih("#mailLog").value
-	let pwd = pilih("#pwdLog").value
-	let log = "email="+email+"&pwd="+pwd
-	if(email == "" || pwd == "") {
-		return false
-	}
-	pos("../aksi/user/login.php", log, function() {
-		location.reload()
-	})
-	return false
 })
