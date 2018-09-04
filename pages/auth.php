@@ -111,26 +111,12 @@ $cookieNotif = $_COOKIE['kukiLogin'];
 </div>
 
 <div class="bg"></div>
-<div class="popupWrapper" id="notif">
-	<div class="popup">
-		<div class="wrap">
-			<h3><i class="fa fa-info"></i> &nbsp; Alert!
-				<div class="ke-kanan" id="xNotif"><i class="fa fa-close"></i></div>
-			</h3>
-			<p>
-				<?php echo $cookieNotif; ?>
-			</p>
-		</div>
-	</div>
-</div>
+<div id="loadNotif"></div>
 
 <script src='aset/js/embo.js'></script>
 <script>
 	tekan("Escape", () => {
-		hilangPopup("#notif")
-	})
-	klik("#xNotif", () => {
-		hilangPopup("#notif")
+		// hilangPopup("#notif")
 	})
 	klik("#linkLogMarcom", () => {
 		hilang("#formRegMarcom")
@@ -154,7 +140,7 @@ $cookieNotif = $_COOKIE['kukiLogin'];
 		muncul("#formRegPublic")
 	})
 
-	let redirect = pilih("#redirect").value
+	let redirect = atob(pilih("#redirect").value)
 
 	submit("#formRegPublic", () => {
 		let name = pilih("#nameRegPublic").value
@@ -172,8 +158,15 @@ $cookieNotif = $_COOKIE['kukiLogin'];
 		let email = pilih("#emailLogPublic").value
 		let pwd = pilih("#pwdLogPublic").value
 		let log = "email="+email+"&pwd="+pwd
+		pos("aksi/setCookie.php", "namakuki=bagLogin&value=public&durasi=1255", () => {
+			//
+		})
 		pos("aksi/user/login.php", log, () => {
-			mengarahkan("./my")
+			if(redirect == "") {
+				mengarahkan("./my")
+			}else {
+				mengarahkan(redirect)
+			}
 		})
 		return false
 	})
@@ -196,11 +189,17 @@ $cookieNotif = $_COOKIE['kukiLogin'];
 			if(redirect == "") {
 				mengarahkan("./hotel/dashboard")
 			}else {
-				mengarahkan("./hotel/"+redirect)
+				mengarahkan(redirect)
 			}
 		})
 		return false
 	})
+
+	async function loadLoginStatus() {
+		ambil("aksi/loadLoginStatus.php", (res) => {
+			tulis("#loadNotif", (res))
+		})
+	}
 </script>
 
 <?php

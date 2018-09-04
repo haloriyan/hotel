@@ -19,7 +19,6 @@ if($namaEvent == "") {
 	die("error");
 }
 $cover = $event->info($idevent, "covers");
-$logo = $event->info($idevent, "logos");
 $address = $event->info($idevent, "address");
 $description = $event->info($idevent, "description");
 $price = toIdr($event->info($idevent, "price"));

@@ -26,6 +26,8 @@ if($_GET['city'] != null) {
 	setcookie('region', $_GET['city'], time() + 3666, "/");
 }
 
+$urlNow = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
 // delete cookie
 setcookie('tglMulai', '', time() + 1, "/");
 setcookie('tglAkhir', '', time() + 1, "/");
@@ -107,80 +109,12 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 
 <div class="container">
 	<div class="wrap">
+		<input type="hidden" id="urlNow" value="<?php echo $urlNow; ?>">
 		<div id="load"></div>
 	</div>
 </div>
 
 <div class="bg"></div>
-<div class="popupWrapper" id="formLoginBaru">
-	<div id="xLog"><i class="fa fa-close"></i> UASU</div>
-	<div class="popup">
-		<div id="loginPublic" class="bagLogin">
-			<div class="wrap"> 
-				<form id="formLoginPublic">
-					<h3>Login User</h3>
-					<div>E-Mail :</div>
-					<input type="email" class="box" id="emailLogPublic" required>
-					<div>Password :</div>
-					<input type="password" class="box" id="pwdLogPublic" required>
-					<div class="bag bag-3">
-						<button class="tbl tblLogins">LOGIN</button>
-					</div>
-					<div class="bag bag-4" id="optLogin">
-						or <a href="#" id="linkRegPublic">register</a>
-					</div>
-				</form>
-				<form id="formRegPublic">
-					<h3>Register User</h3>
-					<div>Name :</div>
-					<input type="text" class="box" id="nameRegPublic" required>
-					<div>E-Mail :</div>
-					<input type="email" class="box" id="emailRegPublic" required>
-					<div>Password :</div>
-					<input type="password" class="box" id="pwdRegPublic" required>
-					<div class="bag bag-4">
-						<button class="tbl tblLogins">REGISTER</button>
-					</div>
-					<div class="bag bag-4" id="optLogin">
-						or <a href="#" id="linkLogPublic">login</a>
-					</div>
-				</form>
-			</div>
-		</div>
-		<div id="loginMarcom" class="bagLogin">
-			<div class="wrap"> 
-				<form id="formLoginMarcom">
-					<h3>Login as Hotel</h3>
-					<div>E-Mail :</div>
-					<input type="email" class="box" id="emailLogMarcom">
-					<div>Password :</div>
-					<input type="password" class="box" id="pwdLogMarcom">
-					<div class="bag bag-5">
-						<button class="tbl putih tblLogins">LOGIN</button>
-					</div>
-					<div class="bag bag-4" id="optLogin">
-						or <a href="#" id="linkRegMarcom">register</a>
-					</div>
-				</form>
-				<form id="formRegMarcom">
-					<h3>Register as Hotel</h3>
-					<div>Hotel's name :</div>
-					<input type="text" class="box" id="nameRegMarcom">
-					<div>E-Mail :</div>
-					<input type="email" class="box" id="emailRegMarcom">
-					<div>Password :</div>
-					<input type="password" class="box" id="pwdRegMarcom">
-					<div class="bag bag-5">
-						<button class="tbl putih tblLogins">REGISTER</button>
-					</div>
-					<div class="bag bag-4" id="optLogin">
-						or <a href="#" id="linkLogMarcom">login</a>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
 
 <script src='aset/js/embo.js'></script>
 <script src='aset/js/jquery-3.1.1.js'></script>
@@ -189,7 +123,6 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 <script src='aset/js/script.explore.js'></script>
 <script>
 	// datepicker
-	console.log($("#tglSkrg").val())
 	$("#fromDate").datepicker({
 		dateFormat: 'yy-mm-dd',
 		minDate: $("#tglSkrg").val(),
@@ -205,32 +138,15 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 		showClose: true,
 		dateFormat: 'yy-mm-dd',
 	})
-	submit("#formLoginPublic", () => {
-		let email = pilih("#emailLogPublic").value
-		let pwd = pilih("#pwdLogPublic").value
-		let log = "email="+email+"&pwd="+pwd
-		pos("aksi/user/login.php", log, (err) => {
-			location.reload()
-		})
-		return false
-	})
-	submit("#formRegPublic", () => {
-		let name = pilih("#nameRegPublic").value
-		let email = pilih("#emailRegPublic").value
-		let pwd = pilih("#pwdRegPublic").value
-		let reg = "name="+name+"&email="+email+"&pwd="+pwd
-		pos("aksi/user/register.php", reg, () => {
-			hilangPopup("#formLoginBaru")
-			muncul(".bg")
-			muncul("#suksesReg")
-		})
-		return false	
-	})
 	function loadFilter() {
 		ambil("aksi/loadFilter.php", (res) => {
 			tulis("#filter", res)
 		})
 	}
+	klik("#tblLogin", () => {
+		let urlNow = btoa(pilih("#urlNow").value)
+		mengarahkan("./auth&r="+urlNow)
+	})
 
 	loadFilter()
 </script>

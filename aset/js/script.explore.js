@@ -56,7 +56,6 @@ load()
 
 tekan("Escape", () => {
     hilang(".bg")
-    hilangPopup("#formLoginBaru")
 })
 
 let val = pilih("#q").value

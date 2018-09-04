@@ -21,7 +21,6 @@ $id 			= rand(1, 999999);
 $title 			= $_POST['title'];
 $tagline 		= $_POST['tagline'];
 $description 	= $_POST['description'];
-$logo 			= $_POST['logo'];
 $cover 			= $_POST['cover'];
 $region 		= $_POST['region'];
 $address 		= $_POST['address'];
@@ -33,4 +32,4 @@ $quota          = $_POST['quota'];
 $price 			= $_POST['price'];
 $added			= time();
 
-$event->create($id, $idhotel, $idresto, $title, $tagline, $description, $logo, $cover, $region, $address, $tgl, $tgl_akhir, $tgl_posted, $category, $quota, $price, $added);
+$event->create($id, $idhotel, $idresto, $title, $tagline, $description, $cover, $region, $address, $tgl, $tgl_akhir, $tgl_posted, $category, $quota, $price, $added);

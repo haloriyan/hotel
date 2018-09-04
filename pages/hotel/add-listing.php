@@ -203,7 +203,7 @@ $namaPertama = explode(" ", $name)[0];
 		let category = pilih("#category").value
 		let seat = pilih("#seat").value
 		let price = pilih("#priceBox").value
-		let pub = "title="+title+"&tagline="+tagline+"&description="+description+"&logo="+logo+"&cover="+cover+"&region="+region+"&address="+address+"&tgl="+date+"&tgl_akhir="+dateEnd+"&category="+category+"&quota="+seat+"&price="+price
+		let pub = "title="+title+"&tagline="+tagline+"&description="+description+"&cover="+cover+"&region="+region+"&address="+address+"&tgl="+date+"&tgl_akhir="+dateEnd+"&category="+category+"&quota="+seat+"&price="+price
 		if(title == "" || tagline == "" || description == "" || logo == "" || cover == "" || region == "" || address == "" || date == "" || category == "" || seat == "" || price == "") {
 			munculPopup("#notif", pengaya("#notif", "top: 225px"))
 			tulis("#isiNotif", "All field must be filled")

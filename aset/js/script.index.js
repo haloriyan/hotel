@@ -27,32 +27,3 @@ window.addEventListener("scroll", function() {
 			tbl.setAttribute("aksi", "bkMenu")
 		}
 	})
-
-	function hilangForm() {
-		hilang(".bg")
-		hilang("#notif")
-		hilang("#suksesReg")
-	}
-	tekan("Escape", function() {
-		hilangForm()
-		hilangPopup("#formLoginBaru")
-	})
-	klik("#tblLogin", function() {
-		munculPopup("#formLoginBaru", pengaya("#formLoginBaru", "top: 90px"))
-	})
-	klik("#linkRegPublic", () => {
-		hilang("#formLoginPublic")
-		muncul("#formRegPublic")
-	})
-	klik("#linkLogPublic", () => {
-		hilang("#formRegPublic")
-		muncul("#formLoginPublic")
-	})
-	klik("#linkRegMarcom", () => {
-		hilang("#formLoginMarcom")
-		muncul("#formRegMarcom")
-	})
-	klik("#linkLogMarcom", () => {
-		hilang("#formRegMarcom")
-		muncul("#formLoginMarcom")
-	})

@@ -26,7 +26,7 @@ class event extends resto {
 		}
 		return $res;
 	}
-	public function create($a, $b, $idresto, $c, $d, $e, $f, $g, $h, $i, $j, $tglAkhir, $jPosted, $k, $seat, $l, $m) {
+	public function create($a, $b, $idresto, $c, $d, $e, $g, $h, $i, $j, $tglAkhir, $jPosted, $k, $seat, $l, $m) {
 		$q = $this->tabel("event")
 				  ->tambah([
 				  	"idevent" => $a,
@@ -35,7 +35,6 @@ class event extends resto {
 				  	"title" => $c,
 				  	"tagline" => $d,
 				  	"description" => $e,
-				  	"logos" => $f,
 				  	"covers" => $g,
 				  	"region" => $h,
 				  	"address" => $i,
