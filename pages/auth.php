@@ -8,7 +8,7 @@ $cookieNotif = $_COOKIE['kukiLogin'];
 <head>
 	<meta charset='UTF-8'>
 	<meta name='viewport' content='width=device-width, initial-scale = 1'>
-	<title>auth</title>
+	<title>Auth - Dailyhotels</title>
 	<link href='aset/fw/build/fw.css' rel='stylesheet'>
 	<link href='aset/fw/build/font-awesome.min.css' rel='stylesheet'>
 	<link href='aset/css/style.auth.css' rel='stylesheet'>

@@ -46,6 +46,11 @@ function getDisabledDate() {
 
 setcookie('idevents', $idevent, time() + 3666, "/");
 
+// Category
+$category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping","Recreation","Parties","Others"];
+$cities = ["Bali","Bandung","Batam","Bogor","Jakarta","Lombok","Makassar","Malang","Pekalongan","Semarang","Solo","Surabaya","Yogyakarta"];
+$city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Surabaya","Yogyakarta"];
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -70,8 +75,24 @@ setcookie('idevents', $idevent, time() + 3666, "/");
 	<div id="tblMenu" aksi="bkMenu"><i class="fa fa-bars"></i></div>
 	<nav class="menu">
 		<a href="../"><li>Home</li></a>
-		<a href="../explore"><li>Explore</li></a>
-		<a href="#"><li>City</li></a>
+		<a href="../explore"><li id="adaSub">Explore &nbsp; <i class="fa fa-angle-down"></i>
+			<nav class="sub merah-2" id="subCat">
+				<?php
+				foreach ($category as $key => $value) {
+					echo "<a href='../explore&q=&cat=".$value."'><li>".$value."</li></a>";
+				}
+				?>
+			</nav>
+		</li></a>
+		<a href="#"><li id="adaSub">City &nbsp; <i class="fa fa-angle-down"></i>
+			<nav class="sub merah-2" id="subCity">
+				<?php
+				foreach ($city as $key => $value) {
+					echo "<a href='../explore&q=&cat=&city=".$value."'><li>".$value."</li></a>";
+				}
+				?>
+			</nav>
+		</li></a>
 		<?php
 		if(empty($sesi)) { ?>
 			<a href="#formLogin" id="tblLogin"><li><i class="fa fa-user"></i> &nbsp;Sign in</li></a>
@@ -107,7 +128,7 @@ setcookie('idevents', $idevent, time() + 3666, "/");
 <div class="bawah">
 	<div class="nav">
 		<div class="wrap">
-			<img src="../aset/gbr/<?php echo $logo; ?>" class="iconHotel">
+			<img src="../aset/gbr/<?php echo $iconHotel; ?>" class="iconHotel">
 			<div class="ketHotel">
 				<h2><?php echo $namaEvent; ?></h2>
 				<p>

@@ -1,6 +1,10 @@
 .atas {
 	position: fixed;
 }
+.atas:hover {
+	background-color: #cb0023;
+	border-bottom: 1px solid #aaa;
+}
 .open h3,.open .openHours {
 	display: block;
 	text-align: left;
