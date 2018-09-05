@@ -59,6 +59,15 @@ $namaEvent = $event->info($idevent, "title");
 		#list-event{
 			margin-top: -62px;
 		}
+		#seeEventIcon {
+			display: none;
+		}
+		#seeEvent {
+			color: #444;
+			text-decoration: none;
+		}
+		#seeEvent:hover { color: #cb0023; }
+		#seeEvent:hover #seeEventIcon { display: inline-block; }
 	</style>
 </head>
 <body>

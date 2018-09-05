@@ -40,7 +40,7 @@ if($myBook == "null") {
 			];
 			foreach ($myBook as $row) {
 				$idevent	= $row['idevent'];
-				$icon 		= $event->info($idevent, "logos");
+				$icon 		= $event->info($idevent, "covers");
 				$title 		= $event->info($idevent, "title");
 				$tgl		= $row['tgl'];
 				$ds			= explode("-", $tgl);

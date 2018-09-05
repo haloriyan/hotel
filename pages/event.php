@@ -14,6 +14,7 @@ $namaPertama = explode(" ", $nama)[0];
 $iduser = $user->info($sesi, "iduser");
 
 // Bagian Event
+global $idevent;
 $namaEvent = $event->info($idevent, "title");
 if($namaEvent == "") {
 	die("error");
@@ -36,7 +37,8 @@ $iconHotel = $hotel->get($idhotel, "icon");
 // Disabled dates
 function getDisabledDate() {
 	$booking = new booking();
-	$cekDate = $booking->cekAvailable("18846");
+	global $idevent;
+	$cekDate = $booking->cekAvailable($idevent);
 	foreach($cekDate as $key => $value) {
 		$res .= '"'.$value.'",';
 	}
@@ -279,9 +281,6 @@ submit("#formBook", function() {
 	return false
 })
 let redirect = btoa(pilih("#urlNow").value)
-klik("#tblLogin", () => {
-	mengarahkan("../auth&r="+redirect)
-})
 function loadBoxQty() {
 	ambil("../aksi/event/loadBoxQty.php", (res) => {
 		tulis("#loadBoxQty", res)
@@ -298,6 +297,9 @@ flatpickr("#tglBook", {
 	minDate: pilih("#minDate").value,
 	maxDate: pilih("#maxDate").value,
 	disable: [<?php echo getDisabledDate(); ?>]
+})
+klik("#tblLogin", () => {
+	mengarahkan("../auth&r="+redirect)
 })
 </script>
 <?php

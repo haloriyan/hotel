@@ -28,7 +28,7 @@ $namaPertama = explode(" ", $name)[0];
 			width: 100%;
 			height: 200px;
 		}
-		.galeri:nth-child(2),.galeri:nth-child(4n + 1),.listAlbum:nth-child(1) { margin-left: 0px; }
+		.galeri:nth-child(3),.galeri:nth-child(4n + 1),.listAlbum:nth-child(1) { margin-left: 0px; }
 		.galeri:nth-child(3n) { margin-right: 0px; }
 		.galeri li {
 			background: rgba(0,0,0,0.6);

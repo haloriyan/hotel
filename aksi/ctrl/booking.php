@@ -68,7 +68,7 @@ class booking extends event {
 	}
 
 	public function allBook($idevent) {
-		$q = $this->query("SELECT * FROM booking WHERE idevent = '$idevent' AND status != '9' AND status != '8'");
+		$q = $this->query("SELECT * FROM booking WHERE idevent = '$idevent' AND status = '1'");
 		if($this->hitung($q) == 0) {
 			return "null";
 		}else {
@@ -79,6 +79,21 @@ class booking extends event {
 		}
 	}
 
+	public function getDateRange($idevent) {
+		$q = $this->tabel("event")->pilih()->dimana(["idevent" => $idevent])->eksekusi();
+		$r = $this->ambil($q);
+		$tglMulai = $r['tgl_mulai'];
+		$tglAkhir = $r['tgl_akhir'];
+		$rangeDate = new DatePeriod(
+			new DateTime($tglMulai),
+			new DateInterval('P1D'),
+			new DateTime($tglAkhir)
+		);
+ 		foreach($rangeDate as $key => $value) {
+			$res[] = $value->format('Y-m-d');
+		}
+		return $res;
+	}
 	public function cekAvailable($idevent, $opt = NULL) {
 		$event = new event();
 		$disabledDate = [];

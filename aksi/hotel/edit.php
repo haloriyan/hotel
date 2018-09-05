@@ -11,21 +11,17 @@ if($bag == "detil") {
 	$web 		= $_POST['web'];
 	$city 		= $_POST['city'];
 	$description	= $_POST['description'];
+	$icon = $_POST['icon'];
+	$cover = $_POST['cover'];
 
-	$val = $phone.",".$address.",".$web.",".$city.",".$description;
-	$change = "phone,address,website,city,description";
+	$val = $phone.",".$address.",".$web.",".$city.",".$description.",".$icon.",".$cover;
+	$change = "phone,address,website,city,description,icon,cover";
 
 	$v = explode(",", $val);
 	$c = explode(",", $change);
 	for ($i=0; $i < count($c); $i++) { 
 		$hotel->change($idhotel, $c[$i], $v[$i]);
 	}
-}else if($bag == "image") {
-	$icon = $_POST['icon'];
-	$cover = $_POST['cover'];
-
-	$hotel->change($idhotel, "icon", $icon);
-	$hotel->change($idhotel, "cover", $cover);
 }else if($bag == "facility") {
 	$idfac = $_POST['idfac'];
 	$myFac = $hotel->get($sesi, "facility");

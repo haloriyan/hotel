@@ -190,12 +190,6 @@ $cookieNotif = $_COOKIE['kukiLogin'];
 		})
 		return false
 	})
-
-	async function loadLoginStatus() {
-		ambil("aksi/loadLoginStatus.php", (res) => {
-			tulis("#loadNotif", (res))
-		})
-	}
 </script>
 
 <?php

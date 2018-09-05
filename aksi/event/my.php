@@ -35,7 +35,7 @@ if($load == "kosong") {
 			echo "<tr>".
 					"<td><img src='../aset/gbr/".$row['covers']."'></td>".
 					"<td>".
-						"<h4>".$row['title']."</h4>"."</h4>".
+						"<a href='../event/".$row['idevent']."' target='_blank' id='seeEvent'><h4>".$row['title']." &nbsp; <i class='fa fa-eye' id='seeEventIcon'></i></h4>"."</h4></a>".
 						"<!-- <a href='#'>Edit</a> &nbsp;".
 						"<i class='fa fa-angle-right'></i> &nbsp; -->".
 						"<a href='../event/detail&idevent=".$row['idevent']."' target='_blank'><li>Detail</li></a> | ".

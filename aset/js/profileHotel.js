@@ -73,10 +73,6 @@ klik("#tblMenu", function() {
 		tbl.setAttribute("aksi", "bkMenu")
 	}
 })
-klik("#tblLogin", function() {
-	muncul(".bg")
-	muncul("#formLogin")
-})
 
 klik("#allGallery", function() {
 	scrollKe("#galeries")

@@ -14,7 +14,7 @@ echo "<div class='listAlbum'>".
                 if($public == 0 or $public == "") {
                     echo "
                 <div class='ke-kanan'>
-                    <button id='tblDel' onclick='delAlbum(this.value)' value='".$idalbum."'>delete</button> | <span id='tblDel' onclick='loadHotel()'>close</span>
+                    <button id='tblDel' onclick='delAlbum(this.value)' value='".$idalbum."'>delete album</button> | <span id='tblDel' onclick='loadHotel()'>close</span>
                 </div>";
                 }else if($public == 1) {
                     echo "";

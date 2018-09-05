@@ -18,6 +18,8 @@ $namaPertama = explode(" ", $nama)[0];
 
 $totExplore = $ctrl->hitung($ctrl->tabel("event")->pilih()->dimana(["idhotel" => $idhotel])->eksekusi());
 
+$urlNow = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,7 +34,6 @@ $totExplore = $ctrl->hitung($ctrl->tabel("event")->pilih()->dimana(["idhotel" =>
 	<link href="../aset/css/style.profile.css" rel="stylesheet">
 	<link href="../aset/css/style.explore.css" rel="stylesheet">
 	<link href="../aset/css/tambahanProfile.css" rel="stylesheet">
-	<script src="../aset/js/embo.js"></script>
 </head>
 <body>
 
@@ -51,9 +52,9 @@ $totExplore = $ctrl->hitung($ctrl->tabel("event")->pilih()->dimana(["idhotel" =>
 			?>
 			<li id="adaSub">Hello <?php echo $namaPertama; ?> <i class="fa fa-angle-down"></i>
 				<ul class="sub">
-					<a href="./my"><li><div id="icon"><i class="fa fa-briefcase"></i></div> My Listing</li></a>
-					<a href="./detail"><li><div id="icon"><i class="fa fa-cog"></i></div> Settings</li></a>
-					<a href="./logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
+					<a href="../my"><li><div id="icon"><i class="fa fa-briefcase"></i></div> My Listing</li></a>
+					<a href="../detail"><li><div id="icon"><i class="fa fa-cog"></i></div> Settings</li></a>
+					<a href="../logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
 				</ul>
 			</li>
 			<?php
@@ -74,6 +75,7 @@ $totExplore = $ctrl->hitung($ctrl->tabel("event")->pilih()->dimana(["idhotel" =>
 </div>
 
 <div class="bawah">
+	<input type="hidden" id="urlNow" value="<?php echo $urlNow; ?>">
 	<div class="nav">
 		<div class="wrap">
 			<img src="../aset/gbr/<?php echo $icon; ?>" class="iconHotel">
@@ -256,12 +258,13 @@ $totExplore = $ctrl->hitung($ctrl->tabel("event")->pilih()->dimana(["idhotel" =>
 			</h3>
 			<br />
 			<div class="rata-tengah">
-				<img src="../aset/gbr/dummy.jpg" id="seeImage">
+				
 			</div>
 		</div>
 	</div>
 </div>
 
+<script src="../aset/js/embo.js"></script>
 <script src="../aset/js/profileHotel.js"></script>
 <script>
 	function track(tipe) {
@@ -271,6 +274,10 @@ $totExplore = $ctrl->hitung($ctrl->tabel("event")->pilih()->dimana(["idhotel" =>
 			console.log('tracked')
 		})
 	}
+	let redirect = btoa(pilih("#urlNow").value)
+	klik("#tblLogin", function() {
+		mengarahkan("../auth&r="+redirect)
+	})
 </script>
 
 </body>

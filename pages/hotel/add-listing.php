@@ -67,7 +67,7 @@ $namaPertama = explode(" ", $name)[0];
 			<div class="wrap">
 				<h4><div id="icon"><i class="fa fa-close"></i></div> ERROR :(</h4>
 				<p>
-					Sorry, you can't add a listing. Your account hasn't been verified by admin. Wait until admin verifying your account then you can add new listing
+					Sorry, you can't add a listing. Your account hasn't been verified by admin. To be verified, complete all the <a href="./detail">Detail Information</a> needed and wait until admin verifies your account.
 				</p>
 			</div>
 		</form>
@@ -90,11 +90,8 @@ $namaPertama = explode(" ", $name)[0];
 	<form id="image">
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-camera"></i></div> Event Images</h4>
-			<div class="isi">Logo (optional)</div>
-			<input type="file" class="box" id="logo">
-			<div class="isi">Cover (optional)</div>
+			<div class="isi">Cover</div>
 			<input type="file" class="box" id="cover"><br />
-			<input type="hidden" id="logos">
 			<input type="hidden" id="covers">
 			<button class="tbl merah-2">NEXT</button>
 		</div>
@@ -194,7 +191,6 @@ $namaPertama = explode(" ", $name)[0];
 		let title = encodeURIComponent(pilih("#title").value)
 		let tagline = encodeURIComponent(pilih("#tagline").value)
 		let description = pilih("#description").value
-		let logo = pilih("#logos").value
 		let cover = pilih("#covers").value
 		let region = pilih("#region").value
 		let address = encodeURIComponent(pilih("#address").value)
@@ -204,7 +200,7 @@ $namaPertama = explode(" ", $name)[0];
 		let seat = pilih("#seat").value
 		let price = pilih("#priceBox").value
 		let pub = "title="+title+"&tagline="+tagline+"&description="+description+"&cover="+cover+"&region="+region+"&address="+address+"&tgl="+date+"&tgl_akhir="+dateEnd+"&category="+category+"&quota="+seat+"&price="+price
-		if(title == "" || tagline == "" || description == "" || logo == "" || cover == "" || region == "" || address == "" || date == "" || category == "" || seat == "" || price == "") {
+		if(title == "" || tagline == "" || description == "" || cover == "" || region == "" || address == "" || date == "" || category == "" || seat == "" || price == "") {
 			munculPopup("#notif", pengaya("#notif", "top: 225px"))
 			tulis("#isiNotif", "All field must be filled")
 			return false
@@ -232,13 +228,11 @@ $namaPertama = explode(" ", $name)[0];
 	})
 	submit("#image", function() {
 		let allowed = ["jpg","jpeg","png","bmp"]
-		let logo = pilih("#logos").value
 		let cover = pilih("#covers").value
-		let logoExt = getExt(logo)
 		let coverExt = getExt(cover)
-		if(logo == "" || cover == "") {
+		if(cover == "") {
 			munculPopup("#notif", pengaya("#notif", "top: 225px"))
-			tulis("#isiNotif", "You must insert an image for logo and cover")
+			tulis("#isiNotif", "You must insert an image cover")
 			return false
 		}
 		hilangKecuali("location")
@@ -301,25 +295,6 @@ $namaPertama = explode(" ", $name)[0];
 	})
 	klik("#keprice", function() {
 		hilangKecuali("price")
-	})
-
-	$("#logo").on("change", function() {
-		let allowed = ["jpg","jpeg","png","bmp"]
-		var logo = $("#logo").val();
-		var p = logo.split("fakepath");
-		var nama = p[1].substr(1, 2999);
-		$("#logos").val(nama);
-		let logoExt = getExt(nama)
-		if(!inArray(logoExt, allowed)) {
-			$("#logo").val("")
-			munculPopup("#notif", pengaya("#notif", "top: 225px"))
-			tulis("#isiNotif", "Image format not allowed")
-			return false
-		}
-
-		var file = $(this)[0].files[0];
-		var upload = new Upload(file);
-		upload.doUpload();
 	})
 	$("#cover").on("change", function() {
 		let allowed = ["jpg","jpeg","png","bmp"]

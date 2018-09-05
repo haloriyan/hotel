@@ -73,12 +73,7 @@ $description = $hotel->get($sesi, "description");
 			<input type="text" class="box" id="web" placeholder="e.g https://dailyhotels.id" value="<?php echo $web; ?>">
 			<div class="isi">Address :</div>
 			<input class="box" id="address" value="<?php echo $address; ?>">
-			<div class="bag-tombol">
-				<button class="tbl merah-2">SAVE</button>
-			</div>
 		</div>
-	</form>
-	<form id="formImage">
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-image"></i></div> Change Image</h4>
 			<div class="isi">Icon</div>
@@ -126,23 +121,14 @@ $description = $hotel->get($sesi, "description");
 		let city 	= pilih("#city").value
 		let web 	= pilih("#web").value
 		let description = pilih("#description").value
-		let detil 	= "phone="+phone+"&address="+address+"&bag=detil&city="+city+"&web="+web+"&description="+description
-		if(phone == "" || address == "" || web == "" || city == "") {
+
+		let icons = pilih("#namaIcon").value
+		let cover = pilih("#namaCover").value
+		let detil 	= "phone="+phone+"&address="+address+"&bag=detil&city="+city+"&web="+web+"&description="+description+"&icon="+icons+"&cover="+cover
+		if(phone == "" || address == "" || web == "" || city == "" || icons == "") {
 			return false
 		}
 		pos("../aksi/hotel/edit.php", detil, function() {
-			munculPopup("#saved", pengaya("#saved", "top: 225px"))
-		})
-		return false
-	})
-	submit("#formImage", function() {
-		let icons = pilih("#namaIcon").value
-		let cover = pilih("#namaCover").value
-		let img = "icon="+icons+"&cover="+cover+"&bag=image"
-		if(icons == "") {
-			return false
-		}
-		pos("../aksi/hotel/edit.php", img, function() {
 			munculPopup("#saved", pengaya("#saved", "top: 225px"))
 		})
 		return false

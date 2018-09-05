@@ -19,14 +19,8 @@ $namaPertama = explode(" ", $name)[0];
 	<link href="aset/css/style.explore-admin.css" rel="stylesheet">
 	<style>
 		body { background-color: #ecf0f1 !important; }
-		#icon {
-			width: 60px;
-			line-height: 50px;
-			padding-top: 12px;
-			padding-bottom: 12px;
-		}
 		.container { margin-bottom: 45px; }
-		.box { width: 100%;font-size: 16px;height: 50px;color: #555; }
+		.box { width: 94%;font-size: 16px;height: 50px;color: #555; }
 		.bg { z-index: 4; }
 		.atas { z-index: 3; }
 		.popup { border-radius: 6px; }
@@ -51,7 +45,6 @@ $namaPertama = explode(" ", $name)[0];
 <div class="kiri">
 	<a href="./hello"><div class="listWizard">Dashboard</div></a>
 	<a href="./my"><div class="listWizard">My Listings</div></a>
-	<a href="./refund"><div class="listWizard">My Refunds</div></a>
 	<a href="./detail"><div class="listWizard" aktif="ya">Detail Information</div></a>
 	<a href="./logout"><div class="listWizard">Logout</div></a>
 </div>
@@ -75,13 +68,12 @@ $namaPertama = explode(" ", $name)[0];
 </div>
 
 <div class="bg"></div>
-<div class="popupWrapper" id="notif">
+<div class="popupWrapper" id="saved">
 	<div class="popup">
 		<div class="wrap">
-			<h3><i class="fa fa-info"></i> &nbsp; Alert!
+			<h3>Saved changes!
 				<div id="xNotif" class="ke-kanan"><i class="fa fa-close"></i></div>
 			</h3>
-			<p id="isiNotif">Setelan berhasil disimpan!</p>
 		</div>
 	</div>
 </div>
@@ -94,16 +86,16 @@ $namaPertama = explode(" ", $name)[0];
 		let address = pilih("#address").value
 		let detail = "name="+name+"&phone="+phone+"&address="+address
 		pos("aksi/user/change.php", detail, function() {
-			munculPopup("#notif", pengaya("#notif", "top: 210px"))
+			munculPopup("#saved", pengaya("#saved", "top: 210px"))
 		})
 		return false
 	})
 
 	tekan("Escape", function() {
-		hilangPopup("#notif")
+		hilangPopup("#saved")
 	})
 	klik("#xNotif", function() {
-		hilangPopup("#notif")
+		hilangPopup("#saved")
 	})
 </script>
 
