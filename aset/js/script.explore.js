@@ -56,6 +56,7 @@ load()
 
 tekan("Escape", () => {
     hilang(".bg")
+    hilang("#notif")
 })
 
 let val = pilih("#q").value

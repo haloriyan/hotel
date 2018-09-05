@@ -115,6 +115,17 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 </div>
 
 <div class="bg"></div>
+<div class="formPopup" id="notif">
+	<div class="wrap">
+		<h4><i class="fa fa-info"></i> &nbsp; Alert!</h4>
+		<p>
+			<?php echo $_COOKIE['kukiLogin']; ?>
+		</p>
+		<div class="bag-tombol">
+			<button class="merah-2" id="xNotif">CLOSE</button>
+		</div>
+	</div>
+</div>
 
 <script src='aset/js/embo.js'></script>
 <script src='aset/js/jquery-3.1.1.js'></script>
@@ -150,6 +161,15 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 
 	loadFilter()
 </script>
+
+<?php
+if(isset($_COOKIE['kukiLogin'])) {
+	echo '<script>
+muncul(".bg")
+muncul("#notif")
+</script>';
+}
+?>
 
 </body>
 </html>

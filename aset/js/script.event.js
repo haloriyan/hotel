@@ -69,6 +69,7 @@ klik("#tblMenu", function() {
 })
 tekan("Escape", function() {
 	hilang(".bg")
+	hilang("#notif")
 	hilangContact()
 	hilangPopup("#popupBook")
 	hilangPopup("#suksesBook")

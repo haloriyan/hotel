@@ -35,13 +35,13 @@ class hotel extends user {
 		if($p == $pw) {
 			$status = $this->get($e, "status");
 			if($status == 0) {
-				setcookie('loginHotel', 'You must verify your email address first!', time() + 40, "/");
+				setcookie('kukiLogin', 'You must verify your email address first!', time() + 40, "/");
 			}else {
 				session_start();
 				$_SESSION['uhotel']=$e;
 			}
 		}else {
-			setcookie('loginHotel', 'Wrong email and/or password', time() + 40, "/");
+			setcookie('kukiLogin', 'Wrong email and/or password', time() + 40, "/");
 		}
 	}
 	public function validate($e) {

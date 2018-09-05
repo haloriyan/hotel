@@ -8,6 +8,8 @@ $namaPertama = explode(" ", $nama)[0];
 $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Surabaya","Yogyakarta"];
 $category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping","Recreation","Parties","Others"];
 
+$urlNow = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -75,6 +77,7 @@ $category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping"
 
 <div class="container rata-tengah">
 	<div class="wrap">
+		<input type="hidden" value="<?php echo $urlNow; ?>" id="urlNow">
 		<h1>Discover What's New in Hotel</h1>
 		<h2>Find Great Places to Eat, Visit and Stay</h2>
 		<div class="boxTengah">
@@ -130,81 +133,6 @@ $category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping"
 	</div>
 </div>
 
-<div class="popupWrapper" id="formLoginBaru">
-	<div class="popup">
-		<div id="loginPublic" class="bagLogin">
-			<div class="wrap"> 
-				<form id="formLoginPublic">
-					<h3>Login User</h3>
-					<div>E-Mail :</div>
-					<input type="email" class="box" id="emailLogPublic">
-					<div>Password :</div>
-					<input type="password" class="box" id="pwdLogPublic">
-					<div class="bag bag-3">
-						<button class="tbl tblLogins">LOGIN</button>
-					</div>
-					<div class="bag bag-4" id="optLogin">
-						or <a href="#" id="linkRegPublic">register</a>
-					</div>
-				</form>
-				<form id="formRegPublic">
-					<h3>Register User</h3>
-					<div>Name :</div>
-					<input type="text" class="box" id="nameRegPublic">
-					<div>E-Mail :</div>
-					<input type="email" class="box" id="emailRegPublic">
-					<div>Password :</div>
-					<input type="password" class="box" id="pwdRegPublic">
-					<div class="bag bag-4">
-						<button class="tbl tblLogins">REGISTER</button>
-					</div>
-					<div class="bag bag-4" id="optLogin">
-						or <a href="#" id="linkLogPublic">login</a>
-					</div>
-				</form>
-			</div>
-		</div>
-		<div id="loginMarcom" class="bagLogin">
-			<div class="wrap"> 
-				<form id="formLoginMarcom">
-					<h3>Login as Hotel</h3>
-					<div>E-Mail :</div>
-					<input type="email" class="box" id="emailLogMarcom">
-					<div>Password :</div>
-					<input type="password" class="box" id="pwdLogMarcom">
-					<div class="bag bag-5">
-						<button class="tbl putih tblLogins">LOGIN</button>
-					</div>
-					<div class="bag bag-4" id="optLogin">
-						or <a href="#" id="linkRegMarcom">register</a>
-					</div>
-				</form>
-				<form id="formRegMarcom">
-					<h3>Register as Hotel</h3>
-					<div>Hotel's name :</div>
-					<input type="text" class="box" id="nameRegMarcom">
-					<div>E-Mail :</div>
-					<input type="email" class="box" id="emailRegMarcom">
-					<div>Password :</div>
-					<input type="password" class="box" id="pwdRegMarcom">
-					<div class="bag bag-5">
-						<button class="tbl putih tblLogins">REGISTER</button>
-					</div>
-					<div class="bag bag-4" id="optLogin">
-						or <a href="#" id="linkLogMarcom">login</a>
-					</div>
-				</form>
-				<form id="suksesRegMarcom">
-					<h3>You've been registered !</h3>
-					<p>
-						Next, you must verify your email address and then complete more information about your hotel before you can add an event
-					</p>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
-
 <script src="aset/js/embo.js"></script>
 <?php
 if(isset($_COOKIE['kukiLogin'])) {
@@ -231,46 +159,9 @@ munculPopup("#formLoginBaru", pengaya("#formLoginBaru", "top: 90px"))
 		mengarahkan("./explore&q="+q+"&cat="+cat)
 		return false
 	})
-	submit("#formLoginPublic", () => {
-		let email = pilih("#emailLogPublic").value
-		let pwd = pilih("#pwdLogPublic").value
-		let log = "email="+email+"&pwd="+pwd
-		pos("aksi/user/login.php", log, (err) => {
-			location.reload()
-		})
-		return false
-	})
-	submit("#formRegPublic", () => {
-		let name = pilih("#nameRegPublic").value
-		let email = pilih("#emailRegPublic").value
-		let pwd = pilih("#pwdRegPublic").value
-		let reg = "name="+name+"&email="+email+"&pwd="+pwd
-		pos("aksi/user/register.php", reg, () => {
-			hilangPopup("#formLoginBaru")
-			muncul(".bg")
-			muncul("#suksesReg")
-		})
-		return false	
-	})
-	submit("#formLoginMarcom", () => {
-		let email = pilih("#emailLogMarcom").value
-		let pwd = pilih("#pwdLogMarcom").value
-		let log = "email="+email+"&pwd="+pwd
-		pos("aksi/hotel/login.php", log, () => {
-			mengarahkan("./hotel/dashboard")
-		})
-		return false
-	})
-	submit("#formRegMarcom", () => {
-		let name = pilih("#nameRegMarcom").value
-		let email = pilih("#emailRegMarcom").value
-		let pwd = pilih("#pwdRegMarcom").value
-		let reg = "name="+name+"&email="+email+"&pwd="+pwd
-		pos("aksi/hotel/register.php", reg, () => {
-			hilang("#formRegMarcom")
-			muncul("#suksesRegMarcom")
-		})
-		return false
+	klik("#tblLogin", () => {
+		let redirect = btoa(pilih("#urlNow").value)
+		mengarahkan("./auth&r="+redirect)
 	})
 </script>
 

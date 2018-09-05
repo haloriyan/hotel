@@ -30,7 +30,7 @@ $cookieNotif = $_COOKIE['kukiLogin'];
 				<div>Password</div>
 				<input type="password" class="box" id="pwdLogPublic" required autocomplete="off">
 				<div class="bagTombol">
-					<div class="bag bag-3">
+					<div class="bag bag-4">
 						<button class="tbl">LOGIN</button>
 					</div>
 					<div class="bag bag-3" id="optLogin">
@@ -72,7 +72,7 @@ $cookieNotif = $_COOKIE['kukiLogin'];
 				<div>Password</div>
 				<input type="password" class="box" id="pwdLogMarcom" required autocomplete="off">
 				<div class="bagTombol">
-					<div class="bag bag-4">
+					<div class="bag bag-5">
 						<button class="tbl">LOGIN</button>
 					</div>
 					<div class="bag bag-3" id="optLogin">
@@ -186,11 +186,7 @@ $cookieNotif = $_COOKIE['kukiLogin'];
 		let pwd = pilih("#pwdLogMarcom").value
 		let log = "email="+email+"&pwd="+pwd
 		pos("aksi/hotel/login.php", log, () => {
-			if(redirect == "") {
-				mengarahkan("./hotel/dashboard")
-			}else {
-				mengarahkan(redirect)
-			}
+			mengarahkan("./hotel/dashboard")
 		})
 		return false
 	})

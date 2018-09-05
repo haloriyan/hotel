@@ -44,6 +44,7 @@ function getDisabledDate() {
 }
 
 setcookie('idevents', $idevent, time() + 3666, "/");
+$urlNow = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
 // Category
 $category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping","Recreation","Parties","Others"];
@@ -93,10 +94,10 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 			</nav>
 		</li></a>
 		<?php
-		if(empty($sesi)) { ?>
+		if($sesi == "") { ?>
 			<a href="#formLogin" id="tblLogin"><li><i class="fa fa-user"></i> &nbsp;Sign in</li></a>
 			<?php
-		}else {
+		}else if($sesi != "") {
 			?>
 			<li id="adaSub">Hello <?php echo $namaPertama; ?> <i class="fa fa-angle-down"></i>
 				<ul class="sub">
@@ -125,6 +126,7 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 </div>
 
 <div class="bawah">
+	<input type="hidden" id="urlNow" value="<?php echo $urlNow; ?>">
 	<div class="nav">
 		<div class="wrap">
 			<img src="../aset/gbr/<?php echo $iconHotel; ?>" class="iconHotel">
@@ -182,76 +184,17 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 <button id="phone" class="merah-2" aksi="on"><i class="fa fa-phone"></i></button>
 
 <div class="bg"></div>
-<div class="popupWrapper" id="formLoginBaru">
-	<div id="xLog"><i class="fa fa-close"></i> UASU</div>
-	<div class="popup">
-		<div id="loginPublic" class="bagLogin">
-			<div class="wrap"> 
-				<form id="formLoginPublic">
-					<h3>Login User</h3>
-					<div>E-Mail :</div>
-					<input type="email" class="box" id="emailLogPublic">
-					<div>Password :</div>
-					<input type="password" class="box" id="pwdLogPublic">
-					<div class="bag bag-3">
-						<button class="tbl tblLogins">LOGIN</button>
-					</div>
-					<div class="bag bag-4" id="optLogin">
-						or <a href="#" id="linkRegPublic">register</a>
-					</div>
-				</form>
-				<form id="formRegPublic">
-					<h3>Register User</h3>
-					<div>Name :</div>
-					<input type="text" class="box" id="nameRegPublic">
-					<div>E-Mail :</div>
-					<input type="email" class="box" id="emailRegPublic">
-					<div>Password :</div>
-					<input type="password" class="box" id="pwdRegPublic">
-					<div class="bag bag-4">
-						<button class="tbl tblLogins">REGISTER</button>
-					</div>
-					<div class="bag bag-4" id="optLogin">
-						or <a href="#" id="linkLogPublic">login</a>
-					</div>
-				</form>
-			</div>
-		</div>
-		<div id="loginMarcom" class="bagLogin">
-			<div class="wrap"> 
-				<form id="formLoginMarcom">
-					<h3>Login as Hotel</h3>
-					<div>E-Mail :</div>
-					<input type="email" class="box" id="emailLogMarcom" required>
-					<div>Password :</div>
-					<input type="password" class="box" id="pwdLogMarcom" required>
-					<div class="bag bag-5">
-						<button class="tbl putih tblLogins">LOGIN</button>
-					</div>
-					<div class="bag bag-4" id="optLogin">
-						or <a href="#" id="linkRegMarcom">register</a>
-					</div>
-				</form>
-				<form id="formRegMarcom">
-					<h3>Register as Hotel</h3>
-					<div>Hotel's name :</div>
-					<input type="text" class="box" id="nameRegMarcom" required>
-					<div>E-Mail :</div>
-					<input type="email" class="box" id="emailRegMarcom" required>
-					<div>Password :</div>
-					<input type="password" class="box" id="pwdRegMarcom" required>
-					<div class="bag bag-5">
-						<button class="tbl putih tblLogins">REGISTER</button>
-					</div>
-					<div class="bag bag-4" id="optLogin">
-						or <a href="#" id="linkLogMarcom">login</a>
-					</div>
-				</form>
-			</div>
+<div class="formPopup" id="notif">
+	<div class="wrap">
+		<h4><i class="fa fa-info"></i> &nbsp; Alert!</h4>
+		<p>
+			<?php echo $_COOKIE['kukiLogin']; ?>
+		</p>
+		<div class="bag-tombol">
+			<button class="merah-2" id="xNotif">CLOSE</button>
 		</div>
 	</div>
 </div>
-
 <div class="popupWrapper" id="popupBook">
 	<div class="popup">
 		<div class="wrap">
@@ -335,6 +278,10 @@ submit("#formBook", function() {
 	})
 	return false
 })
+let redirect = btoa(pilih("#urlNow").value)
+klik("#tblLogin", () => {
+	mengarahkan("../auth&r="+redirect)
+})
 function loadBoxQty() {
 	ambil("../aksi/event/loadBoxQty.php", (res) => {
 		tulis("#loadBoxQty", res)
@@ -352,34 +299,15 @@ flatpickr("#tglBook", {
 	maxDate: pilih("#maxDate").value,
 	disable: [<?php echo getDisabledDate(); ?>]
 })
-submit("#formLoginPublic", () => {
-	let email = pilih("#emailLogPublic").value
-	let pwd = pilih("#pwdLogPublic").value
-	let log = "email="+email+"&pwd="+pwd
-	if (email == "" || pwd == "") {
-		return false
-	}
-	pos("../aksi/user/login.php", log, (err) => {
-		location.reload()
-	})
-	return false
-})
-submit("#formRegPublic", () => {
-	let name = pilih("#nameRegPublic").value
-	let email = pilih("#emailRegPublic").value
-	let pwd = pilih("#pwdRegPublic").value
-	let reg = "name="+name+"&email="+email+"&pwd="+pwd
-	if(name == "" || email == "" || pwd == "") {
-		return false
-	}
-	pos("../aksi/user/register.php", reg, () => {
-		hilangPopup("#formLoginBaru")
-		muncul(".bg")
-		muncul("#suksesReg")
-	})
-	return false	
-})
 </script>
+<?php
+if(isset($_COOKIE['kukiLogin'])) {
+	echo '<script>
+muncul(".bg")
+muncul("#notif")
+</script>';
+}
+?>
 
 </body>
 </html>
