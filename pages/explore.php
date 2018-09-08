@@ -154,12 +154,11 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 			tulis("#filter", res)
 		})
 	}
+	loadFilter()
 	klik("#tblLogin", () => {
 		let urlNow = btoa(pilih("#urlNow").value)
 		mengarahkan("./auth&r="+urlNow)
 	})
-
-	loadFilter()
 </script>
 
 <?php

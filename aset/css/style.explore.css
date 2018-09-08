@@ -113,8 +113,6 @@ body { background-color: #ecf0f1; }
 .list img {
 	width: 100%;
 	height: 100%;
-	position: relative;
-	z-index: -1;
 }
 .list .ket {
 	text-align: left;

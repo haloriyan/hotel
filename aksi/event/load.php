@@ -34,10 +34,12 @@ foreach ($all as $row) {
 		$namaHotel = $hotel->get($idhotel, "nama");
 		$iconHotel = $hotel->get($idhotel, "icon");
 	}
-	// echo "<a href='./event/".$row['idevent']."'>".
+	$coverImage = "aset/gbr/".$row['covers']."";
 	echo "".
 			 "<div class='list'>".
-				"<img src='aset/gbr/".$row['covers']."'>".
+			 	"<div class='bgImage' style='background: url(".$coverImage.");background-size: cover;'>".
+					// "<img src='aset/gbr/".$row['covers']."'>".
+				"</div>".
 				"<div class='ket'>".
 					"<a href='./event/".$row['idevent']."'>".
 					"<div class='wrap'>".
@@ -51,7 +53,7 @@ foreach ($all as $row) {
 					"<a href='./hotel/".$row['idhotel']."' target='_blank'>".
 					"<div id='hosted'>".
 						"<div class='wrap'>".
-							"<img src='aset/gbr/".$iconHotel."' class='ke-kiri'>",
+							"<img src='aset/gbr/swissBelinnIcon.jpg' class='ke-kiri'>",
 							"<div id='namaHotel'>Hosted by <b>".$namaHotel."</b></div>".
 						"</div>".
 					"</div>".

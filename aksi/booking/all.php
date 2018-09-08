@@ -14,7 +14,7 @@ if($all == "null") {
             <th><i class='fa fa-user'></i></th>
             <th><i class='fa fa-calendar'></i></th>
             <th><i class='fa fa-image'></i></th>
-            <th style='width: 15%'></th>
+            <th style='width: 30%'></th>
         </tr>
     </thead>
     <tbody>
@@ -28,6 +28,7 @@ if($all == "null") {
                     "<td>".$namaEvent."</td>".
                     "<td><a href='../aset/gbr/".$row['bukti']."' target='_blank'>See image</a></td>".
                     "<td>".
+                        "<button class='tbl merah' onclick='tolak(this.value)' value='".$row['idbooking']."'><i class='fa fa-close'></i></button> &nbsp; &nbsp;".
                         "<button class='tbl hijau' onclick='cawang(this.value)' value='".$row['idbooking']."'><i class='fa fa-check'></i></button>".
                     "</td>".
                  "</tr>";

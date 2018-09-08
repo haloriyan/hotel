@@ -80,6 +80,11 @@ $namaPertama = 'adm00n';
             load()
         })
     }
+    function tolak(val) {
+        pos("../aksi/booking/tolak.php", "id="+val, () => {
+            load()
+        })
+    }
 
     load()
 </script>

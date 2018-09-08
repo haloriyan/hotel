@@ -6,11 +6,12 @@
 .atas:hover { background: #cb0029;border: none; }
 .atas:hover .sub { background: #cb0029;border: none; }
 #adaSub:hover .sub { top: 80px; }
-#subCity li,#subCat li {
+#subCity li,#subCat li,#subUser li {
 	float: none;
 	transition: 0.5s;
 	line-height: 55px;
 }
+#subUser li { line-height: 70px; }
 .sub li:hover {
 	background-color: #444;
 }

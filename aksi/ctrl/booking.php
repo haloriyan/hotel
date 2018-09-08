@@ -28,6 +28,16 @@ class booking extends event {
 				  ])->eksekusi();
 		return $q;
 	}
+	public function tolak($id) {
+		$q = $this->tabel("booking")
+				  ->ubah([
+				  	"status" => 0,
+				  	"bukti" => ""
+				  ])
+				  ->dimana(["idbooking" => $id])
+				  ->eksekusi();
+		return $q;
+	}
 	public function delete($id) {
 		$q = $this->tabel("booking")->hapus()->dimana(["idbooking" => $id])->eksekusi();
 		return $q;
@@ -126,7 +136,7 @@ class booking extends event {
 
 	// For Admin
 	public function all() {
-		$q = $this->query("SELECT * FROM booking WHERE bukti != '' AND status = 0");
+		$q = $this->query("SELECT * FROM booking WHERE bukti != '' AND status = 0 ORDER BY tgl_book DESC");
 		if($this->hitung($q) == 0) {
 			return "null";
 		}else {
@@ -196,5 +206,10 @@ class booking extends event {
 }
 
 $booking = new booking();
+
+if($booking->tolak("312544")) 
+	echo "berhasil";
+else 
+	echo "gagal";
 
 ?>

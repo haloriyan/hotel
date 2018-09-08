@@ -51,9 +51,9 @@ function track(tipe) {
 window.addEventListener("scroll", function() {
 	var skrol = window.pageYOffset
 	if(skrol >= 40) {
-		pengaya(".atas", "background: #cb0023")
+		pilih(".atas").setAttribute("class", "atas merah-2")
 	}else {
-		pengaya(".atas", "background: none")
+		pilih(".atas").setAttribute("class", "atas")
 	}
 })
 klik("#tblMenu", function() {

@@ -1,6 +1,11 @@
 <?php
 
 $cookieNotif = $_COOKIE['kukiLogin'];
+$redirect = $_GET['r'];
+$decodedRedirect = base64_decode($redirect);
+if($decodedRedirect == "") {
+	header("location: ./auth&r=".base64_encode("./my"));
+}
 
 ?>
 <!DOCTYPE html>
@@ -20,7 +25,7 @@ $cookieNotif = $_COOKIE['kukiLogin'];
 </div>
 
 <div class="container">
-	<input type="hidden" id="redirect" value="<?php echo $_GET['r']; ?>">
+	<input type="hidden" id="redirect" value="<?php echo $redirect; ?>">
 	<div class="bagLogin" id="loginPublic">
 		<div class="wrap">
 			<form id="formLoginPublic">
@@ -140,7 +145,13 @@ $cookieNotif = $_COOKIE['kukiLogin'];
 		muncul("#formRegPublic")
 	})
 
-	let redirect = atob(pilih("#redirect").value)
+	let redirect
+	let getRedirect = pilih("#redirect").value
+	if(getRedirect != "" || getRedirect != 0) {
+		redirect = atob(getRedirect)
+	}else {
+		redirect = getRedirect
+	}
 
 	submit("#formRegPublic", () => {
 		let name = pilih("#nameRegPublic").value
@@ -162,7 +173,7 @@ $cookieNotif = $_COOKIE['kukiLogin'];
 			//
 		})
 		pos("aksi/user/login.php", log, () => {
-			if(redirect == "") {
+			if(redirect == "" || redirect == 0) {
 				mengarahkan("./my")
 			}else {
 				mengarahkan(redirect)
