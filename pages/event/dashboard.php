@@ -16,7 +16,7 @@ if($from == "guest-list") {
     $msgFrom = "Select event first before see detail";
 }
 
-if($sesiHotel == "") {
+if($sesiResto != "") {
 	// nggawe resto
 	$myId = $resto->info($sesiResto, "idresto");
     $myEvent = $event->myForResto($myId);

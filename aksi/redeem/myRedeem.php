@@ -13,7 +13,7 @@ if($sesiHotel == "" && $sesiResto == "") {
     header("location: ../hotel/login");
 }
 
-if($sesiHotel == "") {
+if($sesiResto != "") {
 	// nggawe resto
 	$idhotel = $resto->info($sesiResto, "idresto");
     $myEvent = $event->myForResto($myId);

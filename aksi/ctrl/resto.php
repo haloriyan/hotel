@@ -72,7 +72,6 @@ class resto extends hotel {
 			}else {
 				$_SESSION['uresto']=$id;
 			}
-			unset($_SESSION['uhotel']);
 		}else {
 			die("error 403");
 		}

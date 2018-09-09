@@ -5,7 +5,7 @@ session_start();
 $sesiHotel = $_SESSION['uhotel'];
 $sesiResto = $_SESSION['uresto'];
 
-if($sesiHotel == "") {
+if($sesiResto != "") {
 	// nggawe resto
 	$myId = $resto->info($sesiResto, "idresto");
 	$load = $event->myForResto($myId);
@@ -46,22 +46,11 @@ if($load == "kosong") {
 				 "</tr>";
 		}
 		?>
-		<!--
-		<tr>
-			<td><img src="../aset/gbr/upin.jpeg"></td>
-			<td>
-				<h4>Ta'Jil di Swiss-Belhotel Petitenget</h4>
-				<a href="#" id="tblEdit">Edit</a> &nbsp;
-				<i class="fa fa-angle-right"></i> &nbsp;
-				<a href="#" id="tblDel">Delete</a>
-			</td>
-			<td>Explore</td>
-			<td>May 11, 2018</td>
-			<td>-</td>
-		</tr>
-		-->
 	</tbody>
 </table>
+<div class="bag-tombol" style='margin-top: 25px;'>
+	<a href='../event/dashboard'><button class='merah-2'>see all my events</button></a>
+</div>
 <?php
 }
 ?>

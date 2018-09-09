@@ -28,6 +28,13 @@ $tglAkhir = $event->info($idevent, "tgl_akhir");
 $qty = $event->info($idevent, "availableseat");
 $quota = $event->info($idevent, "quota");
 
+$tglSkrg = date('Y-m-d');
+if($tglAkhir < $tglSkrg) {
+	$statusExp = "1";
+}else {
+	$statusExp = "0";
+}
+
 // Bagian Hotel
 $idhotel = $event->info($idevent, "idhotel");
 $hotelPhone = $hotel->get($idhotel, "phone");
@@ -123,7 +130,11 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 
 <div class="cta">
 	<li id="price"><i class="fa fa-money"></i> &nbsp; <?php echo $price; ?></li>
+	<?php if($statusExp == 0) { ?>
 	<button id="book" class="merah-2">Book Now!</button>
+	<?php } else { ?>
+	This event has expired
+	<?php } ?>
 	<button id="share"><i class="fa fa-share"></i></button>
 </div>
 
