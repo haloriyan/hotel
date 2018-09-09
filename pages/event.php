@@ -259,10 +259,23 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 <script src="../aset/js/script.index.js"></script>
 <script src="../aset/js/script.event.js"></script>
 
-<script>
+<?php
+if($sesi == "") {
+	echo '<script>
 klik("#book", function() {
-	munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
+	mengarahkan("../auth&r='.base64_encode($urlNow).'")
 })
+</script>';
+}else {
+	echo '<script>
+	klik("#book", function() {
+		munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
+	})
+</script>';
+}
+?>
+
+<script>
 submit("#formBook", function() {
 	let idevent = pilih("#idevent").value
 	let tgl = pilih("#tglBook").value

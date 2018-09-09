@@ -26,7 +26,7 @@ if($all == "null") {
             echo "<tr>".
                     "<td>".$namaUser."</td>".
                     "<td>".$namaEvent."</td>".
-                    "<td><a href='../aset/gbr/".$row['bukti']."' target='_blank'>See image</a></td>".
+                    "<td><a href='../aset/gbr/".$row['bukti']."' target='_blank'><img src='../aset/gbr/".$row['bukti']."'></a></td>".
                     "<td>".
                         "<button class='tbl merah' onclick='tolak(this.value)' value='".$row['idbooking']."'><i class='fa fa-close'></i></button> &nbsp; &nbsp;".
                         "<button class='tbl hijau' onclick='cawang(this.value)' value='".$row['idbooking']."'><i class='fa fa-check'></i></button>".

@@ -29,13 +29,9 @@ class booking extends event {
 		return $q;
 	}
 	public function tolak($id) {
-		$q = $this->tabel("booking")
-				  ->ubah([
-				  	"status" => 0,
-				  	"bukti" => ""
-				  ])
-				  ->dimana(["idbooking" => $id])
-				  ->eksekusi();
+		$get = $this->info($id, "bukti");
+		$q = $this->query("UPDATE booking SET status = '0', bukti = '' WHERE idbooking = '$id'");
+		unlink('../../aset/gbr/'.$get);
 		return $q;
 	}
 	public function delete($id) {
@@ -206,10 +202,5 @@ class booking extends event {
 }
 
 $booking = new booking();
-
-if($booking->tolak("312544")) 
-	echo "berhasil";
-else 
-	echo "gagal";
 
 ?>

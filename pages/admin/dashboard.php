@@ -67,10 +67,10 @@ if(isset($_GET['idhotel'])) {
     <table>
       <thead>
         <tr>
-          <th>Nama Hotel</th>
-          <th>Alamat</th>
-          <th>Kota</th>
-          <th>Nomor Telepon</th>
+          <th>Hotel name</th>
+          <th>Address</th>
+          <th>City</th>
+          <th>Phone</th>
           <th>Website</th>
           <th>Action</th>
         </tr>
