@@ -9,6 +9,7 @@ if($_GET['id'] !== null) {
 }
 
 $sesi 	= $resto->sesi();
+$idresto = $resto->info($sesi, "idresto");
 $name 	= $resto->info($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
 $phone 	= $resto->info($sesi, "phone");
@@ -47,10 +48,12 @@ $description = $resto->info($sesi, "description");
 		<input type="text" class="box" placeholder="Type your search...">
 	</div>
 	<nav class="menu">
+		<!--
 		<a href="#"><li>Home</li></a>
 		<a href="#"><li>Explore</li></a>
 		<a href="#"><li>City</li></a>
-		<li>Hello <?php echo $namaPertama; ?> !</li>
+		-->
+		<a href="../restoran/<?php echo $idresto; ?>" target='_blank'><li>Hello <?php echo $namaPertama; ?> !</li></a>
 		<button id="cta" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
 	</nav>
 </div>
@@ -79,12 +82,7 @@ $description = $resto->info($sesi, "description");
 			<input type="text" class="box" id="web" placeholder="e.g https://dailyhotels.id" value="<?php echo $web; ?>">
 			<div class="isi">Address :</div>
 			<input class="box" id="address" value="<?php echo $address; ?>">
-			<div class="bag-tombol">
-				<button class="tbl merah-2">SAVE</button>
-			</div>
 		</div>
-	</form>
-	<form id="formImage">
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-image"></i></div> Change Image</h4>
 			<div class="isi">Icon</div>
@@ -132,23 +130,16 @@ $description = $resto->info($sesi, "description");
 		let city 	= pilih("#city").value
 		let web 	= pilih("#web").value
 		let description = pilih("#description").value
-		let detil 	= "phone="+phone+"&address="+address+"&bag=detil&city="+city+"&web="+web+"&description="+description
+
+		let icons = pilih("#namaIcon").value
+		let cover = pilih("#namaCover").value
+		let detil 	= "phone="+phone+"&address="+address+"&bag=detil&city="+city+"&web="+web+"&description="+description+"&icon="+icons+"&cover="+cover
 		if(phone == "" || address == "" || web == "" || city == "") {
+			munculPopup("#notif", pengaya("#notif", "top: 225px"))
+			tulis("#isiNotif", "All field must be filled")
 			return false
 		}
 		pos("../aksi/resto/edit.php", detil, function() {
-			munculPopup("#saved", pengaya("#saved", "top: 225px"))
-		})
-		return false
-	})
-	submit("#formImage", function() {
-		let icons = pilih("#namaIcon").value
-		let cover = pilih("#namaCover").value
-		let img = "icon="+icons+"&cover="+cover+"&bag=image"
-		if(icons == "") {
-			return false
-		}
-		pos("../aksi/resto/edit.php", img, function() {
 			munculPopup("#saved", pengaya("#saved", "top: 225px"))
 		})
 		return false

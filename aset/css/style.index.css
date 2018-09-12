@@ -55,7 +55,7 @@ a { color: #cb0023; }
 	width: 13.5%;
 	border: 1px solid #777;
 	border-top: none;
-	top: -800px;
+	display: none;
 	transition: 0.4s;
 	z-index: 2;
 }

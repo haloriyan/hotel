@@ -2,6 +2,7 @@
 include 'aksi/ctrl/hotel.php';
 
 $sesi 	= $hotel->sesi();
+$idhotel = $hotel->get($sesi, 'idhotel');
 $name 	= $hotel->get($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
 $phone 	= $hotel->get($sesi, "phone");
@@ -40,10 +41,12 @@ $description = $hotel->get($sesi, "description");
 		<input type="text" class="box" placeholder="Type your search...">
 	</div>
 	<nav class="menu">
+		<!--
 		<a href="#"><li>Home</li></a>
 		<a href="#"><li>Explore</li></a>
 		<a href="#"><li>City</li></a>
-		<li>Hello <?php echo $namaPertama; ?> !</li>
+		-->
+		<a href="./<?php echo $idhotel; ?>" target='_blank'><li>Hello <?php echo $namaPertama; ?> !</li></a>
 		<button id="cta" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
 	</nav>
 </div>
@@ -125,7 +128,7 @@ $description = $hotel->get($sesi, "description");
 		let icons = pilih("#namaIcon").value
 		let cover = pilih("#namaCover").value
 		let detil 	= "phone="+phone+"&address="+address+"&bag=detil&city="+city+"&web="+web+"&description="+description+"&icon="+icons+"&cover="+cover
-		if(phone == "" || address == "" || web == "" || city == "" || icons == "") {
+		if(phone == "" || address == "" || web == "" || city == "") {
 			return false
 		}
 		pos("../aksi/hotel/edit.php", detil, function() {

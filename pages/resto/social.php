@@ -50,10 +50,12 @@ $namaPertama = explode(" ", $name)[0];
 		<input type="text" class="box" placeholder="Type your search...">
 	</div>
 	<nav class="menu">
+		<!--
 		<a href="#"><li>Home</li></a>
 		<a href="#"><li>Explore</li></a>
 		<a href="#"><li>City</li></a>
-		<li>Hello <?php echo $namaPertama; ?> !</li>
+		-->
+		<a href="../restoran/<?php echo $idresto; ?>" target='_blank'><li>Hello <?php echo $namaPertama; ?> !</li></a>
 		<button id="cta" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
 	</nav>
 </div>

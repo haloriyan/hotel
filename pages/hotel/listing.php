@@ -2,6 +2,7 @@
 include 'aksi/ctrl/event.php';
 
 $sesi 	= $hotel->sesi();
+$idhotel = $hotel->get($sesi, 'idhotel');
 $name 	= $hotel->get($sesi, "nama");
 $myId 	= $hotel->get($sesi, "idhotel");
 $namaPertama = explode(" ", $name)[0];
@@ -79,10 +80,12 @@ $namaEvent = $event->info($idevent, "title");
 		<input type="text" class="box" placeholder="Type your search...">
 	</div>
 	<nav class="menu">
+		<!--
 		<a href="#"><li>Home</li></a>
 		<a href="#"><li>Explore</li></a>
 		<a href="#"><li>City</li></a>
-		<li>Hello <?php echo $namaPertama; ?> !</li>
+		-->
+		<a href="./<?php echo $idhotel; ?>" target='_blank'><li>Hello <?php echo $namaPertama; ?> !</li></a>
 		<button id="cta" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
 	</nav>
 </div>
