@@ -1,3 +1,4 @@
+.atas { position: fixed; }
 .bg { z-index: 5; }
 .popup { z-index: 5; }
 #socialNetwork a {
