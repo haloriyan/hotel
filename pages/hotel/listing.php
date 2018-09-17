@@ -115,16 +115,16 @@ $namaEvent = $event->info($idevent, "title");
 <div class="popupWrapper" id="hapusList">
 	<div class="popup">
 		<div class="wrap">
-			<h3>Hapus Listing Event
+			<h3>Deleting listing
 				<div class="ke-kanan" id="xHapus"><i class="fa fa-close"></i></div>
 			</h3>
 			<form id="formHapus">
 				<input type="hidden" id="idevent">
 				<p id="loadFormHapus">
-					Yakin ingin menghapus <b><?php echo $namaEvent; ?></b> ?
+					Sure want to delete <b><?php echo $namaEvent; ?></b> ?
 				</p>
 				<div class="bag-tombol">
-					<button class="merah-2">Ya, Hapus</button>
+					<button class="merah-2">Yes, Delete this</button>
 				</div>
 			</form>
 		</div>

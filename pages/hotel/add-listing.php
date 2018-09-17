@@ -4,6 +4,7 @@ include 'aksi/ctrl/hotel.php';
 $sesi 	= $hotel->sesi();
 $name 	= $hotel->get($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
+$idhotel = $hotel->get($sesi, 'idhotel');
 
 ?>
 <!DOCTYPE html>
@@ -33,6 +34,47 @@ $namaPertama = explode(" ", $name)[0];
 		.atas { z-index: 2; }
 		.bg { z-index: 4; }
 		.box[readonly] { background: #ecf0f1; }
+		.container {
+			top: 200px;left: 15%;
+			width: 70%;
+			margin-bottom: 35px;
+			border-radius: 6px;
+			border: 1px solid #ddd;
+		}
+
+		.myStep {
+			z-index: 2;
+			text-align: center;
+			position: fixed;
+			top: 80px;left: 22.5%;
+			border: 1px solid #ddd;
+			background-color: #fff;
+			padding: 15px 100px;
+			border-bottom-left-radius: 90px;
+			border-bottom-right-radius: 90px;
+		}
+		.step {
+			border: 2px solid #777;
+			color: #777;
+			font-size: 16px;
+			font-family: Arial;
+			width: 40px;
+			line-height: 40px;
+			text-align: center;
+			border-radius: 90px;
+			display: inline-block;
+			cursor: pointer;
+		}
+		.step[aktif=ya] { border: 2px solid #cb0023;color: #cb0023; }
+		.after {
+			display: inline-block;
+			width: 75px;
+			height: 2px;
+			background-color: #888;
+			position: relative;
+			top: -5px;
+		}
+		.after[aktif=ya] { background-color: #cb0023; }
 	</style>
 </head>
 <body>
@@ -45,18 +87,35 @@ $namaPertama = explode(" ", $name)[0];
 	</div>
 	<nav class="menu">
 		<a href="./dashboard"><li>Dashboard</li></a>
-		<a href="./listing"><li>Listing</li></a>
-		<a href="./detail"><li>Setting</li></a>
-		<a href="./logout"><li>Sign out</li></a>
+		<a href="./listing"><li>My Listings</li></a>
+		<a href="./dashboard"><li>Gallery</li></a>
+		<a href="./dashboard"><li>Restaurant</li></a>
 	</nav>
 </div>
 
+<!--
 <div class="kiri">
-	<div class="listWizard" id="kebasic" aktif="ya">Add Listing</div>
-	<div class="listWizard" id="keimage">Event Image</div>
-	<div class="listWizard" id="kelocation">Location</div>
-	<div class="listWizard" id="kedetail">Event Details</div>
-	<div class="listWizard" id="keprice">Price</div>
+	<a href="./dashboard"><div class="listWizard">Dashboard</div></a>
+	<a href="./detail"><div class="listWizard">Detail Information</div></a>
+	<a href="./listing"><div class="listWizard">My Listings</div></a>
+	<a href="./galeri"><div class="listWizard">Gallery</div></a>
+	<a href="./facility"><div class="listWizard">Facility</div></a>
+	<a href="./social"><div class="listWizard">Social Network</div></a>
+	<a href="./restaurant"><div class="listWizard">Restaurant</div></a>
+	<a href="./logout"><div class="listWizard">Logout</div></a>
+</div>
+-->
+
+<div class="myStep">
+	<div class="step" id="stepOne" aktif='ya'><i class="fa fa-pencil"></i></div>
+	<div class="after" id="afterOne"></div>
+	<div class="step" id="stepTwo"><i class="fa fa-camera"></i></div>
+	<div class="after" id="afterTwo"></div>
+	<div class="step" id="stepThree"><i class="fa fa-map-marker"></i></div>
+	<div class="after" id="afterThree"></div>
+	<div class="step" id="stepFour"><i class="fa fa-align-justify"></i></div>
+	<div class="after" id="afterFour"></div>
+	<div class="step" id="stepFive"><i class="fa fa-money"></i></div>
 </div>
 
 <div class="container">
@@ -122,7 +181,7 @@ $namaPertama = explode(" ", $name)[0];
 	</form>
 	<form id="detail">
 		<div class="wrap">
-			<h4><div id="icon"><i class="fa fa-map-marker"></i></div> Event Details</h4>
+			<h4><div id="icon"><i class="fa fa-align-justify"></i></div> Event Details</h4>
 			<input type="hidden" id='tglSkrg' value='<?php echo date('Y-m-d'); ?>'>
 			<div class="isi">Date Start</div>
 			<input type="text" class="box" placeholder="yyyy-mm-dd" id="date" onchange="dateStart(this.value)">
@@ -140,16 +199,16 @@ $namaPertama = explode(" ", $name)[0];
 				<option>Others</option>
 			</select>
 			<div class="isi">Quota :</div>
-			<input type="text" class="box" placeholder="Quota Seat per day..." id="seat">
+			<input type="number" class="box" placeholder="Quota Seat per day..." id="seat">
 			<br />
 			<button class="tbl merah-2">NEXT</button>
 		</div>
 	</form>
 	<form id="price">
 		<div class="wrap">
-			<h4><div id="icon"><i class="fa fa-map-marker"></i></div> Price</h4>
+			<h4><div id="icon"><i class="fa fa-money"></i></div> Price</h4>
 			<div class="isi">Pricing</div>
-			<input type="text" class="box" id="priceBox" placeholder='e.g "140000"'>
+			<input type="number" class="box" id="priceBox" placeholder='e.g "140000"'>
 			<button class="tbl merah-2" id="publish" type="button">PUBLISH</button>
 		</div>
 	</form>
@@ -180,20 +239,27 @@ $namaPertama = explode(" ", $name)[0];
 		hilang("#price")
 		muncul("#" + y)
 
-		pilih("#kebasic").setAttribute("aktif", "tidak")
-		pilih("#keimage").setAttribute("aktif", "tidak")
-		pilih("#kelocation").setAttribute("aktif", "tidak")
-		pilih("#kedetail").setAttribute("aktif", "tidak")
-		pilih("#keprice").setAttribute("aktif", "tidak")
-		pilih("#ke" + y).setAttribute("aktif", "ya")
+		if(y == 'image') {
+			pilih('#stepTwo').setAttribute('aktif', 'ya')
+			pilih('#afterOne').setAttribute('aktif', 'ya')
+		}else if(y == 'location') {
+			pilih('#stepThree').setAttribute('aktif', 'ya')
+			pilih('#afterTwo').setAttribute('aktif', 'ya')
+		}else if(y == 'detail') {
+			pilih('#stepFour').setAttribute('aktif', 'ya')
+			pilih('#afterThree').setAttribute('aktif', 'ya')
+		}else if(y == 'price') {
+			pilih('#stepFive').setAttribute('aktif', 'ya')
+			pilih('#afterFour').setAttribute('aktif', 'ya')
+		}
 	}
 	function publish() {
-		let title = encodeURIComponent(pilih("#title").value)
-		let tagline = encodeURIComponent(pilih("#tagline").value)
+		let title = pilih("#title").value
+		let tagline = pilih("#tagline").value
 		let description = pilih("#description").value
 		let cover = pilih("#covers").value
 		let region = pilih("#region").value
-		let address = encodeURIComponent(pilih("#address").value)
+		let address = pilih("#address").value
 		let date = pilih("#date").value
 		let dateEnd = pilih("#dateEnd").value
 		let category = pilih("#category").value
@@ -223,7 +289,7 @@ $namaPertama = explode(" ", $name)[0];
 			tulis("#isiNotif", "All field must be filled")
 			return false
 		}
-		hilangKecuali("image")
+		hilangKecuali('image')
 		return false
 	})
 	submit("#image", function() {
@@ -235,7 +301,7 @@ $namaPertama = explode(" ", $name)[0];
 			tulis("#isiNotif", "You must insert an image cover")
 			return false
 		}
-		hilangKecuali("location")
+		hilangKecuali('location')
 		return false
 	})
 	submit("#location", function() {
@@ -246,7 +312,7 @@ $namaPertama = explode(" ", $name)[0];
 			tulis("#isiNotif", "All field must be filled")
 			return false
 		}
-		hilangKecuali("detail")
+		hilangKecuali('detail')
 		return false
 	})
 	submit("#detail", function() {
@@ -258,7 +324,7 @@ $namaPertama = explode(" ", $name)[0];
 			tulis("#isiNotif", "All field must be filled")
 			return false
 		}
-		hilangKecuali("price")
+		hilangKecuali('price')
 		return false
 	})
 	submit("#price", function() {
@@ -279,22 +345,6 @@ $namaPertama = explode(" ", $name)[0];
 	})
 	klik(".bg", function() {
 		hilangPopup("#notif")
-	})
-
-	klik("#kebasic", function() {
-		hilangKecuali("basic")
-	})
-	klik("#keimage", function() {
-		hilangKecuali("image")
-	})
-	klik("#kelocation", function() {
-		hilangKecuali("location")
-	})
-	klik("#kedetail", function() {
-		hilangKecuali("detail")
-	})
-	klik("#keprice", function() {
-		hilangKecuali("price")
 	})
 	$("#cover").on("change", function() {
 		let allowed = ["jpg","jpeg","png","bmp"]

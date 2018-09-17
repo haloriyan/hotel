@@ -13,9 +13,12 @@ if($bag == "detil") {
 	$description	= $_POST['description'];
 	$icon = $_POST['icon'];
 	$cover = $_POST['cover'];
+	$lat = $_POST['lat'];
+	$lng = $_POST['lng'];
+	$coords = $lat."|".$lng;
 
-	$val = $phone.",".$address.",".$web.",".$city.",".$description.",".$icon.",".$cover;
-	$change = "phone,address,website,city,description,icon,cover";
+	$val = $phone.",".$address.",".$web.",".$city.",".$description.",".$icon.",".$cover.",".$coords;
+	$change = "phone,address,website,city,description,icon,cover,coords";
 
 	$v = explode(",", $val);
 	$c = explode(",", $change);

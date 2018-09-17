@@ -10,6 +10,17 @@ $address 	= $hotel->get($sesi, "address");
 $city = $hotel->get($sesi, "city");
 $web = $hotel->get($sesi, "website");
 $description = $hotel->get($sesi, "description");
+$coords = $hotel->get($sesi, "coords");
+
+$c = explode("|", $coords);
+$lat = $c[0];
+$lng = $c[1];
+if($lat == '') {
+	$lat = '-7.256317699999999';
+}
+if($lng == '') {
+	$lng = '112.73762540000007';
+}
 
 ?>
 <!DOCTYPE html>
@@ -76,6 +87,9 @@ $description = $hotel->get($sesi, "description");
 			<input type="text" class="box" id="web" placeholder="e.g https://dailyhotels.id" value="<?php echo $web; ?>">
 			<div class="isi">Address :</div>
 			<input class="box" id="address" value="<?php echo $address; ?>">
+			<div id="myMaps" style="height: 300px;"></div>
+			<input type="hidden" id="latInput">
+			<input type="hidden" id="lngInput">
 		</div>
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-image"></i></div> Change Image</h4>
@@ -114,20 +128,68 @@ $description = $hotel->get($sesi, "description");
 	</div>
 </div>
 
+<script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyDqYJGuWw9nfoyPG8d9L1uhm392uETE-mA'></script>
 <script src="../aset/js/jquery-3.1.1.js"></script>
+<script src="../aset/js/locationpicker.jquery.min.js"></script>
 <script src="../aset/js/insert.js"></script>
 <script src="../aset/js/embo.js"></script>
 <script>
+	$('#myMaps').locationpicker({
+		location: {
+			latitude: <?php echo $lat; ?>,
+			longitude: <?php echo $lng; ?>
+		},
+		radius: 0,
+		inputBinding: {
+			latitudeInput: $('#latInput'),
+			longitudeInput: $('#lngInput'),
+			locationNameInput: $('#address')
+		},
+		onchanged: function() {
+			//
+		},
+		enableAutocomplete: true,
+	})
+	$('#formDetil').submit(function() {
+		let phone = $('#phone').val()
+		let address = $('#address').val()
+		let city = $('#city').val()
+		let web = $('#web').val()
+		let description = $('#description').val()
+		let latitude = $('#latInput').val()
+		let longitude = $('#lngInput').val()
+
+		let icons = $('#namaIcon').val()
+		let cover = $('#namaCover').val()
+		let detil 	= "phone="+phone+"&bag=detil&city="+city+"&web="+web+"&description="+description+"&icon="+icons+"&cover="+cover+"&lat="+latitude+"&lng="+longitude
+		alert(detil)
+		if(phone == "" || address == "" || web == "" || city == "") {
+			return false
+		}
+
+		$.ajax({
+			type: 'POST',
+			url: '../aksi/hotel/edit.php',
+			data: detil,
+			success: function() {
+				munculPopup("#saved", pengaya("#saved", "top: 225px"))
+			}
+		})
+		return false
+	})
+	/*
 	submit("#formDetil", function() {
 		let phone 	= pilih("#phone").value
-		let address = pilih("#address").value
+		let address = encodeURIComponent(btoa(pilih("#address").value))
 		let city 	= pilih("#city").value
 		let web 	= pilih("#web").value
 		let description = pilih("#description").value
+		let latitude = encodeURIComponent(btoa(pilih("#latInput").value))
+		let longitude = encodeURIComponent(btoa(pilih("#lngInput").value))
 
 		let icons = pilih("#namaIcon").value
 		let cover = pilih("#namaCover").value
-		let detil 	= "phone="+phone+"&address="+address+"&bag=detil&city="+city+"&web="+web+"&description="+description+"&icon="+icons+"&cover="+cover
+		let detil 	= "phone="+phone+"&address="+address+"&bag=detil&city="+city+"&web="+web+"&description="+description+"&icon="+icons+"&cover="+cover+"&address="+address
 		if(phone == "" || address == "" || web == "" || city == "") {
 			return false
 		}
@@ -136,6 +198,7 @@ $description = $hotel->get($sesi, "description");
 		})
 		return false
 	})
+	*/
 
 	tekan("Escape", function() {
 		hilangPopup("#saved")

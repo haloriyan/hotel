@@ -159,6 +159,11 @@ if($decodedRedirect == "") {
 		let pwd = pilih("#pwdRegPublic").value
 		let reg = "name="+name+"&email="+email+"&pwd="+pwd
 		pos("aksi/user/register.php", reg, () => {
+			// hilangkan
+			pilih("#nameRegPublic").value = ''
+			pilih("#emailRegPublic").value = ''
+			pilih("#pwdRegPublic").value = ''
+
 			hilang("#formRegPublic")
 			muncul("#suksesRegPublic")
 			console.log("registered")
@@ -187,6 +192,11 @@ if($decodedRedirect == "") {
 		let pwd = pilih("#pwdRegMarcom").value
 		let reg = "name="+name+"&email="+email+"&pwd="+pwd
 		pos("aksi/hotel/register.php", reg, () => {
+			// hilangkan
+			pilih('#nameRegMarcom').value = ''
+			pilih('#emailRegMarcom').value = ''
+			pilih('#pwdRegMarcom').value = ''
+
 			hilang("#formRegMarcom")
 			muncul("#suksesRegMarcom")
 		})
