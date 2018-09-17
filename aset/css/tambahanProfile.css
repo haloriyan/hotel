@@ -106,6 +106,13 @@
 	box-shadow: 1px 1px 5px 1px #ddd;
 	padding: 1px;
 }
+#address {
+	font-size: 16px;
+	border: none;
+	height: 65px;
+	background: none;
+	padding: 0;
+}
 
 @media (max-width: 720px) {
 	.cta {

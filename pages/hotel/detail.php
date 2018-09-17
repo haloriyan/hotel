@@ -162,7 +162,6 @@ if($lng == '') {
 		let icons = $('#namaIcon').val()
 		let cover = $('#namaCover').val()
 		let detil 	= "phone="+phone+"&bag=detil&city="+city+"&web="+web+"&description="+description+"&icon="+icons+"&cover="+cover+"&lat="+latitude+"&lng="+longitude
-		alert(detil)
 		if(phone == "" || address == "" || web == "" || city == "") {
 			return false
 		}
