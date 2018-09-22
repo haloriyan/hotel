@@ -282,6 +282,12 @@ $namaPertama = explode(" ", $name)[0];
 	klik("#xDel", function() {
 		hilangPopup("#hapusImg")
 	})
+	klik("#xNewAlbum", () => {
+		hilangPopup("#addNewAlbum")
+	})
+	klik("#xDelAlbum", () => {
+		hilangPopup("#delAlbum")
+	})
 
 	function getExt(val) {
 		let re =/(?:\.([^.]+))?$/

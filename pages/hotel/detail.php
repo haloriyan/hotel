@@ -150,6 +150,15 @@ if($lng == '') {
 		},
 		enableAutocomplete: true,
 	})
+	function validUrl(str) {
+	    let regExp = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
+
+	    if(!regExp.test(str)) {
+	    	munculPopup("#notif", pengaya("#notif", "top: 200px"))
+			tulis("#isiNotif", "URL must be valid!")
+			return false
+	    }
+	}
 	$('#formDetil').submit(function() {
 		let phone = $('#phone').val()
 		let address = $('#address').val()
@@ -166,6 +175,8 @@ if($lng == '') {
 			return false
 		}
 
+		validUrl(web)
+
 		$.ajax({
 			type: 'POST',
 			url: '../aksi/hotel/edit.php',
@@ -176,28 +187,6 @@ if($lng == '') {
 		})
 		return false
 	})
-	/*
-	submit("#formDetil", function() {
-		let phone 	= pilih("#phone").value
-		let address = encodeURIComponent(btoa(pilih("#address").value))
-		let city 	= pilih("#city").value
-		let web 	= pilih("#web").value
-		let description = pilih("#description").value
-		let latitude = encodeURIComponent(btoa(pilih("#latInput").value))
-		let longitude = encodeURIComponent(btoa(pilih("#lngInput").value))
-
-		let icons = pilih("#namaIcon").value
-		let cover = pilih("#namaCover").value
-		let detil 	= "phone="+phone+"&address="+address+"&bag=detil&city="+city+"&web="+web+"&description="+description+"&icon="+icons+"&cover="+cover+"&address="+address
-		if(phone == "" || address == "" || web == "" || city == "") {
-			return false
-		}
-		pos("../aksi/hotel/edit.php", detil, function() {
-			munculPopup("#saved", pengaya("#saved", "top: 225px"))
-		})
-		return false
-	})
-	*/
 
 	tekan("Escape", function() {
 		hilangPopup("#saved")

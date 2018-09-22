@@ -285,6 +285,9 @@ $namaPertama = explode(" ", $name)[0];
 	klik("#xNewAlbum", () => {
 		hilangPopup("#addNewAlbum")
 	})
+	klik("#xDelAlbum", () => {
+		hilangPopup("#delAlbum")
+	})
 
 	function getExt(val) {
 		let re =/(?:\.([^.]+))?$/
