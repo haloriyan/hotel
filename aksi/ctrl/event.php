@@ -37,7 +37,7 @@ class event extends resto {
 				  	"description" => $e,
 				  	"covers" => $g,
 				  	"region" => $h,
-				  	"address" => $i,
+				  	"alamat" => $i,
 				  	"tgl_mulai" => $j,
 				  	"tgl_akhir" => $tglAkhir,
 				  	"tgl_posted" => $jPosted,
@@ -85,7 +85,7 @@ class event extends resto {
 		date_default_timezone_set('Asia/Jakarta');
 		$tglSkrg = date('Y-m-d');
 		$tglMulaiDefault = date('Y-m-1');
-		$tglAkhirDefault = date('Y-m-31');
+		$tglAkhirDefault = date('2035-12-31');
 		// basic query SELECT * FROM `event` WHERE tgl_akhir <= '2018-09-31' AND tgl_akhir >= '2018-09-02'
 		if($tglMulai == "" and $tglAkhir == "") {
 			// lama $filterTgl = "tgl_mulai >= '$tglMulaiDefault' AND tgl_akhir <= '$tglAkhirDefault'";
@@ -102,6 +102,7 @@ class event extends resto {
 		// $sqlQuery = "SELECT * FROM event WHERE title LIKE '%$keyword%' AND category LIKE '%$cat%' AND $filterTgl ORDER BY added DESC";
 		$sqlQuery = $this->query("SELECT * FROM event LEFT JOIN hotel ON event.idhotel = hotel.idhotel WHERE nama LIKE '%$keyword%' AND category LIKE '%$cat%' AND $filterTgl AND region LIKE '%$region%' ORDER BY event.added DESC");
 		if($this->hitung($sqlQuery) == 0) {
+			return 'kosong';
 			$sqlQuery = $this->query("SELECT * FROM event WHERE title LIKE '%$keyword%' AND category LIKE '%$cat%' AND $filterTgl AND region LIKE '%$region%' ORDER BY event.added DESC");
 		}
 		if($this->hitung($sqlQuery) == 0) {

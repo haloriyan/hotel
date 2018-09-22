@@ -20,7 +20,7 @@ if($namaEvent == "") {
 	die("error");
 }
 $cover = $event->info($idevent, "covers");
-$address = $event->info($idevent, "address");
+$alamat = $event->info($idevent, "alamat");
 $description = $event->info($idevent, "description");
 $price = toIdr($event->info($idevent, "price"));
 $tglMulai = $event->info($idevent, "tgl_mulai");
@@ -146,7 +146,7 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 			<div class="ketHotel">
 				<h2><?php echo $namaEvent; ?></h2>
 				<p>
-					<?php echo $address; ?>
+					<?php echo $alamat; ?>
 				</p>
 			</div>
 			<div class="menuHotel">
@@ -174,7 +174,7 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 					<div class="wrap">
 						<h3><i class="fa fa-map-marker"></i> &nbsp; Location</h3>
 						<p>
-							<?php echo $address; ?>
+							<?php echo $alamat; ?>
 						</p>
 					</div>
 				</div>

@@ -144,6 +144,9 @@ $namaPertama = explode(" ", $name)[0];
 	klik("#xAdd", function() {
 		hilangPopup("#addSocial")
 	})
+	klik("#xHapus", () => {
+		hilangPopup("#popupHapus")
+	})
 	submit("#y", function() {
 		munculPopup("#addSocial")
 		return false

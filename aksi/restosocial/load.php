@@ -2,7 +2,7 @@
 include '../ctrl/social.php';
 $sesi = $resto->sesi();
 $idresto = $resto->info($sesi, "idresto");
-$soc = $social->all($idresto);
+$soc = $social->all($idresto, "restoran");
 
 if($soc == "null") {
 	echo "<h4>You dont have any social network</h4>";
@@ -18,7 +18,7 @@ if($soc == "null") {
 	</thead>
 	<tbody>
 		<?php
-		foreach ($social->all($idresto) as $row) {
+		foreach ($soc as $row) {
 			echo "<tr>".
 					"<td>".$row['type']."</td>".
 					"<td><a href='".$row['url']."' target='_blank'>".$row['url']."</a></td>".

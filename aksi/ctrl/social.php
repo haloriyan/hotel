@@ -5,10 +5,15 @@ class social extends event {
 	public function test() {
 		return 'Hello embo!';
 	}
-	public function all($id) {
+	public function all($id, $akun = NULL) {
+		if($akun == "restoran") {
+			$account = "idresto";
+		}else {
+			$account = "idhotel";
+		}
 		$q = $this->tabel("social")
 				  ->pilih()
-				  ->dimana(["idhotel" => $id])
+				  ->dimana([$account => $id])
 				  ->eksekusi();
 		if($this->hitung($q) == 0) {
 			return "null";
@@ -19,11 +24,19 @@ class social extends event {
 			return $hasil;
 		}
 	}
-	public function add($a, $b, $c, $d) {
+	public function add($a, $b, $c, $d, $akun = NULL) {
+		if($akun == "restoran") {
+			$idresto = $b;
+			$idhotel = resto::info($idresto, "idhotel");
+		}else {
+			$idresto = 0;
+			$idhotel = $b;
+		}
 		$q = $this->tabel("social")
 				  ->tambah([
 				  	"idsocial" => $a,
-				  	"idhotel" => $b,
+				  	"idhotel" => $idhotel,
+				  	"idresto" => $idresto,
 				  	"type" => $c,
 				  	"url" => $d
 				  ])

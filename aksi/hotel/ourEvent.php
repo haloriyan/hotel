@@ -32,7 +32,7 @@ foreach ($load as $row) {
 					"<div class='wrap'>".
 						"<div id='keterangan'>".
 							"<h3>".$row['title']."</h3>".
-							"<p><i class='fa fa-map-marker'></i> ".$row['address']."</p>".
+							"<p><i class='fa fa-map-marker'></i> ".$row['alamat']."</p>".
 						"</div>".
 					"</div>".
 					"<div id='hosted'>".

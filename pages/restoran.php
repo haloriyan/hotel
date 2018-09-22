@@ -154,7 +154,7 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 					<div class="wrap">
 						<h3><i class="fa fa-map-marker"></i> &nbsp; Follow Us</h3>
 						<?php
-						foreach($social->all($idresto) as $row) {
+						foreach($social->all($idresto, 'restoran') as $row) {
 							echo "<a href='".$row['url']."' target='_blank'>".
 								 "<div class='listFac'>".
 									"<div class='tot'><i class='fa fa-".strtolower($row['type'])."'></i></div>".

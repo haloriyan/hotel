@@ -34,7 +34,7 @@ foreach ($all as $row) {
 		$namaHotel = $hotel->get($idhotel, "nama");
 		$iconHotel = $hotel->get($idhotel, "icon");
 	}
-	$coverImage = "aset/gbr/".$row['covers']."";
+	$coverImage = "aset/gbr/".$row['covers'];
 	echo "".
 			 "<div class='list'>".
 			 	"<div class='bgImage' style='background: url(".$coverImage.");background-size: cover;'>".
@@ -46,7 +46,7 @@ foreach ($all as $row) {
 						"<div id='keterangan'>".
 						"<div class='tgl'><i class='fa fa-calendar'></i> &nbsp; ".$row['tgl_mulai']."</div>".
 							"<h3>".$row['title']."</h3>".
-							"<p><i class='fa fa-map-marker'></i> ".$row['address']."</p>".
+							"<p><i class='fa fa-map-marker'></i> &nbsp; ".$row['alamat']."</p>".
 						"</div>".
 					"</div>".
 					"</a>".
