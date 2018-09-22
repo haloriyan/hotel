@@ -82,7 +82,7 @@ if($lng == '') {
 			<div class="isi">City :</div>
 			<input type="text" class="box" id="city" value="<?php echo $city; ?>">
 			<div class="isi">Phone :</div>
-			<input type="text" class="box" placeholder="e.g 628123456789" id="phone" value="<?php echo $phone; ?>">
+			<input type="number" class="box" placeholder="e.g 628123456789" id="phone" value="<?php echo $phone; ?>">
 			<div class="isi">Website url :</div>
 			<input type="text" class="box" id="web" placeholder="e.g https://dailyhotels.id" value="<?php echo $web; ?>">
 			<div class="isi">Address :</div>
