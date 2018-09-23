@@ -355,7 +355,7 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 		return false
 	})
 	function seeImage(img) {
-		munculPopup('#popupSeeImage', pengaya('#popupSeeImage', 'top: 90px'))
+		munculPopup('#popupSeeImage', pengaya('#popupSeeImage', 'top: 70px'))
 		pilih("#myImage").setAttribute('src', '../aset/gbr/'+img)
 	}
 	klik('#xSeeImage', () => {

@@ -27,7 +27,7 @@ class galeri extends resto {
 		}
 	}
 	public function loadFromAlbum($id) {
-		$q = $this->tabel("galeri")->pilih()->dimana(["idalbums" => $id])->eksekusi();
+		$q = $this->tabel("galeri")->pilih()->dimana(["idalbums" => $id])->urutkan('added', 'DESC')->eksekusi();
 		if($this->hitung($q) == 0) {
 			return "null";
 		}else {
@@ -87,6 +87,7 @@ class galeri extends resto {
 		$q = $this->tabel("album")
 				  ->pilih()
 				  ->dimana($where)
+				  ->urutkan('nama', 'ASC')
 				  ->eksekusi();
 		if($this->hitung($q) == 0) {
 			echo "You dont have any album";
