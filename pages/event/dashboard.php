@@ -5,8 +5,10 @@ session_start();
 $sesiHotel = $_SESSION['uhotel'];
 $sesiResto = $_SESSION['uresto'];
 
+$pakaiAkun = $_COOKIE['pakaiAkun'];
+
 if($sesiHotel == "" && $sesiResto == "") {
-    header("location: ../hotel/login");
+    header("location: ../auth");
 }
 
 $from = $_GET['from'];
@@ -16,7 +18,7 @@ if($from == "guest-list") {
     $msgFrom = "Select event first before see detail";
 }
 
-if($sesiResto != "") {
+if($pakaiAkun == "resto") {
 	// nggawe resto
 	$myId = $resto->info($sesiResto, "idresto");
     $myEvent = $event->myForResto($myId);

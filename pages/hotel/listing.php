@@ -10,6 +10,24 @@ $namaPertama = explode(" ", $name)[0];
 $idevent = $_GET['idevent'];
 $namaEvent = $event->info($idevent, "title");
 
+$category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping","Recreation","Parties","Others"];
+$bulan = [
+	'01' => 'January',
+	'02' => 'February',
+	'03' => 'March',
+	'04' => 'April',
+	'05' => 'May',
+	'06' => 'June',
+	'07' => 'July',
+	'08' => 'August',
+	'09' => 'September',
+	'10' => 'October',
+	'11' => 'November',
+	'12' => 'December'
+];
+
+setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,6 +83,11 @@ $namaEvent = $event->info($idevent, "title");
 			text-decoration: none;
 		}
 		#seeEvent:hover { color: #cb0023; }
+		select.box {
+			padding: 10px 10px;
+			height: 45px;
+			font-size: 16px;
+		}
 	</style>
 </head>
 <body>
@@ -99,7 +122,30 @@ $namaEvent = $event->info($idevent, "title");
 
 <div class="container">
 	<div class="wrap">
-		<h4><div id="icon"><i class="fa fa-home"></i></div> My Listing</h4>
+		<h4><div id="icon"><i class="fa fa-home"></i></div> My Listing
+			<div class="ke-kanan rata-kanan">
+				<div class="bag bag-5">
+					<select class="box" id="loadType" onchange="loadType(this.value)">
+						<option value="">All types</option>
+						<?php
+						foreach ($category as $key => $value) {
+							echo "<option>".$value."</option>";
+						}
+						?>
+					</select>
+				</div>
+				<div class="bag bag-5">
+					<select class="box" id="loadBln">
+						<option value="">All months</option>
+						<?php
+						foreach ($bulan as $key => $value) {
+							echo "<option>".$value."</option>";
+						}
+						?>
+					</select>
+				</div>
+			</div>
+		</h4>
 		<p>
 			Your listing are shown in the table below
 		</p>
@@ -133,6 +179,15 @@ $namaEvent = $event->info($idevent, "title");
 		ambil("../aksi/event/my.php", function(res) {
 			tulis("#load", res)
 		})
+	}
+	function setCookie(name, value) {
+		let set = 'namakuki='+name+'&value='+value+'&durasi=3666'
+		pos('../aksi/setCookie.php', set, () => {
+			load()
+		})
+	}
+	function loadType(val) {
+		setCookie('category', val)
 	}
 	load()
 	klik("#cta", function() {

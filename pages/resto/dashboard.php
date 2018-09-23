@@ -12,6 +12,8 @@ $sesi 	= $resto->sesi();
 $idresto = $resto->info($sesi, "idresto");
 $name 	= $resto->info($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
+
+setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 ?>
 <!DOCTYPE html>
 <html>

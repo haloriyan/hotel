@@ -6,7 +6,9 @@ session_start();
 $sesiHotel = $_COOKIE['idhotel'];
 $sesiResto = $_COOKIE['idresto'];
 
-if($sesiResto == "") {
+$pakaiAkun = $_COOKIE['pakaiAkun'];
+
+if($pakaiAkun == "hotel") {
     // nggawe hotel
     $tipe = "hotel";
     $id = $sesiHotel;

@@ -8,10 +8,12 @@ $sesiResto = $_SESSION['uresto'];
 setcookie('statusRedeem', '0', time() + 3666, "/");
 
 if($sesiHotel == "" && $sesiResto == "") {
-    header("location: ../hotel/login");
+    header("location: ../auth");
 }
 
-if($sesiResto != "") {
+$pakaiAkun = $_COOKIE['pakaiAkun'];
+
+if($pakaiAkun == "resto") {
 	// nggawe resto
 	$myId = $resto->info($sesiResto, "idresto");
     $myEvent = $event->myForResto($myId);

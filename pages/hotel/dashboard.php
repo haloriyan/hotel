@@ -8,6 +8,8 @@ $namaPertama = explode(" ", $name)[0];
 $idhotel = $hotel->get($sesi, "idhotel");
 $myResto = $resto->totMyResto($idhotel);
 $myEvent = $event->totMyEvent($idhotel);
+
+setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 ?>
 <!DOCTYPE html>
 <html>

@@ -9,7 +9,9 @@ session_start();
 $sesiHotel = $_SESSION['uhotel'];
 $sesiResto = $_SESSION['uresto'];
 
-if($sesiResto != "") {
+$pakaiAkun = $_COOKIE['pakaiAkun'];
+
+if($pakaiAkun == "resto") {
     // nggawe resto
     $idresto = $resto->info($sesiResto, "idresto");
     $load = $booking->redeemable($idresto, "resto");

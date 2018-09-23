@@ -14,10 +14,12 @@ setcookie('idevent', $_GET['idevent'], time() + 3666, "/");
 $namaEvent = $event->info($idevent, "title");
 
 if($sesiHotel == "" && $sesiResto == "") {
-    header("location: ../hotel/login");
+    header("location: ../auth");
 }
 
-if($sesiResto != "") {
+$pakaiAkun = $_COOKIE['pakaiAkun'];
+
+if($pakaiAkun == "resto") {
 	// nggawe resto
 	$myId = $resto->info($sesiResto, "idresto");
 	$myEvent = $event->myForResto($myId);

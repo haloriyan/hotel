@@ -56,7 +56,7 @@ class hotel extends user {
 		session_start();
 		$sesi = $_SESSION['uhotel'];
 		if(empty($sesi)) {
-			header("location: ../hotel/login");
+			header("location: ../auth");
 		}
 		return $sesi;
 	}

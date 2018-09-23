@@ -18,6 +18,8 @@ $city = $resto->info($sesi, "city");
 $web = $resto->info($sesi, "website");
 $description = $resto->info($sesi, "description");
 
+setcookie('pakaiAkun', 'resto', time() + 5555, '/');
+
 ?>
 <!DOCTYPE html>
 <html>

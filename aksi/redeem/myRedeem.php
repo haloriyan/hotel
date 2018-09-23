@@ -9,11 +9,15 @@ session_start();
 $sesiHotel = $_SESSION['uhotel'];
 $sesiResto = $_SESSION['uresto'];
 
+$pakaiAkun = $_COOKIE['pakaiAkun'];
+
+$redirect = base64_encode('data')
+
 if($sesiHotel == "" && $sesiResto == "") {
-    header("location: ../hotel/login");
+    header("location: ../auth&r=".$redirect);
 }
 
-if($sesiResto != "") {
+if($pakaiAkun == "resto") {
 	// nggawe resto
 	$idhotel = $resto->info($sesiResto, "idresto");
     $myEvent = $event->myForResto($myId);

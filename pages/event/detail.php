@@ -6,10 +6,12 @@ $sesiHotel = $_SESSION['uhotel'];
 $sesiResto = $_SESSION['uresto'];
 
 if($sesiHotel == "" && $sesiResto == "") {
-    header("location: ../hotel/login");
+    header("location: ../auth");
 }
 
-if($sesiResto != "") {
+$pakaiAkun = $_COOKIE['pakaiAkun'];
+
+if($pakaiAkun == "resto") {
 	// nggawe resto
 	$myId = $resto->info($sesiResto, "idresto");
     $myEvent = $event->myForResto($myId);

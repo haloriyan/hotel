@@ -48,8 +48,10 @@ input[type=text]:focus, input[type=password]:focus {
 input[readonly],textarea[readonly],select[readonly] { background: #ecf0f1; }
 
 .rata-tengah { text-align: center; }
-.ke-kiri,.rata-kiri { float: left; }
-.ke-kanan,.rata-kanan { float: right; }
+.rata-kiri { text-align: left; }
+.rata-kanan { text-align: right; }
+.ke-kiri { float: left; }
+.ke-kanan { float: right; }
 
 .merah { background-color: #e74c3c;color: #fff; }
 .merah-2 { background-color: #cb0023;color: #fff; }

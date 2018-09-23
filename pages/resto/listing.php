@@ -16,6 +16,8 @@ $namaPertama = explode(" ", $name)[0];
 $idevent = $_GET['idevent'];
 $namaEvent = $event->info($idevent, "title");
 
+setcookie('pakaiAkun', 'resto', time() + 5555, '/');
+
 ?>
 <!DOCTYPE html>
 <html>

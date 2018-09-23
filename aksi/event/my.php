@@ -5,18 +5,25 @@ session_start();
 $sesiHotel = $_SESSION['uhotel'];
 $sesiResto = $_SESSION['uresto'];
 
-if($sesiResto != "") {
+$category = $_COOKIE['category'];
+$pakaiAkun = $_COOKIE['pakaiAkun'];
+
+if($pakaiAkun == "resto") {
 	// nggawe resto
 	$myId = $resto->info($sesiResto, "idresto");
-	$load = $event->myForResto($myId);
+	$load = $event->myForResto($myId, '', $category);
 }else {
     // nggawe hotel
 	$myId = $hotel->get($sesiHotel, "idhotel");
-	$load = $event->my($myId);
+	$load = $event->my($myId, '', $category);
 }
 
 if($load == "kosong") {
-	echo "You dont have any listing. <a href='./add-listing'>create one</a> now!";
+	if($category != '') {
+		echo 'You dont have listing with <b>'.$category.'</b> category';
+	}else {
+		echo "You dont have any listing. <a href='./add-listing'>create one</a> now!";
+	}
 }else {
 ?>
 <table id="myListing">

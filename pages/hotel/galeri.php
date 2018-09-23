@@ -5,6 +5,8 @@ $sesi 	= $hotel->sesi();
 $name 	= $hotel->get($sesi, "nama");
 $idhotel = $hotel->get($sesi, 'idhotel');
 $namaPertama = explode(" ", $name)[0];
+
+setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 ?>
 <!DOCTYPE html>
 <html>

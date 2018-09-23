@@ -18,6 +18,8 @@ $facility = [
 $myFacility = $hotel->get($sesi, "facility");
 $fac = explode(",", $myFacility);
 
+setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
+
 ?>
 <!DOCTYPE html>
 <html>
