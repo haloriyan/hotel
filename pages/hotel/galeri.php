@@ -68,6 +68,12 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 			color: #cb0023;
 			font-family: OSans;
 		}
+		#popupSeeImage {
+			left: 10%;width: 80%;text-align: center;
+		}
+		#popupSeeImage .popup {
+			background: none !important;
+		}
 	</style>
 </head>
 <body>
@@ -189,6 +195,17 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 	</div>
 </div>
 
+<div class="popupWrapper" id="popupSeeImage">
+	<div class="popup">
+		<div class="wrap">
+			<div>
+				<div class="ke-kanan" id="xSeeImage" style="color: #fff;font-size: 25px;"><i class="fa fa-close"></i></div>
+			</div>
+			<img src="" id="myImage">
+		</div>
+	</div>
+</div>
+
 <script src="../aset/js/embo.js"></script>
 <script src="../aset/js/jquery-3.1.1.js"></script>
 <script src="../aset/js/insert.js"></script>
@@ -274,6 +291,7 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 
 	tekan("Escape", function() {
 		hilangPopup("#addPhoto")
+		hilangPopup('#popupSeeImage')
 		hilangPopup("#hapusImg")
 		hilangPopup("#addNewAlbum")
 		hilangPopup("#delAlbum")
@@ -336,9 +354,13 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 		})
 		return false
 	})
-	function seeImage() {
-		console.log("none")
+	function seeImage(img) {
+		munculPopup('#popupSeeImage', pengaya('#popupSeeImage', 'top: 90px'))
+		pilih("#myImage").setAttribute('src', '../aset/gbr/'+img)
 	}
+	klik('#xSeeImage', () => {
+		hilangPopup('#popupSeeImage')
+	})
 </script>
 
 </body>

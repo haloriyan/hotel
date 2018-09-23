@@ -23,7 +23,7 @@ echo "<div class='listAlbum'>".
             </h3>";
 foreach($load as $row) {
     ?>
-    <div class='galeri' style='display: inline-block;float: none;' onclick='seeImage(this.getAttribute("isi"))' isi='<?php echo $row['gambar']; ?>'>
+    <div class='galeri' style='display: inline-block;float: none;cursor: pointer;' onclick='seeImage(this.getAttribute("isi"))' isi='<?php echo $row['gambar']; ?>'>
     <?php
     echo "<img src='../aset/gbr/".$row['gambar']."'>";
             if($public != 1) {

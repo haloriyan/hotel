@@ -6,21 +6,22 @@ $sesiHotel = $_SESSION['uhotel'];
 $sesiResto = $_SESSION['uresto'];
 
 $category = $_COOKIE['category'];
+$month = $_COOKIE['month'];
 $pakaiAkun = $_COOKIE['pakaiAkun'];
 
 if($pakaiAkun == "resto") {
 	// nggawe resto
 	$myId = $resto->info($sesiResto, "idresto");
-	$load = $event->myForResto($myId, '', $category);
+	$load = $event->myForResto($myId, '', $category, $month);
 }else {
     // nggawe hotel
 	$myId = $hotel->get($sesiHotel, "idhotel");
-	$load = $event->my($myId, '', $category);
+	$load = $event->my($myId, '', $category, $month);
 }
 
 if($load == "kosong") {
-	if($category != '') {
-		echo 'You dont have listing with <b>'.$category.'</b> category';
+	if($category != '' or $month != '') {
+		echo 'You dont have listing with this filter';
 	}else {
 		echo "You dont have any listing. <a href='./add-listing'>create one</a> now!";
 	}

@@ -17,6 +17,7 @@ $idevent = $_GET['idevent'];
 $namaEvent = $event->info($idevent, "title");
 
 setcookie('pakaiAkun', 'resto', time() + 5555, '/');
+setcookie('category', '', time() + 1, '/');
 
 ?>
 <!DOCTYPE html>

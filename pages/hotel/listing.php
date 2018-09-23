@@ -27,6 +27,8 @@ $bulan = [
 ];
 
 setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
+setcookie('category', '', time() + 1, '/');
+setcookie('month', '', time() + 1, '/');
 
 ?>
 <!DOCTYPE html>
@@ -125,6 +127,7 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 		<h4><div id="icon"><i class="fa fa-home"></i></div> My Listing
 			<div class="ke-kanan rata-kanan">
 				<div class="bag bag-5">
+					Type
 					<select class="box" id="loadType" onchange="loadType(this.value)">
 						<option value="">All types</option>
 						<?php
@@ -135,20 +138,18 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 					</select>
 				</div>
 				<div class="bag bag-5">
-					<select class="box" id="loadBln">
+					Held
+					<select class="box" id="loadBln" onchange="loadBln(this.value)">
 						<option value="">All months</option>
 						<?php
 						foreach ($bulan as $key => $value) {
-							echo "<option>".$value."</option>";
+							echo "<option value='".$key."'>".$value."</option>";
 						}
 						?>
 					</select>
 				</div>
 			</div>
 		</h4>
-		<p>
-			Your listing are shown in the table below
-		</p>
 		<div id="load"></div>
 	</div>
 </div>
@@ -188,6 +189,9 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 	}
 	function loadType(val) {
 		setCookie('category', val)
+	}
+	function loadBln(val) {
+		setCookie('month', val)
 	}
 	load()
 	klik("#cta", function() {

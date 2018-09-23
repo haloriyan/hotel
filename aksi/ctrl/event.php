@@ -50,8 +50,10 @@ class event extends resto {
 				  ->eksekusi();
 		return $q;
 	}
-	public function my($id, $keyword = NULL, $category = NULL) {
-		$q = $this->query("SELECT * FROM event WHERE idhotel = '$id' AND id_resto = '0' AND title LIKE '%$keyword%' AND category LIKE '%$category%'");
+	public function my($id, $keyword = NULL, $category = NULL, $month = NULL) {
+		$thn = date('Y');
+		$tglFilter = $thn.'-'.$month;
+		$q = $this->query("SELECT * FROM event WHERE idhotel = '$id' AND id_resto = '0' AND title LIKE '%$keyword%' AND category LIKE '%$category%' AND tgl_mulai LIKE '%$tglFilter%'");
 		if($this->hitung($q) == "") {
 			return "kosong";
 		}else {
