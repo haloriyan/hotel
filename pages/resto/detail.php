@@ -13,10 +13,23 @@ $idresto = $resto->info($sesi, "idresto");
 $name 	= $resto->info($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
 $phone 	= $resto->info($sesi, "phone");
+$icon 	= $resto->info($sesi, "icon");
+$cover 	= $resto->info($sesi, "cover");
 $address 	= $resto->info($sesi, "address");
 $city = $resto->info($sesi, "city");
 $web = $resto->info($sesi, "website");
 $description = $resto->info($sesi, "description");
+$coords = $resto->info($sesi, "coords");
+
+$c = explode("|", $coords);
+$lat = $c[0];
+$lng = $c[1];
+if($lat == '') {
+	$lat = '-7.256317699999999';
+}
+if($lng == '') {
+	$lng = '112.73762540000007';
+}
 
 setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 
@@ -71,7 +84,38 @@ setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 </div>
 
 <div class="container">
-	<form id="formDetil">
+	<div id="rekap">
+		<div class="wrap">
+			<h4><div id="icon"><i class="fa fa-pencil"></i></div> Detail Information</h4>
+			<div class="isi">Hotel description :</div>
+			<div><?php echo $description; ?></div>
+			<div class="isi">City :</div>
+			<div><?php echo $city; ?></div>
+			<div class="isi">Phone :</div>
+			<div><?php echo $phone; ?></div>
+			<div class="isi">Website :</div>
+			<div><a href='<?php echo $web; ?>' target='_blank'><?php echo $web; ?></a></div>
+			<div class="isi">Address :</div>
+			<input id="addressStaticInput" class="box" style="border: none;background: none;" readonly>
+			<div id="addressStatic" style="height: 300px"></div>
+			<div class="isi">Icon</div>
+			<?php if($icon != '') { ?>
+			<img src="../aset/gbr/<?php echo $icon; ?>" style='width: 40%;'>
+			<?php }else { ?>
+			No icon
+			<?php } ?>
+			<div class="isi">Cover</div>
+			<?php if($cover != '') { ?>
+			<img src="../aset/gbr/<?php echo $cover; ?>" style='width: 40%;'>
+			<?php }else { ?>
+			No cover
+			<?php } ?>
+			<div class="bag-tombol" style="margin-top: 35px;">
+				<button class="merah-2" id="mengedit">Edit Detail Information</button>
+			</div>
+		</div>
+	</div>
+	<form id="formDetil" style="display: none;">
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-pencil"></i></div> Detail Information</h4>
 			<div class="isi">Resto description</div>
@@ -84,6 +128,9 @@ setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 			<input type="text" class="box" id="web" placeholder="e.g https://dailyhotels.id" value="<?php echo $web; ?>">
 			<div class="isi">Address :</div>
 			<input class="box" id="address" value="<?php echo $address; ?>">
+			<div id="myMaps" style="height: 300px;"></div>
+			<input type="hidden" id="latInput">
+			<input type="hidden" id="lngInput">
 		</div>
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-image"></i></div> Change Image</h4>
@@ -122,27 +169,82 @@ setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 	</div>
 </div>
 
+<script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyDqYJGuWw9nfoyPG8d9L1uhm392uETE-mA'></script>
 <script src="../aset/js/jquery-3.1.1.js"></script>
+<script src="../aset/js/locationpicker.jquery.min.js"></script>
 <script src="../aset/js/insert.js"></script>
 <script src="../aset/js/embo.js"></script>
 <script>
-	submit("#formDetil", function() {
-		let phone 	= pilih("#phone").value
-		let address = pilih("#address").value
-		let city 	= pilih("#city").value
-		let web 	= pilih("#web").value
-		let description = pilih("#description").value
+	$('#myMaps').locationpicker({
+		location: {
+			latitude: <?php echo $lat; ?>,
+			longitude: <?php echo $lng; ?>
+		},
+		radius: 0,
+		inputBinding: {
+			latitudeInput: $('#latInput'),
+			longitudeInput: $('#lngInput'),
+			locationNameInput: $('#address')
+		},
+		onchanged: function() {
+			//
+		},
+		enableAutocomplete: true,
+	})
+	$('#addressStatic').locationpicker({
+		location: {
+			latitude: <?php echo $lat; ?>,
+			longitude: <?php echo $lng; ?>
+		},
+		inputBinding: {
+			locationNameInput: $('#addressStaticInput')
+		},
+		radius: 0,
+		onchanged: function() {
+			//
+		},
+		enableAutocomplete: true,
+	})
 
-		let icons = pilih("#namaIcon").value
-		let cover = pilih("#namaCover").value
-		let detil 	= "phone="+phone+"&address="+address+"&bag=detil&city="+city+"&web="+web+"&description="+description+"&icon="+icons+"&cover="+cover
+	function validUrl(str) {
+	    let regExp = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
+
+	    if(!regExp.test(str)) {
+	    	munculPopup("#notif", pengaya("#notif", "top: 200px"))
+			tulis("#isiNotif", "URL must be valid!")
+			return false
+	    }
+	}
+	$('#formDetil').submit(function() {
+		let phone = $('#phone').val()
+		let address = $('#address').val()
+		let city = $('#city').val()
+		let web = $('#web').val()
+		let description = $('#description').val()
+		let latitude = $('#latInput').val()
+		let longitude = $('#lngInput').val()
+
+		let icons = $('#namaIcon').val()
+		let cover = $('#namaCover').val()
+		let detil 	= "phone="+phone+"&bag=detil&city="+city+"&web="+web+"&description="+description+"&icon="+icons+"&cover="+cover+"&lat="+latitude+"&lng="+longitude
 		if(phone == "" || address == "" || web == "" || city == "") {
 			munculPopup("#notif", pengaya("#notif", "top: 225px"))
 			tulis("#isiNotif", "All field must be filled")
 			return false
 		}
-		pos("../aksi/resto/edit.php", detil, function() {
-			munculPopup("#saved", pengaya("#saved", "top: 225px"))
+
+		validUrl(web)
+
+		$.ajax({
+			type: 'POST',
+			url: '../aksi/resto/edit.php',
+			data: detil,
+			success: function() {
+				munculPopup("#saved", pengaya("#saved", "top: 225px"))
+				setTimeout(function() {
+					location.reload()
+				}, 1500)
+			}
 		})
 		return false
 	})
@@ -209,6 +311,10 @@ setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 		let ext = re.exec(val)[1]
 		return ext
 	}
+	klik("#mengedit", () => {
+		hilang('#rekap')
+		muncul('#formDetil')
+	})
 </script>
 
 </body>

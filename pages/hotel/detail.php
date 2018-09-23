@@ -6,6 +6,8 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 $name 	= $hotel->get($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
 $phone 	= $hotel->get($sesi, "phone");
+$icon 	= $hotel->get($sesi, "icon");
+$cover 	= $hotel->get($sesi, "cover");
 $address 	= $hotel->get($sesi, "address");
 $city = $hotel->get($sesi, "city");
 $web = $hotel->get($sesi, "website");
@@ -74,7 +76,38 @@ if($lng == '') {
 </div>
 
 <div class="container">
-	<form id="formDetil">
+	<div id="rekap">
+		<div class="wrap">
+			<h4><div id="icon"><i class="fa fa-pencil"></i></div> Detail Information</h4>
+			<div class="isi">Hotel description :</div>
+			<div><?php echo $description; ?></div>
+			<div class="isi">City :</div>
+			<div><?php echo $city; ?></div>
+			<div class="isi">Phone :</div>
+			<div><?php echo $phone; ?></div>
+			<div class="isi">Website :</div>
+			<div><a href='<?php echo $web; ?>' target='_blank'><?php echo $web; ?></a></div>
+			<div class="isi">Address :</div>
+			<input id="addressStaticInput" class="box" style="border: none;background: none;" readonly>
+			<div id="addressStatic" style="height: 300px"></div>
+			<div class="isi">Icon</div>
+			<?php if($icon != '') { ?>
+			<img src="../aset/gbr/<?php echo $icon; ?>" style='width: 40%;'>
+			<?php }else { ?>
+			No icon
+			<?php } ?>
+			<div class="isi">Cover</div>
+			<?php if($cover != '') { ?>
+			<img src="../aset/gbr/<?php echo $cover; ?>" style='width: 40%;'>
+			<?php }else { ?>
+			No cover
+			<?php } ?>
+			<div class="bag-tombol" style="margin-top: 35px;">
+				<button class="merah-2" id="mengedit">Edit Detail Information</button>
+			</div>
+		</div>
+	</div>
+	<form id="formDetil" style="display: none;">
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-pencil"></i></div> Detail Information</h4>
 			<div class="isi">Hotel description :</div>
@@ -150,6 +183,20 @@ if($lng == '') {
 		},
 		enableAutocomplete: true,
 	})
+	$('#addressStatic').locationpicker({
+		location: {
+			latitude: <?php echo $lat; ?>,
+			longitude: <?php echo $lng; ?>
+		},
+		inputBinding: {
+			locationNameInput: $('#addressStaticInput')
+		},
+		radius: 0,
+		onchanged: function() {
+			//
+		},
+		enableAutocomplete: true,
+	})
 	function validUrl(str) {
 	    let regExp = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
 
@@ -172,6 +219,8 @@ if($lng == '') {
 		let cover = $('#namaCover').val()
 		let detil 	= "phone="+phone+"&bag=detil&city="+city+"&web="+web+"&description="+description+"&icon="+icons+"&cover="+cover+"&lat="+latitude+"&lng="+longitude
 		if(phone == "" || address == "" || web == "" || city == "") {
+			munculPopup("#notif", pengaya("#notif", "top: 225px"))
+			tulis("#isiNotif", "All field must be filled")
 			return false
 		}
 
@@ -183,6 +232,9 @@ if($lng == '') {
 			data: detil,
 			success: function() {
 				munculPopup("#saved", pengaya("#saved", "top: 225px"))
+				setTimeout(function() {
+					location.reload()
+				}, 1500)
 			}
 		})
 		return false
@@ -250,6 +302,10 @@ if($lng == '') {
 		let ext = re.exec(val)[1]
 		return ext
 	}
+	klik("#mengedit", () => {
+		hilang('#rekap')
+		muncul('#formDetil')
+	})
 </script>
 
 </body>

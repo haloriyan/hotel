@@ -12,6 +12,11 @@ $icon = $resto->info($idresto, "icon");
 $cover = $resto->info($idresto, "cover");
 $website = $resto->info($idresto, "website");
 $description = $resto->info($idresto, "description");
+$coords = $resto->info($idresto, "coords");
+
+$c = explode("|", $coords);
+$lat = $c[0];
+$lng = $c[1];
 
 $sesi = $user->sesi();
 $nama = $user->info($sesi, "nama");
@@ -145,9 +150,10 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 				<div class="bagian location">
 					<div class="wrap">
 						<h3><i class="fa fa-map-marker"></i> &nbsp; Location</h3>
-						<p>
-							<?php echo $address; ?>
-						</p>
+						<input type="hidden" id="latInput">
+						<input type="hidden" id="lngInput">
+						<textarea id="address" class="box" readonly></textarea>
+						<div id="myMaps" style="height: 300px;"></div>
 					</div>
 				</div>
 				<div class="bagian location" id="socialNetwork">
@@ -250,6 +256,28 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 	</div>
 </div>
 
+<script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyDqYJGuWw9nfoyPG8d9L1uhm392uETE-mA'></script>
+<script src="../aset/js/jquery-3.1.1.js"></script>
+<script src="../aset/js/locationpicker.jquery.min.js"></script>
+<script>
+	$('#myMaps').locationpicker({
+		location: {
+			latitude: <?php echo $lat; ?>,
+			longitude: <?php echo $lng; ?>
+		},
+		radius: 0,
+		inputBinding: {
+			latitudeInput: $('#latInput'),
+			longitudeInput: $('#lngInput'),
+			locationNameInput: $('#address')
+		},
+		draggable: false,
+		onchanged: function() {
+			//
+		},
+		enableAutocomplete: true,
+	})
+</script>
 <script src="../aset/js/profileHotel.js"></script>
 
 </body>

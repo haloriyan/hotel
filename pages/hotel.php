@@ -293,7 +293,6 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 </div>
 
 <script src="../aset/js/embo.js"></script>
-<script src="../aset/js/profileHotel.js"></script>
 <script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyDqYJGuWw9nfoyPG8d9L1uhm392uETE-mA'></script>
 <script src="../aset/js/jquery-3.1.1.js"></script>
 <script src="../aset/js/locationpicker.jquery.min.js"></script>
@@ -327,6 +326,7 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 		enableAutocomplete: true,
 	})
 </script>
+<script src="../aset/js/profileHotel.js"></script>
 
 </body>
 </html>
