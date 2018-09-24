@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 24, 2018 at 11:15 AM
+-- Generation Time: Sep 24, 2018 at 11:57 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -94,13 +94,10 @@ INSERT INTO `booking` (`idbooking`, `idevent`, `iduser`, `nama`, `qty`, `bukti`,
 (37758, 426710, 958384955, 'Melle Stomp', 10, 'bukti.png', 1, 0, '2018-08-29', '2018-08-25 16:06:31', 1535205991),
 (110801, 66016, 505390092, 'Brian Imanuel', 3, 'bukti.png', 1, 0, '2018-08-27', '2018-08-25 06:55:40', 1535172940),
 (168275, 295607, 378558272, 'Riyan Satria', 1, 'Screenshot (3).png', 1, 1, '2018-08-09', '2018-08-07 05:17:20', 1533611840),
-(303651, 291256, 505390092, 'Brian Imanuel', 10, '', 0, 0, '2018-09-04', '2018-08-31 04:44:41', 1535683481),
 (316761, 66016, 958384955, 'Melle Stomp', 1, 'bukti.jpeg', 1, 0, '2018-08-27', '2018-08-25 06:54:30', 1535172870),
 (586720, 295607, 96468212, 'Yoga Agung', 4, 'Screenshot from 2018-05-13 02-59-22.png', 1, 1, '2018-08-09', '2018-08-08 11:49:28', 1533721768),
 (800449, 426710, 465006985, 'Yellow Claw', 5, 'bukti.png', 1, 0, '2018-08-27', '2018-08-25 16:06:09', 1535205969),
-(917862, 426710, 505390092, 'Brian Imanuel', 8, 'bukti.png', 1, 0, '2018-08-28', '2018-08-25 16:05:42', 1535205942),
-(966305, 291256, 465006985, 'Yellow Claw', 4, '1158350_16111108190048630267.jpg', 1, 0, '2018-09-04', '2018-08-31 05:00:38', 1535684438),
-(973352, 291256, 958384955, 'Melle Stomp', 6, '', 0, 0, '2018-09-04', '2018-08-31 04:52:36', 1535683956);
+(917862, 426710, 505390092, 'Brian Imanuel', 8, 'bukti.png', 1, 0, '2018-08-28', '2018-08-25 16:05:42', 1535205942);
 
 -- --------------------------------------------------------
 
@@ -115,7 +112,6 @@ CREATE TABLE `event` (
   `title` varchar(55) NOT NULL,
   `tagline` varchar(100) NOT NULL,
   `description` text NOT NULL,
-  `logos` varchar(155) NOT NULL,
   `covers` varchar(155) NOT NULL,
   `region` varchar(55) NOT NULL,
   `alamat` varchar(300) NOT NULL,
@@ -134,14 +130,15 @@ CREATE TABLE `event` (
 -- Dumping data for table `event`
 --
 
-INSERT INTO `event` (`idevent`, `idhotel`, `id_resto`, `title`, `tagline`, `description`, `logos`, `covers`, `region`, `alamat`, `tgl_mulai`, `tgl_akhir`, `tgl_posted`, `category`, `quota`, `price`, `status`, `hint`, `added`) VALUES
-(66016, 179604, 0, 'Event Expired', 'sudah expired', 'sudah expired gan', '1158350_16111108190048630267.jpg', 'barelo (1).jpeg', 'Surabaya', 'Jl. Tunjungan No. 101', '2018-06-25', '2018-07-28', '2018-08-25 14:15:20', 'Food and Beverage', 200, 250000, 9, 2, 1535181320),
-(291256, 179604, 356641, 'Event di Resto Belinn', 'ini tagline', 'Ini adalah event terbesar yang pernah diadakan di Resto Belinn. Kamu jangan sampai ketinggalan buat ngikutin event ini.\n\n*Masuk gratis keluar bayar', 'barelo (1).jpeg', 'barelo (2).jpeg', 'Surabaya', 'Jl. Tunjungan No. 123', '2018-09-01', '2018-09-05', '2018-08-31 09:22:31', 'Parties', 20, 350000, 0, 105, 1535682151),
-(295607, 684889, 0, 'Seminar Keagamaan', 'halo dunia', 'Lorem ipsum dolor sit amet', 'perjalananKehidupan.jpg', 'perjalananKehidupan.jpg', 'Surabaya', 'Jl. Tentara Genie Pelajar No. 26', '2018-08-08', '2018-08-10', '2018-08-07 10:01:51', 'Parties', 150, 2000, 0, 24, 1533610911),
-(426710, 179604, 0, 'Second Event Expired', 'Sudah expired bro', 'Halo dunia', 'barelo.jpeg', 'barelo (1).jpeg', 'Bali', 'Jl. Bali No. 26', '2018-08-26', '2018-07-29', '2018-08-25 21:01:15', 'Food and Beverage', 500, 300000, 1, 8, 1535205675),
-(666256, 179604, 0, 'Event Bulan Depan', 'buat bulan depan', 'halo dunia', '', 'barelo (1).jpeg', 'Surabaya', 'Jl. Tunjungan No. 101', '2018-11-01', '2018-11-30', '2018-09-18 17:13:49', 'Others', 100, 25000, 0, 10, 1537265629),
-(705496, 684889, 671577, 'Event Resto', 'ini tagline', 'Lorem ipsum dolor sit amet', 'sam-dan-agenda-kota.jpg', 'Samsul.png', 'Surabaya', 'Jln. Tentara Genie Pelajar No. 26', '2018-08-15', '2018-08-18', '2018-08-14 12:49:30', 'Food and Beverage', 0, 250000, 0, 6, 1534225770),
-(961541, 684889, 0, 'Training Pake Firebase', '#gerakansejutafirebase', 'Hello firebase', 'firebase.png', 'firebase.png', 'Surabaya', 'Jl. Tentara Genie Pelajar, No. 26', '2018-08-04', '2018-08-07', '2018-08-02 17:30:48', 'Food and Beverage', 50, 20000, 0, 16, 1533205848);
+INSERT INTO `event` (`idevent`, `idhotel`, `id_resto`, `title`, `tagline`, `description`, `covers`, `region`, `alamat`, `tgl_mulai`, `tgl_akhir`, `tgl_posted`, `category`, `quota`, `price`, `status`, `hint`, `added`) VALUES
+(65326, 179604, 356641, 'Event on Resto', 'ha', 'euvh', 'barelo.jpeg', 'Surabaya', 'a', '2018-09-25', '2018-09-28', '2018-09-24 16:40:49', 'Parties', 45, 200000, 0, 1, 1537782049),
+(66016, 179604, 0, 'Event Expired', 'sudah expired', 'sudah expired gan', 'barelo (1).jpeg', 'Surabaya', 'Jl. Tunjungan No. 101', '2018-06-25', '2018-07-28', '2018-08-25 14:15:20', 'Food and Beverage', 200, 250000, 9, 2, 1535181320),
+(295607, 684889, 0, 'Seminar Keagamaan', 'halo dunia', 'Lorem ipsum dolor sit amet', 'perjalananKehidupan.jpg', 'Surabaya', 'Jl. Tentara Genie Pelajar No. 26', '2018-08-08', '2018-08-10', '2018-08-07 10:01:51', 'Parties', 150, 2000, 0, 24, 1533610911),
+(426710, 179604, 0, 'Second Event Expired', 'Sudah expired bro', 'Halo dunia', 'barelo (1).jpeg', 'Bali', 'Jl. Bali No. 26', '2018-08-26', '2018-07-29', '2018-08-25 21:01:15', 'Food and Beverage', 500, 300000, 1, 8, 1535205675),
+(666256, 179604, 0, 'Event Bulan Depan', 'buat bulan depan', 'halo dunia', 'barelo (1).jpeg', 'Surabaya', 'Jl. Tunjungan No. 101', '2018-11-01', '2018-11-30', '2018-09-18 17:13:49', 'Others', 100, 25000, 0, 10, 1537265629),
+(705496, 684889, 671577, 'Event Resto', 'ini tagline', 'Lorem ipsum dolor sit amet', 'Samsul.png', 'Surabaya', 'Jln. Tentara Genie Pelajar No. 26', '2018-08-15', '2018-08-18', '2018-08-14 12:49:30', 'Food and Beverage', 0, 250000, 0, 6, 1534225770),
+(782013, 179604, 356641, 'Event on Resto', 'halo dunia', 'iuhewvui', '1158350_16111108190048630267.jpg', 'Bali', 'di rumah', '2018-09-27', '2018-09-30', '2018-09-24 16:46:43', 'Parties', 250, 200000, 1, 0, 1537782403),
+(961541, 684889, 0, 'Training Pake Firebase', '#gerakansejutafirebase', 'Hello firebase', 'firebase.png', 'Surabaya', 'Jl. Tentara Genie Pelajar, No. 26', '2018-08-04', '2018-08-07', '2018-08-02 17:30:48', 'Food and Beverage', 50, 20000, 0, 16, 1533205848);
 
 -- --------------------------------------------------------
 
@@ -272,7 +269,7 @@ CREATE TABLE `restoran` (
 --
 
 INSERT INTO `restoran` (`idresto`, `idhotel`, `nama`, `description`, `icon`, `cover`, `phone`, `website`, `city`, `address`, `coords`, `facility`, `added`) VALUES
-(356641, 179604, 'Belinn Resto', 'Restaurant of Swiss Belinn Hotel', '', '', '6282126164429', 'https://restaurant.swissbelinn.co.id', 'Surabaya', '', '-7.289778999999999|112.71530680000001', '1,2,3,4,5,6', 1535260858),
+(356641, 179604, 'Belinn Resto', 'Restaurant of Swiss Belinn Hotel', 'swiss-belinn-karawang.jpeg', 'swiss-belhotel.jpg', '6282126164429', 'https://restaurant.swissbelinn.co.id', 'Surabaya', '', '-7.289778999999999|112.71530680000001', '1,2,3,4,5,6', 1535260858),
 (671577, 684889, 'Resto Baru', '', '', '', '6282126164429', ' No. 26', 'https://durianruntuh.my', 'Jl. Tentara Genie Pelajar', '', '1,3,4,2,5,6', 1534160575),
 (726644, 684889, 'Hisana Pret Ciken', '', 'download (1).jpg', 'download.jpg', '082126164429', 'https://hisana.id', 'Surabaya', 'Jl. Genteng Kali No. 55', '', '5,6,3,4,2,1', 1531783891),
 (824062, 179604, 'Resto Baru', '', '', '', '', '', '', '', '', '', 1535260930);

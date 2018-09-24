@@ -40,6 +40,48 @@ $address = $resto->info($sesi, "address");
 		.atas { z-index: 2; }
 		.bg { z-index: 4; }
 		.box[readonly] { background: #ecf0f1; }
+
+		.container {
+			top: 200px;left: 15%;
+			width: 70%;
+			margin-bottom: 35px;
+			border-radius: 6px;
+			border: 1px solid #ddd;
+		}
+
+		.myStep {
+			z-index: 2;
+			text-align: center;
+			position: fixed;
+			top: 81px;left: 22.5%;
+			border: 1px solid #ddd;
+			background-color: #fff;
+			padding: 15px 100px;
+			border-bottom-left-radius: 90px;
+			border-bottom-right-radius: 90px;
+		}
+		.step {
+			border: 2px solid #777;
+			color: #777;
+			font-size: 16px;
+			font-family: Arial;
+			width: 40px;
+			line-height: 40px;
+			text-align: center;
+			border-radius: 90px;
+			display: inline-block;
+			cursor: pointer;
+		}
+		.step[aktif=ya] { border: 2px solid #cb0023;color: #cb0023; }
+		.after {
+			display: inline-block;
+			width: 75px;
+			height: 2px;
+			background-color: #888;
+			position: relative;
+			top: -5px;
+		}
+		.after[aktif=ya] { background-color: #cb0023; }
 	</style>
 </head>
 <body>
@@ -52,18 +94,31 @@ $address = $resto->info($sesi, "address");
 	</div>
 	<nav class="menu">
 		<a href="./dashboard"><li>Dashboard</li></a>
-		<a href="./listing"><li>Listing</li></a>
-		<a href="./detail"><li>Setting</li></a>
-		<a href="./logout"><li>Sign out</li></a>
+		<a href="./listing"><li>My Listings</li></a>
+		<a href="./galeri"><li>Gallery</li></a>
 	</nav>
 </div>
 
+<!--
 <div class="kiri">
 	<div class="listWizard" id="kebasic" aktif="ya">Add Listing</div>
 	<div class="listWizard" id="keimage">Event Image</div>
 	<div class="listWizard" id="kelocation">Location</div>
 	<div class="listWizard" id="kedetail">Event Details</div>
 	<div class="listWizard" id="keprice">Price</div>
+</div>
+-->
+
+<div class="myStep">
+	<div class="step" id="stepOne" aktif='ya'><i class="fa fa-pencil"></i></div>
+	<div class="after" id="afterOne"></div>
+	<div class="step" id="stepTwo"><i class="fa fa-camera"></i></div>
+	<div class="after" id="afterTwo"></div>
+	<div class="step" id="stepThree"><i class="fa fa-map-marker"></i></div>
+	<div class="after" id="afterThree"></div>
+	<div class="step" id="stepFour"><i class="fa fa-align-justify"></i></div>
+	<div class="after" id="afterFour"></div>
+	<div class="step" id="stepFive"><i class="fa fa-money"></i></div>
 </div>
 
 <div class="container">
@@ -80,7 +135,7 @@ $address = $resto->info($sesi, "address");
 		</form>
 		<?php
 		exit();
-	}else if ($phone == "" || $city == "" || $website == "" || $address == "")  { ?>
+	}else if ($phone == "" || $city == "" || $website == "")  { ?>
 		<form id="error!">
 			<div class="wrap">
 				<h4><div id="icon"><i class="fa fa-close"></i></div> ERROR :(</h4>
@@ -108,11 +163,8 @@ $address = $resto->info($sesi, "address");
 	<form id="image">
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-camera"></i></div> Event Images</h4>
-			<div class="isi">Logo (optional)</div>
-			<input type="file" class="box" id="logo">
 			<div class="isi">Cover (optional)</div>
 			<input type="file" class="box" id="cover"><br />
-			<input type="hidden" id="logos">
 			<input type="hidden" id="covers">
 			<button class="tbl merah-2">NEXT</button>
 		</div>
@@ -202,19 +254,25 @@ $address = $resto->info($sesi, "address");
 		hilang("#price")
 		muncul("#" + y)
 
-		pilih("#kebasic").setAttribute("aktif", "tidak")
-		pilih("#keimage").setAttribute("aktif", "tidak")
-		pilih("#kelocation").setAttribute("aktif", "tidak")
-		pilih("#kedetail").setAttribute("aktif", "tidak")
-		pilih("#keprice").setAttribute("aktif", "tidak")
-		pilih("#ke" + y).setAttribute("aktif", "ya")
+		if(y == 'image') {
+			pilih('#stepTwo').setAttribute('aktif', 'ya')
+			pilih('#afterOne').setAttribute('aktif', 'ya')
+		}else if(y == 'location') {
+			pilih('#stepThree').setAttribute('aktif', 'ya')
+			pilih('#afterTwo').setAttribute('aktif', 'ya')
+		}else if(y == 'detail') {
+			pilih('#stepFour').setAttribute('aktif', 'ya')
+			pilih('#afterThree').setAttribute('aktif', 'ya')
+		}else if(y == 'price') {
+			pilih('#stepFive').setAttribute('aktif', 'ya')
+			pilih('#afterFour').setAttribute('aktif', 'ya')
+		}
 	}
 	function publish() {
 		let idresto = pilih("#idresto").value
 		let title = encodeURIComponent(pilih("#title").value)
 		let tagline = encodeURIComponent(pilih("#tagline").value)
 		let description = encodeURIComponent(pilih("#description").value)
-		let logo = pilih("#logos").value
 		let cover = pilih("#covers").value
 		let region = pilih("#region").value
 		let address = encodeURIComponent(pilih("#address").value)
@@ -224,7 +282,7 @@ $address = $resto->info($sesi, "address");
 		let category = pilih("#category").value
 		let price = pilih("#priceBox").value
 		let pub = "idresto="+idresto+"&title="+title+"&tagline="+tagline+"&description="+description+"&cover="+cover+"&region="+region+"&address="+address+"&tgl="+date+"&tgl_akhir="+dateEnd+"&category="+category+"&quota="+seat+"&price="+price
-		if(title == "" || tagline == "" || description == "" || logo == "" || cover == "" || region == "" || address == "" || date == "" || category == "" || seat == "" || price == "") {
+		if(title == "" || tagline == "" || description == "" || cover == "" || region == "" || address == "" || date == "" || category == "" || seat == "" || price == "") {
 			munculPopup("#notif", pengaya("#notif", "top: 225px"))
 			tulis("#isiNotif", "All field must be filled")
 			return false
@@ -252,13 +310,11 @@ $address = $resto->info($sesi, "address");
 	})
 	submit("#image", function() {
 		let allowed = ["jpg","jpeg","png","bmp"]
-		let logo = pilih("#logos").value
 		let cover = pilih("#covers").value
-		let logoExt = getExt(logo)
 		let coverExt = getExt(cover)
-		if(logo == "" || cover == "") {
+		if(cover == "") {
 			munculPopup("#notif", pengaya("#notif", "top: 225px"))
-			tulis("#isiNotif", "You must insert an image for logo and cover")
+			tulis("#isiNotif", "You must insert an image for cover")
 			return false
 		}
 		hilangKecuali("location")
@@ -307,40 +363,6 @@ $address = $resto->info($sesi, "address");
 		hilangPopup("#notif")
 	})
 
-	klik("#kebasic", function() {
-		hilangKecuali("basic")
-	})
-	klik("#keimage", function() {
-		hilangKecuali("image")
-	})
-	klik("#kelocation", function() {
-		hilangKecuali("location")
-	})
-	klik("#kedetail", function() {
-		hilangKecuali("detail")
-	})
-	klik("#keprice", function() {
-		hilangKecuali("price")
-	})
-
-	$("#logo").on("change", function() {
-		let allowed = ["jpg","jpeg","png","bmp"]
-		var logo = $("#logo").val();
-		var p = logo.split("fakepath");
-		var nama = p[1].substr(1, 2585);
-		$("#logos").val(nama);
-		let logoExt = getExt(nama)
-		if(!inArray(logoExt, allowed)) {
-			$("#logo").val("")
-			munculPopup("#notif", pengaya("#notif", "top: 225px"))
-			tulis("#isiNotif", "Image format not allowed")
-			return false
-		}
-
-		var file = $(this)[0].files[0];
-		var upload = new Upload(file);
-		upload.doUpload();
-	})
 	$("#cover").on("change", function() {
 		let allowed = ["jpg","jpeg","png","bmp"]
 		var cover = $("#cover").val();

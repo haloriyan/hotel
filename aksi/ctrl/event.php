@@ -44,6 +44,7 @@ class event extends resto {
 					"category" => $k,
 					"quota" => $seat,
 					"price" => $l,
+					"status" => 1,
 					"hint" => 0,
 				  	"added" => $m
 				  ])
@@ -63,8 +64,10 @@ class event extends resto {
 			return $hasil;
 		}
 	}
-	public function myForResto($id, $keyword = NULL, $category = NULL) {
-		$q = $this->query('SELECT * FROM event WHERE id_resto = "$id" AND title LIKE "%$keyword%" AND category LIKE "%$category%" ORDER BY tgl_posted DESC');
+	public function myForResto($id, $keyword = NULL, $category = NULL, $month = NULL) {
+		$thn = date('Y');
+		$tglFilter = $thn.'-'.$month;
+		$q = $this->query("SELECT * FROM event WHERE id_resto = '$id' AND title LIKE '%$keyword%' AND category LIKE '%$category%' AND tgl_mulai LIKE '%$tglFilter%'");
 		if($this->hitung($q) == "") {
 			return "kosong";
 		}else {
