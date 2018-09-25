@@ -24,6 +24,8 @@ if($lng == '') {
 	$lng = '112.73762540000007';
 }
 
+$cities = ['Bali','Bandung','Batam','Bogor','Jakarta','Jakarta','Lombok','Makassar','Malang','Pekalongan','Semarang','Solo','Surabaya','Yogyakarta'];
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -54,11 +56,6 @@ if($lng == '') {
 		<input type="text" class="box" placeholder="Type your search...">
 	</div>
 	<nav class="menu">
-		<!--
-		<a href="#"><li>Home</li></a>
-		<a href="#"><li>Explore</li></a>
-		<a href="#"><li>City</li></a>
-		-->
 		<a href="./<?php echo $idhotel; ?>" target='_blank'><li>Hello <?php echo $namaPertama; ?> !</li></a>
 		<button id="cta" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
 	</nav>
@@ -113,7 +110,26 @@ if($lng == '') {
 			<div class="isi">Hotel description :</div>
 			<textarea class='box' id='description'><?php echo $description; ?></textarea>
 			<div class="isi">City :</div>
+			<!--
 			<input type="text" class="box" id="city" value="<?php echo $city; ?>">
+			-->
+			<select class="box" id="city" onchange="changeCity(this.value)">
+				<?php
+				if(!in_array($city, $cities)) {
+					echo '<option selected>'.$city.'</option>';
+				}
+				foreach ($cities as $key => $value) {
+					if($value == $city) {
+						$selected = 'selected';
+					}else {
+						$selected = '';
+					}
+					echo '<option '.$selected.'>'.$value.'</option>';
+				}
+				?>
+				<option value="other">Other</option>
+			</select>
+			<div id="generateCity"><input type="text" class="box" id="citys" style="display: none;" placeholder="Type city..."></div>
 			<div class="isi">Phone :</div>
 			<input type="number" class="box" placeholder="e.g 628123456789" id="phone" value="<?php echo $phone; ?>">
 			<div class="isi">Website url :</div>
@@ -206,10 +222,19 @@ if($lng == '') {
 			return false
 	    }
 	}
+	function changeCity(val) {
+		if(val == 'other') {
+			// generate
+			muncul('#citys')
+		}
+	}
 	$('#formDetil').submit(function() {
 		let phone = $('#phone').val()
 		let address = $('#address').val()
 		let city = $('#city').val()
+		if(city == 'other') {
+			city = $('#citys').val()
+		}
 		let web = $('#web').val()
 		let description = $('#description').val()
 		let latitude = $('#latInput').val()
