@@ -174,27 +174,9 @@ setcookie('month', '', time() + 1, '/');
 	</div>
 </div>
 
-<div class="popupWrapper" id="editListing">
-	<div class="popup">
-		<div class="wrap">
-			<h3>Edit Listing
-				<div class="ke-kanan" id="xEdit"><i class="fa fa-close"></i></div>
-			</h3>
-			<form id="formEditListing">
-				<div class="isi">Title :</div>
-				<input type="text" class="box" id="titleEdit" value="Event Expired">
-				<div class="isi">Tagline :</div>
-				<input type="text" class="box" id="taglineEdit" value="Halo dunia">
-				<div class="isi">Description :</div>
-				<textarea class="box" id="descriptionEdit">Lorem ipsum dolor sit amet</textarea>
-			</form>
-		</div>
-	</div>
-</div>
 
 <script src="../aset/js/embo.js"></script>
 <script>
-	munculPopup('#editListing', pengaya('#editListing', 'top: 50px'))
 	function load() {
 		ambil("../aksi/event/my.php", function(res) {
 			tulis("#load", res)
@@ -230,7 +212,6 @@ setcookie('month', '', time() + 1, '/');
 
 	tekan("Escape", function() {
 		hilangPopup("#hapusList")
-		hilangPopup('#editListing')
 	})
 	klik("#xHapus", function() {
 		hilangPopup("#hapusList")

@@ -44,7 +44,7 @@ if($load == "kosong") {
 					"<td><img src='../aset/gbr/".$row['covers']."'></td>".
 					"<td>".
 						"<a href='../event/".$row['idevent']."' target='_blank' id='seeEvent'><h4>".$row['title']." &nbsp; <i class='fa fa-eye' id='seeEventIcon'></i></h4>"."</h4></a>".
-						"<a href='#' style='text-decoration: none;'>Edit</a> &nbsp;".
+						"<a href='../hotel/edit-listing&idevent=".$row['idevent']."' style='text-decoration: none;'>Edit</a> &nbsp;".
 						"| &nbsp;".
 						"<a href='../event/detail&idevent=".$row['idevent']."' target='_blank'><li>Detail</li></a> | ".
 						"<a><li onclick='hapus(this.value)' value='".$row['idevent']."'>Delete</li></a>".

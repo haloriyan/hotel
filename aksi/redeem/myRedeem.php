@@ -11,7 +11,7 @@ $sesiResto = $_SESSION['uresto'];
 
 $pakaiAkun = $_COOKIE['pakaiAkun'];
 
-$redirect = base64_encode('data')
+$redirect = base64_encode('data');
 
 if($sesiHotel == "" && $sesiResto == "") {
     header("location: ../auth&r=".$redirect);
