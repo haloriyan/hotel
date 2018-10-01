@@ -150,6 +150,7 @@ $categories = ['Food and Beverage','Room','Venue','Sports and Wellness','Shoppin
 		exit();
 	}
 	?>
+	<input type="hidden" id="idevent" value="<?php echo $idevent; ?>">
 	<form id="basic">
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-pencil"></i></div> Add Listing</h4>
@@ -282,8 +283,8 @@ $categories = ['Food and Beverage','Room','Venue','Sports and Wellness','Shoppin
 		let category = pilih("#category").value
 		let seat = pilih("#seat").value
 		let price = pilih("#priceBox").value
-		let pub = "idevent="+idevent+"title="+title+"&tagline="+tagline+"&description="+description+"&cover="+cover+"&region="+region+"&address="+address+"&tgl="+date+"&tgl_akhir="+dateEnd+"&category="+category+"&quota="+seat+"&price="+price
-		if(title == "" || tagline == "" || description == "" || cover == "" || region == "" || address == "" || date == "" || category == "" || seat == "" || price == "") {
+		let pub = "idevent="+idevent+"&title="+title+"&tagline="+tagline+"&description="+description+"&cover="+cover+"&region="+region+"&address="+address+"&tgl="+date+"&tgl_akhir="+dateEnd+"&category="+category+"&quota="+seat+"&price="+price
+		if(title == "" || tagline == "" || description == "" || region == "" || address == "" || date == "" || category == "" || seat == "" || price == "") {
 			munculPopup("#notif", pengaya("#notif", "top: 225px"))
 			tulis("#isiNotif", "All field must be filled")
 			return false
