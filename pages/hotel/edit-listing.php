@@ -1,10 +1,26 @@
 <?php
-include 'aksi/ctrl/hotel.php';
+include 'aksi/ctrl/event.php';
 
 $sesi 	= $hotel->sesi();
 $name 	= $hotel->get($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
 $idhotel = $hotel->get($sesi, 'idhotel');
+
+$idevent = $_GET['idevent'];
+
+$title = $event->info($idevent, 'title');
+$tagline = $event->info($idevent, 'tagline');
+$description = $event->info($idevent, 'description');
+$region = $event->info($idevent, 'region');
+$address = $event->info($idevent, 'alamat');
+$tglMulai = $event->info($idevent, 'tgl_mulai');
+$dateEnd = $event->info($idevent, 'tgl_akhir');
+$category = $event->info($idevent, 'category');
+$quota = $event->info($idevent, 'quota');
+$price = $event->info($idevent, 'price');
+
+$cities = ['Bali','Bandung','Batam','Bogor','Jakarta','Lombok','Makassar','Malang','Pekalongan','Semarang','Solo','Surabaya','Yogyakarta'];
+$categories = ['Food and Beverage','Room','Venue','Sports and Wellness','Shopping','Recreation','Parties','Others'];
 
 ?>
 <!DOCTYPE html>
@@ -138,11 +154,11 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-pencil"></i></div> Add Listing</h4>
 			<div class="isi">Title</div>
-			<input type="text" class="box" id="title" placeholder="Event name..." autocomplete="off">
+			<input type="text" class="box" id="title" placeholder="Event name..." autocomplete="off" value="<?php echo $title; ?>">
 			<div class="isi">Tagline</div>
-			<input type="text" class="box" id="tagline" placeholder="Tagline..." autocomplete="off">
+			<input type="text" class="box" id="tagline" placeholder="Tagline..." autocomplete="off" value="<?php echo $tagline; ?>">
 			<div class="isi">Description</div>
-			<textarea class="box" id="description" placeholder="Event description..."></textarea><br />
+			<textarea class="box" id="description" placeholder="Event description..."><?php echo $description; ?></textarea><br />
 			<button class="tbl merah-2">NEXT</button>
 		</div>
 	</form>
@@ -150,6 +166,7 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-camera"></i></div> Event Images</h4>
 			<div class="isi">Cover</div>
+			<p style="font-size: 15px;">if you don't want to change image, keep it empty and just continue</p>
 			<input type="file" class="box" id="cover"><br />
 			<input type="hidden" id="covers">
 			<button class="tbl merah-2">NEXT</button>
@@ -160,22 +177,19 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 			<h4><div id="icon"><i class="fa fa-map-marker"></i></div> Location</h4>
 			<div class="isi">Region</div>
 			<select class='box' id='region'>
-				<option>Bali</option>
-				<option>Bandung</option>
-				<option>Batam</option>
-				<option>Bogor</option>
-				<option>Jakarta</option>
-				<option>Lombok</option>
-				<option>Makassar</option>
-				<option>Malang</option>
-				<option>Pekalongan</option>
-				<option>Semarang</option>
-				<option>Solo</option>
-				<option>Surabaya</option>
-				<option>Yogyakarta</option>
+				<?php
+				foreach ($cities as $key => $value) {
+					if($value == $region) {
+						$selected = 'selected';
+					}else {
+						$selected = '';
+					}
+					echo '<option '.$selected.'>'.$value.'</option>';
+				}
+				?>
 			</select>
 			<div class="isi">Address</div>
-			<textarea class="box" id="address"></textarea><br />
+			<textarea class="box" id="address"><?php echo $address; ?></textarea><br />
 			<button class="tbl merah-2">NEXT</button>
 		</div>
 	</form>
@@ -184,22 +198,24 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 			<h4><div id="icon"><i class="fa fa-align-justify"></i></div> Event Details</h4>
 			<input type="hidden" id='tglSkrg' value='<?php echo date('Y-m-d'); ?>'>
 			<div class="isi">Date Start</div>
-			<input type="text" class="box" placeholder="yyyy-mm-dd" id="date" onchange="dateStart(this.value)">
+			<input type="text" class="box" placeholder="yyyy-mm-dd" id="date" onchange="dateStart(this.value)" value="<?php echo $tglMulai; ?>">
 			<div class="isi">Date End</div>
-			<input type="text" class="box" placeholder="yyyy-mm-dd" id="dateEnd" readonly>
+			<input type="text" class="box" placeholder="yyyy-mm-dd" id="dateEnd" value="<?php echo $dateEnd; ?>">
 			<div class="isi">Category</div>
 			<select class="box" id="category">
-				<option>Food and Beverage</option>
-				<option>Room</option>
-				<option>Venue</option>
-				<option>Sports and Wellness</option>
-				<option>Shopping</option>
-				<option>Recreation</option>
-				<option>Parties</option>
-				<option>Others</option>
+				<?php
+				foreach ($categories as $key => $value) {
+					if($value == $category) {
+						$selected = 'selected';
+					}else {
+						$selected = '';
+					}
+					echo '<option '.$selected.'>'.$value.'</option>';
+				}
+				?>
 			</select>
 			<div class="isi">Quota :</div>
-			<input type="number" class="box" placeholder="Quota Seat per day..." id="seat">
+			<input type="number" class="box" placeholder="Quota Seat per day..." id="seat" value="<?php echo $quota; ?>">
 			<br />
 			<button class="tbl merah-2">NEXT</button>
 		</div>
@@ -208,7 +224,7 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-money"></i></div> Price</h4>
 			<div class="isi">Pricing</div>
-			<input type="number" class="box" id="priceBox" placeholder='e.g "140000"'>
+			<input type="number" class="box" id="priceBox" placeholder='e.g "140000"' value="<?php echo $price; ?>">
 			<button class="tbl merah-2" id="publish" type="button">PUBLISH</button>
 		</div>
 	</form>
@@ -254,6 +270,7 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 		}
 	}
 	function publish() {
+		let idevent = pilih("#idevent").value
 		let title = pilih("#title").value
 		let tagline = pilih("#tagline").value
 		let description = pilih("#description").value
@@ -265,7 +282,7 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 		let category = pilih("#category").value
 		let seat = pilih("#seat").value
 		let price = pilih("#priceBox").value
-		let pub = "title="+title+"&tagline="+tagline+"&description="+description+"&cover="+cover+"&region="+region+"&address="+address+"&tgl="+date+"&tgl_akhir="+dateEnd+"&category="+category+"&quota="+seat+"&price="+price
+		let pub = "idevent="+idevent+"title="+title+"&tagline="+tagline+"&description="+description+"&cover="+cover+"&region="+region+"&address="+address+"&tgl="+date+"&tgl_akhir="+dateEnd+"&category="+category+"&quota="+seat+"&price="+price
 		if(title == "" || tagline == "" || description == "" || cover == "" || region == "" || address == "" || date == "" || category == "" || seat == "" || price == "") {
 			munculPopup("#notif", pengaya("#notif", "top: 225px"))
 			tulis("#isiNotif", "All field must be filled")
@@ -273,7 +290,7 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 		}
 		$.ajax({
 			type: "POST",
-			url: "../aksi/event/create.php",
+			url: "../aksi/event/edit.php",
 			data: pub,
 			success: () => {
 				mengarahkan("./listing")
@@ -296,10 +313,12 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 		let allowed = ["jpg","jpeg","png","bmp"]
 		let cover = pilih("#covers").value
 		let coverExt = getExt(cover)
-		if(cover == "") {
-			munculPopup("#notif", pengaya("#notif", "top: 225px"))
-			tulis("#isiNotif", "You must insert an image cover")
-			return false
+		if(cover != '') {
+			if(!inArray(coverExt, allowed)) {
+				munculPopup("#notif", pengaya("#notif", "top: 225px"))
+				tulis("#isiNotif", "Image format not allowed")
+				return false
+			}
 		}
 		hilangKecuali('location')
 		return false
@@ -394,14 +413,12 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 		dateFormat: "Y-m-d"
 	})
 
-	function dateStart(val) {
-		pilih("#dateEnd").removeAttribute("readonly")
-		flatpickr("#dateEnd", {
-			minDate: val,
-			maxDate: "2025-12-31",
-			dateFormat: "Y-m-d"
-		})
-	}
+	let tglMulai = pilih('#date').value
+	flatpickr("#dateEnd", {
+		minDate: tglMulai,
+		maxDate: "2025-12-31",
+		dateFormat: "Y-m-d"
+	})
 </script>
 
 </body>

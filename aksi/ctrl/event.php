@@ -51,6 +51,10 @@ class event extends resto {
 				  ->eksekusi();
 		return $q;
 	}
+	public function edit($id, $kolom, $value) {
+		$q = $this->tabel('event')->ubah([$kolom => $value])->dimana(['idevent' => $id])->eksekusi();
+		return $q;
+	}
 	public function my($id, $keyword = NULL, $category = NULL, $month = NULL) {
 		$thn = date('Y');
 		$tglFilter = $thn.'-'.$month;
