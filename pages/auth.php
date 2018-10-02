@@ -7,6 +7,15 @@ if($decodedRedirect == "") {
 	header("location: ./auth&r=".base64_encode("./my"));
 }
 
+session_start();
+$sesiHotel = $_SESSION['uhotel'];
+if($sesiHotel != null) {
+	header('location: ./hotel/dashboard');
+}
+if($_SESSION['upublic'] != null) {
+	header('location: '.$redirect);
+}
+
 ?>
 <!DOCTYPE html>
 <html>

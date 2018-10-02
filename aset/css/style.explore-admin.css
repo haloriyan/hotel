@@ -121,6 +121,20 @@ input[type=file].box {
 }
 .atas h1.logoHome { font-size: 21px !important; }
 
+.tabs .tab {
+	width: 23.1%;
+	line-height: 65px;
+	text-align: center;
+	border-bottom: 2px solid #ddd;
+	float: left;
+	margin-right: 15px;
+}
+.tabs a { color: #777; }
+.tabs .tab[aktif=ya] {
+	color: #cb0023;
+	border-bottom: 2px solid #cb0023;
+}
+
 @media (max-width: 720px) {
 	.menuMob {
 		position: fixed;

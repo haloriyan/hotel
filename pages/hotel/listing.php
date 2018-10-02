@@ -90,6 +90,11 @@ setcookie('month', '', time() + 1, '/');
 			height: 45px;
 			font-size: 16px;
 		}
+		.sub { top: 80px !important;background-color: #cb0023; }
+		#subUser { right: 185px; }
+		.sub li {
+			line-height: 50px;
+		}
 	</style>
 </head>
 <body>
@@ -101,12 +106,15 @@ setcookie('month', '', time() + 1, '/');
 		<input type="text" class="box" placeholder="Type your search...">
 	</div>
 	<nav class="menu">
-		<!--
-		<a href="#"><li>Home</li></a>
-		<a href="#"><li>Explore</li></a>
-		<a href="#"><li>City</li></a>
-		-->
-		<a href="./<?php echo $idhotel; ?>" target='_blank'><li>Hello <?php echo $namaPertama; ?> !</li></a>
+		<a href="./<?php echo $idhotel; ?>" target='_blank'><li id="adaSub">Hello <?php echo $namaPertama; ?> ! &nbsp; <i class="fa fa-angle-down"></i>
+			<nav class="sub" id="subUser">
+				<a href="./detail"><li><div id="icon"><i class="fa fa-cog"></i></div> Settings</li></a>
+				<a href="./galeri"><li><div id="icon"><i class="fa fa-image"></i></div> Gallery</li></a>
+				<a href="./facility"><li><div id="icon"><i class="fa fa-cogs"></i></div> Facility</li></a>
+				<a href="./social"><li><div id="icon"><i class="fa fa-user"></i></div> Social</li></a>
+				<a href="./logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
+			</nav>
+		</li></a>
 		<button id="cta" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
 	</nav>
 </div>
@@ -115,9 +123,6 @@ setcookie('month', '', time() + 1, '/');
 	<a href="./dashboard"><div class="listWizard">Dashboard</div></a>
 	<a href="./detail"><div class="listWizard">Detail Information</div></a>
 	<a href="./listing"><div class="listWizard" aktif="ya">My Listings</div></a>
-	<a href="./galeri"><div class="listWizard">Gallery</div></a>
-	<a href="./facility"><div class="listWizard">Facility</div></a>
-	<a href="./social"><div class="listWizard">Social Network</div></a>
 	<a href="./restaurant"><div class="listWizard">Restaurant</div></a>
 	<a href="./logout"><div class="listWizard">Logout</div></a>
 </div>

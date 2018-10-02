@@ -14,6 +14,18 @@ $web = $hotel->get($sesi, "website");
 $description = $hotel->get($sesi, "description");
 $coords = $hotel->get($sesi, "coords");
 
+$facility = [
+	"1" => "Wireless Internet",
+	"2" => "Parking Street",
+	"3" => "Smoking Allowed",
+	"4" => "Accept Credit Cards",
+	"5" => "Bike Parking",
+	"6" => "Coupons"
+];
+
+$myFacility = $hotel->get($sesi, "facility");
+$fac = explode(",", $myFacility);
+
 $c = explode("|", $coords);
 $lat = $c[0];
 $lng = $c[1];
@@ -25,6 +37,8 @@ if($lng == '') {
 }
 
 $cities = ['Bali','Bandung','Batam','Bogor','Jakarta','Jakarta','Lombok','Makassar','Malang','Pekalongan','Semarang','Solo','Surabaya','Yogyakarta'];
+
+setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 
 ?>
 <!DOCTYPE html>
@@ -45,6 +59,19 @@ $cities = ['Bali','Bandung','Batam','Bogor','Jakarta','Jakarta','Lombok','Makass
 		.atas { z-index: 1; }
 		.bg { z-index: 4; }
 		.popup { z-index: 15;border-radius: 5px; }
+		#saved {
+			padding: 15px 35px;
+			background: rgba(76, 175, 80, 0.85);
+			color: #fff;
+			margin-bottom: -35px;
+			margin-top: 10px;
+			display: none;
+		}
+		.sub { top: 80px !important;background-color: #cb0023; }
+		#subUser { right: 185px; }
+		.sub li {
+			line-height: 50px;
+		}
 	</style>
 </head>
 <body>
@@ -56,7 +83,15 @@ $cities = ['Bali','Bandung','Batam','Bogor','Jakarta','Jakarta','Lombok','Makass
 		<input type="text" class="box" placeholder="Type your search...">
 	</div>
 	<nav class="menu">
-		<a href="./<?php echo $idhotel; ?>" target='_blank'><li>Hello <?php echo $namaPertama; ?> !</li></a>
+		<a href="./<?php echo $idhotel; ?>" target='_blank'><li id="adaSub">Hello <?php echo $namaPertama; ?> ! &nbsp; <i class="fa fa-angle-down"></i>
+			<nav class="sub" id="subUser">
+				<a href="./detail"><li><div id="icon"><i class="fa fa-cog"></i></div> Settings</li></a>
+				<a href="./galeri"><li><div id="icon"><i class="fa fa-image"></i></div> Gallery</li></a>
+				<a href="./facility"><li><div id="icon"><i class="fa fa-cogs"></i></div> Facility</li></a>
+				<a href="./social"><li><div id="icon"><i class="fa fa-user"></i></div> Social</li></a>
+				<a href="./logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
+			</nav>
+		</li></a>
 		<button id="cta" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
 	</nav>
 </div>
@@ -65,15 +100,20 @@ $cities = ['Bali','Bandung','Batam','Bogor','Jakarta','Jakarta','Lombok','Makass
 	<a href="./dashboard"><div class="listWizard">Dashboard</div></a>
 	<a href="./detail"><div class="listWizard" aktif="ya">Detail Information</div></a>
 	<a href="./listing"><div class="listWizard">My Listings</div></a>
-	<a href="./galeri"><div class="listWizard">Gallery</div></a>
-	<a href="./facility"><div class="listWizard">Facility</div></a>
-	<a href="./social"><div class="listWizard">Social Network</div></a>
 	<a href="./restaurant"><div class="listWizard">Restaurant</div></a>
 	<a href="./logout"><div class="listWizard">Logout</div></a>
 </div>
 
 <div class="container">
-	<div id="rekap">
+	<div class="tabs">
+		<div class="wrap">
+			<a href="#"><div class="tab" aktif='ya'><i class="fa fa-pencil"></i></div></a>
+			<a href="./galeri"><div class="tab"><i class="fa fa-image"></i></div></a>
+			<a href="./facility"><div class="tab"><i class="fa fa-cogs"></i></div></a>
+			<a href="./social"><div class="tab"><i class="fa fa-user"></i></div></a>
+		</div>
+	</div>
+	<div id="rekap" style="margin-top: 120px;">
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-pencil"></i></div> Detail Information</h4>
 			<div class="isi">Hotel description :</div>
@@ -150,6 +190,37 @@ $cities = ['Bali','Bandung','Batam','Bogor','Jakarta','Jakarta','Lombok','Makass
 			<input type="hidden" id="namaCover">
 			<div class="bag-tombol">
 				<button class="tbl merah-2">SAVE</button>
+			</div>
+		</div>
+	</form>
+	<form id="formFacility" style="margin-top: 35px;">
+		<div class="wrap">
+			<h4><div id="icon"><i class="fa fa-home"></i></div> Faciltiy</h4>
+			<table>
+				<thead>
+					<tr>
+						<th style="width: 10%">Status</th>
+						<th>Facility</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+					foreach ($facility as $key => $value) {
+						if(in_array($key, $fac)) {
+							$checked = "checked";
+						}else {
+							$checked = "";
+						}
+						echo "<tr>".
+								"<td><input type='checkbox' name='facilities' class='fac' value='".$key."' id='facilities".$key."' onclick='save(this.value)' ".$checked."></span></td>".
+								"<td><label for='facilities".$key."'>".$value."</label></td>".
+							 "</tr>";
+					}
+					?>
+				</tbody>
+			</table>
+			<div id="saved">
+				<i class="fa fa-check"></i> &nbsp;Saved
 			</div>
 		</div>
 	</form>
@@ -326,6 +397,15 @@ $cities = ['Bali','Bandung','Batam','Bogor','Jakarta','Jakarta','Lombok','Makass
 		let re =/(?:\.([^.]+))?$/
 		let ext = re.exec(val)[1]
 		return ext
+	}
+	function save(val) {
+		let save = "idfac="+val+"&bag=facility"
+		pos("../aksi/hotel/edit.php", save, function() {
+			muncul("#saved")
+			setTimeout(function() {
+				hilang("#saved")
+			}, 1200)
+		})
 	}
 	klik("#mengedit", () => {
 		hilang('#rekap')
