@@ -254,17 +254,17 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 		}
 	}
 	function publish() {
-		let title = pilih("#title").value
-		let tagline = pilih("#tagline").value
-		let description = pilih("#description").value
-		let cover = pilih("#covers").value
-		let region = pilih("#region").value
-		let address = pilih("#address").value
-		let date = pilih("#date").value
-		let dateEnd = pilih("#dateEnd").value
-		let category = pilih("#category").value
-		let seat = pilih("#seat").value
-		let price = pilih("#priceBox").value
+		let title = $("#title").val()
+		let tagline = $("#tagline").val()
+		let description = $("#description").val()
+		let cover = $("#covers").val()
+		let region = $("#region").val()
+		let address = $("#address").val()
+		let date = $("#date").val()
+		let dateEnd = $("#dateEnd").val()
+		let category = $("#category").val()
+		let seat = $("#seat").val()
+		let price = $("#priceBox").val()
 		let pub = "title="+title+"&tagline="+tagline+"&description="+description+"&cover="+cover+"&region="+region+"&address="+address+"&tgl="+date+"&tgl_akhir="+dateEnd+"&category="+category+"&quota="+seat+"&price="+price
 		if(title == "" || tagline == "" || description == "" || cover == "" || region == "" || address == "" || date == "" || category == "" || seat == "" || price == "") {
 			munculPopup("#notif", pengaya("#notif", "top: 225px"))

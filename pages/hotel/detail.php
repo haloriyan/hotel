@@ -14,18 +14,6 @@ $web = $hotel->get($sesi, "website");
 $description = $hotel->get($sesi, "description");
 $coords = $hotel->get($sesi, "coords");
 
-$facility = [
-	"1" => "Wireless Internet",
-	"2" => "Parking Street",
-	"3" => "Smoking Allowed",
-	"4" => "Accept Credit Cards",
-	"5" => "Bike Parking",
-	"6" => "Coupons"
-];
-
-$myFacility = $hotel->get($sesi, "facility");
-$fac = explode(",", $myFacility);
-
 $c = explode("|", $coords);
 $lat = $c[0];
 $lng = $c[1];
@@ -190,37 +178,6 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 			<input type="hidden" id="namaCover">
 			<div class="bag-tombol">
 				<button class="tbl merah-2">SAVE</button>
-			</div>
-		</div>
-	</form>
-	<form id="formFacility" style="margin-top: 35px;">
-		<div class="wrap">
-			<h4><div id="icon"><i class="fa fa-home"></i></div> Faciltiy</h4>
-			<table>
-				<thead>
-					<tr>
-						<th style="width: 10%">Status</th>
-						<th>Facility</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php
-					foreach ($facility as $key => $value) {
-						if(in_array($key, $fac)) {
-							$checked = "checked";
-						}else {
-							$checked = "";
-						}
-						echo "<tr>".
-								"<td><input type='checkbox' name='facilities' class='fac' value='".$key."' id='facilities".$key."' onclick='save(this.value)' ".$checked."></span></td>".
-								"<td><label for='facilities".$key."'>".$value."</label></td>".
-							 "</tr>";
-					}
-					?>
-				</tbody>
-			</table>
-			<div id="saved">
-				<i class="fa fa-check"></i> &nbsp;Saved
 			</div>
 		</div>
 	</form>
