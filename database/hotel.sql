@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 24, 2018 at 11:57 AM
+-- Generation Time: Oct 04, 2018 at 11:51 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -91,13 +91,8 @@ CREATE TABLE `booking` (
 
 INSERT INTO `booking` (`idbooking`, `idevent`, `iduser`, `nama`, `qty`, `bukti`, `status`, `hadir`, `tgl`, `tgl_book`, `added`) VALUES
 (29013, 961541, 378558272, 'Riyan Satria', 5, 'Nomor 1.png', 1, 0, '2018-08-07', '2018-08-07 05:46:40', 1533613600),
-(37758, 426710, 958384955, 'Melle Stomp', 10, 'bukti.png', 1, 0, '2018-08-29', '2018-08-25 16:06:31', 1535205991),
-(110801, 66016, 505390092, 'Brian Imanuel', 3, 'bukti.png', 1, 0, '2018-08-27', '2018-08-25 06:55:40', 1535172940),
 (168275, 295607, 378558272, 'Riyan Satria', 1, 'Screenshot (3).png', 1, 1, '2018-08-09', '2018-08-07 05:17:20', 1533611840),
-(316761, 66016, 958384955, 'Melle Stomp', 1, 'bukti.jpeg', 1, 0, '2018-08-27', '2018-08-25 06:54:30', 1535172870),
-(586720, 295607, 96468212, 'Yoga Agung', 4, 'Screenshot from 2018-05-13 02-59-22.png', 1, 1, '2018-08-09', '2018-08-08 11:49:28', 1533721768),
-(800449, 426710, 465006985, 'Yellow Claw', 5, 'bukti.png', 1, 0, '2018-08-27', '2018-08-25 16:06:09', 1535205969),
-(917862, 426710, 505390092, 'Brian Imanuel', 8, 'bukti.png', 1, 0, '2018-08-28', '2018-08-25 16:05:42', 1535205942);
+(586720, 295607, 96468212, 'Yoga Agung', 4, 'Screenshot from 2018-05-13 02-59-22.png', 1, 1, '2018-08-09', '2018-08-08 11:49:28', 1533721768);
 
 -- --------------------------------------------------------
 
@@ -131,11 +126,9 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`idevent`, `idhotel`, `id_resto`, `title`, `tagline`, `description`, `covers`, `region`, `alamat`, `tgl_mulai`, `tgl_akhir`, `tgl_posted`, `category`, `quota`, `price`, `status`, `hint`, `added`) VALUES
-(65326, 179604, 356641, 'Event on Resto', 'ha', 'euvh', 'barelo.jpeg', 'Surabaya', 'a', '2018-09-25', '2018-09-28', '2018-09-24 16:40:49', 'Parties', 45, 200000, 0, 1, 1537782049),
-(66016, 179604, 0, 'Event Expired', 'sudah expired', 'sudah expired gan', 'barelo (1).jpeg', 'Surabaya', 'Jl. Tunjungan No. 101', '2018-06-25', '2018-07-28', '2018-08-25 14:15:20', 'Food and Beverage', 200, 250000, 9, 2, 1535181320),
+(65326, 179604, 356641, 'Event on Resto', 'ha', 'euvh', 'barelo.jpeg', 'Surabaya', 'a', '2018-09-25', '2018-09-28', '2018-09-24 16:40:49', 'Parties', 45, 200000, 0, 2, 1537782049),
+(166847, 179604, 0, 'Jatim Fair 2018', 'Make Jatim Great Again!', 'Jatim Fair merupakan acara yang diselenggarakan selama 11 hari mulai dari 4 - 14 Oktober di Grand City Mall ', 'jatimFair.jpeg', 'Surabaya', 'Jl. Tunjungan No. 101', '2018-10-15', '2018-10-20', '2018-10-03 10:34:37', 'Others', 200, 250000, 1, 4, 1538537677),
 (295607, 684889, 0, 'Seminar Keagamaan', 'halo dunia', 'Lorem ipsum dolor sit amet', 'perjalananKehidupan.jpg', 'Surabaya', 'Jl. Tentara Genie Pelajar No. 26', '2018-08-08', '2018-08-10', '2018-08-07 10:01:51', 'Parties', 150, 2000, 0, 24, 1533610911),
-(426710, 179604, 0, 'Second Event Expired', 'Sudah expired bro', 'Halo dunia', 'barelo (1).jpeg', 'Bali', 'Jl. Bali No. 26', '2018-08-26', '2018-07-29', '2018-08-25 21:01:15', 'Food and Beverage', 500, 300000, 1, 8, 1535205675),
-(666256, 179604, 0, 'Event Bulan Depan', 'buat bulan depan', 'halo dunia', 'barelo (1).jpeg', 'Surabaya', 'Jl. Tunjungan No. 101', '2018-11-01', '2018-11-30', '2018-09-18 17:13:49', 'Others', 100, 25000, 0, 10, 1537265629),
 (705496, 684889, 671577, 'Event Resto', 'ini tagline', 'Lorem ipsum dolor sit amet', 'Samsul.png', 'Surabaya', 'Jln. Tentara Genie Pelajar No. 26', '2018-08-15', '2018-08-18', '2018-08-14 12:49:30', 'Food and Beverage', 0, 250000, 0, 6, 1534225770),
 (782013, 179604, 356641, 'Event on Resto', 'halo dunia', 'iuhewvui', '1158350_16111108190048630267.jpg', 'Bali', 'di rumah', '2018-09-27', '2018-09-30', '2018-09-24 16:46:43', 'Parties', 250, 200000, 1, 0, 1537782403),
 (961541, 684889, 0, 'Training Pake Firebase', '#gerakansejutafirebase', 'Hello firebase', 'firebase.png', 'Surabaya', 'Jl. Tentara Genie Pelajar, No. 26', '2018-08-04', '2018-08-07', '2018-08-02 17:30:48', 'Food and Beverage', 50, 20000, 0, 16, 1533205848);
@@ -149,20 +142,22 @@ INSERT INTO `event` (`idevent`, `idhotel`, `id_resto`, `title`, `tagline`, `desc
 CREATE TABLE `facility` (
   `idfacility` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
-  `icon` varchar(20) NOT NULL
+  `icon` varchar(20) NOT NULL,
+  `tipe` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `facility`
 --
 
-INSERT INTO `facility` (`idfacility`, `nama`, `icon`) VALUES
-(1, 'Wireless Internet', 'fa fa-wifi'),
-(2, 'Parking Street', 'fa fa-car'),
-(3, 'Smoking Allowed', 'fa fa-magic'),
-(4, 'Accept Credit Cards', 'fa fa-credit-card'),
-(5, 'Bike Parking', 'fa fa-bicycle'),
-(6, 'Coupons', 'fa fa-tags');
+INSERT INTO `facility` (`idfacility`, `nama`, `icon`, `tipe`) VALUES
+(1, 'Wireless Internet', 'fa fa-wifi', 1),
+(2, 'Parking Street', 'fa fa-car', 1),
+(3, 'Smoking Allowed', 'fa fa-magic', 1),
+(4, 'Accept Credit Cards', 'fa fa-credit-card', 1),
+(5, 'Bike Parking', 'fa fa-bicycle', 1),
+(6, 'Coupons', 'fa fa-tags', 1),
+(7, 'Class', 'fa fa-users', 2);
 
 -- --------------------------------------------------------
 
@@ -187,7 +182,6 @@ INSERT INTO `galeri` (`idgambar`, `idalbums`, `idhotel`, `tipe`, `gambar`, `adde
 (168739, 27316, 356641, 'hotel', 'barelo (2).jpeg', 1535282440),
 (481805, 58659, 179604, 'hotel', 'Y927222035.jpg', 1537684934),
 (633253, 27316, 356641, 'hotel', 'foody-mobile-546016_1409020853002-475-636204258458075548.jpg', 1535282432),
-(693145, 58659, 179604, 'hotel', 'iefbpits-26-aug.jpeg', 1537242309),
 (946042, 27316, 356641, 'hotel', 'Y927222035.jpg', 1535282435);
 
 -- --------------------------------------------------------
@@ -220,7 +214,7 @@ CREATE TABLE `hotel` (
 
 INSERT INTO `hotel` (`idhotel`, `nama`, `description`, `email`, `password`, `icon`, `cover`, `phone`, `website`, `city`, `address`, `coords`, `facility`, `status`, `added`) VALUES
 (131722, 'Testho Hotel', '', 'marcom@testhotel.co.id', 'inikatasandi', 'batman.jpg', 'cara-mengatasi-grogi.jpg', '082126164429', 'https://www.facebook.com', 'Surabaya', 'Jalan Kalianak Timur No. 40', '', '', 1, 1530509890),
-(179604, 'Swiss Belinn', 'No description', 'swissbelinn@hotel.id', 'inikatasandi', '', '', '6282126164429', 'https://dailyhotels.id', 'Surabaya', '', '-7.256317699999999|112.73762540000007', '2,1,3,4,5,6', 1, 1534983086),
+(179604, 'Swiss Belinn', 'No description', 'swissbelinn@hotel.id', 'inikatasandi', 'swiss-belinn-karawang.jpeg', '1158350_16111108190048630267.jpg', '6282126164429', 'https://dailyhotels.id', 'Koridor', '', '-7.256317699999999|112.73762540000007', '4,5,6,2,1,3', 1, 1534983086),
 (194215, 'Riyans Hotel', '', 'marcom@riyanshotel.guru', 'inikatasandi', '', '', '', '', '', '', '', '', 2, 1530461071),
 (368862, 'Smekda Hotel', '', 'smekda.surabaya@gmail.com', 'inikatasandi', 'logo-smekda.jpg', '', '62315343708', 'http://smkn2sby.sch.id', 'Surabaya', 'Jalan Tentara Genie Pelajar No. 26', '', '', 1, 1530595602),
 (562925, 'Sheraton Surabaya', '', 'surabaya@sheraton.marriott.com', 'inikatasandi', '', '', '', '', '', '', '', '', 0, 1537163485),
@@ -293,18 +287,16 @@ CREATE TABLE `social` (
 --
 
 INSERT INTO `social` (`idsocial`, `idhotel`, `idresto`, `type`, `url`) VALUES
-(50415, 179604, 0, 'Facebook', 'https://www.facebook.com/zuck'),
 (78886, 684889, 0, 'Instagram', 'https://www.instagram.com/awkarin'),
 (237927, 684889, 0, 'Twitter', 'https://twitter.com/telkomsel'),
-(279802, 179604, 0, 'Twitter', 'https://twitter.com/belajarngewebid'),
 (493719, 179604, 0, 'Instagram', 'https://www.instagram.com/awkarin'),
 (532286, 179604, 0, 'Google', 'https://plus.google.com/profile/93482935'),
 (701779, 726644, 0, 'Facebook', 'https://www.facebook.com/zuck'),
 (750413, 179604, 0, 'LinkedIn', 'https://www.linkedin.com/in/haloriyan'),
 (797624, 726644, 0, 'Instagram', 'https://www.instagram.com/hisana'),
+(811291, 179604, 356641, 'Facebook', 'https://www.facebook.com/belinnresto'),
 (842860, 684889, 0, 'Facebook', 'https://www.facebook.com/zuck'),
-(851132, 179604, 356641, 'LinkedIn', 'https://www.linkedin.com/in/belinnresto'),
-(959218, 179604, 824062, 'Facebook', 'https://www.facebook.com/zuck');
+(851132, 179604, 356641, 'LinkedIn', 'https://www.linkedin.com/in/belinnresto');
 
 -- --------------------------------------------------------
 
@@ -382,7 +374,8 @@ ALTER TABLE `admin`
 -- Indexes for table `album`
 --
 ALTER TABLE `album`
-  ADD PRIMARY KEY (`idalbum`);
+  ADD PRIMARY KEY (`idalbum`),
+  ADD KEY `idhotel` (`idhotel`);
 
 --
 -- Indexes for table `booking`
