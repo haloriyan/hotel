@@ -122,18 +122,11 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 	</div>
 	<div style="margin-top: 120px;">
 		<div class="wrap">
-			<h4><div id="icon"><i class="fa fa-home"></i></div> Hotel Gallery
+			<h4><div id="icon"><i class="fa fa-image"></i></div> Hotel Gallery
 				<button id="newAlbum" class="tbl merah-2 ke-kanan"><i class="fa fa-plus-circle"></i> &nbsp; New Album</button>
 			</h4>
 			<br />
-			<div id="hotelGallery">
-				<!--
-				<div class="galeri">
-					<img src="../aset/gbr/dummy.jpg">
-					<li><i class="fa fa-trash"></i></li>
-				</div>
-				-->
-			</div>
+			<div id="hotelGallery"></div>
 		</div>
 	</div>
 </div>

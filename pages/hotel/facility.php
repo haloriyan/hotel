@@ -88,7 +88,7 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 	</div>
 	<form id="formFac" style="margin-top: 120px;">
 		<div class="wrap">
-			<h4><div id="icon"><i class="fa fa-home"></i></div> Facility</h4>
+			<h4><div id="icon"><i class="fa fa-cogs"></i></div> Facility</h4>
 			<table>
 				<thead>
 					<tr>

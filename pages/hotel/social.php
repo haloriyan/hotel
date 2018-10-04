@@ -82,7 +82,7 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 	</div>
 	<form id="y" style="margin-top: 120px;">
 		<div class="wrap">
-			<h4><div id="icon"><i class="fa fa-home"></i></div> Social Network</h4>
+			<h4><div id="icon"><i class="fa fa-user"></i></div> Social Network</h4>
 			<div id="load"></div>
 			<br />
 			<button class="tbl merah-2"><i class="fa fa-plus"></i> Add New</button>
