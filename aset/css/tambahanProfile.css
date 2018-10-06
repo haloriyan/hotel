@@ -116,6 +116,7 @@
 
 .myCuisine {
 	padding: 10px 30px;
+	margin-bottom: 15px;
 	border-radius: 90px;
 	list-style: none;
 	background-color: #ecf0f1;
@@ -125,7 +126,7 @@
 	margin-right: 5px;
 }
 .myCuisine:hover { background-color: #cb0023;color: #fff; }
-.myCuisine .fa-check { color: #2ecc71; }
+.myCuisine:hover .fa-check { color: #2ecc71; }
 
 @media (max-width: 720px) {
 	.cta {

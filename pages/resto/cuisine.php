@@ -13,18 +13,17 @@ $idresto = $resto->info($sesi, "idresto");
 $name 	= $resto->info($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
 
-// get all facility
-function getAllFacility() {
+function getAllCuisine() {
 	$ctrl = new controller();
-	$get = $ctrl->tabel('facility')->pilih()->dimana(['tipe' => '2'])->eksekusi();
-	while($row = $ctrl->ambil($get)) {
-		$hasil[] = $row;
+	$q = $ctrl->tabel('cuisine')->pilih()->eksekusi();
+	while($r = $ctrl->ambil($q)) {
+		$hasil[] = $r;
 	}
 	return $hasil;
 }
 
-$myFacility = $resto->info($sesi, "facility");
-$fac = explode(",", $myFacility);
+$myCuisine = $resto->info($sesi, 'cuisine');
+$cui = explode(',', $myCuisine);
 
 ?>
 <!DOCTYPE html>
@@ -32,7 +31,7 @@ $fac = explode(",", $myFacility);
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale = 1">
-	<title>Facility</title>
+	<title>Cuisine</title>
 	<link href='../aset/fw/build/fw.css' rel='stylesheet'>
 	<link href='../aset/fw/build/font-awesome.min.css' rel='stylesheet'>
 	<link href='../aset/css/style.index.css' rel='stylesheet'>
@@ -79,11 +78,6 @@ $fac = explode(",", $myFacility);
 		<input type="text" class="box" placeholder="Type your search...">
 	</div>
 	<nav class="menu">
-		<!--
-		<a href="#"><li>Home</li></a>
-		<a href="#"><li>Explore</li></a>
-		<a href="#"><li>City</li></a>
-		-->
 		<a href="../restoran/<?php echo $idresto; ?>" target='_blank'><li>Hello <?php echo $namaPertama; ?> !</li></a>
 		<button id="cta" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
 	</nav>
@@ -100,54 +94,47 @@ $fac = explode(",", $myFacility);
 </div>
 
 <div class="container">
-	<form id="formFac">
+	<form id="formCuisine">
 		<div class="wrap">
-			<h4><div id="icon"><i class="fa fa-home"></i></div> Facility</h4>
+			<h4><div id="icon"><i class="fa fa-cutlery"></i></div> Cuisine</h4>
 			<table id="myListing">
 				<thead>
 					<tr>
 						<th style="width: 10%">Status</th>
-						<th>Facility</th>
+						<th>Cuisine</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php
-					foreach (getAllFacility() as $row) {
-						$key = $row['idfacility'];
-						if(in_array($key, $fac)) {
+					foreach(getAllCuisine() as $row) {
+						$key = $row['idcuisine'];
+						if(in_array($key, $cui)) {
 							$checked = "checked";
 						}else {
 							$checked = "";
 						}
 						echo "<tr>".
-								"<td><input type='checkbox' name='facilities' class='fac' value='".$key."' id='facilities".$key."' onclick='save(this.value)' ".$checked."></span></td>".
-								"<td><label for='facilities".$key."'>".$row['nama']."</label></td>".
+								"<td><input type='checkbox' onclick='save(this.value)' value='".$key."' id='cuisines".$key."' ".$checked."></td>".
+								"<td><label for='cuisines".$key."'>".$row['nama']."</label></td>".
 							 "</tr>";
 					}
 					?>
 				</tbody>
-				</table>
+			</table>
 			<div id="saved">
 				<i class="fa fa-check"></i> &nbsp;Saved
 			</div>
-			<br /><br />
 		</div>
 	</form>
 </div>
 
 <script src="../aset/js/embo.js"></script>
-<script src="../aset/js/jquery-3.1.1.js"></script>
 <script>
 	klik("#cta", function() {
 		mengarahkan("./add-listing")
 	})
-	pilih("#formFac").onsubmit = function() {
-		let tes = $("input[name=facilities]").val()
-		console.log(tes)
-		return false
-	}
 	function save(val) {
-		let save = "idfac="+val+"&bag=facility"
+		let save = "idcui="+val+"&bag=cuisine"
 		pos("../aksi/resto/edit.php", save, function() {
 			muncul("#saved")
 			setTimeout(function() {

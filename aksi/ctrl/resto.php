@@ -97,6 +97,11 @@ class resto extends hotel {
 		$r = $this->ambil($q);
 		return $r[$struktur];
 	}
+	public function infoCui($id, $struktur) {
+		$q = $this->tabel('cuisine')->pilih($struktur)->dimana(['idcuisine' => $id])->eksekusi();
+		$r = $this->ambil($q);
+		return $r[$struktur];
+	}
 	public function totMyResto($id) {
 		$q = $this->tabel("restoran")->pilih()->dimana(["idhotel" => $id])->eksekusi();
 		return $this->hitung($q);

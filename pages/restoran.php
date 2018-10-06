@@ -217,9 +217,14 @@ $cities = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","S
 				<div class="bagian cuisine">
 					<div class="wrap">
 						<h3><i class="fa fa-cutlery"></i> &nbsp; Cuisine</h3>
-						<li class="myCuisine"><i class="fa fa-check"></i> &nbsp; Indonesian</li>
-						<li class="myCuisine"><i class="fa fa-check"></i> &nbsp; Thailand</li>
-						<li class="myCuisine"><i class="fa fa-check"></i> &nbsp; Chinese</li>
+						<?php
+						$myCui = $resto->info($idresto, 'cuisine');
+						$cui = explode(',', $myCui);
+						foreach ($cui as $key => $value) {
+							$nama = $resto->infoCui($value, 'nama');
+							echo "<li class='myCuisine'><i class='fa fa-check'></i> &nbsp; ".$nama." </li>";
+						}
+						?>
 					</div>
 				</div>
 			</div>	

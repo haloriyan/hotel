@@ -51,4 +51,24 @@ if($bag == "detil") {
 		}
 	}
 	$resto->change($idresto, "facility", $baru);
+}else if($bag == "cuisine") {
+	$idcui = $_POST['idcui'];
+	$myCui = $resto->info($sesi, 'cuisine');
+	$cui = explode(',', $myCui);
+
+	if(in_array($idcui, $cui)) {
+		foreach ($cui as $key => $value) {
+			if($idcui == $cui[$key]) {
+				unset($cui[$key]);
+			}
+			$baru = implode(",", $cui);
+		}
+	}else {
+		if($myCui != "") {
+			$baru = $myCui.",".$idcui;
+		}else {
+			$baru = $idcui;
+		}
+	}
+	$resto->change($idresto, "cuisine", $baru);
 }
