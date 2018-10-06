@@ -19,17 +19,6 @@ $address 	= $resto->info($sesi, "address");
 $city = $resto->info($sesi, "city");
 $web = $resto->info($sesi, "website");
 $description = $resto->info($sesi, "description");
-$coords = $resto->info($sesi, "coords");
-
-$c = explode("|", $coords);
-$lat = $c[0];
-$lng = $c[1];
-if($lat == '') {
-	$lat = '-7.256317699999999';
-}
-if($lng == '') {
-	$lng = '112.73762540000007';
-}
 
 setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 
@@ -96,8 +85,7 @@ setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 			<div class="isi">Website :</div>
 			<div><a href='<?php echo $web; ?>' target='_blank'><?php echo $web; ?></a></div>
 			<div class="isi">Address :</div>
-			<input id="addressStaticInput" class="box" style="border: none;background: none;" readonly>
-			<div id="addressStatic" style="height: 300px"></div>
+			<div><?php echo $address; ?></div>
 			<div class="isi">Icon</div>
 			<?php if($icon != '') { ?>
 			<img src="../aset/gbr/<?php echo $icon; ?>" style='width: 40%;'>
@@ -123,12 +111,11 @@ setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 			<div class="isi">City :</div>
 			<input type="text" class="box" id="city" value="<?php echo $city; ?>">
 			<div class="isi">Phone :</div>
-			<input type="text" class="box" placeholder="e.g 628123456789" id="phone" value="<?php echo $phone; ?>">
+			<input type="number" class="box" placeholder="e.g 628123456789" id="phone" value="<?php echo $phone; ?>">
 			<div class="isi">Website url :</div>
 			<input type="text" class="box" id="web" placeholder="e.g https://dailyhotels.id" value="<?php echo $web; ?>">
 			<div class="isi">Address :</div>
 			<input class="box" id="address" value="<?php echo $address; ?>">
-			<div id="myMaps" style="height: 300px;"></div>
 			<input type="hidden" id="latInput">
 			<input type="hidden" id="lngInput">
 		</div>
@@ -175,36 +162,6 @@ setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 <script src="../aset/js/insert.js"></script>
 <script src="../aset/js/embo.js"></script>
 <script>
-	$('#myMaps').locationpicker({
-		location: {
-			latitude: <?php echo $lat; ?>,
-			longitude: <?php echo $lng; ?>
-		},
-		radius: 0,
-		inputBinding: {
-			latitudeInput: $('#latInput'),
-			longitudeInput: $('#lngInput'),
-			locationNameInput: $('#address')
-		},
-		onchanged: function() {
-			//
-		},
-		enableAutocomplete: true,
-	})
-	$('#addressStatic').locationpicker({
-		location: {
-			latitude: <?php echo $lat; ?>,
-			longitude: <?php echo $lng; ?>
-		},
-		inputBinding: {
-			locationNameInput: $('#addressStaticInput')
-		},
-		radius: 0,
-		onchanged: function() {
-			//
-		},
-		enableAutocomplete: true,
-	})
 
 	function validUrl(str) {
 	    let regExp = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
@@ -212,7 +169,9 @@ setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 	    if(!regExp.test(str)) {
 	    	munculPopup("#notif", pengaya("#notif", "top: 200px"))
 			tulis("#isiNotif", "URL must be valid!")
-			return false
+			return 'gavalid'
+	    }else {
+	    	return '1'
 	    }
 	}
 	$('#formDetil').submit(function() {
@@ -226,14 +185,16 @@ setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 
 		let icons = $('#namaIcon').val()
 		let cover = $('#namaCover').val()
-		let detil 	= "phone="+phone+"&bag=detil&city="+city+"&web="+web+"&description="+description+"&icon="+icons+"&cover="+cover+"&lat="+latitude+"&lng="+longitude
+		let detil 	= "phone="+phone+"&bag=detil&city="+city+"&web="+web+"&description="+description+"&icon="+icons+"&cover="+cover+"&address="+address
 		if(phone == "" || address == "" || web == "" || city == "") {
 			munculPopup("#notif", pengaya("#notif", "top: 225px"))
 			tulis("#isiNotif", "All field must be filled")
 			return false
 		}
 
-		validUrl(web)
+		if(validUrl(web) == 'gavalid') {
+			return false
+		}
 
 		$.ajax({
 			type: 'POST',

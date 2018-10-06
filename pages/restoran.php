@@ -1,6 +1,8 @@
 <?php
 include 'aksi/ctrl/social.php';
 
+$urlNow = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
 setcookie('idresto', $idresto, time() + 3900, "/");
 setcookie('idhotel', '', time() + 1, "/");
 
@@ -26,8 +28,7 @@ $totExplore = $ctrl->hitung($ctrl->tabel("event")->pilih()->dimana(["id_resto" =
 
 // Category
 $category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping","Recreation","Parties","Others"];
-$cities = ["Bali","Bandung","Batam","Bogor","Jakarta","Lombok","Makassar","Malang","Pekalongan","Semarang","Solo","Surabaya","Yogyakarta"];
-$city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Surabaya","Yogyakarta"];
+$cities = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Surabaya","Yogyakarta"];
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,7 +44,6 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 	<link href="../aset/css/style.profile.css" rel="stylesheet">
 	<link href="../aset/css/style.explore.css" rel="stylesheet">
 	<link href="../aset/css/tambahanProfile.css" rel="stylesheet">
-	<script src="../aset/js/embo.js"></script>
 </head>
 <body>
 
@@ -64,7 +64,7 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 		<a href="#"><li id="adaSub">City &nbsp; <i class="fa fa-angle-down"></i>
 			<nav class="sub merah-2" id="subCity">
 				<?php
-				foreach ($city as $key => $value) {
+				foreach ($cities as $key => $value) {
 					echo "<a href='../explore&q=&cat=&city=".$value."'><li>".$value."</li></a>";
 				}
 				?>
@@ -95,6 +95,7 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 </div>
 
 <div class="bawah">
+	<input type="hidden" id="urlNow" value="<?php echo $urlNow; ?>">
 	<div class="nav">
 		<div class="wrap">
 			<img src="../aset/gbr/<?php echo $icon; ?>" class="iconHotel">
@@ -213,6 +214,14 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 						?>
 					</div>
 				</div>
+				<div class="bagian cuisine">
+					<div class="wrap">
+						<h3><i class="fa fa-cutlery"></i> &nbsp; Cuisine</h3>
+						<li class="myCuisine"><i class="fa fa-check"></i> &nbsp; Indonesian</li>
+						<li class="myCuisine"><i class="fa fa-check"></i> &nbsp; Thailand</li>
+						<li class="myCuisine"><i class="fa fa-check"></i> &nbsp; Chinese</li>
+					</div>
+				</div>
 			</div>	
 			</div>
 		</div>
@@ -256,10 +265,12 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 	</div>
 </div>
 
+<script src="../aset/js/embo.js"></script>
 <script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyDqYJGuWw9nfoyPG8d9L1uhm392uETE-mA'></script>
 <script src="../aset/js/jquery-3.1.1.js"></script>
 <script src="../aset/js/locationpicker.jquery.min.js"></script>
 <script>
+	/*
 	$('#myMaps').locationpicker({
 		location: {
 			latitude: <?php echo $lat; ?>,
@@ -276,6 +287,11 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 			//
 		},
 		enableAutocomplete: true,
+	})
+	*/
+	let redirect = btoa(pilih("#urlNow").value)
+	klik("#tblLogin", function() {
+		mengarahkan("../auth&r="+redirect)
 	})
 </script>
 <script src="../aset/js/profileHotel.js"></script>

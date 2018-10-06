@@ -6,14 +6,15 @@ $idhotel 	= $hotel->get($sesi, "idhotel");
 $name 	= $hotel->get($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
 
-$facility = [
-	"1" => "Wireless Internet",
-	"2" => "Parking Street",
-	"3" => "Smoking Allowed",
-	"4" => "Accept Credit Cards",
-	"5" => "Bike Parking",
-	"6" => "Coupons"
-];
+// get all facility
+function getAllFacility() {
+	$ctrl = new controller();
+	$get = $ctrl->query("SELECT * FROM facility WHERE tipe = '1'");
+	while($row = $ctrl->ambil($get)) {
+		$hasil[] = $row;
+	}
+	return $hasil;
+}
 
 $myFacility = $hotel->get($sesi, "facility");
 $fac = explode(",", $myFacility);
@@ -98,7 +99,8 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 				</thead>
 				<tbody>
 					<?php
-					foreach ($facility as $key => $value) {
+					foreach (getAllFacility() as $row) {
+						$key = $row['idfacility'];
 						if(in_array($key, $fac)) {
 							$checked = "checked";
 						}else {
@@ -106,7 +108,7 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 						}
 						echo "<tr>".
 								"<td><input type='checkbox' name='facilities' class='fac' value='".$key."' id='facilities".$key."' onclick='save(this.value)' ".$checked."></span></td>".
-								"<td><label for='facilities".$key."'>".$value."</label></td>".
+								"<td><label for='facilities".$key."'>".$row['nama']."</label></td>".
 							 "</tr>";
 					}
 					?>

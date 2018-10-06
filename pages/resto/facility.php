@@ -13,14 +13,15 @@ $idresto = $resto->info($sesi, "idresto");
 $name 	= $resto->info($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
 
-$facility = [
-	"1" => "Wireless Internet",
-	"2" => "Parking Street",
-	"3" => "Smoking Allowed",
-	"4" => "Accept Credit Cards",
-	"5" => "Bike Parking",
-	"6" => "Coupons"
-];
+// get all facility
+function getAllFacility() {
+	$ctrl = new controller();
+	$get = $ctrl->query("SELECT * FROM facility WHERE tipe = '2'");
+	while($row = $ctrl->ambil($get)) {
+		$hasil[] = $row;
+	}
+	return $hasil;
+}
 
 $myFacility = $resto->info($sesi, "facility");
 $fac = explode(",", $myFacility);
@@ -89,7 +90,8 @@ $fac = explode(",", $myFacility);
 				</thead>
 				<tbody>
 					<?php
-					foreach ($facility as $key => $value) {
+					foreach (getAllFacility() as $row) {
+						$key = $row['idfacility'];
 						if(in_array($key, $fac)) {
 							$checked = "checked";
 						}else {
@@ -97,7 +99,7 @@ $fac = explode(",", $myFacility);
 						}
 						echo "<tr>".
 								"<td><input type='checkbox' name='facilities' class='fac' value='".$key."' id='facilities".$key."' onclick='save(this.value)' ".$checked."></span></td>".
-								"<td><label for='facilities".$key."'>".$value."</label></td>".
+								"<td><label for='facilities".$key."'>".$row['nama']."</label></td>".
 							 "</tr>";
 					}
 					?>

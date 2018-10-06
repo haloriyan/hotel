@@ -114,6 +114,19 @@
 	padding: 0;
 }
 
+.myCuisine {
+	padding: 10px 30px;
+	border-radius: 90px;
+	list-style: none;
+	background-color: #ecf0f1;
+	display: inline-block;
+	transition: 0.4s;
+	cursor: pointer;
+	margin-right: 5px;
+}
+.myCuisine:hover { background-color: #cb0023;color: #fff; }
+.myCuisine .fa-check { color: #2ecc71; }
+
 @media (max-width: 720px) {
 	.cta {
 		top: 290px;left: 35%;
