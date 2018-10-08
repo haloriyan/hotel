@@ -8,6 +8,10 @@ if($_GET['id'] !== null) {
 	$resto->login($_GET['namaResto']);
 }
 
+function toIdr($angka) {
+	return 'Rp. '.strrev(implode('.',str_split(strrev(strval($angka)),3)));
+}
+
 $sesi 	= $resto->sesi();
 $idresto = $resto->info($sesi, "idresto");
 $name 	= $resto->info($sesi, "nama");
@@ -19,6 +23,11 @@ $address 	= $resto->info($sesi, "address");
 $city = $resto->info($sesi, "city");
 $web = $resto->info($sesi, "website");
 $description = $resto->info($sesi, "description");
+$price = $resto->info($sesi, "price");
+
+$pr = explode("|", $price);
+$priceFrom = $pr[0];
+$priceTo = $pr[1];
 
 setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 
@@ -41,6 +50,7 @@ setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 		.atas { z-index: 1; }
 		.bg { z-index: 4; }
 		.popup { z-index: 15;border-radius: 5px; }
+		#priceFrom,#priceTo { width: 80%; }
 	</style>
 </head>
 <body>
@@ -86,6 +96,8 @@ setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 			<div><a href='<?php echo $web; ?>' target='_blank'><?php echo $web; ?></a></div>
 			<div class="isi">Address :</div>
 			<div><?php echo $address; ?></div>
+			<div class="isi">Price :</div>
+			<div><?php echo toIdr($priceFrom); ?> - <?php echo toIdr($priceTo); ?></div>
 			<div class="isi">Icon</div>
 			<?php if($icon != '') { ?>
 			<img src="../aset/gbr/<?php echo $icon; ?>" style='width: 40%;'>
@@ -118,6 +130,17 @@ setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 			<input class="box" id="address" value="<?php echo $address; ?>">
 			<input type="hidden" id="latInput">
 			<input type="hidden" id="lngInput">
+			<div>
+				<h3 style="margin-bottom: 0px;">Price</h3>
+				<div class="bag bag-5">
+					<div class="isi">From (Rp) :</div>
+					<input type="number" class="box" id="priceFrom" value="<?php echo $priceFrom; ?>">
+				</div>
+				<div class="bag bag-5">
+					<div class="isi">to (Rp) :</div>
+					<input type="number" class="box" id="priceTo" value="<?php echo $priceTo; ?>">
+				</div>
+			</div>
 		</div>
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-image"></i></div> Change Image</h4>
@@ -182,10 +205,12 @@ setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 		let description = $('#description').val()
 		let latitude = $('#latInput').val()
 		let longitude = $('#lngInput').val()
+		let priceFrom = $('#priceFrom').val()
+		let priceTo = $('#priceTo').val()
 
 		let icons = $('#namaIcon').val()
 		let cover = $('#namaCover').val()
-		let detil 	= "phone="+phone+"&bag=detil&city="+city+"&web="+web+"&description="+description+"&icon="+icons+"&cover="+cover+"&address="+address
+		let detil 	= "phone="+phone+"&bag=detil&city="+city+"&web="+web+"&description="+description+"&icon="+icons+"&cover="+cover+"&address="+address+"&priceFrom="+priceFrom+"&priceTo="+priceTo
 		if(phone == "" || address == "" || web == "" || city == "") {
 			munculPopup("#notif", pengaya("#notif", "top: 225px"))
 			tulis("#isiNotif", "All field must be filled")

@@ -16,6 +16,10 @@ if($bag == "detil") {
 	$lat = $_POST['lat'];
 	$lng = $_POST['lng'];
 	$coords = $lat."|".$lng;
+	$priceFrom = $_POST['priceFrom'];
+	$priceTo = $_POST['priceTo'];
+
+	$price = $priceFrom."|".$priceTo;
 
 	if($_POST['icon'] == '') {
 		$icon = $resto->info($sesi, 'icon');
@@ -24,8 +28,8 @@ if($bag == "detil") {
 		$cover = $resto->info($sesi, 'cover');
 	}
 
-	$val = $phone.",".$address.",".$web.",".$city.",".$description.",".$icon.",".$cover.",".$coords;
-	$change = "phone,address,website,city,description,icon,cover,coords";
+	$val = $phone.",".$address.",".$web.",".$city.",".$description.",".$icon.",".$cover.",".$coords.",".$price;
+	$change = "phone,address,website,city,description,icon,cover,coords,price";
 
 	$v = explode(",", $val);
 	$c = explode(",", $change);
