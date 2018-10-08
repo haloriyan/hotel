@@ -3,6 +3,10 @@ include 'aksi/ctrl/social.php';
 
 $urlNow = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
+function toIdr($angka) {
+	return 'Rp. '.strrev(implode('.',str_split(strrev(strval($angka)),3)));
+}
+
 setcookie('idresto', $idresto, time() + 3900, "/");
 setcookie('idhotel', '', time() + 1, "/");
 
@@ -15,6 +19,12 @@ $cover = $resto->info($idresto, "cover");
 $website = $resto->info($idresto, "website");
 $description = $resto->info($idresto, "description");
 $coords = $resto->info($idresto, "coords");
+
+$price = $resto->info($idresto, "price");
+$pr = explode("|", $price);
+$priceFrom = $pr[0];
+$priceTo = $pr[1];
+
 
 $c = explode("|", $coords);
 $lat = $c[0];
@@ -194,6 +204,14 @@ $cities = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","S
 							}
 							?>
 						</div>
+					</div>
+				</div>
+				<div class="bagian price">
+					<div class="wrap">
+						<h3><i class="fa fa-money"></i> &nbsp; Price Range</h3>
+						<?php
+						echo toIdr($priceFrom)." - ".toIdr($priceTo);
+						?>
 					</div>
 				</div>
 				<div class="bagian facilities">
