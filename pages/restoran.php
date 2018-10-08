@@ -17,18 +17,13 @@ $city = $resto->info($idresto, "city");
 $icon = $resto->info($idresto, "icon");
 $cover = $resto->info($idresto, "cover");
 $website = $resto->info($idresto, "website");
+$address = $resto->info($idresto, "address");
 $description = $resto->info($idresto, "description");
-$coords = $resto->info($idresto, "coords");
 
 $price = $resto->info($idresto, "price");
 $pr = explode("|", $price);
 $priceFrom = $pr[0];
 $priceTo = $pr[1];
-
-
-$c = explode("|", $coords);
-$lat = $c[0];
-$lng = $c[1];
 
 $sesi = $user->sesi();
 $nama = $user->info($sesi, "nama");
@@ -39,6 +34,7 @@ $totExplore = $ctrl->hitung($ctrl->tabel("event")->pilih()->dimana(["id_resto" =
 // Category
 $category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping","Recreation","Parties","Others"];
 $cities = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Surabaya","Yogyakarta"];
+$serves = ['Breakfast','Dinner','Lunch'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -161,10 +157,7 @@ $cities = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","S
 				<div class="bagian location">
 					<div class="wrap">
 						<h3><i class="fa fa-map-marker"></i> &nbsp; Location</h3>
-						<input type="hidden" id="latInput">
-						<input type="hidden" id="lngInput">
-						<textarea id="address" class="box" readonly></textarea>
-						<div id="myMaps" style="height: 300px;"></div>
+						<textarea id="address" class="box" readonly><?php echo $address; ?></textarea>
 					</div>
 				</div>
 				<div class="bagian location" id="socialNetwork">
@@ -211,6 +204,22 @@ $cities = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","S
 						<h3><i class="fa fa-money"></i> &nbsp; Price Range</h3>
 						<?php
 						echo toIdr($priceFrom)." - ".toIdr($priceTo);
+						?>
+					</div>
+				</div>
+				<div class="bagian serve">
+					<div class="wrap">
+						<h3>Serve</h3>
+						<?php
+						foreach ($serves as $key => $value) {
+							if($value == '') {
+								echo 'No anyserve';
+							}else {
+								if(in_array($value, $serves)) {
+									echo "<span><i class='fa fa-check'></i> ".$value." &nbsp; ";
+								}
+							}
+						}
 						?>
 					</div>
 				</div>

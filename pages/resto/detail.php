@@ -24,10 +24,14 @@ $city = $resto->info($sesi, "city");
 $web = $resto->info($sesi, "website");
 $description = $resto->info($sesi, "description");
 $price = $resto->info($sesi, "price");
+$serve = $resto->info($sesi, "serve");
+$myServe = explode(",", $serve);
 
 $pr = explode("|", $price);
 $priceFrom = $pr[0];
 $priceTo = $pr[1];
+
+$serves = ['Breakfast','Dinner','Lunch'];
 
 setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 
@@ -51,6 +55,14 @@ setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 		.bg { z-index: 4; }
 		.popup { z-index: 15;border-radius: 5px; }
 		#priceFrom,#priceTo { width: 80%; }
+		#saved {
+			padding: 15px 35px;
+			background: rgba(76, 175, 80, 0.85);
+			color: #fff;
+			margin-bottom: -5px;
+			margin-top: 10px;
+			display: none;
+		}
 	</style>
 </head>
 <body>
@@ -98,6 +110,20 @@ setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 			<div><?php echo $address; ?></div>
 			<div class="isi">Price :</div>
 			<div><?php echo toIdr($priceFrom); ?> - <?php echo toIdr($priceTo); ?></div>
+			<div class="isi">Serve : </div>
+			<div>
+				<?php
+				foreach ($myServe as $key => $value) {
+					if($value == '') {
+						echo 'No anyserve';
+					}else {
+						if(in_array($value, $serves)) {
+							echo "<span><i class='fa fa-check'></i> ".$value." &nbsp; ";
+						}
+					}
+				}
+				?>
+			</div>
 			<div class="isi">Icon</div>
 			<?php if($icon != '') { ?>
 			<img src="../aset/gbr/<?php echo $icon; ?>" style='width: 40%;'>
@@ -128,8 +154,6 @@ setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 			<input type="text" class="box" id="web" placeholder="e.g https://dailyhotels.id" value="<?php echo $web; ?>">
 			<div class="isi">Address :</div>
 			<input class="box" id="address" value="<?php echo $address; ?>">
-			<input type="hidden" id="latInput">
-			<input type="hidden" id="lngInput">
 			<div>
 				<h3 style="margin-bottom: 0px;">Price</h3>
 				<div class="bag bag-5">
@@ -140,6 +164,31 @@ setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 					<div class="isi">to (Rp) :</div>
 					<input type="number" class="box" id="priceTo" value="<?php echo $priceTo; ?>">
 				</div>
+			</div>
+			<div class="isi">Serve :</div>
+			<table>
+				<thead>
+					<th style="width: 10%;">Status</th>
+					<th>Serve name</th>
+				</thead>
+				<tbody>
+					<?php
+					foreach ($serves as $key => $value) {
+						if(in_array($key, $myServe)) {
+							$checked = "checked";
+						}else {
+							$checked = "";
+						}
+						echo "<tr>".
+								"<td><input type='checkbox' ".$checked." onclick='save(this.value)' value='".$value."' id='cuisines".$key."'></td>".
+								"<td><label for='cuisines".$key."'>".$value."</td>".
+							 "</tr>";
+					}
+					?>
+				</tbody>
+			</table>
+			<div id="saved">
+				<i class="fa fa-check"></i> &nbsp;Saved
 			</div>
 		</div>
 		<div class="wrap">
@@ -196,6 +245,15 @@ setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 	    }else {
 	    	return '1'
 	    }
+	}
+	function save(val) {
+		let data = "serve="+val+"&bag=serves"
+		pos('../aksi/resto/edit.php', data, () => {
+			muncul("#saved")
+			setTimeout(function() {
+				hilang("#saved")
+			}, 1200)
+		})
 	}
 	$('#formDetil').submit(function() {
 		let phone = $('#phone').val()

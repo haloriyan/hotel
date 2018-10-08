@@ -75,4 +75,24 @@ if($bag == "detil") {
 		}
 	}
 	$resto->change($idresto, "cuisine", $baru);
+}else if($bag == "serves") {
+	$serve = $_POST['serve'];
+	$myServe = $resto->info($sesi, "serve");
+	$serv = explode(',', $myServe);
+
+	if(in_array($serve, $serv)) {
+		foreach ($serv as $key => $value) {
+			if($serve == $serv[$key]) {
+				unset($serv[$key]);
+			}
+			$baru = implode(",", $serve);
+		}
+	}else {
+		if($myServe != "") {
+			$baru = $myServe.",".$serve;
+		}else {
+			$baru = $serve;
+		}
+	}
+	$resto->change($idresto, "serve", $baru);
 }

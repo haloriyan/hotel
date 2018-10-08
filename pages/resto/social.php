@@ -157,6 +157,7 @@ $namaPertama = explode(" ", $name)[0];
 		}
 		pos("../aksi/restosocial/add.php", tambah, function() {
 			hilangPopup("#addSocial")
+			pilih("#urlAdd").value = ''
 			load()
 		})
 		return false
