@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 04, 2018 at 11:51 AM
+-- Generation Time: Oct 10, 2018 at 07:10 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -63,6 +63,7 @@ CREATE TABLE `album` (
 
 INSERT INTO `album` (`idalbum`, `idhotel`, `id_resto`, `nama`, `created`) VALUES
 (27316, 179604, 356641, 'Room', 1535282423),
+(34323, 179604, 192795, 'Foodies', 1538982784),
 (58659, 179604, 0, 'foodies', 1537242301);
 
 -- --------------------------------------------------------
@@ -97,6 +98,28 @@ INSERT INTO `booking` (`idbooking`, `idevent`, `iduser`, `nama`, `qty`, `bukti`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cuisine`
+--
+
+CREATE TABLE `cuisine` (
+  `idcuisine` int(11) NOT NULL,
+  `nama` varchar(65) NOT NULL,
+  `added` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cuisine`
+--
+
+INSERT INTO `cuisine` (`idcuisine`, `nama`, `added`) VALUES
+(1, 'Indonesian', 1538800248),
+(2, 'Chinese', 1538800261),
+(3, 'Thailand', 1538800284),
+(4, 'Francaise', 1538800305);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `event`
 --
 
@@ -127,7 +150,7 @@ CREATE TABLE `event` (
 
 INSERT INTO `event` (`idevent`, `idhotel`, `id_resto`, `title`, `tagline`, `description`, `covers`, `region`, `alamat`, `tgl_mulai`, `tgl_akhir`, `tgl_posted`, `category`, `quota`, `price`, `status`, `hint`, `added`) VALUES
 (65326, 179604, 356641, 'Event on Resto', 'ha', 'euvh', 'barelo.jpeg', 'Surabaya', 'a', '2018-09-25', '2018-09-28', '2018-09-24 16:40:49', 'Parties', 45, 200000, 0, 2, 1537782049),
-(166847, 179604, 0, 'Jatim Fair 2018', 'Make Jatim Great Again!', 'Jatim Fair merupakan acara yang diselenggarakan selama 11 hari mulai dari 4 - 14 Oktober di Grand City Mall ', 'jatimFair.jpeg', 'Surabaya', 'Jl. Tunjungan No. 101', '2018-10-15', '2018-10-20', '2018-10-03 10:34:37', 'Others', 200, 250000, 1, 4, 1538537677),
+(166847, 179604, 0, 'Jatim Fair 2018', 'Make Jatim Great Again!', 'Jatim Fair merupakan acara yang diselenggarakan selama 11 hari mulai dari 4 - 14 Oktober di Grand City Mall ', 'jatimFair.jpeg', 'Surabaya', 'Jl. Tunjungan No. 101', '2018-10-15', '2018-10-20', '2018-10-03 10:34:37', 'Others', 200, 250000, 1, 6, 1538537677),
 (295607, 684889, 0, 'Seminar Keagamaan', 'halo dunia', 'Lorem ipsum dolor sit amet', 'perjalananKehidupan.jpg', 'Surabaya', 'Jl. Tentara Genie Pelajar No. 26', '2018-08-08', '2018-08-10', '2018-08-07 10:01:51', 'Parties', 150, 2000, 0, 24, 1533610911),
 (705496, 684889, 671577, 'Event Resto', 'ini tagline', 'Lorem ipsum dolor sit amet', 'Samsul.png', 'Surabaya', 'Jln. Tentara Genie Pelajar No. 26', '2018-08-15', '2018-08-18', '2018-08-14 12:49:30', 'Food and Beverage', 0, 250000, 0, 6, 1534225770),
 (782013, 179604, 356641, 'Event on Resto', 'halo dunia', 'iuhewvui', '1158350_16111108190048630267.jpg', 'Bali', 'di rumah', '2018-09-27', '2018-09-30', '2018-09-24 16:46:43', 'Parties', 250, 200000, 1, 0, 1537782403),
@@ -157,7 +180,9 @@ INSERT INTO `facility` (`idfacility`, `nama`, `icon`, `tipe`) VALUES
 (4, 'Accept Credit Cards', 'fa fa-credit-card', 1),
 (5, 'Bike Parking', 'fa fa-bicycle', 1),
 (6, 'Coupons', 'fa fa-tags', 1),
-(7, 'Class', 'fa fa-users', 2);
+(7, 'Class', 'fa fa-users', 2),
+(8, 'Rounded Table', 'fa fa-cutlery', 2),
+(9, 'Theatre', 'fa fa-film', 2);
 
 -- --------------------------------------------------------
 
@@ -180,6 +205,7 @@ CREATE TABLE `galeri` (
 
 INSERT INTO `galeri` (`idgambar`, `idalbums`, `idhotel`, `tipe`, `gambar`, `added`) VALUES
 (168739, 27316, 356641, 'hotel', 'barelo (2).jpeg', 1535282440),
+(469434, 34323, 192795, 'hotel', 'iefbpits-26-aug.jpeg', 1538982800),
 (481805, 58659, 179604, 'hotel', 'Y927222035.jpg', 1537684934),
 (633253, 27316, 356641, 'hotel', 'foody-mobile-546016_1409020853002-475-636204258458075548.jpg', 1535282432),
 (946042, 27316, 356641, 'hotel', 'Y927222035.jpg', 1535282435);
@@ -214,7 +240,7 @@ CREATE TABLE `hotel` (
 
 INSERT INTO `hotel` (`idhotel`, `nama`, `description`, `email`, `password`, `icon`, `cover`, `phone`, `website`, `city`, `address`, `coords`, `facility`, `status`, `added`) VALUES
 (131722, 'Testho Hotel', '', 'marcom@testhotel.co.id', 'inikatasandi', 'batman.jpg', 'cara-mengatasi-grogi.jpg', '082126164429', 'https://www.facebook.com', 'Surabaya', 'Jalan Kalianak Timur No. 40', '', '', 1, 1530509890),
-(179604, 'Swiss Belinn', 'No description', 'swissbelinn@hotel.id', 'inikatasandi', 'swiss-belinn-karawang.jpeg', '1158350_16111108190048630267.jpg', '6282126164429', 'https://dailyhotels.id', 'Koridor', '', '-7.256317699999999|112.73762540000007', '4,5,6,2,1,3', 1, 1534983086),
+(179604, 'Swiss Belinn', 'No description', 'swissbelinn@hotel.id', 'inikatasandi', 'swiss-belinn-karawang.jpeg', '1158350_16111108190048630267.jpg', '6282126164429', 'https://dailyhotels.id', 'Koridor', '', '-7.256317699999999|112.73762540000007', '4,5,6,2,3,1', 1, 1534983086),
 (194215, 'Riyans Hotel', '', 'marcom@riyanshotel.guru', 'inikatasandi', '', '', '', '', '', '', '', '', 2, 1530461071),
 (368862, 'Smekda Hotel', '', 'smekda.surabaya@gmail.com', 'inikatasandi', 'logo-smekda.jpg', '', '62315343708', 'http://smkn2sby.sch.id', 'Surabaya', 'Jalan Tentara Genie Pelajar No. 26', '', '', 1, 1530595602),
 (562925, 'Sheraton Surabaya', '', 'surabaya@sheraton.marriott.com', 'inikatasandi', '', '', '', '', '', '', '', '', 0, 1537163485),
@@ -245,16 +271,19 @@ CREATE TABLE `redeem` (
 CREATE TABLE `restoran` (
   `idresto` int(11) NOT NULL,
   `idhotel` int(11) NOT NULL,
-  `nama` varchar(55) NOT NULL,
+  `nama` varchar(65) NOT NULL,
   `description` text NOT NULL,
   `icon` varchar(155) NOT NULL,
   `cover` varchar(155) NOT NULL,
-  `phone` varchar(14) NOT NULL,
-  `website` varchar(75) NOT NULL,
-  `city` varchar(50) NOT NULL,
-  `address` varchar(255) NOT NULL,
-  `coords` varchar(100) NOT NULL,
+  `city` varchar(40) NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `address` varchar(155) NOT NULL,
+  `website` varchar(155) NOT NULL,
+  `price` varchar(45) NOT NULL,
   `facility` varchar(95) NOT NULL,
+  `cuisine` varchar(333) NOT NULL,
+  `hours` varchar(155) NOT NULL,
+  `serve` varchar(333) NOT NULL,
   `added` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -262,11 +291,8 @@ CREATE TABLE `restoran` (
 -- Dumping data for table `restoran`
 --
 
-INSERT INTO `restoran` (`idresto`, `idhotel`, `nama`, `description`, `icon`, `cover`, `phone`, `website`, `city`, `address`, `coords`, `facility`, `added`) VALUES
-(356641, 179604, 'Belinn Resto', 'Restaurant of Swiss Belinn Hotel', 'swiss-belinn-karawang.jpeg', 'swiss-belhotel.jpg', '6282126164429', 'https://restaurant.swissbelinn.co.id', 'Surabaya', '', '-7.289778999999999|112.71530680000001', '1,2,3,4,5,6', 1535260858),
-(671577, 684889, 'Resto Baru', '', '', '', '6282126164429', ' No. 26', 'https://durianruntuh.my', 'Jl. Tentara Genie Pelajar', '', '1,3,4,2,5,6', 1534160575),
-(726644, 684889, 'Hisana Pret Ciken', '', 'download (1).jpg', 'download.jpg', '082126164429', 'https://hisana.id', 'Surabaya', 'Jl. Genteng Kali No. 55', '', '5,6,3,4,2,1', 1531783891),
-(824062, 179604, 'Resto Baru', '', '', '', '', '', '', '', '', '', 1535260930);
+INSERT INTO `restoran` (`idresto`, `idhotel`, `nama`, `description`, `icon`, `cover`, `city`, `phone`, `address`, `website`, `price`, `facility`, `cuisine`, `hours`, `serve`, `added`) VALUES
+(192795, 179604, 'Resto Belinn', 'test description', 'swiss-belinn-karawang.jpeg', '1158350_16111108190048630267.jpg', 'Surabaya', '6288226110939', 'di rumah', 'https://dailyhotels.id', '10000|250000', '7,8,9', '', '', '', 1538707716);
 
 -- --------------------------------------------------------
 
@@ -287,16 +313,20 @@ CREATE TABLE `social` (
 --
 
 INSERT INTO `social` (`idsocial`, `idhotel`, `idresto`, `type`, `url`) VALUES
+(17626, 179604, 192795, 'Youtube', 'https://www.youtube.com/user/belinnresto'),
 (78886, 684889, 0, 'Instagram', 'https://www.instagram.com/awkarin'),
 (237927, 684889, 0, 'Twitter', 'https://twitter.com/telkomsel'),
 (493719, 179604, 0, 'Instagram', 'https://www.instagram.com/awkarin'),
 (532286, 179604, 0, 'Google', 'https://plus.google.com/profile/93482935'),
+(646460, 179604, 192795, 'Pinterest', 'https://www.pinterest.com'),
+(664649, 179604, 192795, 'Facebook', 'https://www.facebook.com/belinnresto'),
 (701779, 726644, 0, 'Facebook', 'https://www.facebook.com/zuck'),
 (750413, 179604, 0, 'LinkedIn', 'https://www.linkedin.com/in/haloriyan'),
 (797624, 726644, 0, 'Instagram', 'https://www.instagram.com/hisana'),
 (811291, 179604, 356641, 'Facebook', 'https://www.facebook.com/belinnresto'),
 (842860, 684889, 0, 'Facebook', 'https://www.facebook.com/zuck'),
-(851132, 179604, 356641, 'LinkedIn', 'https://www.linkedin.com/in/belinnresto');
+(851132, 179604, 356641, 'LinkedIn', 'https://www.linkedin.com/in/belinnresto'),
+(860195, 179604, 192795, 'Instagram', 'https://www.instagram.com/belinnresto');
 
 -- --------------------------------------------------------
 
@@ -384,6 +414,12 @@ ALTER TABLE `booking`
   ADD PRIMARY KEY (`idbooking`);
 
 --
+-- Indexes for table `cuisine`
+--
+ALTER TABLE `cuisine`
+  ADD PRIMARY KEY (`idcuisine`);
+
+--
 -- Indexes for table `event`
 --
 ALTER TABLE `event`
@@ -438,16 +474,6 @@ ALTER TABLE `track`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`iduser`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `restoran`
---
-ALTER TABLE `restoran`
-  MODIFY `idresto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=824063;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -35,6 +35,7 @@ $totExplore = $ctrl->hitung($ctrl->tabel("event")->pilih()->dimana(["id_resto" =
 $category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping","Recreation","Parties","Others"];
 $cities = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Surabaya","Yogyakarta"];
 $serves = ['Breakfast','Dinner','Lunch'];
+$cuisines = ["Indonesian","Internasional","Asian","Thai","Vegetarian","Western","Japanese"];
 ?>
 <!DOCTYPE html>
 <html>
@@ -246,10 +247,15 @@ $serves = ['Breakfast','Dinner','Lunch'];
 						<h3><i class="fa fa-cutlery"></i> &nbsp; Cuisine</h3>
 						<?php
 						$myCui = $resto->info($idresto, 'cuisine');
-						$cui = explode(',', $myCui);
-						foreach ($cui as $key => $value) {
-							$nama = $resto->infoCui($value, 'nama');
-							echo "<li class='myCuisine'><i class='fa fa-check'></i> &nbsp; ".$nama." </li>";
+						if($myCui != "") {
+							$cui = explode(',', $myCui);
+							foreach ($cuisines as $key => $value) {
+								if(in_array($key, $cui)) {
+									echo "<li class='myCuisine'><i class='fa fa-check'></i> &nbsp; ".$value." </li>";
+								}
+							}
+						}else {
+							echo "We ain't serve any cuisine";
 						}
 						?>
 					</div>

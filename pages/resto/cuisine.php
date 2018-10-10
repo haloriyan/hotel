@@ -14,16 +14,16 @@ $name 	= $resto->info($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
 
 function getAllCuisine() {
-	$ctrl = new controller();
-	$q = $ctrl->tabel('cuisine')->pilih()->eksekusi();
-	while($r = $ctrl->ambil($q)) {
-		$hasil[] = $r;
-	}
-	return $hasil;
+	$cuisine = ["Indonesian","Internasional","Asian","Thai","Vegetarian","Western","Japanese"];
+	return $cuisine;
 }
 
 $myCuisine = $resto->info($sesi, 'cuisine');
-$cui = explode(',', $myCuisine);
+if($myCuisine != "") {
+	$cui = explode(',', $myCuisine);
+}else {
+	$cui = "";
+}
 
 ?>
 <!DOCTYPE html>
@@ -106,8 +106,7 @@ $cui = explode(',', $myCuisine);
 				</thead>
 				<tbody>
 					<?php
-					foreach(getAllCuisine() as $row) {
-						$key = $row['idcuisine'];
+					foreach(getAllCuisine() as $key => $value) {
 						if(in_array($key, $cui)) {
 							$checked = "checked";
 						}else {
@@ -115,7 +114,7 @@ $cui = explode(',', $myCuisine);
 						}
 						echo "<tr>".
 								"<td><input type='checkbox' onclick='save(this.value)' value='".$key."' id='cuisines".$key."' ".$checked."></td>".
-								"<td><label for='cuisines".$key."'>".$row['nama']."</label></td>".
+								"<td><label for='cuisines".$key."'>".$value."</label></td>".
 							 "</tr>";
 					}
 					?>
