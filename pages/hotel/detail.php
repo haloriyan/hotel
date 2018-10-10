@@ -55,11 +55,6 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 			margin-top: 10px;
 			display: none;
 		}
-		.sub { top: 80px !important;background-color: #cb0023; }
-		#subUser { right: 185px; }
-		.sub li {
-			line-height: 50px;
-		}
 	</style>
 </head>
 <body>

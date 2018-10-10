@@ -134,6 +134,18 @@ input[type=file].box {
 	color: #cb0023;
 	border-bottom: 2px solid #cb0023;
 }
+.tabs .tab[resto=ya] { width: 18.1%; }
+.sub {
+	top: 80px !important;
+	background-color: #cb0023;
+}
+#subUser { right: 180px; }
+.sub li {
+	line-height: 50px;
+	float: none;
+	transition: 0.4s;
+}
+.sub li:hover { background-color: #444;color: #fff; }
 
 @media (max-width: 720px) {
 	.menuMob {
