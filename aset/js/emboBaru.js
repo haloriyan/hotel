@@ -243,7 +243,3 @@ function getCookie(cname) {
 	}
 	return ""
 }
-
-let allDom = $("li")
-let totDom = allDom.length
-console.log(totDom)

@@ -13,6 +13,10 @@ $idresto = $resto->info($sesi, "idresto");
 $name 	= $resto->info($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
 
+if($resto->info($sesi, "status") == 2) {
+	header('location: ./wizard&namaResto='.$name);
+}
+
 setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 ?>
 <!DOCTYPE html>

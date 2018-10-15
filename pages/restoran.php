@@ -11,6 +11,9 @@ setcookie('idresto', $idresto, time() + 3900, "/");
 setcookie('idhotel', '', time() + 1, "/");
 
 $idhotel = $resto->info($idresto, "idhotel");
+if($idhotel == null) {
+	header('location: ../error/404');
+}
 $namaResto = $resto->info($idresto, "nama");
 $address = $resto->info($idresto, "address");
 $city = $resto->info($idresto, "city");

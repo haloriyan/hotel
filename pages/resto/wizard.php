@@ -75,13 +75,11 @@ $sesi = $_SESSION['uresto'];
 <div class="myStep">
 	<div class="step" id="stepOne" aktif='ya'><i class="fa fa-map-marker"></i></div>
 	<div class="after" id="afterOne"></div>
-	<div class="step" id="stepTwo"><i class="fa fa-image"></i></div>
+	<div class="step" id="stepTwo"><i class="fa fa-phone"></i></div>
 	<div class="after" id="afterTwo"></div>
-	<div class="step" id="stepThree"><i class="fa fa-map-marker"></i></div>
+	<div class="step" id="stepThree"><i class="fa fa-globe"></i></div>
 	<div class="after" id="afterThree"></div>
-	<div class="step" id="stepFour"><i class="fa fa-align-justify"></i></div>
-	<div class="after" id="afterFour"></div>
-	<div class="step" id="stepFive"><i class="fa fa-money"></i></div>
+	<div class="step" id="stepFour"><i class="fa fa-pencil"></i></div>
 </div>
 
 <div class="container">
@@ -106,21 +104,45 @@ $sesi = $_SESSION['uresto'];
 			<p>
 				But, please fill the detail address of <?php echo $nama; ?> restaurant
 			</p>
-			<textarea class="box" id="address"></textarea>
+			<textarea class="box" id="address" required></textarea>
 			<br />
 			<button class="tbl merah-2" id="toThree">Next</button>
 		</form>
 		<form id="formPhone">
 			<h1>Nice place!</h1>
 			<p>
-				
+				To be easy to find, people can ask the location of the restaurant by phone. Please provide phone number
 			</p>
+			<input type="number" class="box" id="phone" placeholder="ex : 628123456789" required>
+			<button class="tbl merah-2" id="toFour">Next</button>
+		</form>
+		<form id="formWeb">
+			<p>
+				If you have, please fill URL address of your restaurant website
+			</p>
+			<input type="text" class="box" id="website" placeholder="ex : https://dailyhotels.id">
+			<button class="tbl merah-2">Next</button>
+		</form>
+		<form id="formDesc">
+			<p>Now, please fill short description about <?php echo $nama; ?> restaurant</p>
+			<textarea id="description" class="box"></textarea>
+			<button class="tbl merah-2">Finish</button>
 		</form>
 	</div>
 </div>
 
 <script src="../aset/js/emboBaru.js"></script>
 <script>
+	function validUrl(str) {
+	    let regExp = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
+
+	    if(!regExp.test(str)) {
+			return 'gavalid'
+	    }else {
+	    	return '1'
+	    }
+	}
+
 	submit('#formCity', () => {
 		let city = $("#city").isi()
 		$("#formCity").hilang()
@@ -128,9 +150,47 @@ $sesi = $_SESSION['uresto'];
 		$("#showCity").tulis(city)
 		return false
 	})
-</script>
+	submit('#formAddr', () => {
+		$("#formAddr").hilang()
+		$("#formPhone").muncul()
+		$('#afterOne').atribut('aktif', 'ya')
+		$('#stepTwo').atribut('aktif', 'ya')
+		return false
+	})
+	submit('#formPhone', () => {
+		$("#formPhone").hilang()
+		$("#formWeb").muncul()
+		$('#afterTwo').atribut('aktif', 'ya')
+		$('#stepThree').atribut('aktif', 'ya')
+		return false
+	})
+	submit('#formWeb', () => {
+		let urlAddr = $("#website").isi()
+		if(validUrl(urlAddr) == "gavalid") {
+			alert("URL isn't valid")
+			return false
+		}else {
+			$("#formWeb").hilang()
+			$("#formDesc").muncul()
+			$('#afterThree').atribut('aktif', 'ya')
+			$('#stepFour').atribut('aktif', 'ya')
+		}
+		return false
+	})
+	submit('#formDesc', () => {
+		let city 	= $("#city").isi()
+		let address = $("#address").isi()
+		let phone 	= $("#phone").isi()
+		let website = $("#website").isi()
+		let desc 	= $("#description").isi()
 
-urutan : city, address, phone, website, city
+		let y = "city="+city+"&address="+address+"&phone="+phone+"&web="+website+"&description="+desc+"&bag=detil&activate=1"
+		pos("../aksi/resto/edit.php", y, () => {
+			mengarahkan("./detail")
+		})
+		return false
+	})
+</script>
 
 </body>
 </html>

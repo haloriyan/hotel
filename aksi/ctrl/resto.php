@@ -22,6 +22,7 @@ class resto extends hotel {
 				  	"idresto" => $a,
 				  	"idhotel" => $b,
 				  	"nama" => $c,
+				  	"status" => 2,
 				  	"added" => $d
 				  ])
 				  ->eksekusi();

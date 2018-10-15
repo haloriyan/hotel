@@ -19,6 +19,8 @@ if($bag == "detil") {
 	$priceFrom = $_POST['priceFrom'];
 	$priceTo = $_POST['priceTo'];
 
+	$activate = $_POST['activate'];
+
 	$price = $priceFrom."|".$priceTo;
 
 	if($_POST['icon'] == '') {
@@ -35,6 +37,9 @@ if($bag == "detil") {
 	$c = explode(",", $change);
 	for ($i=0; $i < count($c); $i++) { 
 		$resto->change($idresto, $c[$i], $v[$i]);
+	}
+	if($activate == 1) {
+		$resto->change($idresto, "status", 1);
 	}
 }else if($bag == "facility") {
 	$idfac = $_POST['idfac'];
