@@ -129,6 +129,13 @@ if($_SESSION['upublic'] != null) {
 
 <script src='aset/js/embo.js'></script>
 <script>
+	function validasi_input(inputs) {
+   		let pola_username=/^[a-zA-Z0-9\_\-]{6,100}$/;
+   		if (!pola_username.test(inputs)){
+      		return 'salah';
+   		}
+		return 'benar';
+	}
 	tekan("Escape", () => {
 		// hilangPopup("#notif")
 	})
@@ -167,6 +174,12 @@ if($_SESSION['upublic'] != null) {
 		let email = pilih("#emailRegPublic").value
 		let pwd = pilih("#pwdRegPublic").value
 		let reg = "name="+name+"&email="+email+"&pwd="+pwd
+
+		if(validasi_input(pwd) == "salah") {
+			alert ('Username minimal 6 karakter dan hanya boleh Huruf atau Angka!');
+			return false
+		}
+
 		pos("aksi/user/register.php", reg, () => {
 			// hilangkan
 			pilih("#nameRegPublic").value = ''
@@ -200,6 +213,11 @@ if($_SESSION['upublic'] != null) {
 		let email = pilih("#emailRegMarcom").value
 		let pwd = pilih("#pwdRegMarcom").value
 		let reg = "name="+name+"&email="+email+"&pwd="+pwd
+
+		if(validasi_input(pwd) == "salah") {
+			alert ('Username minimal 6 karakter dan hanya boleh Huruf atau Angka!');
+			return false
+		}
 		pos("aksi/hotel/register.php", reg, () => {
 			// hilangkan
 			pilih('#nameRegMarcom').value = ''
