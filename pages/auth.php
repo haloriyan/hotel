@@ -176,7 +176,7 @@ if($_SESSION['upublic'] != null) {
 		let reg = "name="+name+"&email="+email+"&pwd="+pwd
 
 		if(validasi_input(pwd) == "salah") {
-			alert ('Username minimal 6 karakter dan hanya boleh Huruf atau Angka!');
+			alert ('Username must at least 6 characters and can only be letters or numbers!');
 			return false
 		}
 
