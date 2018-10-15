@@ -152,10 +152,7 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 		let name = pilih("#nameAdd").value
 		let add = "name="+name
 		pos("../aksi/resto/add.php", add, function() {
-			pilih("#nameAdd").value = ""
-			hilangPopup("#popupNew")
-			mengarahkan("../resto/detail&namaResto="+name)
-			loadResto()
+			mengarahkan("../resto/wizard&namaResto="+name)
 		})
 		return false
 	})

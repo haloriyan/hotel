@@ -45,19 +45,6 @@ class resto extends hotel {
 		$q = $this->tabel("restoran")->hapus()->dimana(["idresto" => $id])->eksekusi();
 		return $q;
 	}
-	/*
-	login resto lama
-	public function login($e, $p) {
-		$em = $this->info($e, "email");
-		$pw = $this->info($e, "password");
-		if($e == $em and $p == $pw) {
-			session_start();
-			$_SESSION['uresto']=$e;
-		}else {
-			setcookie('loginResto', 'Email and/or Password wrong!', time() + 35, "/");
-		}
-	}
-	*/
 	public function login($id) {
 		session_start();
 		$cek = $this->query("SELECT * FROM restoran WHERE idresto = '$id' OR nama = '$id'");
@@ -80,7 +67,7 @@ class resto extends hotel {
 		session_start();
 		$sesi = $_SESSION['uresto'];
 		if(empty($sesi)) {
-			header("location: ../resto/login");
+			header("location: ../hotel/restaurant");
 		}
 		return $sesi;
 	}

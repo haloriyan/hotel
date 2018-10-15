@@ -79,28 +79,37 @@ $fac = explode(",", $myFacility);
 		<input type="text" class="box" placeholder="Type your search...">
 	</div>
 	<nav class="menu">
-		<!--
-		<a href="#"><li>Home</li></a>
-		<a href="#"><li>Explore</li></a>
-		<a href="#"><li>City</li></a>
-		-->
-		<a href="../restoran/<?php echo $idresto; ?>" target='_blank'><li>Hello <?php echo $namaPertama; ?> !</li></a>
+		<a href="../restoran/<?php echo $idresto; ?>" target='_blank'><li id="adaSub">Hello <?php echo $namaPertama; ?> ! &nbsp; <i class="fa fa-angle-down"></i>
+			<nav class="sub" id="subUser">
+				<a href="./detail"><li><div id="icon"><i class="fa fa-cog"></i></div> Settings</li></a>
+				<a href="./galeri"><li><div id="icon"><i class="fa fa-image"></i></div> Gallery</li></a>
+				<a href="./facility"><li><div id="icon"><i class="fa fa-cogs"></i></div> Facility</li></a>
+				<a href="./social"><li><div id="icon"><i class="fa fa-user"></i></div> Social</li></a>
+				<a href="./cuisine"><li><div id="icon"><i class="fa fa-cutlery"></i></div> Cuisine</li></a>
+				<a href="./logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
+			</nav>
+		</li></a>
 		<button id="cta" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
 	</nav>
 </div>
 
 <div class="kiri">
 	<a href="./dashboard"><div class="listWizard">Dashboard</div></a>
-	<a href="./detail"><div class="listWizard">Detail Information</div></a>
+	<a href="./detail"><div class="listWizard" aktif="ya">Detail Information</div></a>
 	<a href="./listing"><div class="listWizard">My Listings</div></a>
-	<a href="./galeri"><div class="listWizard">Gallery</div></a>
-	<a href="./facility"><div class="listWizard" aktif="ya">Facility</div></a>
-	<a href="./social"><div class="listWizard">Social Network</div></a>
-	<a href="./logout"><div class="listWizard">Logout</div></a>
 </div>
 
 <div class="container">
-	<form id="formFac">
+	<div class="tabs">
+		<div class="wrap">
+			<a href="./detail"><div class="tab" resto='ya'><i class="fa fa-pencil"></i></div></a>
+			<a href="./galeri"><div class="tab" resto='ya'><i class="fa fa-image"></i></div></a>
+			<a href="#"><div class="tab" resto='ya' aktif='ya'><i class="fa fa-cogs"></i></div></a>
+			<a href="./cuisine"><div class="tab" resto='ya'><i class="fa fa-cutlery"></i></div></a>
+			<a href="./social"><div class="tab" resto='ya'><i class="fa fa-user"></i></div></a>
+		</div>
+	</div>
+	<form id="formFac" style="margin-top: 120px">
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-home"></i></div> Facility</h4>
 			<table id="myListing">

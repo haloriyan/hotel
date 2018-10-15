@@ -28,7 +28,7 @@ $urlNow = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "h
 // Category
 $category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping","Recreation","Parties","Others"];
 $cities = ["Bali","Bandung","Batam","Bogor","Jakarta","Lombok","Makassar","Malang","Pekalongan","Semarang","Solo","Surabaya","Yogyakarta"];
-$city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Surabaya","Yogyakarta"];
+$cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Surabaya","Yogyakarta"];
 
 ?>
 <!DOCTYPE html>
@@ -65,7 +65,7 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 		<a href="#"><li id="adaSub">City &nbsp; <i class="fa fa-angle-down"></i>
 			<nav class="sub merah-2" id="subCity">
 				<?php
-				foreach ($city as $key => $value) {
+				foreach ($cities2 as $key => $value) {
 					echo "<a href='../explore&q=&cat=&city=".$value."'><li>".$value."</li></a>";
 				}
 				?>
@@ -114,9 +114,13 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 			</div>
 			<div class="menuHotel">
 				<a href="#profiles"><li id="showprofiles" aktif="ya">Profile</li></a>
+<<<<<<< HEAD
 				<a href="#loadReviews"><li id="showreviews">Reviews <div class="tot">0</div></li></a>
+=======
+				<!-- <a href="#"><li id="showreviews">Reviews <div class="tot">0</div></li></a> -->
+>>>>>>> 2bb2ad1df80e30f12c7fad431c242e04d0968c47
 				<a href="#explores"><li id="showexplores">Explore <div class="tot"><?php echo $totExplore; ?></div></li></a>
-				<a href="#"><li id="showrents">Rent <div class="tot">4</div></li></a>
+				<!-- <a href="#"><li id="showrents">Rent <div class="tot">4</div></li></a> -->
 			</div>
 		</div>
 	</div>
