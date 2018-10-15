@@ -154,7 +154,7 @@ munculPopup("#formLoginBaru", pengaya("#formLoginBaru", "top: 90px"))
 		hilang("#notif")
 	})
 	submit("#action", function() {
-		let q = pilih("#q").value
+		let q = encodeURIComponent(pilih("#q").value)
 		let cat = pilih("#cat").value
 		mengarahkan("./explore&q="+q+"&cat="+cat)
 		return false

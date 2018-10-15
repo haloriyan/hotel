@@ -114,9 +114,9 @@ $cuisines = ["Indonesian","Internasional","Asian","Thai","Vegetarian","Western",
 			</div>
 			<div class="menuHotel">
 				<a href="#profiles"><li id="showprofiles" aktif="ya">Profile</li></a>
-				<a href="#"><li id="showreviews">Reviews <div class="tot">0</div></li></a>
+				<!-- <a href="#"><li id="showreviews">Reviews <div class="tot">0</div></li></a> -->
 				<a href="#explores"><li id="showexplores">Explore <div class="tot"><?php echo $totExplore; ?></div></li></a>
-				<a href="#"><li id="showrents">Rent <div class="tot">4</div></li></a>
+				<!-- <a href="#"><li id="showrents">Rent <div class="tot">4</div></li></a> -->
 			</div>
 		</div>
 	</div>

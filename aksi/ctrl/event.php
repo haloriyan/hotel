@@ -120,8 +120,8 @@ class event extends resto {
 		}
 	}
 	public function delete($id) {
-		$q = $this->tabel("event")->hapus()->dimana(["idevent" => $id])->eksekusi();
-		$y = $this->tabel("booking")->hapus()->dimana(["idevent" => $id])->eksekusi();
+		$q = $this->tabel("event")->ubah(['status' => 0])->dimana(["idevent" => $id])->eksekusi();
+		$y = $this->tabel("booking")->ubah(['status' => 0])->dimana(["idevent" => $id])->eksekusi();
 		return $q;
 	}
 	public function ourEvent($id) {

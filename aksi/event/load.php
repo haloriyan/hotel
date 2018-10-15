@@ -11,14 +11,17 @@ $city   = $_COOKIE['region'];
 
 $all = $event->all($keyword, $tglMulai, $tglAkhir, $category, $city);
 
-if($all == "null") {
+if($all == "kosong") {
+	if($keyword != "") {
+		$resKw = "<b>".$keyword."</b>";
+	}
 	if($category != "") {
-		$resNull = "for ".$category;
+		$resNull = " for ".$category;
 	}
 	if($city != "") {
 		$resCity = " in ".$city;
 	}
-	echo "No result ".$resNull.$resCity."<br />";
+	echo "No result ".$resKw.$resNull.$resCity."<br />";
 	exit();
 }
 

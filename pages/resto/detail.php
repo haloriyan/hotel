@@ -167,11 +167,11 @@ setcookie('pakaiAkun', 'resto', time() + 5555, '/');
 				<h3 style="margin-bottom: 0px;">Price</h3>
 				<div class="bag bag-5">
 					<div class="isi">From (Rp) :</div>
-					<input type="number" class="box" id="priceFrom" value="<?php echo $priceFrom; ?>">
+					<input type="number" min="1" class="box" id="priceFrom" value="<?php echo $priceFrom; ?>">
 				</div>
 				<div class="bag bag-5">
 					<div class="isi">to (Rp) :</div>
-					<input type="number" class="box" id="priceTo" value="<?php echo $priceTo; ?>">
+					<input type="number" min="1" class="box" id="priceTo" value="<?php echo $priceTo; ?>">
 				</div>
 			</div>
 			<div class="isi">Serve :</div>
