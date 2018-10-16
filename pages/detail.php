@@ -6,6 +6,9 @@ $name 	= $user->info($sesi, "nama");
 $phone 	= $user->info($sesi, "telepon");
 $address 	= $user->info($sesi, "alamat");
 $namaPertama = explode(" ", $name)[0];
+
+$city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Surabaya","Yogyakarta"];
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,9 +38,17 @@ $namaPertama = explode(" ", $name)[0];
 		<input type="text" class="box" placeholder="Type your search...">
 	</div>
 	<nav class="menu">
-		<a href="#"><li>Home</li></a>
-		<a href="#"><li>Explore</li></a>
-		<a href="#"><li>City</li></a>
+		<a href="./"><li>Home</li></a>
+		<a href="./explore"><li>Explore</li></a>
+		<a href="#"><li id="adaSub">City &nbsp; <i class="fa fa-angle-down"></i>
+			<nav class="sub" id="subCity">
+				<?php
+				foreach ($city as $key => $value) {
+					echo "<a href='./explore&q=&cat=&city=".$value."'><li>".$value."</li></a>";
+				}
+				?>
+			</nav>
+		</li></a>
 		<li>Hello <?php echo $namaPertama; ?> !</li>
 	</nav>
 </div>
@@ -52,14 +63,25 @@ $namaPertama = explode(" ", $name)[0];
 <div class="container">
 	<div>
 		<div class="wrap">
-			<h4><div id="icon"><i class="fa fa-pencil"></i></div> Detail Information</h4>
-			<form id="formDetail">
+			<h4><div id="icon">&nbsp;<i class="fa fa-pencil"></i>&nbsp;</div> Detail Information</h4>
+			<div id="formView">
+				<div class="isi">Name :</div>
+				<div><?php echo $name; ?></div>
+				<div class="isi">Phone :</div>
+				<div><?php echo $phone; ?></div>
+				<div class="isi">Address :</div>
+				<div><?php echo $address; ?></div>
+				<div class="bag-tombol" style="margin-top: 25px;">
+					<button class="merah-2" id="btnEdit">Edit</button>
+				</div>
+			</div>
+			<form id="formDetail" style="display: none;">
 				<div class="isi">Name :</div>
 				<input type="text" class="box" id="name" autocomplete="off" value="<?php echo $name; ?>">
 				<div class="isi">Phone :</div>
 				<input type="text" class="box" id="phone" autocomplete="off" value="<?php echo $phone; ?>">
 				<div class="isi">Address :</div>
-				<input class="box" id="address" autocomplete="off" value="<?php echo $address; ?>">
+				<textarea class="box" id="address" autocomplete="off"><?php echo $address; ?></textarea>
 				<br /><br />
 				<button class="tbl merah-2">Save</button>
 			</form>
@@ -78,15 +100,18 @@ $namaPertama = explode(" ", $name)[0];
 	</div>
 </div>
 
-<script src="aset/js/embo.js"></script>
+<script src="aset/js/emboBaru.js"></script>
 <script>
 	submit("#formDetail", function() {
-		let name = pilih("#name").value
-		let phone = pilih("#phone").value
-		let address = pilih("#address").value
+		let name = $("#name").isi()
+		let phone = $("#phone").isi()
+		let address = $("#address").isi()
 		let detail = "name="+name+"&phone="+phone+"&address="+address
 		pos("aksi/user/change.php", detail, function() {
-			munculPopup("#saved", pengaya("#saved", "top: 210px"))
+			munculPopup("#saved", $("#saved").pengaya("top: 210px"))
+			setTimeout(function() {
+				location.reload()
+			}, 1100)
 		})
 		return false
 	})
@@ -94,8 +119,13 @@ $namaPertama = explode(" ", $name)[0];
 	tekan("Escape", function() {
 		hilangPopup("#saved")
 	})
-	klik("#xNotif", function() {
+	$("#xNotif").klik(function() {
 		hilangPopup("#saved")
+	})
+
+	$("#btnEdit").klik(function() {
+		$("#formView").hilang()
+		$("#formDetail").muncul()
 	})
 </script>
 

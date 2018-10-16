@@ -4,6 +4,9 @@ include 'aksi/ctrl/event.php';
 $sesi 	= $user->sesi(1);
 $name 	= $user->info($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
+
+$city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Surabaya","Yogyakarta"];
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -57,9 +60,17 @@ $namaPertama = explode(" ", $name)[0];
 		<input type="text" class="box" placeholder="Type your search...">
 	</div>
 	<nav class="menu">
-		<a href="#"><li>Home</li></a>
-		<a href="#"><li>Explore</li></a>
-		<a href="#"><li>City</li></a>
+		<a href="./"><li>Home</li></a>
+		<a href="./explore"><li>Explore</li></a>
+		<a href="#"><li id="adaSub">City &nbsp; <i class="fa fa-angle-down"></i>
+			<nav class="sub" id="subCity">
+				<?php
+				foreach ($city as $key => $value) {
+					echo "<a href='./explore&q=&cat=&city=".$value."'><li>".$value."</li></a>";
+				}
+				?>
+			</nav>
+		</li></a>
 		<li>Hello <?php echo $namaPertama; ?> !</li>
 	</nav>
 </div>
