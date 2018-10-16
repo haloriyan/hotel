@@ -58,7 +58,7 @@ class event extends resto {
 	public function my($id, $keyword = NULL, $category = NULL, $month = NULL) {
 		$thn = date('Y');
 		$tglFilter = $thn.'-'.$month;
-		$q = $this->query("SELECT * FROM event WHERE idhotel = '$id' AND id_resto = '0' AND title LIKE '%$keyword%' AND category LIKE '%$category%' AND tgl_mulai LIKE '%$tglFilter%'");
+		$q = $this->query("SELECT * FROM event WHERE idhotel = '$id' AND status = '1' AND id_resto = '0' AND title LIKE '%$keyword%' AND category LIKE '%$category%' AND tgl_mulai LIKE '%$tglFilter%'");
 		if($this->hitung($q) == "") {
 			return "kosong";
 		}else {
@@ -71,7 +71,7 @@ class event extends resto {
 	public function myForResto($id, $keyword = NULL, $category = NULL, $month = NULL) {
 		$thn = date('Y');
 		$tglFilter = $thn.'-'.$month;
-		$q = $this->query("SELECT * FROM event WHERE id_resto = '$id' AND title LIKE '%$keyword%' AND category LIKE '%$category%' AND tgl_mulai LIKE '%$tglFilter%'");
+		$q = $this->query("SELECT * FROM event WHERE id_resto = '$id' AND status = '1' AND title LIKE '%$keyword%' AND category LIKE '%$category%' AND tgl_mulai LIKE '%$tglFilter%'");
 		if($this->hitung($q) == "") {
 			return "kosong";
 		}else {

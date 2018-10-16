@@ -21,6 +21,7 @@ if($namaEvent == "") {
 }
 $cover = $event->info($idevent, "covers");
 $alamat = $event->info($idevent, "alamat");
+$region = $event->info($idevent, "region");
 $description = $event->info($idevent, "description");
 $price = toIdr($event->info($idevent, "price"));
 $tglMulai = $event->info($idevent, "tgl_mulai");
@@ -146,7 +147,7 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 			<div class="ketHotel">
 				<h2><?php echo $namaEvent; ?></h2>
 				<p>
-					<?php echo $alamat; ?>
+					<?php echo $region; ?>
 				</p>
 			</div>
 			<div class="menuHotel">

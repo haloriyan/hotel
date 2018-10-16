@@ -159,7 +159,8 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-map-marker"></i></div> Location</h4>
 			<div class="isi">Region</div>
-			<select class='box' id='region'>
+			<select class='box' id='region' required>
+				<option value="">Select region...</option>
 				<option>Bali</option>
 				<option>Bandung</option>
 				<option>Batam</option>

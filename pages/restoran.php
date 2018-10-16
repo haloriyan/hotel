@@ -22,6 +22,8 @@ $cover = $resto->info($idresto, "cover");
 $website = $resto->info($idresto, "website");
 $address = $resto->info($idresto, "address");
 $description = $resto->info($idresto, "description");
+$serve = $resto->info($idresto, "serve");
+$myServe = explode(",", $serve);
 
 $price = $resto->info($idresto, "price");
 $pr = explode("|", $price);
@@ -215,13 +217,11 @@ $cuisines = ["Indonesian","Internasional","Asian","Thai","Vegetarian","Western",
 					<div class="wrap">
 						<h3>Serve</h3>
 						<?php
-						foreach ($serves as $key => $value) {
-							if($value == '') {
-								echo 'No anyserve';
+						foreach ($myServe as $key => $value) {
+							if($value == "") {
+								echo "No any serve";
 							}else {
-								if(in_array($value, $serves)) {
-									echo "<span><i class='fa fa-check'></i> ".$value." &nbsp; ";
-								}
+								echo "<span><i class='fa fa-check'></i> ".$value." &nbsp; ";
 							}
 						}
 						?>

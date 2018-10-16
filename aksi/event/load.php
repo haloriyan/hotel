@@ -38,6 +38,16 @@ foreach ($all as $row) {
 		$iconHotel = $hotel->get($idhotel, "icon");
 	}
 	$coverImage = "aset/gbr/".$row['covers'];
+	if(strlen($row['alamat']) > 35) {
+		$alamat = substr($row['alamat'], 0, 35)."...";
+	}else {
+		$alamat = $row['alamat'];
+	}
+	if(strlen($row['title']) > 39) {
+		$title = substr($row['title'], 0, 39)."...";
+	}else {
+		$title = $row['title'];
+	}
 	echo "".
 			 "<div class='list'>".
 			 	"<div class='bgImage' style='background: url(".$coverImage.");background-size: cover;'>".
@@ -48,8 +58,8 @@ foreach ($all as $row) {
 					"<div class='wrap'>".
 						"<div id='keterangan'>".
 						"<div class='tgl'><i class='fa fa-calendar'></i> &nbsp; ".$row['tgl_mulai']."</div>".
-							"<h3>".$row['title']."</h3>".
-							"<p><i class='fa fa-map-marker'></i> &nbsp; ".$row['alamat']."</p>".
+							"<h3>".$title."</h3>".
+							"<p><i class='fa fa-map-marker'></i> &nbsp; ".$alamat."</p>".
 						"</div>".
 					"</div>".
 					"</a>".
