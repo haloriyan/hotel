@@ -166,6 +166,7 @@ $address = $resto->info($sesi, "address");
 			<div class="isi">Cover (optional)</div>
 			<input type="file" class="box" id="cover"><br />
 			<input type="hidden" id="covers">
+			<img src="" style="display: none;width: 100%;" id="imgPreview">
 			<button class="tbl merah-2">NEXT</button>
 		</div>
 	</form>
@@ -386,6 +387,9 @@ $address = $resto->info($sesi, "address");
 	function sukses() {
 		$(function() {
 			console.log("uploaded")
+			let src = $("#covers").val()
+			$("#imgPreview").show()
+			$("#imgPreview").attr("src", "../aset/gbr/"+src)
 		});
 	}
 	function getExt(val) {
