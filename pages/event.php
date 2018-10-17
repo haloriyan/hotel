@@ -4,6 +4,16 @@ include 'aksi/ctrl/booking.php';
 function toIdr($angka) {
 	return 'Rp. '.strrev(implode('.', str_split(strrev(strval($angka)), 3)));
 }
+function sayDate($date) {
+	$d = explode("-", $date);
+	$thn = $d[0];
+	$bln = $d[1];
+	$tgl = $d[2];
+
+	$blns = ["01" => "January","02" => "February","03" => "March", "04" => "April", "05" => "May", "06" => "June", "07" => "July", "08" => "August", "09" => "September", "10" => "October", "11" => "November", "12" => "December"];
+
+	return $blns[$bln]." ".$tgl.", ".$thn;
+}
 
 $event->hint($idevent);
 
@@ -176,6 +186,14 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 						<h3><i class="fa fa-map-marker"></i> &nbsp; Location</h3>
 						<p>
 							<?php echo $alamat; ?>
+						</p>
+					</div>
+				</div>
+				<div class="bagian tgl">
+					<div class="wrap">
+						<h3><i class="fa fa-calendar"></i> &nbsp; Date</h3>
+						<p>
+							<?php echo sayDate($tglMulai)." - ".sayDate($tglAkhir); ?>
 						</p>
 					</div>
 				</div>
