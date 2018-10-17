@@ -152,7 +152,8 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 			<div class="isi">Cover</div>
 			<input type="file" class="box" id="cover"><br />
 			<input type="hidden" id="covers">
-			<button class="tbl merah-2">NEXT</button>
+			<img src="" style="display: none;width: 100%;" id="imgPreview">
+			<button style="margin-top: 25px;" class="tbl merah-2">NEXT</button>
 		</div>
 	</form>
 	<form id="location">
@@ -189,7 +190,8 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 			<div class="isi">Date End</div>
 			<input type="text" class="box" placeholder="yyyy-mm-dd" id="dateEnd" readonly>
 			<div class="isi">Category</div>
-			<select class="box" id="category">
+			<select class="box" id="category" required>
+				<option value="">Select category...</option>
 				<option>Food and Beverage</option>
 				<option>Room</option>
 				<option>Venue</option>
@@ -369,6 +371,9 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 	function sukses() {
 		$(function() {
 			console.log("uploaded")
+			let src = $("#covers").val()
+			$("#imgPreview").show()
+			$("#imgPreview").attr("src", "../aset/gbr/"+src)
 		});
 	}
 	function getExt(val) {
