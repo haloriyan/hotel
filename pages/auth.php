@@ -131,7 +131,18 @@ if($aksi == "logout") {
 </div>
 
 <div class="bg"></div>
-<div id="loadNotif"></div>
+<div class="popupWrapper" id="notif">
+	<div class="popup">
+		<div class="wrap">
+			<h3><i class="fa fa-info-circle"></i> &nbsp; Alert!
+				<div class="ke-kanan" id="xNotif"><i class="fa fa-close"></i></div>
+			</h3>
+			<p>
+				<?php echo $cookieNotif; ?>
+			</p>
+		</div>
+	</div>
+</div>
 
 <script src='aset/js/embo.js'></script>
 <script>
@@ -143,7 +154,10 @@ if($aksi == "logout") {
 		return 'benar';
 	}
 	tekan("Escape", () => {
-		// hilangPopup("#notif")
+		hilangPopup("#notif")
+	})
+	klik("#xNotif", () => {
+		hilangPopup("#notif")
 	})
 	klik("#linkLogMarcom", () => {
 		hilang("#formRegMarcom")

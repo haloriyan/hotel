@@ -38,10 +38,10 @@ foreach ($all as $row) {
 		$iconHotel = $hotel->get($idhotel, "icon");
 	}
 	$coverImage = "aset/gbr/".$row['covers'];
-	if(strlen($row['alamat']) > 35) {
-		$alamat = substr($row['alamat'], 0, 35)."...";
+	if(strlen($row['region']) > 35) {
+		$alamat = substr($row['region'], 0, 35)."...";
 	}else {
-		$alamat = $row['alamat'];
+		$alamat = $row['region'];
 	}
 	if(strlen($row['title']) > 39) {
 		$title = substr($row['title'], 0, 39)."...";

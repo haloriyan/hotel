@@ -55,7 +55,7 @@ class hotel extends user {
 	public function sesi($log = NULL) {
 		session_start();
 		$sesi = $_SESSION['uhotel'];
-		if($log != "") {
+		if($log == "") {
 			if(empty($sesi)) {
 				header("location: ../auth");
 			}

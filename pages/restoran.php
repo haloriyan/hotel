@@ -37,7 +37,7 @@ if($sesiHotel == "") {
 	$nama = $user->info($sesi, "nama");
 	$sebagai = "public";
 }else {
-	$sesi = $hotel->sesi();
+	$sesi = $hotel->sesi(1);
 	$nama = $hotel->get($sesi, "nama");
 	$sebagai = "hotel";
 }
