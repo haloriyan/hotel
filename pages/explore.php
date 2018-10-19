@@ -1,8 +1,18 @@
 <?php
 include 'aksi/ctrl/event.php';
 error_reporting(0);
-$sesi = $user->sesi();
-$nama = $user->info($sesi, "nama");
+
+session_start();
+$sesiHotel = $_SESSION['uhotel'];
+if($sesiHotel == "") {
+	$sesi = $user->sesi();
+	$nama = $user->info($sesi, "nama");
+	$sebagai = "public";
+}else {
+	$sesi = $hotel->sesi();
+	$nama = $hotel->get($sesi, "nama");
+	$sebagai = "hotel";
+}
 $namaPertama = explode(" ", $nama)[0];
 
 setcookie('kwExplore', $_GET['q'], time() + 3650, "/");
@@ -88,9 +98,23 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 			?>
 			<li id="adaSub">Hello <?php echo $namaPertama; ?> <i class="fa fa-angle-down"></i>
 				<nav class="sub merah-2" id="subUser">
+					<?php
+					if($sebagai == "public") {
+					?>
 					<a href="./my"><li><div id="icon"><i class="fa fa-briefcase"></i></div> My Listing</li></a>
 					<a href="./detail"><li><div id="icon"><i class="fa fa-cog"></i></div> Settings</li></a>
 					<a href="./logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
+					<?php
+					}else if($sebagai == "hotel") {
+					?>
+					<a href="./hotel/detail"><li><div id="icon"><i class="fa fa-cog"></i></div> Settings</li></a>
+					<a href="./hotel/galeri"><li><div id="icon"><i class="fa fa-image"></i></div> Gallery</li></a>
+					<a href="./hotel/facility"><li><div id="icon"><i class="fa fa-cogs"></i></div> Facility</li></a>
+					<a href="./hotel/social"><li><div id="icon"><i class="fa fa-user"></i></div> Social</li></a>
+					<a href="./hotel/logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
+					<?php
+					}
+					?>
 				</nav>
 			</li>
 			<?php

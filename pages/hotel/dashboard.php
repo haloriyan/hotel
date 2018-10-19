@@ -47,11 +47,6 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 		<input type="text" class="box" placeholder="Type your search...">
 	</div>
 	<nav class="menu">
-		<!--
-		<a href="#"><li>Home</li></a>
-		<a href="#"><li>Explore</li></a>
-		<a href="#"><li>City</li></a>
-		-->
 		<a href="./<?php echo $idhotel; ?>" target='_blank'><li id="adaSub">Hello <?php echo $namaPertama; ?> ! &nbsp; <i class="fa fa-angle-down"></i>
 			<nav class="sub" id="subUser">
 				<a href="./detail"><li><div id="icon"><i class="fa fa-cog"></i></div> Settings</li></a>

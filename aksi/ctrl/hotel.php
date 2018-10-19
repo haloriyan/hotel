@@ -52,11 +52,13 @@ class hotel extends user {
 				  ->eksekusi();
 		return $q;
 	}
-	public function sesi() {
+	public function sesi($log = NULL) {
 		session_start();
 		$sesi = $_SESSION['uhotel'];
-		if(empty($sesi)) {
-			header("location: ../auth");
+		if($log != "") {
+			if(empty($sesi)) {
+				header("location: ../auth");
+			}
 		}
 		return $sesi;
 	}

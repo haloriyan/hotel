@@ -2,6 +2,7 @@
 
 $cookieNotif = $_COOKIE['kukiLogin'];
 $redirect = $_GET['r'];
+$aksi = $_GET['aksi'];
 $decodedRedirect = base64_decode($redirect);
 if($decodedRedirect == "") {
 	header("location: ./auth&r=".base64_encode("./my"));
@@ -9,11 +10,16 @@ if($decodedRedirect == "") {
 
 session_start();
 $sesiHotel = $_SESSION['uhotel'];
-if($sesiHotel != null) {
-	header('location: ./hotel/dashboard');
-}
-if($_SESSION['upublic'] != null) {
-	header('location: '.$redirect);
+if($aksi == "logout") {
+	session_destroy();
+	header("location: ./auth&r=".$redirect);
+}else {
+	if($sesiHotel != null) {
+		header('location: ./hotel/dashboard');
+	}
+	if($_SESSION['upublic'] != null) {
+		header('location: '.$decodedRedirect);
+	}
 }
 
 ?>

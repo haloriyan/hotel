@@ -18,8 +18,17 @@ function sayDate($date) {
 $event->hint($idevent);
 
 // Bagian User
-$sesi = $user->sesi();
-$nama = $user->info($sesi, "nama");
+session_start();
+$sesiHotel = $_SESSION['uhotel'];
+if($sesiHotel == "") {
+	$sesi = $user->sesi();
+	$nama = $user->info($sesi, "nama");
+	$sebagai = "public";
+}else {
+	$sesi = $hotel->sesi();
+	$nama = $hotel->get($sesi, "nama");
+	$sebagai = "hotel";
+}
 $namaPertama = explode(" ", $nama)[0];
 $iduser = $user->info($sesi, "iduser");
 
@@ -121,9 +130,23 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 			?>
 			<li id="adaSub">Hello <?php echo $namaPertama; ?> <i class="fa fa-angle-down"></i>
 				<nav class="sub" id="subUser">
+					<?php
+					if($sebagai == "public") {
+					?>
 					<a href="../my"><li><div id="icon"><i class="fa fa-briefcase"></i></div> My Listing</li></a>
 					<a href="../detail"><li><div id="icon"><i class="fa fa-cog"></i></div> Settings</li></a>
 					<a href="../logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
+					<?php
+					}else if($sebagai == "hotel") {
+					?>
+					<a href="../hotel/detail"><li><div id="icon"><i class="fa fa-cog"></i></div> Settings</li></a>
+					<a href="../hotel/galeri"><li><div id="icon"><i class="fa fa-image"></i></div> Gallery</li></a>
+					<a href="../hotel/facility"><li><div id="icon"><i class="fa fa-cogs"></i></div> Facility</li></a>
+					<a href="../hotel/social"><li><div id="icon"><i class="fa fa-user"></i></div> Social</li></a>
+					<a href="../hotel/logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
+					<?php
+					}
+					?>
 				</nav>
 			</li>
 			<?php
@@ -237,28 +260,33 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 				<input type="hidden" id="minDate" value="<?php echo $tglMulai; ?>">
 				<input type="hidden" id="maxDate" value="<?php echo $tglAkhir; ?>">
 				<input type="hidden" id="idevent" value="<?php echo $idevent; ?>">
-			<?php
-			if($booking->cek($idevent, $iduser) == "ada")  {
-				echo "<p>You've booked this event. See your <a href='../my' target='_blank'>listing event</a></p>";
-			}else {
-			if($sesi != "") {
-			?>
-				<div class="bag bag-7">
-					<div class="isi">Select date :</div>
-					<input type="text" class="box" id="tglBook" style="font-size: 17px;width: 80%;background: #fff;" required onchange='selectDate(this.value)' placeholder="YYYY-MM-DD" value=''>
-				</div>
-				<div class="bag bag-3">
-					<div id="loadBoxQty"></div>
-				</div>
-				<div class="bag-tombol">
-					<button class="merah-2">Book Now!</button>
-				</div>
-			<?php
-			}else { ?>
-				<p>You must login before booking an event</p>
-			<?php } 
-			}
-			?>
+				<?php
+				if($sebagai == "hotel") {
+					$urlLogout = "../auth&r=".base64_encode($urlNow)."&aksi=logout";
+					echo "You can't book event as hotel account. Please <a href='".$urlLogout."'>logout</a> and login as regular account instead";
+				}else {
+					if($booking->cek($idevent, $iduser) == "ada")  {
+						echo "<p>You've booked this event. See your <a href='../my' target='_blank'>listing event</a></p>";
+					}else {
+					if($sesi != "") {
+					?>
+						<div class="bag bag-7">
+							<div class="isi">Select date :</div>
+							<input type="text" class="box" id="tglBook" style="font-size: 17px;width: 80%;background: #fff;" required onchange='selectDate(this.value)' placeholder="YYYY-MM-DD" value=''>
+						</div>
+						<div class="bag bag-3">
+							<div id="loadBoxQty"></div>
+						</div>
+						<div class="bag-tombol">
+							<button class="merah-2">Book Now!</button>
+						</div>
+					<?php
+					}else { ?>
+						<p>You must login before booking an event</p>
+					<?php } 
+					}
+				}
+				?>
 			</form>
 		</div>
 	</div>
