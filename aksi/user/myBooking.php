@@ -52,7 +52,7 @@ if($myBook == "null") {
 					$reschedule = "";
 				}else if($row['bukti'] != "" && $row['status'] == 0) {
 					// belum dikonfirmasi
-					$btn = "<a href='./invoice/".$row['idbooking']."' target='_blank'><button class='tbl kuning' id='tblStatus'>PAID</button></a>";
+					$btn = "<a href='./invoice/".$row['idbooking']."' target='_blank'><button class='tbl kuning' id='tblStatus'>PENDING</button></a>";
 					$reschedule = "";
 				}
 				else {
@@ -68,7 +68,7 @@ if($myBook == "null") {
 					 	"<td>".toIdr($price)." (".$row['qty'].")</td>".
 					 	"<td>".
 							$btn.
-							$reschedule.
+							// $reschedule.
 					 	"</td>".
 					 "</tr>";
 			}

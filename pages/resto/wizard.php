@@ -166,15 +166,16 @@ $sesi = $_SESSION['uresto'];
 	})
 	submit('#formWeb', () => {
 		let urlAddr = $("#website").isi()
-		if(validUrl(urlAddr) == "gavalid") {
-			alert("URL isn't valid")
-			return false
-		}else {
-			$("#formWeb").hilang()
-			$("#formDesc").muncul()
-			$('#afterThree').atribut('aktif', 'ya')
-			$('#stepFour').atribut('aktif', 'ya')
+		if(urlAddr != "") {
+			if(validUrl(urlAddr) == "gavalid") {
+				alert("URL isn't valid")
+				return false
+			}
 		}
+		$("#formWeb").hilang()
+		$("#formDesc").muncul()
+		$('#afterThree').atribut('aktif', 'ya')
+		$('#stepFour').atribut('aktif', 'ya')
 		return false
 	})
 	submit('#formDesc', () => {

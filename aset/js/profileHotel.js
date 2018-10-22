@@ -40,15 +40,15 @@ function seeImage(val) {
 }
 function gantiMenu(kecuali) {
 	pilih("#showexplores").setAttribute("aktif", "tidak")
-	pilih("#showreviews").setAttribute("aktif", "tidak")
-	pilih("#showrents").setAttribute("aktif", "tidak")
+	// pilih("#showreviews").setAttribute("aktif", "tidak")
+	// pilih("#showrents").setAttribute("aktif", "tidak")
 	pilih("#showprofiles").setAttribute("aktif", "tidak")
 
 	hilang("#explores")
 	hilang("#galeries")
 	hilang("#profiles")
-	hilang("#reviews")
-	hilang("#rents")
+	// hilang("#reviews")
+	// hilang("#rents")
 
 	muncul("#"+kecuali)
 	pilih("#show"+kecuali).setAttribute("aktif", "ya")

@@ -5,9 +5,12 @@ $sesi 	= $user->sesi(1);
 $name 	= $user->info($sesi, "nama");
 $phone 	= $user->info($sesi, "telepon");
 $address 	= $user->info($sesi, "alamat");
+$myCity 	= $user->info($sesi, "city");
 $namaPertama = explode(" ", $name)[0];
 
 $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Surabaya","Yogyakarta"];
+$cities = ["Bali","Bandung","Batam","Bogor","Jakarta","Lombok","Makassar","Malang","Pekalongan","Semarang","Solo","Surabaya","Yogyakarta"];
+$category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping","Recreation","Parties","Others"];
 
 ?>
 <!DOCTYPE html>
@@ -19,11 +22,12 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 	<link href='aset/fw/build/fw.css' rel='stylesheet'>
 	<link href='aset/fw/build/font-awesome.min.css' rel='stylesheet'>
 	<link href='aset/css/style.index.css' rel='stylesheet'>
+	<link href="aset/css/tambahanIndex.css" rel="stylesheet">
 	<link href="aset/css/style.explore-admin.css" rel="stylesheet">
 	<style>
 		body { background-color: #ecf0f1 !important; }
 		.container { margin-bottom: 45px; }
-		.box { width: 94%;font-size: 16px;height: 50px;color: #555; }
+		.box { width: 99.9%;font-size: 16px;height: 50px;color: #555; }
 		.bg { z-index: 4; }
 		.atas { z-index: 3; }
 		.popup { border-radius: 6px; }
@@ -39,7 +43,15 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 	</div>
 	<nav class="menu">
 		<a href="./"><li>Home</li></a>
-		<a href="./explore"><li>Explore</li></a>
+		<a href="./explore"><li id="adaSub">Explore &nbsp; <i class="fa fa-angle-down"></i>
+			<nav class="sub" id="subCat">
+				<?php
+				foreach ($category as $key => $value) {
+					echo "<a href='./explore&q=&cat=".$value."'><li>".$value."</li></a>";
+				}
+				?>
+			</nav>
+		</li></a>
 		<a href="#"><li id="adaSub">City &nbsp; <i class="fa fa-angle-down"></i>
 			<nav class="sub" id="subCity">
 				<?php
@@ -71,17 +83,38 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 				<div><?php echo $phone; ?></div>
 				<div class="isi">Address :</div>
 				<div><?php echo $address; ?></div>
+				<div class="isi">City :</div>
+				<div><?php echo $myCity; ?></div>
 				<div class="bag-tombol" style="margin-top: 25px;">
 					<button class="merah-2" id="btnEdit">Edit</button>
 				</div>
 			</div>
 			<form id="formDetail" style="display: none;">
 				<div class="isi">Name :</div>
-				<input type="text" class="box" id="name" autocomplete="off" value="<?php echo $name; ?>">
+				<input type="text" class="box" id="name" autocomplete="off" value="<?php echo $name; ?>" required>
 				<div class="isi">Phone :</div>
-				<input type="text" class="box" id="phone" autocomplete="off" value="<?php echo $phone; ?>">
+				<input type="number" class="box" id="phone" autocomplete="off" value="<?php echo $phone; ?>" required>
 				<div class="isi">Address :</div>
 				<textarea class="box" id="address" autocomplete="off"><?php echo $address; ?></textarea>
+				<div class="isi">City :</div>
+				<select class="box" id="city" required onchange="cekCity(this.value)">
+					<option value="">Select city...</option>
+					<?php
+					if(!in_array($myCity, $cities)) {
+						echo "<option selected>".$myCity."</option>";
+					}
+					foreach ($cities as $key => $value) {
+						if($myCity == $value) {
+							$selected = 'selected';
+						}else {
+							$selected = '';
+						}
+						echo "<option ".$selected.">".$value."</option>";
+					}
+					?>
+					<option>Other</option>
+				</select>
+				<input type="text" class="box" id="otherCity" placeholder="Input city..." style="display: none;">
 				<br /><br />
 				<button class="tbl merah-2">Save</button>
 			</form>
@@ -102,11 +135,24 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 
 <script src="aset/js/emboBaru.js"></script>
 <script>
+	function cekCity(val) {
+		if(val == "Other") {
+			$("#otherCity").muncul()
+		}
+	}
 	submit("#formDetail", function() {
 		let name = $("#name").isi()
 		let phone = $("#phone").isi()
 		let address = $("#address").isi()
-		let detail = "name="+name+"&phone="+phone+"&address="+address
+		let city = $("#city").isi()
+		if(city == "Other") {
+			city = $("#otherCity").isi()
+			if(city == "") {
+				alert('All field must be filled!')
+				return false
+			}
+		}
+		let detail = "name="+name+"&phone="+phone+"&address="+address+"&city="+city
 		pos("aksi/user/change.php", detail, function() {
 			munculPopup("#saved", $("#saved").pengaya("top: 210px"))
 			setTimeout(function() {

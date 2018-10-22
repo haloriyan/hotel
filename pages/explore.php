@@ -15,12 +15,9 @@ if($sesiHotel == "") {
 }
 $namaPertama = explode(" ", $nama)[0];
 
-setcookie('kwExplore', $_GET['q'], time() + 3650, "/");
 if(isset($_GET['cat']) && $_GET['cat'] != "") {
 	setcookie('category', $_GET['cat'], time() + 3650, "/");
 }
-setcookie('tglMulai', '', time() + 1, "/");
-setcookie('tglAkhir', '', time() + 1, "/");
 
 $q = $_GET['q'];
 if(empty($q)) {
@@ -41,6 +38,13 @@ $urlNow = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "h
 // delete cookie
 setcookie('tglMulai', '', time() + 1, "/");
 setcookie('tglAkhir', '', time() + 1, "/");
+setcookie('kwExplore', '', time() + 1, "/");
+setcookie('category', '', time() + 1, "/");
+setcookie('region', '', time() + 1, "/");
+
+if($_GET['q'] != "") {
+	setcookie('kwExplore', $_GET['q'], time() + 3650, "/");
+}
 
 // Category
 $category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping","Recreation","Parties","Others"];

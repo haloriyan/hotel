@@ -5,6 +5,7 @@ $sesi 	= $user->sesi(1);
 $name 	= $user->info($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
 
+$category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping","Recreation","Parties","Others"];
 $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Surabaya","Yogyakarta"];
 
 ?>
@@ -17,6 +18,7 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 	<link href='aset/fw/build/fw.css' rel='stylesheet'>
 	<link href='aset/fw/build/font-awesome.min.css' rel='stylesheet'>
 	<link href='aset/css/style.index.css' rel='stylesheet'>
+	<link href="aset/css/tambahanIndex.css" rel="stylesheet">
 	<link href="aset/css/style.explore-admin.css" rel="stylesheet">
 	<style>
 		body { background-color: #ecf0f1 !important; }
@@ -32,7 +34,15 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 	</div>
 	<nav class="menu">
 		<a href="./"><li>Home</li></a>
-		<a href="./explore"><li>Explore</li></a>
+		<a href="./explore"><li id="adaSub">Explore &nbsp; <i class="fa fa-angle-down"></i>
+			<nav class="sub" id="subCat">
+				<?php
+				foreach ($category as $key => $value) {
+					echo "<a href='./explore&q=&cat=".$value."'><li>".$value."</li></a>";
+				}
+				?>
+			</nav>
+		</li></a>
 		<a href="#"><li id="adaSub">City &nbsp; <i class="fa fa-angle-down"></i>
 			<nav class="sub" id="subCity">
 				<?php

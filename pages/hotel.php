@@ -322,6 +322,7 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 <script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyDqYJGuWw9nfoyPG8d9L1uhm392uETE-mA'></script>
 <script src="../aset/js/jquery-3.1.1.js"></script>
 <script src="../aset/js/locationpicker.jquery.min.js"></script>
+<script src="../aset/js/profileHotel.js"></script>
 <script>
 	function track(tipe) {
 		let idevent = pilih("#idevent").value
@@ -331,9 +332,6 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 		})
 	}
 	let redirect = btoa(pilih("#urlNow").value)
-	klik("#tblLogin", function() {
-		mengarahkan("../auth&r="+redirect)
-	})
 	$('#myMaps').locationpicker({
 		location: {
 			latitude: <?php echo $lat; ?>,
@@ -351,8 +349,10 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 		},
 		enableAutocomplete: true,
 	})
+	klik("#tblLogin", function() {
+		mengarahkan("../auth&r="+redirect)
+	})
 </script>
-<script src="../aset/js/profileHotel.js"></script>
 
 </body>
 </html>
