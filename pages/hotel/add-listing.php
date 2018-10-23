@@ -75,6 +75,14 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 			top: -5px;
 		}
 		.after[aktif=ya] { background-color: #cb0023; }
+		.tblBack {
+			border-radius: 90px;
+			width: 50px;
+			height: 50px;
+			padding: 0;
+			margin-top: 15px;
+			margin-right: 15px;
+		}
 	</style>
 </head>
 <body>
@@ -92,19 +100,6 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 		<a href="./dashboard"><li>Restaurant</li></a>
 	</nav>
 </div>
-
-<!--
-<div class="kiri">
-	<a href="./dashboard"><div class="listWizard">Dashboard</div></a>
-	<a href="./detail"><div class="listWizard">Detail Information</div></a>
-	<a href="./listing"><div class="listWizard">My Listings</div></a>
-	<a href="./galeri"><div class="listWizard">Gallery</div></a>
-	<a href="./facility"><div class="listWizard">Facility</div></a>
-	<a href="./social"><div class="listWizard">Social Network</div></a>
-	<a href="./restaurant"><div class="listWizard">Restaurant</div></a>
-	<a href="./logout"><div class="listWizard">Logout</div></a>
-</div>
--->
 
 <div class="myStep">
 	<div class="step" id="stepOne" aktif='ya'><i class="fa fa-pencil"></i></div>
@@ -143,7 +138,7 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 			<input type="text" class="box" id="tagline" placeholder="Tagline..." autocomplete="off">
 			<div class="isi">Description</div>
 			<textarea class="box" id="description" placeholder="Event description..."></textarea><br />
-			<button class="tbl merah-2">NEXT</button>
+			<button class="tbl merah-2 tblBack"><i class="fa fa-angle-right"></i></button>
 		</div>
 	</form>
 	<form id="image">
@@ -153,7 +148,8 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 			<input type="file" class="box" id="cover"><br />
 			<input type="hidden" id="covers">
 			<img src="" style="display: none;width: 100%;" id="imgPreview">
-			<button style="margin-top: 25px;" class="tbl merah-2">NEXT</button>
+			<button class="tbl merah-2 tblBack" type="button" onclick="hilangKecuali('basic')"><i class="fa fa-angle-left"></i></button>
+			<button class="tbl merah-2 tblBack"><i class="fa fa-angle-right"></i></button>
 		</div>
 	</form>
 	<form id="location">
@@ -178,7 +174,8 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 			</select>
 			<div class="isi">Address</div>
 			<textarea class="box" id="address"></textarea><br />
-			<button class="tbl merah-2">NEXT</button>
+			<button class="tbl merah-2 tblBack" type="button" onclick="hilangKecuali('image')"><i class="fa fa-angle-left"></i></button>
+			<button class="tbl merah-2 tblBack"><i class="fa fa-angle-right"></i></button>
 		</div>
 	</form>
 	<form id="detail">
@@ -202,17 +199,19 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 				<option>Others</option>
 			</select>
 			<div class="isi">Quota :</div>
-			<input type="number" class="box" placeholder="Quota Seat per day..." id="seat">
+			<input type="number" class="box" placeholder="Quota Seat per day..." id="seat" min="1">
 			<br />
-			<button class="tbl merah-2">NEXT</button>
+			<button class="tbl merah-2 tblBack" type="button" onclick="hilangKecuali('location')"><i class="fa fa-angle-left"></i></button>
+			<button class="tbl merah-2 tblBack"><i class="fa fa-angle-right"></i></button>
 		</div>
 	</form>
 	<form id="price">
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-money"></i></div> Price</h4>
 			<div class="isi">Pricing</div>
-			<input type="number" class="box" id="priceBox" placeholder='e.g "140000"'>
-			<button class="tbl merah-2" id="publish" type="button">PUBLISH</button>
+			<input type="number" class="box" id="priceBox" placeholder='e.g "140000"' min="1">
+			<button class="tbl merah-2 tblBack" type="button" onclick="hilangKecuali('price')"><i class="fa fa-angle-left"></i></button>
+			<button class="tbl merah-2 tblBack" id="publish" type="button"><i class="fa fa-angle-right"></i></button>
 		</div>
 	</form>
 </div>

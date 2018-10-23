@@ -50,7 +50,7 @@ foreach ($all as $row) {
 	}
 	echo "".
 			 "<div class='list'>".
-			 	"<div class='bgImage' style='background: url(".$coverImage.");background-size: cover;'>".
+			 	"<div class='bgImage' style='background: url(".$coverImage.");background-size: cover;height: 250px;'>".
 					// "<img src='aset/gbr/".$row['covers']."'>".
 				"</div>".
 				"<div class='ket'>".

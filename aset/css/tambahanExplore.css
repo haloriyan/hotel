@@ -6,11 +6,11 @@ body { background-color: #ecf0f1; }
 .container,.kiri {
 	top: 72px;
 }
-.contaienr { top: 95px; }
+.container { top: 95px; }
 .list {
 	width: 47%;
 	margin: 5px 10px;
-	margin-bottom: 75px;
+	margin-bottom: 30px;
 	height: 300px;
 	cursor: default;
 	position: relative;
@@ -26,16 +26,16 @@ body { background-color: #ecf0f1; }
 }
 .list .ket {
 	position: static;
-	margin-top: -300px;
-	height: 300px;
+	margin-top: -250px;
+	height: 250px;
 	background: rgba(0,0,0,0.45);
 	z-index: 5;
 }
-.ket #keterangan { margin-top: 56%; }
+.ket #keterangan { margin-top: 45%; }
 .tgl {
 	margin-top: -22px;
 	position: relative;
-	top: -160px;
+	top: -125px;
 	float: right;
 }
 .atas { position: absolute; }

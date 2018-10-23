@@ -76,24 +76,6 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 	</div>
 	<nav class="menu">
 		<a href="./"><li>Home</li></a>
-		<a href="./explore"><li id="adaSub">Explore &nbsp; <i class="fa fa-angle-down"></i>
-			<nav class="sub" id="subCat">
-				<?php
-				foreach ($category as $key => $value) {
-					echo "<a href='./explore&q=&cat=".$value."'><li>".$value."</li></a>";
-				}
-				?>
-			</nav>
-		</li></a>
-		<a href="#"><li id="adaSub">City &nbsp; <i class="fa fa-angle-down"></i>
-			<nav class="sub" id="subCity">
-				<?php
-				foreach ($city as $key => $value) {
-					echo "<a href='./explore&q=&cat=&city=".$value."'><li>".$value."</li></a>";
-				}
-				?>
-			</nav>
-		</li></a>
 		<?php
 		if(empty($sesi)) { ?>
 			<a href="#formLogin" id="tblLogin"><li><i class="fa fa-user"></i> &nbsp;Sign in</li></a>

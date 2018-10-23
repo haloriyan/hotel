@@ -82,6 +82,14 @@ $address = $resto->info($sesi, "address");
 			top: -5px;
 		}
 		.after[aktif=ya] { background-color: #cb0023; }
+		.tblBack {
+			border-radius: 90px;
+			width: 50px;
+			height: 50px;
+			padding: 0;
+			margin-top: 15px;
+			margin-right: 15px;
+		}
 	</style>
 </head>
 <body>
@@ -98,16 +106,6 @@ $address = $resto->info($sesi, "address");
 		<a href="./galeri"><li>Gallery</li></a>
 	</nav>
 </div>
-
-<!--
-<div class="kiri">
-	<div class="listWizard" id="kebasic" aktif="ya">Add Listing</div>
-	<div class="listWizard" id="keimage">Event Image</div>
-	<div class="listWizard" id="kelocation">Location</div>
-	<div class="listWizard" id="kedetail">Event Details</div>
-	<div class="listWizard" id="keprice">Price</div>
-</div>
--->
 
 <div class="myStep">
 	<div class="step" id="stepOne" aktif='ya'><i class="fa fa-pencil"></i></div>
@@ -157,7 +155,7 @@ $address = $resto->info($sesi, "address");
 			<input type="text" class="box" id="tagline" placeholder="Tagline..." autocomplete="off">
 			<div class="isi">Description</div>
 			<textarea class="box" id="description" placeholder="Event description..."></textarea><br />
-			<button class="tbl merah-2">NEXT</button>
+			<button class="tbl merah-2"><i class="fa fa-angle-right"></i></button>
 		</div>
 	</form>
 	<form id="image">
@@ -167,7 +165,8 @@ $address = $resto->info($sesi, "address");
 			<input type="file" class="box" id="cover"><br />
 			<input type="hidden" id="covers">
 			<img src="" style="display: none;width: 100%;" id="imgPreview">
-			<button class="tbl merah-2">NEXT</button>
+			<button class="tbl merah-2 tblBack" type="button" onclick="hilangKecuali('basic')"><i class="fa fa-angle-left"></i></button>
+			<button class="tbl merah-2 tblBack"><i class="fa fa-angle-right"></i></button>
 		</div>
 	</form>
 	<form id="location">
@@ -192,7 +191,8 @@ $address = $resto->info($sesi, "address");
 			</select>
 			<div class="isi">Address</div>
 			<textarea class="box" id="address"></textarea><br />
-			<button class="tbl merah-2">NEXT</button>
+			<button class="tbl merah-2 tblBack" type="button" onclick="hilangKecuali('image')"><i class="fa fa-angle-left"></i></button>
+			<button class="tbl merah-2 tblBack"><i class="fa fa-angle-right"></i></button>
 		</div>
 	</form>
 	<form id="detail">
@@ -204,7 +204,8 @@ $address = $resto->info($sesi, "address");
 			<div class="isi">Date End</div>
 			<input type="text" class="box" placeholder="yyyy-mm-dd" id="dateEnd" readonly>
 			<div class="isi">Category</div>
-			<select class="box" id="category">
+			<select class="box" id="category" required>
+				<option value="">Select category...</option>
 				<option>Food and Beverage</option>
 				<option>Room</option>
 				<option>Venue</option>
@@ -215,9 +216,10 @@ $address = $resto->info($sesi, "address");
 				<option>Others</option>
 			</select>
 			<div class="isi">Quota :</div>
-			<input type="text" class="box" placeholder="Quota seat per day..." id="seat">
+			<input type="number" class="box" placeholder="Quota seat per day..." id="seat" min="1">
 			<br />
-			<button class="tbl merah-2">NEXT</button>
+			<button class="tbl merah-2 tblBack" type="button" onclick="hilangKecuali('location')"><i class="fa fa-angle-left"></i></button>
+			<button class="tbl merah-2 tblBack"><i class="fa fa-angle-right"></i></button>
 		</div>
 	</form>
 	<form id="price">
@@ -225,7 +227,8 @@ $address = $resto->info($sesi, "address");
 			<input type="hidden" id="idresto" value="<?php echo $idresto; ?>">
 			<h4><div id="icon"><i class="fa fa-map-marker"></i></div> Price</h4>
 			<div class="isi">Pricing</div>
-			<input type="text" class="box" id="priceBox" placeholder='e.g "140000"'>
+			<input type="number" class="box" id="priceBox" placeholder='e.g "140000"' min="1">
+			<button class="tbl merah-2 tblBack" type="button" onclick="hilangKecuali('detail')"><i class="fa fa-angle-left"></i></button>
 			<button class="tbl merah-2" id="publish" type="button">PUBLISH</button>
 		</div>
 	</form>

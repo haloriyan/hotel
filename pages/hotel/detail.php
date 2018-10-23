@@ -154,7 +154,7 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 			</select>
 			<div id="generateCity"><input type="text" class="box" id="citys" style="display: none;" placeholder="Type city..."></div>
 			<div class="isi">Phone :</div>
-			<input type="number" class="box" placeholder="e.g 628123456789" id="phone" value="<?php echo $phone; ?>">
+			<input type="number" class="box" placeholder="e.g 628123456789" id="phone" value="<?php echo $phone; ?>" min="1">
 			<div class="isi">Website url :</div>
 			<input type="text" class="box" id="web" placeholder="e.g https://dailyhotels.id" value="<?php echo $web; ?>">
 			<div class="isi">Address :</div>
