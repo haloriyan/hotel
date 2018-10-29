@@ -61,6 +61,9 @@ tekan("Escape", function() {
 	hilangPopup("#suksesBook")
 	hilangPopup("#formLoginBaru")
 })
+klik(".bg", () => {
+	hilangContact()
+})
 
 klik("#xBook", function() {
 	hilangPopup("#popupBook")

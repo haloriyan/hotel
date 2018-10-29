@@ -1,4 +1,7 @@
 body { background-color: #ecf0f1; }
+.menu li[aktif=ya] {
+	border-bottom: 1px solid #fff;
+}
 .atas {
 	position: fixed !important;
 	background-color: #cb0029 !important;

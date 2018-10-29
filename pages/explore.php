@@ -76,6 +76,7 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 	</div>
 	<nav class="menu">
 		<a href="./"><li>Home</li></a>
+		<a href="./"><li aktif='ya'>Explore</li></a>
 		<?php
 		if(empty($sesi)) { ?>
 			<a href="#formLogin" id="tblLogin"><li><i class="fa fa-user"></i> &nbsp;Sign in</li></a>
