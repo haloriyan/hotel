@@ -1,17 +1,3 @@
-// munculPopup("#popupBook", pengaya("#popupBook", "top: 140px"))
-// Date picker
-/*
-$(function() {
-	$("#tglBook").datepicker({
-		minDate: $("#minDate").val(),
-		maxDate: $("#maxDate").val(),
-		dateFormat: 'yy-mm-dd',
-		useCurrent: false,
-    	showClose: true
-	})
-})
-*/
-
 function munculContact() {
 	muncul(".bg")
 	pengaya(".listContact", "right: 2.5%")

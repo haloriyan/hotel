@@ -237,6 +237,9 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 </div>
 
 <button id="phone" class="merah-2" aksi="on"><i class="fa fa-phone"></i></button>
+<div class="sharer">
+	<div class="tombol"></div>
+</div>
 
 <div class="bg"></div>
 <div class="formPopup" id="notif">
@@ -333,7 +336,36 @@ klik("#book", function() {
 }
 ?>
 
+<script type="text/javascript" src="//connect.facebook.net/en_US/sdk.js"></script>
 <script>
+/* facebook share start */
+// init FB
+window.fbAsyncInit = function() {
+	FB.init({
+		appId: '360288181377346',
+		autoLogAppEvents: true,
+		xfbml: true,
+		version: 'v3.1'
+	})
+}
+// load SDK
+(function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) {return;}
+	js = d.createElement(s); js.id = id;
+	js.src = "https://connect.facebook.net/en_US/sdk.js";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+// func ogshare
+function ogShare() {
+	FB.ui({
+  		method: 'share',
+  		href: pilih("#urlNow").value,
+	}, function(response){
+		console.log(response)
+	});
+}
+
 submit("#formBook", function() {
 	let idevent = pilih("#idevent").value
 	let tgl = pilih("#tglBook").value

@@ -36,26 +36,25 @@ $blnSkrg = date('m');
 	}
 	?>
 </select>
-<!--
-<div class="bag bag-5">
-	From :
-	<input type="text" class="box" id="fromDate" onchange="tglMulai(this.value);tglMulai2(this.value)" placeholder='YYYY-MM-DD'>
-</div>
--->
 <div>
-	Until :
+	Date :
 	<br />
 	<div class="bag bag-6">
-		<select class="box" id="filterBln">
+		<select class="box" id="filterBln" onchange="setBln(this.value)">
+			<option value="">Select month...</option>
 			<?php
 			for($i = $blnSkrg; $i <= count($allMonths); $i++) {
-				echo "<option>".$allMonths[$i]."</option>";
+				if($i < 10) {
+					$i = "0".$i;
+				}
+				echo "<option value='".$i."'>".$allMonths[$i]."</option>";
 			}
 			?>
 		</select>
 	</div>
 	<div class="bag bag-4">
-		<select class="box" id="filterThn">
+		<select class="box" id="filterThn" onchange="setThn(this.value)">
+			<option value="">Select year...</option>
 			<?php
 			for ($i=date('Y'); $i < (date('Y') + 5); $i++) { 
 				echo "<option>".$i."</option>";

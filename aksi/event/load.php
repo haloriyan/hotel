@@ -4,14 +4,21 @@ include '../ctrl/event.php';
 error_reporting(1);
 $keyword = $_COOKIE['kwExplore'];
 
-$tglMulai = $_COOKIE['tglMulai'];
-$tglAkhir = $_COOKIE['tglAkhir'];
+$bln = $_COOKIE['bulan'];
+$thn = $_COOKIE['tahun'];
+
+if($bln == "" || $thn == "") {
+	$tglAkhir = "";
+}else {
+	$tglAkhir = $thn."-".$bln;
+}
 $category = $_COOKIE['category'];
 $city   = $_COOKIE['region'];
 
-$all = $event->all($keyword, $tglMulai, $tglAkhir, $category, $city);
 
-if($all == "kosong") {
+$all = $event->all($keyword, $tglAkhir, $category, $city);
+
+if($all == "kosong" || $all == "null") {
 	if($keyword != "") {
 		$resKw = "<b>".$keyword."</b>";
 	}

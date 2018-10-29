@@ -36,13 +36,13 @@ function setKuki(nama, val) {
 
 function cari(val) {
 	setKuki("kwExplore", val)
-	setUrlAddr("./explore&q="+encodeURIComponent(val))
+    history.replaceState({ q: y}, "pageExplore", "./explore&q="+encodeURIComponent(val))
 }
-function tglMulai(val) {
-	setKuki("tglMulai", val)
+function setBln(val) {
+    setKuki("bulan", val)
 }
-function tglAkhir(val) {
-	setKuki("tglAkhir", val)
+function setThn(val) {
+    setKuki("tahun", val)
 }
 function category(val) {
 	setKuki("category", val)

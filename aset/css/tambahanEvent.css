@@ -60,7 +60,7 @@
 	border: none;
 	transition: 0.44s;
 	cursor: pointer;
-	z-index: 16;
+	z-index: 4;
 }
 #phone[aksi=off] { background-color: #444; }
 #phone:focus { outline: none; }
@@ -91,6 +91,14 @@
 .listContact #icon {
 	display: inline-block;
 	width: 30px;
+}
+
+.sharer {
+	position: fixed;
+	bottom: 150px;right: 2.5%;
+	width: 100px;
+	height: 300px;
+	z-index: 4;
 }
 
 @media (max-width: 720px) {
