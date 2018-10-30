@@ -76,10 +76,7 @@ if($aksi == "logout") {
 				</div>
 			</form>
 			<form id="suksesRegPublic">
-				<h2>We've already sent an email verification</h2>
-				<p>
-					Click the link in the email that has been sent. Please check your spam if you aint find it. And let's exploring dailyhotels
-				</p>
+				<p id="loadSuksesPublic"></p>
 			</form>
 		</div>
 	</div>
@@ -118,9 +115,8 @@ if($aksi == "logout") {
 				</div>
 			</form>
 			<form id="suksesRegMarcom">
-				<h2>You've been registered!</h2>
-				<p>
-					Next, you must verify your email address and then complete more information about your hotel before you can add an event
+				<p id="loadSuksesMarcom">
+					<i class="fa fa-spinner"></i> registering...
 				</p>
 				<div class="bagTombol" id="optLogin">
 					<a href="#" id="linkLogMarcom2">back to login</a>
@@ -208,7 +204,9 @@ if($aksi == "logout") {
 
 			hilang("#formRegPublic")
 			muncul("#suksesRegPublic")
-			console.log("registered")
+			ambil("aksi/user/register.php", (res) => {
+				tulis("#loadSuksesPublic", res)
+			})
 		})
 		return false
 	})
@@ -246,6 +244,11 @@ if($aksi == "logout") {
 
 			hilang("#formRegMarcom")
 			muncul("#suksesRegMarcom")
+			setTimeout(function() {
+				ambil("aksi/hotel/register.php", (res) => {
+					tulis("#loadSuksesMarcom", res)
+				})
+			}, 300)
 		})
 		return false
 	})

@@ -17,18 +17,23 @@ class hotel extends user {
 		return $r[$struktur];
 	}
 	public function register($a, $b, $c, $d, $e) {
-		$q = $this->tabel("hotel")
-				  ->tambah([
-				  	"idhotel" => $a,
-				  	"nama" => $b,
-				  	"email" => $c,
-				  	"password" => $d,
-				  	"icon" => "", "cover" => "", "phone" => "", "website" => "", "city" => "", "address" => "",
-				  	"status" => 0,
-				  	"added" => $e
-				  ])
-				  ->eksekusi();
-		return $q;
+		$cek = $this->get($c, 'nama');
+		if($cek != "") {
+			setcookie('msgRegister', 'Your email already registered! Please use another email', time() + 45, '/');
+		}else {
+			$q = $this->tabel("hotel")
+					  ->tambah([
+					  	"idhotel" => $a,
+					  	"nama" => $b,
+					  	"email" => $c,
+					  	"password" => $d,
+					  	"icon" => "", "cover" => "", "phone" => "", "website" => "", "city" => "", "address" => "",
+					  	"status" => 0,
+					  	"added" => $e
+					  ])
+					  ->eksekusi();
+			setcookie('msgRegister', '<h2>You have been registered!</h2>Next, you must verify your email address and then complete more information about your hotel before you can add an event', time() + 45, '/');
+		}
 	}
 	public function login($e, $p) {
 		$pw = $this->get($e, "password");

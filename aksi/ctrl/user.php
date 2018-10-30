@@ -42,17 +42,23 @@ class user extends controller {
 		return $_SESSION['upublic'];
 	}
 	public function register($a, $b, $c, $d, $e) {
-		$q = $this->tabel("user")
-				  ->tambah([
-				  	"iduser" => $a,
-				  	"email" => $b,
-				  	"password" => $c,
-				  	"nama" => $d,
-				  	"telepon" => "", "alamat" => "", "status" => "0",
-				  	"registered" => $e
-				  ])
-				  ->eksekusi();
-		return $q;
+		$cek = $this->info($b, 'email');
+		if($cek != '') {
+			setcookie('msgReg', 'Your email already registered. Please use another email!', time() + 45, '/');
+		}else {
+			$q = $this->tabel("user")
+					  ->tambah([
+					  	"iduser" => $a,
+					  	"email" => $b,
+					  	"password" => $c,
+					  	"nama" => $d,
+					  	"telepon" => "", "alamat" => "", "status" => "0",
+					  	"registered" => $e
+					  ])
+					  ->eksekusi();
+			setcookie("msgReg", "<h2>We've already sent an email verification</h2>Click the link in the email that has been sent. Please check your spam if you aint find it. And let's exploring dailyhotels", time() + 45, "/");
+			return $q;
+		}
 	}
 	public function validate($e) {
 		$iduser = $this->info($e, "iduser");

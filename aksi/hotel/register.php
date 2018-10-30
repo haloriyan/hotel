@@ -1,8 +1,11 @@
 <?php
 include '../ctrl/hotel.php';
 
-$id = rand(1, 999999);
 $nama = $_POST['name'];
+if($nama == "") {
+  echo $_COOKIE['msgRegister'];
+}else {
+$id = rand(1, 999999);
 $email = $_POST['email'];
 $pwd = $_POST['pwd'];
 $time = time();
@@ -133,3 +136,4 @@ $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 $message = $body;
 
 mail($to, $subjek, $message, $header);
+}

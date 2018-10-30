@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 29, 2018 at 01:10 PM
+-- Generation Time: Oct 30, 2018 at 07:33 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `idadmin` tinyint(11) NOT NULL,
+  `idadmin` int(11) NOT NULL,
   `username` varchar(55) NOT NULL,
   `password` varchar(50) NOT NULL,
   `added` int(11) NOT NULL
@@ -50,11 +50,11 @@ INSERT INTO `admin` (`idadmin`, `username`, `password`, `added`) VALUES
 --
 
 CREATE TABLE `album` (
-  `idalbum` tinyint(11) NOT NULL,
-  `idhotel` tinyint(11) NOT NULL,
-  `id_resto` tinyint(11) NOT NULL,
+  `idalbum` int(11) NOT NULL,
+  `idhotel` int(11) DEFAULT NULL,
+  `id_resto` int(11) DEFAULT NULL,
   `nama` varchar(65) NOT NULL,
-  `created` tinyint(11) NOT NULL
+  `created` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -64,17 +64,17 @@ CREATE TABLE `album` (
 --
 
 CREATE TABLE `booking` (
-  `idbooking` tinyint(11) NOT NULL,
-  `idevent` tinyint(11) NOT NULL,
-  `iduser` tinyint(11) NOT NULL,
+  `idbooking` int(11) NOT NULL,
+  `idevent` int(11) DEFAULT NULL,
+  `iduser` int(11) DEFAULT NULL,
   `nama` varchar(155) NOT NULL,
-  `qty` tinyint(11) NOT NULL,
+  `qty` int(11) DEFAULT NULL,
   `bukti` varchar(155) NOT NULL,
-  `status` tinyint(11) NOT NULL,
-  `hadir` tinyint(11) NOT NULL,
+  `status` int(2) DEFAULT NULL,
+  `hadir` int(2) DEFAULT NULL,
   `tgl` date NOT NULL,
   `tgl_book` datetime NOT NULL,
-  `added` tinyint(11) NOT NULL
+  `added` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -84,9 +84,9 @@ CREATE TABLE `booking` (
 --
 
 CREATE TABLE `cuisine` (
-  `idcuisine` tinyint(11) NOT NULL,
+  `idcuisine` int(11) NOT NULL,
   `nama` varchar(65) NOT NULL,
-  `added` tinyint(11) NOT NULL
+  `added` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -106,9 +106,9 @@ INSERT INTO `cuisine` (`idcuisine`, `nama`, `added`) VALUES
 --
 
 CREATE TABLE `event` (
-  `idevent` tinyint(11) NOT NULL,
-  `idhotel` tinyint(11) NOT NULL,
-  `id_resto` tinyint(11) NOT NULL,
+  `idevent` int(11) NOT NULL,
+  `idhotel` int(11) DEFAULT NULL,
+  `id_resto` int(11) DEFAULT NULL,
   `title` varchar(55) NOT NULL,
   `tagline` varchar(100) NOT NULL,
   `description` text NOT NULL,
@@ -119,11 +119,11 @@ CREATE TABLE `event` (
   `tgl_akhir` date NOT NULL,
   `tgl_posted` datetime NOT NULL,
   `category` varchar(55) NOT NULL,
-  `quota` tinyint(11) NOT NULL,
-  `price` tinyint(20) NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  `hint` tinyint(11) NOT NULL,
-  `added` tinyint(11) NOT NULL
+  `quota` int(7) DEFAULT NULL,
+  `price` int(20) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  `hint` int(11) DEFAULT NULL,
+  `added` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -133,7 +133,7 @@ CREATE TABLE `event` (
 --
 
 CREATE TABLE `facility` (
-  `idfacility` tinyint(11) NOT NULL,
+  `idfacility` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `icon` varchar(20) NOT NULL,
   `tipe` tinyint(1) NOT NULL
@@ -161,12 +161,12 @@ INSERT INTO `facility` (`idfacility`, `nama`, `icon`, `tipe`) VALUES
 --
 
 CREATE TABLE `galeri` (
-  `idgambar` tinyint(11) NOT NULL,
-  `idalbums` tinyint(11) NOT NULL,
-  `idhotel` tinyint(11) NOT NULL,
+  `idgambar` int(11) NOT NULL,
+  `idalbums` int(11) DEFAULT NULL,
+  `idhotel` int(11) DEFAULT NULL,
   `tipe` varchar(20) NOT NULL,
   `gambar` varchar(255) NOT NULL,
-  `added` tinyint(11) NOT NULL
+  `added` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -176,7 +176,7 @@ CREATE TABLE `galeri` (
 --
 
 CREATE TABLE `hotel` (
-  `idhotel` tinyint(11) NOT NULL,
+  `idhotel` int(11) NOT NULL,
   `nama` varchar(55) NOT NULL,
   `description` text NOT NULL,
   `email` varchar(155) NOT NULL,
@@ -190,7 +190,7 @@ CREATE TABLE `hotel` (
   `coords` varchar(100) NOT NULL,
   `facility` varchar(95) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `added` tinyint(11) NOT NULL
+  `added` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -200,13 +200,13 @@ CREATE TABLE `hotel` (
 --
 
 CREATE TABLE `redeem` (
-  `idredeem` tinyint(11) NOT NULL,
-  `idhotel` tinyint(11) NOT NULL,
-  `id_resto` tinyint(11) NOT NULL,
-  `idevents` tinyint(11) NOT NULL,
+  `idredeem` int(11) NOT NULL,
+  `idhotel` int(11) DEFAULT NULL,
+  `id_resto` int(11) DEFAULT NULL,
+  `idevents` int(11) DEFAULT NULL,
   `tgl` datetime NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `added` tinyint(11) NOT NULL
+  `added` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -216,8 +216,8 @@ CREATE TABLE `redeem` (
 --
 
 CREATE TABLE `restoran` (
-  `idresto` tinyint(11) NOT NULL,
-  `idhotel` tinyint(11) NOT NULL,
+  `idresto` int(11) NOT NULL,
+  `idhotel` int(11) DEFAULT NULL,
   `nama` varchar(65) NOT NULL,
   `description` text NOT NULL,
   `icon` varchar(155) NOT NULL,
@@ -232,7 +232,7 @@ CREATE TABLE `restoran` (
   `hours` varchar(155) NOT NULL,
   `serve` varchar(333) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `added` tinyint(11) NOT NULL
+  `added` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -242,9 +242,9 @@ CREATE TABLE `restoran` (
 --
 
 CREATE TABLE `social` (
-  `idsocial` tinyint(11) NOT NULL,
-  `idhotel` tinyint(11) NOT NULL,
-  `idresto` tinyint(11) NOT NULL,
+  `idsocial` int(11) NOT NULL,
+  `idhotel` int(11) DEFAULT NULL,
+  `idresto` int(11) DEFAULT NULL,
   `type` varchar(25) NOT NULL,
   `url` varchar(125) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -256,13 +256,13 @@ CREATE TABLE `social` (
 --
 
 CREATE TABLE `track` (
-  `idtrack` tinyint(11) NOT NULL,
-  `idevent` tinyint(11) NOT NULL,
+  `idtrack` int(11) NOT NULL,
+  `idevent` int(11) DEFAULT NULL,
   `iduser` varchar(25) NOT NULL,
-  `tipe` tinyint(11) NOT NULL,
-  `hint` tinyint(11) NOT NULL,
-  `last_tracked` tinyint(11) NOT NULL,
-  `added` tinyint(11) NOT NULL
+  `tipe` tinyint(2) DEFAULT NULL,
+  `hint` int(11) DEFAULT NULL,
+  `last_tracked` int(11) DEFAULT NULL,
+  `added` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -272,7 +272,7 @@ CREATE TABLE `track` (
 --
 
 CREATE TABLE `user` (
-  `iduser` tinyint(11) NOT NULL,
+  `iduser` int(11) NOT NULL,
   `email` varchar(155) NOT NULL,
   `password` varchar(50) NOT NULL,
   `nama` varchar(50) NOT NULL,
@@ -280,7 +280,7 @@ CREATE TABLE `user` (
   `alamat` varchar(500) NOT NULL,
   `city` varchar(20) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `registered` tinyint(11) NOT NULL
+  `registered` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
