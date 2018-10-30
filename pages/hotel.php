@@ -108,6 +108,9 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 				</nav>
 			</li>
 			<?php
+			if($sebagai == "hotel") { ?>
+				<button id="cta" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
+			<?php }
 		}
 		?>
 	</nav>
@@ -348,6 +351,9 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 			//
 		},
 		enableAutocomplete: true,
+	})
+	klik("#cta", function() {
+		mengarahkan('../hotel/add-listing');
 	})
 	klik("#tblLogin", function() {
 		mengarahkan("../auth&r="+redirect)

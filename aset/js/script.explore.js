@@ -36,7 +36,7 @@ function setKuki(nama, val) {
 
 function cari(val) {
 	setKuki("kwExplore", val)
-    history.replaceState({ q: y}, "pageExplore", "./explore&q="+encodeURIComponent(val))
+    history.replaceState("s", "pageExplore", "./explore&q="+encodeURIComponent(val))
 }
 function setBln(val) {
     setKuki("bulan", val)

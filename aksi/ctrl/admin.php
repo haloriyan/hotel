@@ -43,7 +43,7 @@ class admin extends controller {
 		return $q;
 	}
 	public function all() {
-		$q = $this->query("SELECT * FROM hotel WHERE status = '2' AND phone != '' AND city != '' AND address != '' AND website != ''");
+		$q = $this->query("SELECT * FROM hotel WHERE status = '2' AND phone != '' AND city != ''");
 		while($r = $this->ambil($q)) {
 			$hasil[] = $r;
 		}

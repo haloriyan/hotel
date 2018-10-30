@@ -94,6 +94,9 @@ $urlNow = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "h
 				</nav>
 			</li>
 			<?php
+			if($sebagai == "hotel") { ?>
+				<button id="cta" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
+			<?php }
 		}
 		?>
 	</nav>
@@ -182,6 +185,9 @@ munculPopup("#formLoginBaru", pengaya("#formLoginBaru", "top: 90px"))
 		let cat = pilih("#cat").value
 		mengarahkan("./explore&q="+q+"&cat="+cat)
 		return false
+	})
+	klik("#cta", function() {
+		mengarahkan('./hotel/add-listing');
 	})
 	klik("#tblLogin", () => {
 		let redirect = btoa(pilih("#urlNow").value)

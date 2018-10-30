@@ -44,14 +44,15 @@ foreach ($all as $row) {
 		$namaHotel = $hotel->get($idhotel, "nama");
 		$iconHotel = $hotel->get($idhotel, "icon");
 	}
-	$coverImage = "aset/gbr/".$row['covers'];
+	$cover = $row['covers'];
+	$coverImage = '"aset/gbr/'.$cover.'"';
 	if(strlen($row['region']) > 35) {
 		$alamat = substr($row['region'], 0, 35)."...";
 	}else {
 		$alamat = $row['region'];
 	}
-	if(strlen($row['title']) > 39) {
-		$title = substr($row['title'], 0, 39)."...";
+	if(strlen($row['title']) > 37) {
+		$title = substr($row['title'], 0, 37)."...";
 	}else {
 		$title = $row['title'];
 	}
@@ -73,7 +74,7 @@ foreach ($all as $row) {
 					"<a href='./hotel/".$row['idhotel']."' target='_blank'>".
 					"<div id='hosted'>".
 						"<div class='wrap'>".
-							"<img src='aset/gbr/swissBelinnIcon.jpg' class='ke-kiri'>",
+							"<img src='aset/gbr/".$iconHotel."' class='ke-kiri'>",
 							"<div id='namaHotel'>Hosted by <b>".$namaHotel."</b></div>".
 						"</div>".
 					"</div>".

@@ -21,4 +21,5 @@ function kompres($source, $destination, $quality) {
 
 if(move_uploaded_file($tmp, $dir.$berkas)) {
 	kompres($dir.$berkas, $dir.$berkas, 50);
+	chmod($dir.$berkas, 777);
 }

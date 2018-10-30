@@ -43,7 +43,6 @@ body { background-color: #ecf0f1; }
 }
 .atas { position: absolute; }
 		#subCity { top: -2500px;position: absolute;right: 8.5%;transition: 0.5s; }
-		#subUser { right: 0%; }
 		.atas:hover { background: #cb0029;border: none; }
 		.atas:hover .sub { background: #cb0029;border: none; }
 		#adaSub:hover #subCity { top: 80px; }
@@ -56,10 +55,7 @@ body { background-color: #ecf0f1; }
 		#subCity li:hover {
 			background-color: #444;
 		}
-#subUser { right: 0px;width: 17.5%; }
-#subUser li {
-	width: 100%;
-}
+#subUser { right: 6.5%;width: 17.5%; }
 @media (max-width: 720px) {
 	.list {
 		float: none;

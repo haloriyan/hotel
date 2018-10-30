@@ -119,6 +119,9 @@ $cuisines = ["Indonesian","Internasional","Asian","Thai","Vegetarian","Western",
 				</nav>
 			</li>
 			<?php
+			if($sebagai == "hotel") { ?>
+				<button id="cta" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
+			<?php }
 		}
 		?>
 	</nav>
@@ -353,6 +356,9 @@ $cuisines = ["Indonesian","Internasional","Asian","Thai","Vegetarian","Western",
 		enableAutocomplete: true,
 	})
 	*/
+	klik("#cta", function() {
+		mengarahkan('../hotel/add-listing');
+	})
 	let redirect = btoa(pilih("#urlNow").value)
 	klik("#tblLogin", function() {
 		mengarahkan("../auth&r="+redirect)
