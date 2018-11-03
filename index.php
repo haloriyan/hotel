@@ -38,6 +38,12 @@ $urlNow = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "h
 			background-size: cover;
 			background-attachment: fixed;
 		}
+		<?php if($sebagai == "hotel") { ?>
+			#subCity {
+				right: 17.5%;
+			}
+			#subCat { right: 20%; }
+		<?php } ?>
 	</style>
 </head>
 <body>
@@ -186,12 +192,12 @@ munculPopup("#formLoginBaru", pengaya("#formLoginBaru", "top: 90px"))
 		mengarahkan("./explore&q="+q+"&cat="+cat)
 		return false
 	})
-	klik("#cta", function() {
-		mengarahkan('./hotel/add-listing');
-	})
 	klik("#tblLogin", () => {
 		let redirect = btoa(pilih("#urlNow").value)
 		mengarahkan("./auth&r="+redirect)
+	})
+	klik("#cta", function() {
+		mengarahkan('./hotel/add-listing');
 	})
 </script>
 

@@ -169,12 +169,12 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 		})
 	}
 	loadFilter()
-	klik("#cta", function() {
-		mengarahkan('./hotel/add-listing');
-	})
 	klik("#tblLogin", () => {
 		let urlNow = btoa(pilih("#urlNow").value)
 		mengarahkan("./auth&r="+urlNow)
+	})
+	klik("#cta", function() {
+		mengarahkan('./hotel/add-listing');
 	})
 </script>
 

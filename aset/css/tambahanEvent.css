@@ -95,10 +95,28 @@
 
 .sharer {
 	position: fixed;
-	bottom: 150px;right: 2.5%;
+	bottom: -10px;right: 2.5%;
 	width: 100px;
 	height: 300px;
 	z-index: 4;
+	text-align: right;
+}
+.sharer .tombol {
+	cursor: pointer;
+	width: 65px;
+	line-height: 65px;
+	font-size: 20px;
+	display: inline-block;
+	margin-bottom: 15px;
+	text-align: center;
+	border-radius: 90px;
+	color: #fff;
+}
+.tombol[tipe=facebook] {
+	background-color: #3b5998;
+}
+.tombol[tipe=twitter] {
+	background-color: #00aced;
 }
 
 @media (max-width: 720px) {

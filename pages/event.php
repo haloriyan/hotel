@@ -86,6 +86,11 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 <head>
 	<meta charset='UTF-8'>
 	<meta name='viewport' content='width=device-width, initial-scale = 1'>
+	<meta property="og:url"                content="<?php echo $urlNow; ?>" />
+	<meta property="og:type"               content="article" />
+	<meta property="og:title"              content="<?php echo $namaEvent; ?>" />
+	<meta property="og:description"        content="<?php substr($description, 0,150); ?>" />
+	<meta property="og:image"              content="http://localhost/hotel/aset/gbr/<?php echo $cover; ?>" />
 	<title><?php echo $namaEvent; ?> on Dailyhotels</title>
 	<link href='../aset/fw/build/fw.css' rel='stylesheet'>
 	<link href='../aset/fw/build/font-awesome.min.css' rel='stylesheet'>
@@ -94,6 +99,14 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 	<link href='../aset/css/style.profile.css' rel='stylesheet'>
 	<link href="../aset/css/tambahanIndex.css" rel="stylesheet">
 	<link href="../aset/css/tambahanEvent.css" rel="stylesheet">
+	<style>
+		<?php if($sebagai == "hotel") { ?>
+			#subCity {
+				right: 17.5%;
+			}
+			#subCat { right: 20%; }
+		<?php } ?>
+	</style>
 	<link rel="stylesheet" href="../aset/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="../aset/flatpickr/dist/themes/material_red.css">
 </head>
@@ -172,7 +185,6 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 	<?php } else { ?>
 	This event has expired
 	<?php } ?>
-	<button id="share"><i class="fa fa-share"></i></button>
 </div>
 
 <div class="bawah">
@@ -241,7 +253,8 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 
 <button id="phone" class="merah-2" aksi="on"><i class="fa fa-phone"></i></button>
 <div class="sharer">
-	<div class="tombol"></div>
+	<div class="tombol" tipe='facebook' onclick="ogShare()"><i class="fa fa-facebook"></i></div>
+	<div class="tombol" tipe='twitter' onclick="shareTwitter()"><i class="fa fa-twitter"></i></div>
 </div>
 
 <div class="bg"></div>
@@ -341,76 +354,14 @@ klik("#book", function() {
 
 <script type="text/javascript" src="//connect.facebook.net/en_US/sdk.js"></script>
 <script>
-/* facebook share start */
-// init FB
-window.fbAsyncInit = function() {
-	FB.init({
-		appId: '360288181377346',
-		autoLogAppEvents: true,
-		xfbml: true,
-		version: 'v3.1'
-	})
-}
-// load SDK
-(function(d, s, id){
-    var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) {return;}
-	js = d.createElement(s); js.id = id;
-	js.src = "https://connect.facebook.net/en_US/sdk.js";
-	fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-// func ogshare
-function ogShare() {
-	FB.ui({
-  		method: 'share',
-  		href: pilih("#urlNow").value,
-	}, function(response){
-		console.log(response)
-	});
-}
-
-submit("#formBook", function() {
-	let idevent = pilih("#idevent").value
-	let tgl = pilih("#tglBook").value
-	if(tgl == "0000-00-00" || tgl == "") {
-		return false
-	}
-	let qty = pilih("#qty").value
-	let book = "idevent="+idevent+"&tgl="+tgl+"&qty="+qty
-	pos("../aksi/booking/book.php", book, function() {
-		hilangPopup("#popupBook")
-		munculPopup("#suksesBook", pengaya("#suksesBook", "top: 230px"))
-		setTimeout(() => {
-			location.reload()
-		}, 1200)
-	})
-	return false
-})
-let redirect = btoa(pilih("#urlNow").value)
-function loadBoxQty() {
-	ambil("../aksi/event/loadBoxQty.php", (res) => {
-		tulis("#loadBoxQty", res)
-	})
-}
-function selectDate(val) {
-	let set = "namakuki=tglevent&value="+val+"&durasi=3666"
-	pos("../aksi/setCookie.php", set, () => {
-		loadBoxQty()
-	})
-}
 flatpickr("#tglBook", {
 	dateFormat: "Y-m-d",
 	minDate: pilih("#minDate").value,
 	maxDate: pilih("#maxDate").value,
 	disable: [<?php echo getDisabledDate(); ?>]
 })
-klik("#cta", function() {
-		mengarahkan('.,/hotel/add-listing');
-	})
-klik("#tblLogin", () => {
-	mengarahkan("../auth&r="+redirect)
-})
 </script>
+<script src="../aset/js/tambahanEvent.js"></script>
 <?php
 if(isset($_COOKIE['kukiLogin'])) {
 	echo '<script>

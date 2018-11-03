@@ -65,6 +65,14 @@ $cuisines = ["Indonesian","Internasional","Asian","Thai","Vegetarian","Western",
 	<link href="../aset/css/style.profile.css" rel="stylesheet">
 	<link href="../aset/css/style.explore.css" rel="stylesheet">
 	<link href="../aset/css/tambahanProfile.css" rel="stylesheet">
+	<style>
+		<?php if($sebagai == "hotel") { ?>
+			#subCity {
+				right: 17.5%;
+			}
+			#subCat { right: 20%; }
+		<?php } ?>
+	</style>
 </head>
 <body>
 
@@ -356,12 +364,12 @@ $cuisines = ["Indonesian","Internasional","Asian","Thai","Vegetarian","Western",
 		enableAutocomplete: true,
 	})
 	*/
-	klik("#cta", function() {
-		mengarahkan('../hotel/add-listing');
-	})
 	let redirect = btoa(pilih("#urlNow").value)
 	klik("#tblLogin", function() {
 		mengarahkan("../auth&r="+redirect)
+	})
+	klik("#cta", function() {
+		mengarahkan('../hotel/add-listing');
 	})
 </script>
 <script src="../aset/js/profileHotel.js"></script>
