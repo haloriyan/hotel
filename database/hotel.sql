@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 30, 2018 at 07:33 AM
+-- Generation Time: Nov 03, 2018 at 12:07 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -126,6 +126,13 @@ CREATE TABLE `event` (
   `added` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `event`
+--
+
+INSERT INTO `event` (`idevent`, `idhotel`, `id_resto`, `title`, `tagline`, `description`, `covers`, `region`, `alamat`, `tgl_mulai`, `tgl_akhir`, `tgl_posted`, `category`, `quota`, `price`, `status`, `hint`, `added`) VALUES
+(783857, 132213, 0, 'Makan Makan Bersama sama', 'mari makan', 'Tidak ada deskripsi\n\nhalo dunia', 'barelo (1).jpeg', 'Surabaya', 'Jalan Tunjungan No. 101', '2018-11-01', '2018-11-30', '2018-10-30 19:16:26', 'Others', 150, 200000, 1, 68, 1540901786);
+
 -- --------------------------------------------------------
 
 --
@@ -193,6 +200,14 @@ CREATE TABLE `hotel` (
   `added` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `hotel`
+--
+
+INSERT INTO `hotel` (`idhotel`, `nama`, `description`, `email`, `password`, `icon`, `cover`, `phone`, `website`, `city`, `address`, `coords`, `facility`, `status`, `added`) VALUES
+(132213, 'Swiss Belinn', 'No description', 'swissbelinn@hotel.id', 'inikatasandi', 'swiss-belinn-karawang.jpeg', 'swiss-belhotel.jpg', '6285321450680', 'https://dailyhotels.id', 'Surabaya', '', '-7.256317699999999|112.73762540000007', '', 1, 1540881304),
+(704507, 'Daily Hotels', '', 'redaksi@dailyhotels.id', 'inikatasandi', '', '', '', '', '', '', '', '', 0, 1540881470);
+
 -- --------------------------------------------------------
 
 --
@@ -235,6 +250,13 @@ CREATE TABLE `restoran` (
   `added` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `restoran`
+--
+
+INSERT INTO `restoran` (`idresto`, `idhotel`, `nama`, `description`, `icon`, `cover`, `city`, `phone`, `address`, `website`, `price`, `facility`, `cuisine`, `hours`, `serve`, `status`, `added`) VALUES
+(341207, 132213, 'Resto Belinn', 'No description', '', '', 'Surabaya', '6288226110939', 'Jl. Bumiarjo 5 No. 11', 'https://resto.dailyhotels.id', '|', '', '', '', 'Breakfast,Dinner', 1, 1540892564);
+
 -- --------------------------------------------------------
 
 --
@@ -247,6 +269,21 @@ CREATE TABLE `social` (
   `idresto` int(11) DEFAULT NULL,
   `type` varchar(25) NOT NULL,
   `url` varchar(125) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tokek`
+--
+
+CREATE TABLE `tokek` (
+  `idtokek` int(11) NOT NULL,
+  `tokeks` varchar(55) NOT NULL,
+  `user` varchar(55) NOT NULL,
+  `tipe` varchar(10) NOT NULL,
+  `expired` int(11) NOT NULL,
+  `created` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -282,6 +319,13 @@ CREATE TABLE `user` (
   `status` tinyint(1) NOT NULL,
   `registered` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`iduser`, `email`, `password`, `nama`, `telepon`, `alamat`, `city`, `status`, `registered`) VALUES
+(985974804, 'riyan.satria.619@gmail.com', 'inikatasandi', 'Riyan Satria', '', '', '', 0, 1540881757);
 
 --
 -- Indexes for dumped tables
@@ -358,6 +402,12 @@ ALTER TABLE `social`
   ADD KEY `idhotel` (`idhotel`);
 
 --
+-- Indexes for table `tokek`
+--
+ALTER TABLE `tokek`
+  ADD PRIMARY KEY (`idtokek`);
+
+--
 -- Indexes for table `track`
 --
 ALTER TABLE `track`
@@ -368,6 +418,16 @@ ALTER TABLE `track`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`iduser`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tokek`
+--
+ALTER TABLE `tokek`
+  MODIFY `idtokek` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

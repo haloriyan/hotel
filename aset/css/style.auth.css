@@ -78,3 +78,33 @@ body {
 #formRegPublic,#formRegMarcom,#suksesRegMarcom,#suksesRegPublic {
 	display: none;
 }
+
+.content {
+	position: absolute;
+	top: 150px;left: 30%;right: 30%;
+	background-color: #fff;
+	color: #555;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+}
+.content .wrap { margin: 5%; }
+.content p {
+	font-size: 18px;
+	font-family: OLight;
+	line-height: 35px;
+}
+
+.content .box {
+	border-bottom: 2px solid #ccc;
+	font-size: 17px;
+	transition: 0.4s;
+}
+.content .box:focus {
+	border-bottom: 2px solid #cb0023;
+}
+.content .note {
+	background-color: #2ecc71;
+	color: #fff;
+	padding: 15px 25px;
+	margin-top: 15px;
+}
