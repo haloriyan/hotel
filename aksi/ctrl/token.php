@@ -23,10 +23,13 @@ class token extends hotel {
 		}else {
 			$nama = hotel::get($email, 'nama');
 		}
+		if($nama == "") {
+			setcookie('kukiForgot', 'Email not registered yet', time() + 45, '/');
+		}else {
 			$q = $this->tabel('token')
 							->tambah([
 								'idtoken' => null,
-								'token'		=> 'y',
+								'token'		=> $this->generateToken(),
 								'user'		=> $email,
 								'tipe'		=> $tipe,
 								'expired'	=> time() + 3600,
@@ -34,17 +37,13 @@ class token extends hotel {
 							])
 							->eksekusi();
 			setcookie('kukiForgot', 'Instruction for setting up your password was sent to your email. Please check immediately', time() + 45, '/');
+		}
 		
 		return $q;
 	}
 	public function deleteToken($id) {
 		$del = $this->tabel('token')->hapus()->dimana(['idtoken' => $id])->eksekusi();
 		return $del;
-	}
-	public function contoh() {
-		$q = controller::tabel('token')->tambah(['idtoken' => rand(1, 99)])->eksekusi();
-		setcookie('kukiForgot', 'sukses', time() + 35, '/');
-		return $q;
 	}
 }
 

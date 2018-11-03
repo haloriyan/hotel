@@ -46,8 +46,8 @@
 		}
 		let forgot = "email="+email+"&tipe="+hotel
 		console.log(forgot)
-		pos("aksi/forgotPassword.php", forgot, () => {
-			ambil("aksi/forgotPassword.php", (res) => {
+		pos("aksi/user/forgotPassword.php", forgot, () => {
+			ambil("aksi/user/forgotPassword.php", (res) => {
 				$("#notif").tulis(res)
 			})
 		})

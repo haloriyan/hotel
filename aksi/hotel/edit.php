@@ -44,4 +44,13 @@ if($bag == "detil") {
 		}
 	}
 	$hotel->change($idhotel, "facility", $baru);
+}else if($bag == "pwd") {
+	$pwd = $_POST['pwd'];
+	$id = $_POST['id'];
+	$token = $_POST['token'];
+	
+	$hotel->change($id, "password", $pwd);
+
+	// delete token
+	$ctrl->tabel('token')->hapus()->dimana(['token' => $token])->eksekusi();
 }
