@@ -1,7 +1,7 @@
 <?php
 include '../ctrl/hotel.php';
 
-$id = rand(1, 999999);
+$id = null;
 $nama = $_POST['name'];
 $email = $_POST['email'];
 $pwd = $_POST['pwd'];

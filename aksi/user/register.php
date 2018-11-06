@@ -1,7 +1,7 @@
 <?php
 include '../ctrl/user.php';
 
-$id = rand(1, 999999999);
+$id = null;
 $name = $_POST['name'];
 $email = $_POST['email'];
 $pwd = $_POST['pwd'];

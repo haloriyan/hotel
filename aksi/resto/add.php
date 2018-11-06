@@ -1,7 +1,7 @@
 <?php
 include '../ctrl/resto.php';
 
-$id = rand(1, 999999);
+$id = null;
 $idhotel = $hotel->get($hotel->sesi(), "idhotel");
 $nama = $_POST['name'];
 $added = time();

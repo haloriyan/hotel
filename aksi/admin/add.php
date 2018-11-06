@@ -1,7 +1,7 @@
 <?php
 include '../ctrl/admin.php';
 
-$idadmin = rand(1, 999);
+$idadmin = null;
 $username = $_POST['username'];
 $pwd = $_POST['pwd'];
 $time = time();
