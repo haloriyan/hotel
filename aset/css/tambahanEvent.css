@@ -50,80 +50,17 @@
 }
 .bg { z-index: 6; }
 .popup { z-index: 16; }
-#phone {
-	position: fixed;
-	bottom: 60px;right: 2.5%;
-	width: 60px;
-	height: 60px;
-	font-size: 22px;
-	border-radius: 90px;
-	border: none;
-	transition: 0.44s;
-	cursor: pointer;
-	z-index: 4;
-}
-#phone[aksi=off] { background-color: #444; }
-#phone:focus { outline: none; }
-
-.listContact {
-	position: fixed;
-	bottom: 125px;right: 2.5%;
-	right: -25%;
-	z-index: 15;
-	width: 15%;
-}
-.listContact a { text-decoration: none; }
-.listContact li{
-	background-color: #fff;
-	color: #555;
-	list-style: none;
-	margin-top: 20px;
-	margin-bottom: 15px;
-	line-height: 55px;
-	border-radius: 6px;
-	position: relative;
-	left: 300px;
-	cursor: pointer;
-	padding: 1px 20px;
-	transition: 0.4s;
-}
-.listContact li:hover { color: #cb0023; }
-.listContact #icon {
-	display: inline-block;
-	width: 30px;
-}
-
-.sharer {
-	position: fixed;
-	bottom: -10px;right: 2.5%;
-	width: 100px;
-	height: 300px;
-	z-index: 4;
-	text-align: right;
-}
-.sharer .tombol {
-	cursor: pointer;
-	width: 65px;
-	line-height: 65px;
-	font-size: 20px;
-	display: inline-block;
-	margin-bottom: 15px;
-	text-align: center;
-	border-radius: 90px;
-	color: #fff;
-}
-.tombol[tipe=facebook] {
-	background-color: #3b5998;
-}
-.tombol[tipe=twitter] {
-	background-color: #00aced;
-}
 
 @media (max-width: 720px) {
 	.cta {
-		top: 290px;left: 35%;
+		top: 290px;left: 40%;
+		text-align: left;
 	}
 	.cta li,.cta button {
 		padding: 20px 25px;
+	}
+	.cta li {
+		padding: 0px;
+		margin-bottom: 15px;
 	}
 }

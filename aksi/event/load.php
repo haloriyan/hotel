@@ -65,7 +65,7 @@ foreach ($all as $row) {
 					"<a href='./event/".$row['idevent']."'>".
 					"<div class='wrap'>".
 						"<div id='keterangan'>".
-						"<div class='tgl'><i class='fa fa-calendar'></i> &nbsp; ".$row['tgl_mulai']."</div>".
+							"<div class='tgl'><i class='fa fa-calendar'></i> &nbsp; ".$row['tgl_mulai']."</div>".
 							"<h3>".$title."</h3>".
 							"<p><i class='fa fa-map-marker'></i> &nbsp; ".$alamat."</p>".
 						"</div>".

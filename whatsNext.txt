@@ -1,0 +1,4 @@
+- User kalau wrong password redirect ke index (public)
+- Di public use form (auth) ga ada tbl back to login
+- Ditambahi muter muter pas proses klik btn
+- Delete album ga delete gambar (file)

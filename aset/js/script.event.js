@@ -42,17 +42,18 @@ window.addEventListener("scroll", function() {
 		pilih(".atas").setAttribute("class", "atas")
 	}
 })
-klik("#tblMenu", function() {
-	let tbl = pilih("#tblMenu")
-	let aksi = tbl.getAttribute("aksi")
-	if(aksi == "bkMenu") {
-		pengaya(".menu", "left: 0%")
-		tbl.setAttribute("aksi", "xMenu")
-	}else {
-		pengaya(".menu", "left: 100%")
-		tbl.setAttribute("aksi", "bkMenu")
-	}
-})
+// klik("#tblMenu", function() {
+// 	alert('y')
+// 	let tbl = pilih("#tblMenu")
+// 	let aksi = tbl.getAttribute("aksi")
+// 	if(aksi == "bkMenu") {
+// 		pengaya(".menu", "left: 0%")
+// 		tbl.setAttribute("aksi", "xMenu")
+// 	}else {
+// 		pengaya(".menu", "left: 100%")
+// 		tbl.setAttribute("aksi", "bkMenu")
+// 	}
+// })
 tekan("Escape", function() {
 	hilang(".bg")
 	hilang("#notif")

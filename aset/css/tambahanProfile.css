@@ -128,6 +128,8 @@
 .myCuisine:hover { background-color: #cb0023;color: #fff; }
 .myCuisine:hover .fa-check { color: #2ecc71; }
 
+.sharer,#phone { display: none;z-index: 6; }
+
 @media (max-width: 720px) {
 	.cta {
 		top: 290px;left: 35%;

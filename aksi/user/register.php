@@ -12,4 +12,12 @@ if($name == "") {
 	$added = time();
 
 	$user->register($id, $email, $pwd, $name, $added);
+
+	$to = $email;
+	$subjek = "Welcome to Dailyhotels";
+	$header = "From: no-reply@dailyhotels.id";
+	$header .= "Content-Type: text/html; charset=UTF-8";
+	$message = "";
+
+	@mail($to, $subjek, $message, $header);
 }

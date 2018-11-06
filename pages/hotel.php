@@ -12,6 +12,7 @@ $cover = $hotel->get($idhotel, "cover");
 $website = $hotel->get($idhotel, "website");
 $description = $hotel->get($idhotel, "description");
 $coords = $hotel->get($idhotel, "coords");
+$hotelPhone = $hotel->get($idhotel, "phone");
 
 $c = explode("|", $coords);
 $lat = $c[0];
@@ -131,8 +132,20 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 
 <div class="cta">
 	<input type="hidden" id='idevent' value='<?php echo $idhotel; ?>'>
-	<a href='<?php echo $website; ?>' target='_blank' onclick='track(3)'><button id="book" class="merah-2">Book Hotel</button></a>
+	<a href='<?php echo $website; ?>' target='_blank' onclick='track(3)'><button id="book" class="merah-2">Visit Website</button></a>
 	<button id="share"><i class="fa fa-share"></i></button>
+</div>
+
+<button id="phone" class="merah-2" aksi="on"><i class="fa fa-phone"></i></button>
+<div class="sharer">
+	<div class="tombol" tipe='facebook' onclick="ogShare()"><i class="fa fa-facebook"></i></div>
+	<div class="tombol" tipe='twitter' onclick="shareTwitter()"><i class="fa fa-twitter"></i></div>
+</div>
+
+<div class="listContact">
+	<input type="hidden" id="telepon" value="<?php echo $hotelPhone; ?>">
+	<a href="https://api.whatsapp.com/send?phone=<?php echo $hotelPhone; ?>" target="_blank" onclick='track(1)'><li id="wa"><div id="icon"><i class="fa fa-whatsapp"></i></div> Whatsapp</li></a>
+	<a href="tel:+<?php echo $hotelPhone; ?>" onclick="track(2)"><li id="call"><div id="icon"><i class="fa fa-phone"></i></div> Call</li></a>
 </div>
 
 <div class="bawah">
@@ -275,14 +288,6 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 									 "</a>";
 							}
 							?>
-							<!--
-							<a href="#">
-								<li>
-									<img src="../aset/gbr/download (1).jpg" class="ke-kiri">
-									<h3 class="ke-kiri">Hisana Pret Ciken</h3>
-								</li>
-							</a>
-							-->
 						</div>
 					</div>
 				</div>
@@ -335,6 +340,41 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 <script src="../aset/js/locationpicker.jquery.min.js"></script>
 <script src="../aset/js/profileHotel.js"></script>
 <script>
+	function munculContact() {
+		muncul(".bg")
+		pengaya(".listContact", "right: 2.5%")
+		pengaya("#wa", "left: 0px")
+		setTimeout(function() {
+			pengaya("#call", "left: 0px")
+		}, 400)
+	}
+	function hilangContact() {
+		pengaya("#wa", "left: 300px")
+		setTimeout(function() {
+			pengaya("#call", "left: 300px")
+		}, 400)
+		setTimeout(function() {
+			hilang(".bg")
+			pengaya(".listContact", "right: -25%")
+		}, 750)
+	}
+	tekan("Escape", () => {
+		hilangContact()
+		hilang(".bg")
+		hilang(".sharer")
+		hilang("#phone")
+	})
+
+	klik("#phone", function() {
+		let aksi = pilih("#phone").getAttribute("aksi")
+		if(aksi == "on") {
+			munculContact()
+			pilih("#phone").setAttribute("aksi", "off")
+		}else {
+			hilangContact()
+			pilih("#phone").setAttribute("aksi", "on")
+		}
+	})
 	function track(tipe) {
 		let idevent = pilih("#idevent").value
 		let param = "tipe="+tipe+"&idevent="+idevent
@@ -342,6 +382,14 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 			console.log('tracked')
 		})
 	}
+	function munculShare() {
+		muncul(".bg")
+		muncul(".sharer")
+		muncul("#phone")
+	}
+	klik("#share", () => {
+		munculShare()
+	})
 	let redirect = btoa(pilih("#urlNow").value)
 	$('#myMaps').locationpicker({
 		location: {

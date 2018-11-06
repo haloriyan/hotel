@@ -19,6 +19,15 @@
 	width: 20%;right: 10%;
 }
 
+@media (max-width: 720px) {
+	.sub {
+		position: static;
+		width: 400px;
+		height: 500px;
+		background-color: blue;
+	}
+}
+
 .bagLogin {
 	float: left;
 }
