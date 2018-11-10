@@ -36,7 +36,7 @@ foreach($load as $row) {
                 echo "";
             }
             echo
-         "</div>";
+         "</div></div>";
 }
 echo "<div class='bag-tombol'>";
                 if($public != 1) {
@@ -44,7 +44,7 @@ echo "<div class='bag-tombol'>";
                 <button class='merah-2' onclick='addPhoto(this.value, "<?php echo $nama; ?>")' value='<?php echo $idalbum; ?>'>Add Photo</button>
             <?php
                 }else {
-                    echo "<button class='merah-2' onclick='loadGaleri()'>See other album</button>";
+                    echo "<button class='merah-2' onclick='loadGaleri()'>See other albums</button>";
                 }
             echo
         "</div>".

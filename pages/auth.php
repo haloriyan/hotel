@@ -51,7 +51,7 @@ if($aksi == "logout") {
 				<input type="password" class="box" id="pwdLogPublic" required autocomplete="off">
 				<div class="bagTombol">
 					<div class="bag bag-4">
-						<button class="tbl">LOGIN</button>
+						<button class="tbl" id="tblLogPublic">LOGIN</button>
 					</div>
 					<div class="bag bag-3" id="optLogin">
 						or <a href="#" id="linkRegPublic">register</a>
@@ -68,7 +68,7 @@ if($aksi == "logout") {
 				<input type="password" class="box" id="pwdRegPublic">
 				<div class="bagTombol">
 					<div class="bag bag-4">
-						<button class="tbl">REGISTER</button>
+						<button class="tbl" id="tblRegPublic">REGISTER</button>
 					</div>
 					<div class="bag bag-3" id="optLogin">
 						or <a href="#" id="linkLogPublic">login</a>
@@ -77,6 +77,9 @@ if($aksi == "logout") {
 			</form>
 			<form id="suksesRegPublic">
 				<p id="loadSuksesPublic"></p>
+				<div class="bagTombol" id="optLogin">
+					<a href="#" id="linkLogMarcom2">back to login</a>
+				</div>
 			</form>
 		</div>
 	</div>
@@ -90,7 +93,7 @@ if($aksi == "logout") {
 				<input type="password" class="box" id="pwdLogMarcom" required autocomplete="off">
 				<div class="bagTombol">
 					<div class="bag bag-5">
-						<button class="tbl">LOGIN</button>
+						<button class="tbl" id="tblLogMarcom">LOGIN</button>
 					</div>
 					<div class="bag bag-3" id="optLogin">
 						or <a href="#" id="linkRegMarcom">register</a>
@@ -99,7 +102,7 @@ if($aksi == "logout") {
 			</form>
 			<form id="formRegMarcom">
 				<h2>Register as Hotel</h2>
-				<div>Name</div>
+				<div>Hotel name</div>
 				<input type="text" class="box" id="nameRegMarcom" required autocomplete="off">
 				<div>E-Mail</div>
 				<input type="email" class="box" id="emailRegMarcom" required autocomplete="off">
@@ -107,7 +110,7 @@ if($aksi == "logout") {
 				<input type="password" class="box" id="pwdRegMarcom" required autocomplete="off">
 				<div class="bagTombol">
 					<div class="bag bag-5">
-						<button class="tbl">REGISTER</button>
+						<button class="tbl" id="tblRegMarcom">REGISTER</button>
 					</div>
 					<div class="bag bag-3" id="optLogin">
 						or <a href="#" id="linkLogMarcom">login</a>
@@ -186,6 +189,7 @@ if($aksi == "logout") {
 	}
 
 	submit("#formRegPublic", () => {
+		tulis("#tblRegPublic", "<i class='fa fa-spinner'></i> registering...")
 		let name = pilih("#nameRegPublic").value
 		let email = pilih("#emailRegPublic").value
 		let pwd = pilih("#pwdRegPublic").value
@@ -197,6 +201,7 @@ if($aksi == "logout") {
 		}
 
 		pos("aksi/user/register.php", reg, () => {
+			tulis("#tblRegPublic", "REGISTER")
 			// hilangkan
 			pilih("#nameRegPublic").value = ''
 			pilih("#emailRegPublic").value = ''
@@ -211,6 +216,7 @@ if($aksi == "logout") {
 		return false
 	})
 	submit("#formLoginPublic", () => {
+		tulis("#tblLogPublic", "<i class='fa fa-spinner'></i> logging in...")
 		let email = pilih("#emailLogPublic").value
 		let pwd = pilih("#pwdLogPublic").value
 		let log = "email="+email+"&pwd="+pwd
@@ -218,6 +224,7 @@ if($aksi == "logout") {
 			//
 		})
 		pos("aksi/user/login.php", log, () => {
+			tulis("#tblLogPublic", "LOGIN")
 			if(redirect == "" || redirect == 0) {
 				mengarahkan("./my")
 			}else {
@@ -227,6 +234,7 @@ if($aksi == "logout") {
 		return false
 	})
 	submit("#formRegMarcom", () => {
+		tulis("#tblRegMarcom", "<i class='fa fa-spinner'></i> registering...")
 		let name = pilih("#nameRegMarcom").value
 		let email = pilih("#emailRegMarcom").value
 		let pwd = pilih("#pwdRegMarcom").value
@@ -244,6 +252,7 @@ if($aksi == "logout") {
 
 			hilang("#formRegMarcom")
 			muncul("#suksesRegMarcom")
+			tulis("#tblRegMarcom", "REGISTER")
 			setTimeout(function() {
 				ambil("aksi/hotel/register.php", (res) => {
 					tulis("#loadSuksesMarcom", res)
@@ -253,10 +262,12 @@ if($aksi == "logout") {
 		return false
 	})
 	submit("#formLoginMarcom", () => {
+		tulis("#tblLogMarcom", "<i class='fa fa-spinner'></i> logging in...")
 		let email = pilih("#emailLogMarcom").value
 		let pwd = pilih("#pwdLogMarcom").value
 		let log = "email="+email+"&pwd="+pwd
 		pos("aksi/hotel/login.php", log, () => {
+			tulis("#tblLogMarcom", "LOGIN")
 			mengarahkan("./hotel/dashboard")
 		})
 		return false
@@ -266,7 +277,7 @@ if($aksi == "logout") {
 <?php
 if($cookieNotif != "") {
 	echo '<script>
-munculPopup("#notif", pengaya("#notif", "top: 170px"))
+munculPopup("#notif", pengaya("#notif", "top: 190px"))
 </script>';
 }
 ?>

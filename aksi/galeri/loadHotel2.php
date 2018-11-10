@@ -23,11 +23,12 @@ $totMyAlbum = count($myAlbum);
 
 function loadImage($my) {
     foreach($my as $row) {
+        $idAlbum = $row['idalbum'];
         $gambar = $row['gambar'];
         if($gambar == "") {
             return "No any image on this album";
         }else {
-            return "<img src='../aset/gbr/".$gambar."'>";
+            return "<li onclick='loadAlbum(this.value)' value='".$idAlbum."' style='all: unset;list-style: none;'><img src='../aset/gbr/".$gambar."'></li>";
         }
     }
 }

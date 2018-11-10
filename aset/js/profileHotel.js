@@ -35,6 +35,7 @@ function fadeOut(el) {
 	}, 50)
 }
 function seeImage(val) {
+	console.log(val)
 	munculPopup("#popupSeeImage", pengaya("#popupSeeImage", "top: 40px"))
 	pilih("#seeImage").setAttribute("src", "../aset/gbr/"+val)
 }

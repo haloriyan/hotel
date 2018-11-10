@@ -143,7 +143,7 @@ class controller {
 	}
 
 	// PLEASE DONT EDIT THIS
-	public function new($name) {
+	public function newCtrl($name) {
 		$file = fopen("../ctrl/".$name.".php", "w");
 		$y = "<?php
 include 'controller.php';

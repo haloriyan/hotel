@@ -3,6 +3,7 @@ include 'aksi/ctrl/social.php';
 
 setcookie('idhotel', $idhotel, time() + 3900, "/");
 setcookie('idresto', '', time() + 1, "/");
+setcookie('public', '1', time() + 3699, "/");
 
 $namaHotel = $hotel->get($idhotel, "nama");
 $address = $hotel->get($idhotel, "address");
@@ -163,6 +164,7 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 				<a href="#profiles"><li id="showprofiles" aktif="ya">Profile</li></a>
 				<!-- <a href="#loadReviews"><li id="showreviews">Reviews <div class="tot">0</div></li></a> -->
 				<!-- <a href="#"><li id="showreviews">Reviews <div class="tot">0</div></li></a> -->
+				<a href="#loadReviews"><li id="showreviews">Reviews <div class="tot">0</div></li></a>
 				<a href="#explores"><li id="showexplores">Explore <div class="tot"><?php echo $totExplore; ?></div></li></a>
 				<!-- <a href="#"><li id="showrents">Rent <div class="tot">4</div></li></a> -->
 			</div>
@@ -328,14 +330,14 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 			</h3>
 			<br />
 			<div class="rata-tengah">
-				
+				<img src="" id="seeImage">
 			</div>
 		</div>
 	</div>
 </div>
 
 <script src="../aset/js/embo.js"></script>
-<script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyDqYJGuWw9nfoyPG8d9L1uhm392uETE-mA'></script>
+<script type="text/javascript" src='https://maps.google.com/maps/api/js?libraries=places&key=AIzaSyDqYJGuWw9nfoyPG8d9L1uhm392uETE-mA'></script>
 <script src="../aset/js/jquery-3.1.1.js"></script>
 <script src="../aset/js/locationpicker.jquery.min.js"></script>
 <script src="../aset/js/profileHotel.js"></script>

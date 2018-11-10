@@ -1,6 +1,16 @@
 <?php
 include '../ctrl/hotel.php';
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require '../../aset/phpmailer/Exception.php';
+require '../../aset/phpmailer/PHPMailer.php';
+require '../../aset/phpmailer/SMTP.php';
+
+$mail = new PHPMailer(true);
+
+$id = null;
 $nama = $_POST['name'];
 if($nama == "") {
   echo $_COOKIE['msgRegister'];
@@ -126,14 +136,25 @@ $body = '<!DOCTYPE html>
     </html>
 ';
 
-$to = $email;
-$subjek = "Email Verification";
-$headers = "From: " . strip_tags($_POST['req-email']) . "\r\n";
-$headers .= "Reply-To: ". strip_tags($_POST['req-email']) . "\r\n";
-$headers .= "CC: no-reply@dailyhotels.id\r\n";
-$headers .= "MIME-Version: 1.0\r\n";
-$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-$message = $body;
+  // Server setting
+  $mail->SMTPDebug = 2;
+  $mail->isSMTP();
+  $mail->Host     = 'mail.dailyhotels.id';
+  $mail->SMTPAuth = true;
+  $mail->Username = 'no-reply@dailyhotels.id';
+  $mail->Password = 'inikatasandi2908';
+  $mail->SMTPSecure = 'ssl';
+  $mail->Port = 465;
 
-mail($to, $subjek, $message, $headers);
+  $to = $email;
+  $subjek = "Email Verification";
+  $message = $body;
+
+  $mail->setFrom('no-reply@dailyhotels.id', 'Daily Hotels');
+  $mail->addAddress($to, $nama);
+
+  $mail->isHTML(true);
+  $mail->Subject = $subjek;
+  $mail->Body = $message;
+  $mail->send();
 }
