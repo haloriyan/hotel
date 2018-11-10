@@ -142,7 +142,7 @@ $body = '<!DOCTYPE html>
   $mail->Host     = 'mail.dailyhotels.id';
   $mail->SMTPAuth = true;
   $mail->Username = 'no-reply@dailyhotels.id';
-  $mail->Password = 'inikatasandi2908';
+  $mail->Password = 'Inikatasandi2908';
   $mail->SMTPSecure = 'ssl';
   $mail->Port = 465;
 
