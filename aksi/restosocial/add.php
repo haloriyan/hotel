@@ -3,7 +3,7 @@ include '../ctrl/social.php';
 
 $sesi = $resto->sesi();
 
-$id = rand(1,999999);
+$id = null;
 $idresto = $resto->info($sesi, "idresto");
 $type = $_POST['type'];
 $url = $_POST['url'];

@@ -17,7 +17,7 @@ if($pakaiAkun == "resto") {
     $idresto = 0;
 }
 
-$id = rand(1, 999999);
+$id = null;
 $idalbum = $_POST['idalbum'];
 $tipe = $_POST['tipe'];
 $gambar = $_POST['gambar'];

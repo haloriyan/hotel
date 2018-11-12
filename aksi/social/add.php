@@ -3,7 +3,7 @@ include '../ctrl/social.php';
 
 $sesi = $hotel->sesi();
 
-$id = rand(1,999999);
+$id = null;
 $idhotel = $hotel->get($sesi, "idhotel");
 $type = $_POST['type'];
 $url = $_POST['url'];

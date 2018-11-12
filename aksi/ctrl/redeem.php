@@ -28,7 +28,7 @@ class redeem extends booking {
 		date_default_timezone_set('Asia/Jakarta');
 		$q = $this->tabel("redeem")
 				  ->tambah([
-					  "idredeem" 	=> rand(1, 999999),
+					  "idredeem" 	=> null,
 					  "idhotel"	 	=> $idhotel,
 					  "id_resto" 	=> $idresto,
 					  "idevents" 	=> $idevent,

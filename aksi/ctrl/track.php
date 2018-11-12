@@ -18,10 +18,9 @@ class track extends booking {
 						 ])->eksekusi();
 		}else {
 			// ga pernah
-			$idtrack = rand(1, 999999999);
 			$ins = $this->tabel("track")
 						->tambah([
-							"idtrack" => $idtrack,
+							"idtrack" => null,
 							"idevent" => $idevent,
 							"iduser"  => $iduser,
 							"tipe"	  => $tipe,

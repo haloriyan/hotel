@@ -30,7 +30,7 @@ echo $hotel->validate($email);
 		<div class="rata-tengah" style="margin-top: 35px;margin-bottom: 45px;">
 			<i class="fa fa-check" style="font-size: 45px;"></i>
 			<p>
-				Your account was verified. Click <a href="./hotel/login">here</a> for login
+				Your account was verified. Click <a href="./auth">here</a> for login
 			</p>
 		</div>
 	</div>

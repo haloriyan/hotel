@@ -59,7 +59,7 @@ class galeri extends resto {
 	public function create($idHotel, $idResto, $nama) {
 		$q = $this->tabel("album")
 				  ->tambah([
-					  "idalbum" => rand(1, 99999),
+					  "idalbum" => null,
 					  "idhotel" => $idHotel,
 					  "id_resto" => $idResto,
 					  "nama" => $nama,

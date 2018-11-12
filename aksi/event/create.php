@@ -19,7 +19,7 @@ if($pakaiAkun == "resto") {
     $idresto = 0;
 }
 
-$id 			= rand(1, 999999);
+$id 			= null;
 $title 			= $_POST['title'];
 $tagline 		= $_POST['tagline'];
 $description 	= $_POST['description'];
