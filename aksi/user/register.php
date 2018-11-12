@@ -67,7 +67,7 @@ if($name == "") {
   $message = $body;
 
   $mail->setFrom('no-reply@dailyhotels.id', 'Daily Hotels');
-  $mail->addAddress($to, $nama);
+  $mail->addAddress($to, $name);
 
   $mail->Subject = $subjek;
   $mail->Body = $message;
