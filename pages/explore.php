@@ -106,7 +106,7 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 			</li>
 			<?php
 			if($sebagai == "hotel") { ?>
-				<button id="cta" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
+				<button id="cta" class="tbl" style="display: inline-block;margin-top: 18px;"><i class="fa fa-plus-circle"></i> Add Listing</button>
 			<?php }
 		}
 		?>
@@ -169,12 +169,12 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 		})
 	}
 	loadFilter()
+	klik("#cta", function() {
+		mengarahkan('./hotel/add-listing');
+	})
 	klik("#tblLogin", () => {
 		let urlNow = btoa(pilih("#urlNow").value)
 		mengarahkan("./auth&r="+urlNow)
-	})
-	klik("#cta", function() {
-		mengarahkan('./hotel/add-listing');
 	})
 </script>
 

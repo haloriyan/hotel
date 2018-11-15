@@ -13,6 +13,9 @@ $city = $hotel->get($sesi, "city");
 $web = $hotel->get($sesi, "website");
 $description = $hotel->get($sesi, "description");
 $coords = $hotel->get($sesi, "coords");
+if($coords == "") {
+	$defaultCoords = "(This is default address)";
+}
 
 $c = explode("|", $coords);
 $lat = $c[0];
@@ -47,14 +50,6 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 		.atas { z-index: 1; }
 		.bg { z-index: 4; }
 		.popup { z-index: 15;border-radius: 5px; }
-		#saved {
-			padding: 15px 35px;
-			background: rgba(76, 175, 80, 0.85);
-			color: #fff;
-			margin-bottom: -35px;
-			margin-top: 10px;
-			display: none;
-		}
 	</style>
 </head>
 <body>
@@ -107,8 +102,10 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 			<div><?php echo $phone; ?></div>
 			<div class="isi">Website :</div>
 			<div><a href='<?php echo $web; ?>' target='_blank'><?php echo $web; ?></a></div>
-			<div class="isi">Address :</div>
+			<div class="isi">Address : <?php echo $defaultCoords; ?></div>
 			<input id="addressStaticInput" class="box" style="border: none;background: none;" readonly>
+			<input type="hidden" id="latInputStatic" value="<?php echo $lat; ?>">
+			<input type="hidden" id="lngInputStatic" value="<?php echo $lng; ?>">
 			<div id="addressStatic" style="height: 300px"></div>
 			<div class="isi">Icon</div>
 			<?php if($icon != '') { ?>
@@ -200,12 +197,34 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 	</div>
 </div>
 
-<script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyDqYJGuWw9nfoyPG8d9L1uhm392uETE-mA'></script>
+<script type="text/javascript" src='https://maps.google.com/maps/api/js?libraries=places&key=AIzaSyDqYJGuWw9nfoyPG8d9L1uhm392uETE-mA'></script>
 <script src="../aset/js/jquery-3.1.1.js"></script>
 <script src="../aset/js/locationpicker.jquery.min.js"></script>
 <script src="../aset/js/insert.js"></script>
 <script src="../aset/js/embo.js"></script>
 <script>
+	function getPlaceName(setLat, setLng) {
+		let geocoder = new google.maps.Geocoder
+		let latLng = { lat: parseFloat(setLat), lng: parseFloat(setLng) }
+
+		geocoder.geocode({
+			'location': latLng,
+		}, function(results, status) {
+			if(status === 'OK') {
+				let formattedAddr = results[0].formatted_address
+				$("#addressStaticInput").val(formattedAddr)
+				$("#address").val(formattedAddr)
+			}else {
+				// alert('No result foound')
+			}
+		})
+	}
+	let setLat = $("#latInputStatic").val()
+	let setLng = $("#lngInputStatic").val()
+	setTimeout(function() {
+		getPlaceName(setLat, setLng)
+	}, 700)
+
 	$('#myMaps').locationpicker({
 		location: {
 			latitude: <?php echo $lat; ?>,
@@ -215,10 +234,10 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 		inputBinding: {
 			latitudeInput: $('#latInput'),
 			longitudeInput: $('#lngInput'),
-			locationNameInput: $('#address')
+			locationNameInput: $("#address")
 		},
 		onchanged: function() {
-			//
+			getPlaceName($('#latInput').val(), $('#lngInput').val())
 		},
 		enableAutocomplete: true,
 	})
@@ -226,9 +245,6 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 		location: {
 			latitude: <?php echo $lat; ?>,
 			longitude: <?php echo $lng; ?>
-		},
-		inputBinding: {
-			locationNameInput: $('#addressStaticInput')
 		},
 		radius: 0,
 		onchanged: function() {
@@ -253,7 +269,7 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 	}
 	$('#formDetil').submit(function() {
 		let phone = $('#phone').val()
-		let address = $('#address').val()
+		let address = encodeURIComponent($('#address').val())
 		let city = $('#city').val()
 		if(city == 'other') {
 			city = $('#citys').val()
@@ -265,10 +281,25 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 
 		let icons = $('#namaIcon').val()
 		let cover = $('#namaCover').val()
-		let detil 	= "phone="+phone+"&bag=detil&city="+city+"&web="+web+"&description="+description+"&icon="+icons+"&cover="+cover+"&lat="+latitude+"&lng="+longitude
-		if(phone == "" || address == "" || web == "" || city == "") {
+		let detil 	= "phone="+phone+"&bag=detil&city="+city+"&web="+web+"&description="+description+"&icon="+icons+"&cover="+cover+"&lat="+latitude+"&lng="+longitude+"&address="+address
+		if(phone == "") {
 			munculPopup("#notif", pengaya("#notif", "top: 225px"))
-			tulis("#isiNotif", "All field must be filled")
+			tulis("#isiNotif", "Phone must be filled")
+			return false
+		}
+		if(address == "") {
+			munculPopup("#notif", pengaya("#notif", "top: 225px"))
+			tulis("#isiNotif", "Address must be filled")
+			return false
+		}
+		if(web == "") {
+			munculPopup("#notif", pengaya("#notif", "top: 225px"))
+			tulis("#isiNotif", "Website must be filled")
+			return false
+		}
+		if(city == "") {
+			munculPopup("#notif", pengaya("#notif", "top: 225px"))
+			tulis("#isiNotif", "City must be filled")
 			return false
 		}
 
@@ -316,6 +347,7 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 
 		var file = $(this)[0].files[0];
 		var upload = new Upload(file);
+		console.log(nama+' was uploaded')
 		upload.doUpload();
 	})
 	$("#covers").on("change", function() {
@@ -338,7 +370,7 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 
 	function sukses() {
 		$(function() {
-			//
+			console.log('uploaded')
 		});
 	}
 

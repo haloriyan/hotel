@@ -212,7 +212,7 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 						<h3><i class="fa fa-map-marker"></i> &nbsp; Location</h3>
 						<input type="hidden" id="latInput">
 						<input type="hidden" id="lngInput">
-						<textarea id="address" class="box" readonly></textarea>
+						<textarea id="address" class="box" readonly><?php echo $address; ?></textarea>
 						<div id="myMaps" style="height: 300px;"></div>
 					</div>
 				</div>
@@ -401,8 +401,7 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 		radius: 0,
 		inputBinding: {
 			latitudeInput: $('#latInput'),
-			longitudeInput: $('#lngInput'),
-			locationNameInput: $('#address')
+			longitudeInput: $('#lngInput')
 		},
 		draggable: false,
 		onchanged: function() {

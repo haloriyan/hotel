@@ -122,7 +122,7 @@ if($aksi == "logout") {
 					<i class="fa fa-spinner"></i> registering...
 				</p>
 				<div class="bagTombol" id="optLogin">
-					<a href="#" id="linkLogMarcom2">back to login</a>
+					<a href="#" id="linkLogPublic2">back to login</a>
 				</div>
 			</form>
 		</div>
@@ -166,6 +166,11 @@ if($aksi == "logout") {
 		hilang("#suksesRegMarcom")
 		hilang("#formRegMarcom")
 		muncul("#formLoginMarcom")
+	})
+	klik("#linkLogPublic2", () => {
+		hilang("#suksesRegPublic")
+		hilang("#formRegPublic")
+		muncul("#formLoginPublic")
 	})
 	klik("#linkRegMarcom", () => {
 		hilang("#formLoginMarcom")

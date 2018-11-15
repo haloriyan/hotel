@@ -136,8 +136,12 @@ class event extends resto {
 			return $hasil;
 		}
 	}
-	public function totMyEvent($id) {
-		$q = $this->tabel("event")->pilih()->dimana(["idhotel" => $id])->eksekusi();
+	public function totMyEvent($id, $resto = NULL) {
+		if($resto == "") {
+			$q = $this->tabel("event")->pilih()->dimana(["idhotel" => $id, "id_resto" => ""])->eksekusi();
+		}else {
+			$q = $this->tabel("event")->pilih()->dimana(["id_resto" => $id])->eksekusi();
+		}
 		return $this->hitung($q);
 	}
 	public function hint($idevent) {

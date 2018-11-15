@@ -14,6 +14,11 @@
 	<input id="myRange">
 </div>
 
+<?php
+
+echo base64_decode("SmwuIFR1bmp1bmdhbiBOby4xLCBHZW50ZW5nLCBLb3RhIFNCWSwgSmF3YSBUaW11ciA2MDI3NSwgSW5kb25lc2lh");
+?>
+
 <script src="aset/js/jquery-3.1.1.js"></script>
 <script src="aset/rangeSlider/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
 <script>

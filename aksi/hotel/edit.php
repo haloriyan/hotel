@@ -17,8 +17,17 @@ if($bag == "detil") {
 	$lng = $_POST['lng'];
 	$coords = $lat."|".$lng;
 
-	$val = $phone.",".$address.",".$web.",".$city.",".$description.",".$icon.",".$cover.",".$coords;
-	$change = "phone,address,website,city,description,icon,cover,coords";
+	if($icon == "") {
+		$icon = $hotel->get($sesi, "icon");
+	}
+	if($cover == "") {
+		$cover = $hotel->get($sesi, "cover");
+	}
+
+	$val = $phone.",".$web.",".$city.",".$description.",".$icon.",".$cover.",".$coords;
+	$change = "phone,website,city,description,icon,cover,coords";
+
+	$ubahAddress = $hotel->change($idhotel, "address", urldecode($address));
 
 	$v = explode(",", $val);
 	$c = explode(",", $change);

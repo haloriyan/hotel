@@ -60,9 +60,9 @@ function selectDate(val) {
 		loadBoxQty()
 	})
 }
-klik("#tblLogin", () => {
-	mengarahkan("../auth&r="+redirect)
-})
 klik("#cta", function() {
 	mengarahkan('.,/hotel/add-listing');
+})
+klik("#tblLogin", () => {
+	mengarahkan("../auth&r="+redirect)
 })

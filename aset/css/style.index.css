@@ -48,6 +48,7 @@ a { color: #cb0023; }
 	color: #e74c3c;
 	border-radius: 4px;
 	font-size: 15px;
+	display: none;
 }
 .sub {
 	position: fixed;

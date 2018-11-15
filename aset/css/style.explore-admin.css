@@ -146,6 +146,7 @@ input[type=file].box {
 	transition: 0.4s;
 }
 .sub li:hover { background-color: #444;color: #fff; }
+.menu #cta { display: inline-block; }
 
 @media (max-width: 720px) {
 	.menuMob {

@@ -37,12 +37,14 @@ foreach ($all as $row) {
 	$idresto = $row['id_resto'];
 	if($idresto != 0) {
 		// Pakai resto
-		$namaHotel = $resto->info($idresto, "nama");
-		$iconHotel = $resto->info($idresto, "icon");
+		$namaHosted = $resto->info($idresto, "nama");
+		$iconHosted = $resto->info($idresto, "icon");
+		$linkToHosted = "./resto/".$idresto;
 	}else {
 		// Pakai hotel
-		$namaHotel = $hotel->get($idhotel, "nama");
-		$iconHotel = $hotel->get($idhotel, "icon");
+		$namaHosted = $hotel->get($idhotel, "nama");
+		$iconHosted = $hotel->get($idhotel, "icon");
+		$linkToHosted = "./hotel/".$idhotel;
 	}
 	$cover = $row['covers'];
 	$coverImage = '"aset/gbr/'.$cover.'"';
@@ -71,11 +73,11 @@ foreach ($all as $row) {
 						"</div>".
 					"</div>".
 					"</a>".
-					"<a href='./hotel/".$row['idhotel']."' target='_blank'>".
+					"<a href='".$linkToHosted."' target='_blank'>".
 					"<div id='hosted'>".
 						"<div class='wrap'>".
-							"<img src='aset/gbr/".$iconHotel."' class='ke-kiri'>",
-							"<div id='namaHotel'>Hosted by <b>".$namaHotel."</b></div>".
+							"<img src='aset/gbr/".$iconHosted."' class='ke-kiri'>",
+							"<div id='namaHotel'>Hosted by <b>".$namaHosted."</b></div>".
 						"</div>".
 					"</div>".
 					"</a>".
