@@ -62,6 +62,10 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 				right: 17.5%;
 			}
 			#subCat { right: 20%; }
+		<?php }else if($sebagai == "public") { ?>
+			#subUser {
+				right: 0%;
+			}
 		<?php } ?>
 	</style>
 </head>

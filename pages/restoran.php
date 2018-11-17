@@ -71,6 +71,10 @@ $cuisines = ["Indonesian","Internasional","Asian","Thai","Vegetarian","Western",
 				right: 17.5%;
 			}
 			#subCat { right: 20%; }
+		<?php }else if($sebagai == "public") { ?>
+			#subUser {
+				right: 0%;
+			}
 		<?php } ?>
 	</style>
 </head>

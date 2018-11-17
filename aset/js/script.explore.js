@@ -34,23 +34,23 @@ function setKuki(nama, val) {
 	})
 }
 
-// function cari(val) {
-// 	setKuki("kwExplore", val)
-//     history.replaceState("s", "pageExplore", "./explore&q="+encodeURIComponent(val))
-// }
-// function setBln(val) {
-//     setKuki("bulan", val)
-// }
-// function setThn(val) {
-//     setKuki("tahun", val)
-// }
-// function category(val) {
-// 	setKuki("category", val)
-// }
+function cari(val) {
+	setKuki("kwExplore", val)
+    history.replaceState("s", "pageExplore", "./explore&q="+encodeURIComponent(val))
+}
+function setBln(val) {
+    setKuki("bulan", val)
+}
+function setThn(val) {
+    setKuki("tahun", val)
+}
+function category(val) {
+	setKuki("category", val)
+}
 
-// function city(val) {
-//     setKuki("region", val)
-// }
+function city(val) {
+    setKuki("region", val)
+}
 
 load()
 

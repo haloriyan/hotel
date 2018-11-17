@@ -17,6 +17,8 @@ $namaPertama = explode(" ", $nama)[0];
 
 if(isset($_GET['cat']) && $_GET['cat'] != "") {
 	setcookie('category', $_GET['cat'], time() + 3650, "/");
+}else {
+	setcookie('category', '', time() + 1, "/");
 }
 
 $q = $_GET['q'];
@@ -31,6 +33,8 @@ if(isset($q)) {
 
 if($_GET['city'] != null) {
 	setcookie('region', $_GET['city'], time() + 3666, "/");
+}else {
+	setcookie('region', '', time() + 1, "/");
 }
 
 $urlNow = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -39,8 +43,6 @@ $urlNow = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "h
 setcookie('tglMulai', '', time() + 1, "/");
 setcookie('tglAkhir', '', time() + 1, "/");
 setcookie('kwExplore', '', time() + 1, "/");
-setcookie('category', '', time() + 1, "/");
-setcookie('region', '', time() + 1, "/");
 
 if($_GET['q'] != "") {
 	setcookie('kwExplore', $_GET['q'], time() + 3650, "/");
@@ -64,6 +66,13 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 	<link href='aset/css/style.explore.css' rel='stylesheet'>
 	<link href="aset/css/tambahanIndex.css" rel="stylesheet">
 	<link href="aset/css/tambahanExplore.css" rel="stylesheet">
+	<style>
+		<?php if($sebagai == "public") { ?>
+			#subUser {
+				right: 0%;
+			}
+		<?php } ?>
+	</style>
 </head>
 <body>
 

@@ -100,7 +100,7 @@ $category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping"
 				<select class="box" id="city" required onchange="cekCity(this.value)">
 					<option value="">Select city...</option>
 					<?php
-					if(!in_array($myCity, $cities)) {
+					if(!in_array($myCity, $cities) && $myCity != "") {
 						echo "<option selected>".$myCity."</option>";
 					}
 					foreach ($cities as $key => $value) {
@@ -138,6 +138,8 @@ $category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping"
 	function cekCity(val) {
 		if(val == "Other") {
 			$("#otherCity").muncul()
+		}else {
+			$("#otherCity").hilang()
 		}
 	}
 	submit("#formDetail", function() {

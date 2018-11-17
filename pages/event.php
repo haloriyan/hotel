@@ -100,11 +100,16 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 	<link href="../aset/css/tambahanIndex.css" rel="stylesheet">
 	<link href="../aset/css/tambahanEvent.css" rel="stylesheet">
 	<style>
+		.sharer,#phone { z-index: 7; }
 		<?php if($sebagai == "hotel") { ?>
 			#subCity {
 				right: 17.5%;
 			}
 			#subCat { right: 20%; }
+		<?php }else if($sebagai == "public") { ?>
+			#subUser {
+				right: 0%;
+			}
 		<?php } ?>
 	</style>
 	<link rel="stylesheet" href="../aset/flatpickr/dist/flatpickr.min.css">
@@ -185,6 +190,7 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 	<?php } else { ?>
 	This event has expired
 	<?php } ?>
+	<button id="share" onclick="munculShare()"><i class="fa fa-share"></i></button>
 </div>
 
 <div class="bawah">
@@ -252,7 +258,7 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 </div>
 
 <button id="phone" class="merah-2" aksi="on"><i class="fa fa-phone"></i></button>
-<div class="sharer">
+<div class="sharer" style="display: none;">
 	<div class="tombol" tipe='facebook' onclick="ogShare()"><i class="fa fa-facebook"></i></div>
 	<div class="tombol" tipe='twitter' onclick="shareTwitter()"><i class="fa fa-twitter"></i></div>
 </div>

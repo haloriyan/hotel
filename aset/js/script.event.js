@@ -6,6 +6,15 @@ function munculContact() {
 		pengaya("#call", "left: 0px")
 	}, 400)
 }
+function munculShare() {
+	muncul(".bg")
+	muncul(".sharer")
+	muncul("#phone")
+}
+function hilangShare() {
+	hilang(".bg")
+	hilang(".sharer")
+}
 function hilangContact() {
 	pengaya("#wa", "left: 300px")
 	setTimeout(function() {
@@ -60,10 +69,11 @@ tekan("Escape", function() {
 	hilangContact()
 	hilangPopup("#popupBook")
 	hilangPopup("#suksesBook")
-	hilangPopup("#formLoginBaru")
+	hilangShare()
 })
 klik(".bg", () => {
 	hilangContact()
+	hilangShare()
 })
 
 klik("#xBook", function() {

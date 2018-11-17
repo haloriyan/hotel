@@ -1,6 +1,6 @@
 .bg { z-index: 5; }
 .popup { z-index: 6; }
-.atas { position: absolute; }
+.atas { position: fixed; }
 #subCity { top: -2500px;position: absolute;right: 5.5%;transition: 0.5s; }
 #subUser { right: 12%; }
 .atas:hover { background: #cb0029;border: none; }

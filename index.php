@@ -43,6 +43,10 @@ $urlNow = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "h
 				right: 17.5%;
 			}
 			#subCat { right: 20%; }
+		<?php }else if($sebagai == "public") { ?>
+			#subUser {
+				right: 0%;
+			}
 		<?php } ?>
 	</style>
 </head>
@@ -101,7 +105,7 @@ $urlNow = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "h
 			</li>
 			<?php
 			if($sebagai == "hotel") { ?>
-				<button id="cta" class="tbl" style="display: inline-block;"><i class="fa fa-plus-circle"></i> Add Listing</button>
+				<button id="cta" onclick="mengarahkan('./hotel/add-listing');" class="tbl" style="display: inline-block;"><i class="fa fa-plus-circle"></i> Add Listing</button>
 			<?php }
 		}
 		?>
@@ -169,15 +173,8 @@ $urlNow = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "h
 <script src="aset/js/embo.js"></script>
 <?php
 if(isset($_COOKIE['kukiLogin'])) {
-	echo '<script>
-muncul(".bg")
-muncul("#notif")
-</script>';
-}
-if($_GET['auth']) {
-	echo '<script>
-munculPopup("#formLoginBaru", pengaya("#formLoginBaru", "top: 90px"))
-</script>';
+	$toRedirect = base64_encode($urlNow);
+	header("location: ./auth&r=".$toRedirect);
 }
 ?>
 <script src="aset/js/script.index.js"></script>
@@ -191,9 +188,6 @@ munculPopup("#formLoginBaru", pengaya("#formLoginBaru", "top: 90px"))
 		let cat = pilih("#cat").value
 		mengarahkan("./explore&q="+q+"&cat="+cat)
 		return false
-	})
-	klik("#cta", function() {
-		mengarahkan('./hotel/add-listing');
 	})
 	klik("#tblLogin", () => {
 		let redirect = btoa(pilih("#urlNow").value)
