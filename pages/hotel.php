@@ -123,7 +123,7 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 			</li>
 			<?php
 			if($sebagai == "hotel") { ?>
-				<button id="cta" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
+				<button id="cta" onclick="mengarahkan('../hotel/add-listing');" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
 			<?php }
 		}
 		?>
@@ -415,9 +415,6 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 	})
 	klik("#tblLogin", function() {
 		mengarahkan("../auth&r="+redirect)
-	})
-	klik("#cta", function() {
-		mengarahkan('../hotel/add-listing');
 	})
 </script>
 

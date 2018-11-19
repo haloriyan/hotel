@@ -132,7 +132,7 @@ $cuisines = ["Indonesian","Internasional","Asian","Thai","Vegetarian","Western",
 			</li>
 			<?php
 			if($sebagai == "hotel") { ?>
-				<button id="cta" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
+				<button id="cta" onclick="mengarahkan('../hotel/add-listing');" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
 			<?php }
 		}
 		?>
@@ -371,9 +371,6 @@ $cuisines = ["Indonesian","Internasional","Asian","Thai","Vegetarian","Western",
 	let redirect = btoa(pilih("#urlNow").value)
 	klik("#tblLogin", function() {
 		mengarahkan("../auth&r="+redirect)
-	})
-	klik("#cta", function() {
-		mengarahkan('../hotel/add-listing');
 	})
 </script>
 <script src="../aset/js/profileHotel.js"></script>

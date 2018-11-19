@@ -49,13 +49,16 @@ if($aksi == "logout") {
 				<input type="email" class="box" id="emailLogPublic" required autocomplete="off">
 				<div>Password</div>
 				<input type="password" class="box" id="pwdLogPublic" required autocomplete="off">
-				<div class="bagTombol">
+				<div class="bagTombol" style="height: 50px;">
 					<div class="bag bag-4">
 						<button class="tbl" id="tblLogPublic">LOGIN</button>
 					</div>
-					<div class="bag bag-3" id="optLogin">
+					<div class="bag bag-6" id="optLogin">
 						or <a href="#" id="linkRegPublic">register</a>
 					</div>
+				</div>
+				<div id="optLogin" style="margin-top: 45px;text-align: center;">
+					<a href="./forgot-password">Forgot Password?</a>
 				</div>
 			</form>
 			<form id="formRegPublic">
@@ -95,9 +98,12 @@ if($aksi == "logout") {
 					<div class="bag bag-5">
 						<button class="tbl" id="tblLogMarcom">LOGIN</button>
 					</div>
-					<div class="bag bag-3" id="optLogin">
+					<div class="bag bag-5" id="optLogin">
 						or <a href="#" id="linkRegMarcom">register</a>
 					</div>
+				</div>
+				<div id="optLogin" style="margin-top: 115px;text-align: center;">
+					<a href="./forgot-password">Forgot Password?</a>
 				</div>
 			</form>
 			<form id="formRegMarcom">

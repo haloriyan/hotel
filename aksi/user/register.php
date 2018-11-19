@@ -24,12 +24,6 @@ if($name == "") {
 
 	$emailEncoded = base64_encode($email);
 
-	$to = $email;
-	$subjek = "Welcome to Dailyhotels";
-	$header = "From: no-reply@dailyhotels.id";
-	$header .= "Content-Type: text/html; charset=UTF-8";
-	$message = "";
-
 	$body = '
 <h2 style="background: #cb0023;line-height: 36px;margin: 0px;margin-bottom: 25px;">
 <img src="http://explore.dailyhotels.id/test/aset/gbr/logo.png" style="width: 22%;margin-left: 5%;">
@@ -63,7 +57,7 @@ if($name == "") {
   $mail->isHTML(true);
 
   $to = $email;
-  $subjek = "Email Verification";
+  $subjek = "Welcome to Dailyhotels";
   $message = $body;
 
   $mail->setFrom('no-reply@dailyhotels.id', 'Daily Hotels');

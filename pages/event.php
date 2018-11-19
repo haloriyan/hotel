@@ -169,7 +169,7 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 			</li>
 			<?php
 			if($sebagai == "hotel") { ?>
-				<button id="cta" class="tbl" style="display: inline-block;"><i class="fa fa-plus-circle"></i> Add Listing</button>
+				<button id="cta" onclick="mengarahkan('./hotel/add-listing');" class="tbl" style="display: inline-block;"><i class="fa fa-plus-circle"></i> Add Listing</button>
 			<?php }
 		}
 		?>
