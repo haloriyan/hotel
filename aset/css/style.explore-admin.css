@@ -61,12 +61,13 @@ input[type=file].box {
 	font-family: OLight;
 }
 .container {
+	top: 124px;
 	left: 30%;width: 65%;
 }
 .container,.container .bagian {
 	background-color: #fff;
 	color: #444;
-	border: 1px solid #ccc;
+	border: 1px solid #ddd;
 	margin-bottom: 25px;
 	padding-bottom: 35px;
 }
@@ -147,6 +148,7 @@ input[type=file].box {
 }
 .sub li:hover { background-color: #444;color: #fff; }
 .menu #cta { display: inline-block; }
+#lompatKe { display: none; }
 
 @media (max-width: 720px) {
 	.menuMob {
@@ -161,5 +163,28 @@ input[type=file].box {
 	}
 	.notif {
 		left: 10%;right: 10%;
+	}
+	.container {
+		left: 5%;right: 5%;
+		width: 88%;
+		top: 150px;
+	}
+	.tabs .tab {
+		width: 19.9%;
+	}
+	.form .box {
+		width: 70%;
+		background-color: red;
+	}
+	.tabs .tab:nth-child(4) { margin-right: 0px;background-color: red; }
+	#lompatKe {
+		display: block;
+		position: fixed;
+		top: 60px;left: 0px;right: 0px;
+		height: 55px;
+		border-radius: 0px;
+		border: none;
+		border-bottom: 1px solid #ddd;
+		z-index: 1;
 	}
 }

@@ -9,6 +9,13 @@ $idhotel = $hotel->get($sesi, "idhotel");
 $myResto = $resto->totMyResto($idhotel);
 $myEvent = $event->totMyEvent($idhotel);
 
+$lompatKe = [
+	"dashboard" 	=> "Dashboard",
+	"detail"		=> "Detail Information",
+	"listing"		=> "My Listings",
+	"restaurant"	=> "Restaurant"
+];
+
 setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 ?>
 <!DOCTYPE html>
@@ -36,6 +43,16 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 		.sub li {
 			line-height: 50px;
 		}
+		.box {
+			font-size: 17px;
+		}
+		@media(max-width: 720px) {
+			.card {
+				display: block;
+				width: 100%;
+				padding: 1px;
+			}
+		}
 	</style>
 </head>
 <body>
@@ -59,6 +76,18 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 		<button id="cta" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
 	</nav>
 </div>
+<select class="box" id="lompatKe" onchange="mengarahkan('../hotel/'+this.value)">
+	<?php
+	foreach ($lompatKe as $key => $value) {
+		if($bag == $key) {
+			$selected = 'selected';
+		}else {
+			$selected = '';
+		}
+		echo "<option value='".$key."' ".$selected.">".$value."</option>";
+	}
+	?>
+</select>
 
 <div class="kiri">
 <a href="./dashboard"><div class="listWizard" aktif="ya">Dashboard</div></a>

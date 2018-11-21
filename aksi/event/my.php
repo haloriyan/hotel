@@ -27,13 +27,14 @@ if($load == "kosong") {
 	}
 }else {
 ?>
+<div style="overflow: auto;width: 100%;">
 <table id="myListing">
 	<thead>
 		<tr>
-			<th><i class="fa fa-image"></i></th>
-			<th style="width: 45%;">Title</th>
-			<th>Listing Type</th>
-			<th>Date Posted</th>
+			<th id="thImg"><i class="fa fa-image"></i></th>
+			<th id="thTitle">Title</th>
+			<th id="thListing">Listing Type</th>
+			<th id="thDate">Date Posted</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -56,6 +57,7 @@ if($load == "kosong") {
 		?>
 	</tbody>
 </table>
+</div>
 <div class="bag-tombol" style='margin-top: 25px;'>
 	<a href='../event/dashboard'><button class='merah-2'>see all my events</button></a>
 </div>

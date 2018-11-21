@@ -25,6 +25,12 @@ $bulan = [
 	'11' => 'November',
 	'12' => 'December'
 ];
+$lompatKe = [
+	"dashboard" 	=> "Dashboard",
+	"detail"		=> "Detail Information",
+	"listing"		=> "My Listings",
+	"restaurant"	=> "Restaurant"
+];
 
 setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 setcookie('category', '', time() + 1, '/');
@@ -95,6 +101,14 @@ setcookie('month', '', time() + 1, '/');
 		.sub li {
 			line-height: 50px;
 		}
+		#myListing #thTitle {
+			width: 45%;
+		}
+		@media(max-width: 720px) {
+			#myListing #thTitle {
+				width: 1500px;
+			}
+		}
 	</style>
 </head>
 <body>
@@ -118,6 +132,19 @@ setcookie('month', '', time() + 1, '/');
 		<button id="cta" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
 	</nav>
 </div>
+
+<select class="box" id="lompatKe" onchange="mengarahkan('../hotel/'+this.value)">
+	<?php
+	foreach ($lompatKe as $key => $value) {
+		if($bag == $key) {
+			$selected = 'selected';
+		}else {
+			$selected = '';
+		}
+		echo "<option value='".$key."' ".$selected.">".$value."</option>";
+	}
+	?>
+</select>
 
 <div class="kiri">
 	<a href="./dashboard"><div class="listWizard">Dashboard</div></a>
