@@ -62,11 +62,19 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 				right: 17.5%;
 			}
 			#subCat { right: 20%; }
+			@media (max-width: 720px) {
+				#subCat,#subCity {
+					right: 0%;
+				}
+			}
 		<?php }else if($sebagai == "public") { ?>
 			#subUser {
 				right: 0%;
 			}
 		<?php } ?>
+		@media (max-width: 720px) {
+			.logoHome { display: block; }
+		}
 	</style>
 </head>
 <body>
@@ -77,7 +85,7 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 	<nav class="menu">
 		<a href="../"><li>Home</li></a>
 		<a href="../explore"><li id="adaSub">Explore &nbsp; <i class="fa fa-angle-down"></i>
-			<nav class="sub merah-2" id="subCat">
+			<nav class="sub" id="subCat">
 				<?php
 				foreach ($category as $key => $value) {
 					echo "<a href='../explore&q=&cat=".$value."'><li>".$value."</li></a>";
@@ -86,7 +94,7 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 			</nav>
 		</li></a>
 		<a href="#"><li id="adaSub">City &nbsp; <i class="fa fa-angle-down"></i>
-			<nav class="sub merah-2" id="subCity">
+			<nav class="sub" id="subCity">
 				<?php
 				foreach ($cities2 as $key => $value) {
 					echo "<a href='../explore&q=&cat=&city=".$value."'><li>".$value."</li></a>";
@@ -123,7 +131,7 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 			</li>
 			<?php
 			if($sebagai == "hotel") { ?>
-				<button id="cta" onclick="mengarahkan('../hotel/add-listing');" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
+				<button id="cta" style="display: inline-block;" onclick="mengarahkan('../hotel/add-listing');" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
 			<?php }
 		}
 		?>
@@ -366,9 +374,11 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 	}
 	tekan("Escape", () => {
 		hilangContact()
-		hilang(".bg")
-		hilang(".sharer")
-		hilang("#phone")
+		hilangShare()
+	})
+	klik(".bg", () => {
+		hilangContact()
+		hilangShare()
 	})
 
 	klik("#phone", function() {
@@ -392,6 +402,11 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 		muncul(".bg")
 		muncul(".sharer")
 		muncul("#phone")
+	}
+	function hilangShare() {
+		hilang(".bg")
+		hilang(".sharer")
+		hilang("#phone")
 	}
 	klik("#share", () => {
 		munculShare()

@@ -151,8 +151,9 @@ body { background-color: #ecf0f1; }
 
 @media (max-width: 720px) {
 	.pencarian {
-		width: 70%;
+		width: 80%;
 	}
+	.pencarian .box { width: 70%; }
 	.logoHome { display: none; }
 	.kiri {
 		display: none;
@@ -182,7 +183,6 @@ body { background-color: #ecf0f1; }
 		display: block;
 		float: right;
 		margin-right: 2.5%;
-		margin-top: 25px;
 		font-size: 25px;
 	}
 

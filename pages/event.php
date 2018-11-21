@@ -106,6 +106,11 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 				right: 17.5%;
 			}
 			#subCat { right: 20%; }
+			@media (max-width: 720px) {
+				#subCat,#subCity {
+					right: 0%;
+				}
+			}
 		<?php }else if($sebagai == "public") { ?>
 			#subUser {
 				right: 0%;
@@ -123,7 +128,7 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 	<nav class="menu">
 		<a href="../"><li>Home</li></a>
 		<a href="../explore"><li id="adaSub">Explore &nbsp; <i class="fa fa-angle-down"></i>
-			<nav class="sub merah-2" id="subCat">
+			<nav class="sub" id="subCat">
 				<?php
 				foreach ($category as $key => $value) {
 					echo "<a href='../explore&q=&cat=".$value."'><li>".$value."</li></a>";
@@ -132,7 +137,7 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 			</nav>
 		</li></a>
 		<a href="#"><li id="adaSub">City &nbsp; <i class="fa fa-angle-down"></i>
-			<nav class="sub merah-2" id="subCity">
+			<nav class="sub" id="subCity">
 				<?php
 				foreach ($city as $key => $value) {
 					echo "<a href='../explore&q=&cat=&city=".$value."'><li>".$value."</li></a>";

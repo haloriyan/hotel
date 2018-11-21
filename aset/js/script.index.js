@@ -1,8 +1,13 @@
+var windowWidth = (window.innerwidth > 0) ? window.innerwidth : screen.width
 window.addEventListener("scroll", function() {
 		var skrol = window.pageYOffset
 		if(skrol >= 40) {
 			pengaya(".atas", "background: #cb0029")
-			pengaya(".sub", "background: #cb0029")
+			if(windowWidth > 720) {
+				pengaya(".sub", "background: #cb0029")
+			}else {
+				pengaya(".sub", "background: #fff")
+			}
 		}else {
 			pengaya(".atas", "background: none")
 			pengaya(".sub", "background: none")

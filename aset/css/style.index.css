@@ -160,6 +160,7 @@ select.box {
 }
 
 @media (max-width: 720px) {
+	.bawahe > .wrap { margin: 2.5%; }
 	#tblMenu {
 		display: block;
 	}
@@ -168,6 +169,7 @@ select.box {
 		position: fixed !important;
 		transition: 0.45s;
 		top: 75px;left: 0px;right: 0px;bottom: 0px;
+		overflow: auto;
 		float: none;
 		left: 100%;
 		background-color: #fff;
@@ -198,10 +200,11 @@ select.box {
 
 	.sub {
 		position: static;
-		width: 200px;
-		height: 300px;
-		background-color: red;
-		display: none;
+		width: 100%;
+		background-color: #fff;
 		border: none;
+	}
+	.sub li {
+		width: 100%;
 	}
 }

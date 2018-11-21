@@ -26,6 +26,10 @@
 		height: 500px;
 		background-color: blue;
 	}
+	#subCity,#subUser,#subCat {
+		width: 100%;
+	}
+	.atas:hover .sub { background-color: #fff;color: #cb0029; }
 }
 
 .bagLogin {
