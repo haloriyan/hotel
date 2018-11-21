@@ -19,6 +19,13 @@ function getAllFacility() {
 $myFacility = $hotel->get($sesi, "facility");
 $fac = explode(",", $myFacility);
 
+$lompatKe = [
+	"dashboard" 	=> "Dashboard",
+	"detail"		=> "Detail Information",
+	"listing"		=> "My Listings",
+	"restaurant"	=> "Restaurant"
+];
+
 setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 
 ?>
@@ -46,6 +53,7 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 		.sub li {
 			line-height: 50px;
 		}
+		#lompatKe { font-size: 16px; }
 	</style>
 </head>
 <body>
@@ -69,6 +77,21 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 		<button id="cta" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button>
 	</nav>
 </div>
+<select class="box" id="lompatKe" onchange="mengarahkan('../hotel/'+this.value)">
+	<?php
+	if($bag == "galeri" or $bag == "facility" or $bag == "social") {
+		$bag = "detail";
+	}
+	foreach ($lompatKe as $key => $value) {
+		if($bag == $key) {
+			$selected = 'selected';
+		}else {
+			$selected = '';
+		}
+		echo "<option value='".$key."' ".$selected.">".$value."</option>";
+	}
+	?>
+</select>
 
 <div class="kiri">
 	<a href="./dashboard"><div class="listWizard">Dashboard</div></a>

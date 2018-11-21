@@ -178,12 +178,16 @@ tbody td button {
 	transition: 0.4s;
 	cursor: pointer;
 }
-@media (max-width: 480px) {
+@media (max-width: 720px) {
 	.box {
 		width: 25px;
 	}
 	.popupWrapper {
 		left: 5%;right: 5%;
+	}
+	.tbl {
+		padding: 8px 12px 10px 12px;
+		font-size: 15px;
 	}
 }
 

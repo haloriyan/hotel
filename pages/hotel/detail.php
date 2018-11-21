@@ -35,7 +35,10 @@ $lompatKe = [
 	"dashboard" 	=> "Dashboard",
 	"detail"		=> "Detail Information",
 	"listing"		=> "My Listings",
-	"restaurant"	=> "Restaurant"
+	"restaurant"	=> "Restaurant",
+	"galeri"		=> "Gallery",
+	"facility"		=> "Facility",
+	"social"		=> "Social Network"
 ];
 
 ?>
