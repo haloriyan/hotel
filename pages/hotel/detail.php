@@ -17,6 +17,9 @@ if($coords == "") {
 	$defaultCoords = "(This is default address)";
 }
 
+$addrMin = explode(",", $address);
+$addressMin = $addrMin[0];
+
 $c = explode("|", $coords);
 $lat = $c[0];
 $lng = $c[1];
@@ -73,10 +76,10 @@ $lompatKe = [
 	<nav class="menu">
 		<a href="./<?php echo $idhotel; ?>" target='_blank'><li id="adaSub">Hello <?php echo $namaPertama; ?> ! &nbsp; <i class="fa fa-angle-down"></i>
 			<nav class="sub" id="subUser">
-				<a href="./detail"><li><div id="icon"><i class="fa fa-cog"></i></div> Settings</li></a>
-				<a href="./galeri"><li><div id="icon"><i class="fa fa-image"></i></div> Gallery</li></a>
-				<a href="./facility"><li><div id="icon"><i class="fa fa-cogs"></i></div> Facility</li></a>
-				<a href="./social"><li><div id="icon"><i class="fa fa-user"></i></div> Social</li></a>
+				<a href="./dashboard"><li><div id="icon"><i class="fa fa-home"></i></div> Dashboard</li></a>
+				<a href="./detail"><li><div id="icon"><i class="fa fa-user"></i></div> Profile</li></a>
+				<a href="./listing"><li><div id="icon"><i class="fa fa-pencil"></i></div> Listing</li></a>
+				<a href="./restaurant"><li><div id="icon"><i class="fa fa-cutlery"></i></div> Restaurant</li></a>
 				<a href="./logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
 			</nav>
 		</li></a>
@@ -97,13 +100,7 @@ $lompatKe = [
 	?>
 </select>
 
-<div class="kiri">
-	<a href="./dashboard"><div class="listWizard">Dashboard</div></a>
-	<a href="./detail"><div class="listWizard" aktif="ya">Detail Information</div></a>
-	<a href="./listing"><div class="listWizard">My Listings</div></a>
-	<a href="./restaurant"><div class="listWizard">Restaurant</div></a>
-	<a href="./logout"><div class="listWizard">Logout</div></a>
-</div>
+<?php include 'kiriProfile.php'; ?>
 
 <div class="container">
 	<div class="tabs">

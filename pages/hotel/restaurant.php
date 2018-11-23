@@ -1,10 +1,16 @@
 <?php
-include 'aksi/ctrl/hotel.php';
+include 'aksi/ctrl/event.php';
 
 $sesi 	= $hotel->sesi();
 $idhotel = $hotel->get($sesi, "idhotel");
 $name 	= $hotel->get($sesi, "nama");
 $namaPertama = explode(" ", $name)[0];
+$address = $hotel->get($sesi, "address");
+$icon 	= $hotel->get($sesi, "icon");
+$cover 	= $hotel->get($sesi, "cover");
+
+$addrMin = explode(",", $address);
+$addressMin = $addrMin[0];
 
 $lompatKe = [
 	"dashboard" 	=> "Dashboard",
@@ -57,10 +63,10 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 	<nav class="menu">
 		<a href="./<?php echo $idhotel; ?>" target='_blank'><li id="adaSub">Hello <?php echo $namaPertama; ?> ! &nbsp; <i class="fa fa-angle-down"></i>
 			<nav class="sub" id="subUser">
-				<a href="./detail"><li><div id="icon"><i class="fa fa-cog"></i></div> Settings</li></a>
-				<a href="./galeri"><li><div id="icon"><i class="fa fa-image"></i></div> Gallery</li></a>
-				<a href="./facility"><li><div id="icon"><i class="fa fa-cogs"></i></div> Facility</li></a>
-				<a href="./social"><li><div id="icon"><i class="fa fa-user"></i></div> Social</li></a>
+				<a href="./dashboard"><li><div id="icon"><i class="fa fa-home"></i></div> Dashboard</li></a>
+				<a href="./detail"><li><div id="icon"><i class="fa fa-user"></i></div> Profile</li></a>
+				<a href="./listing"><li><div id="icon"><i class="fa fa-pencil"></i></div> Listing</li></a>
+				<a href="./restaurant"><li><div id="icon"><i class="fa fa-cutlery"></i></div> Restaurant</li></a>
 				<a href="./logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
 			</nav>
 		</li></a>
@@ -80,13 +86,7 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 	?>
 </select>
 
-<div class="kiri">
-	<a href="./dashboard"><div class="listWizard">Dashboard</div></a>
-	<a href="./detail"><div class="listWizard">Detail Information</div></a>
-	<a href="./listing"><div class="listWizard">My Listings</div></a>
-	<a href="./listing"><div class="listWizard" aktif="ya">Restaurant</div></a>
-	<a href="./logout"><div class="listWizard">Logout</div></a>
-</div>
+<?php include 'kiriProfile.php'; ?>
 
 <div class="container">
 	<div>

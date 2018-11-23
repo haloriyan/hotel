@@ -5,6 +5,12 @@ $sesi 	= $hotel->sesi();
 $name 	= $hotel->get($sesi, "nama");
 $idhotel 	= $hotel->get($sesi, "idhotel");
 $namaPertama = explode(" ", $name)[0];
+$icon 	= $hotel->get($sesi, "icon");
+$cover 	= $hotel->get($sesi, "cover");
+$address = $hotel->get($sesi, "address");
+
+$addrMin = explode(",", $address);
+$addressMin = $addrMin[0];
 
 $lompatKe = [
 	"dashboard" 	=> "Dashboard",
@@ -85,13 +91,7 @@ setcookie('pakaiAkun', 'hotel', time() + 5555, '/');
 	?>
 </select>
 
-<div class="kiri">
-	<a href="./dashboard"><div class="listWizard">Dashboard</div></a>
-	<a href="./detail"><div class="listWizard" aktif='ya'>Detail Information</div></a>
-	<a href="./listing"><div class="listWizard">My Listings</div></a>
-	<a href="./restaurant"><div class="listWizard">Restaurant</div></a>
-	<a href="./logout"><div class="listWizard">Logout</div></a>
-</div>
+<?php include 'kiriProfile.php'; ?>
 
 <div class="container">
 	<div class="tabs">
