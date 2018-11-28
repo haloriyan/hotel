@@ -119,11 +119,11 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 					<?php
 					}else if($sebagai == "hotel") {
 					?>
-					<a href="../hotel/detail"><li><div id="icon"><i class="fa fa-cog"></i></div> Settings</li></a>
-					<a href="../hotel/galeri"><li><div id="icon"><i class="fa fa-image"></i></div> Gallery</li></a>
-					<a href="../hotel/facility"><li><div id="icon"><i class="fa fa-cogs"></i></div> Facility</li></a>
-					<a href="../hotel/social"><li><div id="icon"><i class="fa fa-user"></i></div> Social</li></a>
-					<a href="../hotel/logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
+					<a href="./dashboard"><li><div id="icon"><i class="fa fa-home"></i></div> Dashboard</li></a>
+					<a href="./detail"><li><div id="icon"><i class="fa fa-user"></i></div> Profile</li></a>
+					<a href="./listing"><li><div id="icon"><i class="fa fa-pencil"></i></div> Listing</li></a>
+					<a href="./restaurant"><li><div id="icon"><i class="fa fa-cutlery"></i></div> Restaurant</li></a>
+					<a href="./logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
 					<?php
 					}
 					?>

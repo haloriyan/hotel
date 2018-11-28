@@ -1,5 +1,5 @@
 <?php
-include 'aksi/ctrl/hotel.php';
+include 'aksi/ctrl/event.php';
 
 $sesi 	= $hotel->sesi();
 $idhotel 	= $hotel->get($sesi, "idhotel");

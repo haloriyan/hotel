@@ -103,11 +103,11 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 					<?php
 					}else if($sebagai == "hotel") {
 					?>
-					<a href="./hotel/detail"><li><div id="icon"><i class="fa fa-cog"></i></div> Settings</li></a>
-					<a href="./hotel/galeri"><li><div id="icon"><i class="fa fa-image"></i></div> Gallery</li></a>
-					<a href="./hotel/facility"><li><div id="icon"><i class="fa fa-cogs"></i></div> Facility</li></a>
-					<a href="./hotel/social"><li><div id="icon"><i class="fa fa-user"></i></div> Social</li></a>
-					<a href="./hotel/logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
+					<a href="./dashboard"><li><div id="icon"><i class="fa fa-home"></i></div> Dashboard</li></a>
+				<a href="./detail"><li><div id="icon"><i class="fa fa-user"></i></div> Profile</li></a>
+				<a href="./listing"><li><div id="icon"><i class="fa fa-pencil"></i></div> Listing</li></a>
+				<a href="./restaurant"><li><div id="icon"><i class="fa fa-cutlery"></i></div> Restaurant</li></a>
+				<a href="./logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
 					<?php
 					}
 					?>
@@ -133,7 +133,10 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 <div class="container">
 	<div class="wrap">
 		<input type="hidden" id="urlNow" value="<?php echo $urlNow; ?>">
-		<div id="load"></div>
+		<div class="grid">
+			<div class="grid-sizer"></div>
+			<div id="load"></div>
+		</div>
 	</div>
 </div>
 
@@ -153,6 +156,7 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 <script src='aset/js/embo.js'></script>
 <script src='aset/js/jquery-3.1.1.js'></script>
 <script src="aset/js/script.index.js"></script>
+<script src="aset/js/isotope.pkgd.min.js"></script>
 <script src='aset/js/jquery-ui.min.js'></script>
 <script src='aset/js/script.explore.js'></script>
 <script>
@@ -178,6 +182,14 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 		})
 	}
 	loadFilter()
+	let grid = document.querySelector('.grid')
+    let iso = new Isotope(grid, {
+        itemSelector: '.grid-item',
+        percentPosition: true,
+        mansory: {
+            columnWidth: '.grid-sizer'
+        }
+    })
 	klik("#tblLogin", () => {
 		let urlNow = btoa(pilih("#urlNow").value)
 		mengarahkan("./auth&r="+urlNow)

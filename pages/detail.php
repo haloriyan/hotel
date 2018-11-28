@@ -93,7 +93,7 @@ $category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping"
 				<div class="isi">Name :</div>
 				<input type="text" class="box" id="name" autocomplete="off" value="<?php echo $name; ?>" required>
 				<div class="isi">Phone :</div>
-				<input type="number" class="box" id="phone" autocomplete="off" value="<?php echo $phone; ?>" required>
+				<input type="number" class="box" id="phone" autocomplete="off" value="<?php echo $phone; ?>" min="1" required>
 				<div class="isi">Address :</div>
 				<textarea class="box" id="address" autocomplete="off"><?php echo $address; ?></textarea>
 				<div class="isi">City :</div>

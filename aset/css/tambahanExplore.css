@@ -10,7 +10,7 @@ body { background-color: #ecf0f1; }
 	top: 72px;
 }
 .container { top: 95px; }
-.list {
+/*.list {
 	width: 47%;
 	margin: 5px 10px;
 	margin-bottom: 30px;
@@ -34,7 +34,8 @@ body { background-color: #ecf0f1; }
 	background: rgba(0,0,0,0.45);
 	z-index: 5;
 }
-.ket #keterangan { margin-top: 45%; }
+.ket #keterangan { margin-top: 45%; }*/
+.container .grid a { color: #454545;text-decoration: none; }
 .tgl {
 	margin-top: -22px;
 	position: relative;
@@ -42,20 +43,51 @@ body { background-color: #ecf0f1; }
 	float: right;
 }
 .atas { position: absolute; }
-		#subCity { top: -2500px;position: absolute;right: 8.5%;transition: 0.5s; }
-		.atas:hover { background: #cb0029;border: none; }
-		.atas:hover .sub { background: #cb0029;border: none; }
-		#adaSub:hover #subCity { top: 80px; }
+#subCity { top: -2500px;position: absolute;right: 8.5%;transition: 0.5s; }
+.atas:hover { background: #cb0029;border: none; }
+.atas:hover .sub { background: #cb0029;border: none; }
+#adaSub:hover #subCity { top: 80px; }
 
-		#subCity li {
-			float: none;
-			transition: 0.5s;
-			line-height: 55px;
-		}
-		#subCity li:hover {
-			background-color: #444;
-		}
+#subCity li {
+	float: none;
+	transition: 0.5s;
+	line-height: 55px;
+}
+#subCity li:hover {
+	background-color: #444;
+}
 #subUser { right: 6.5%;width: 17.5%; }
+.grid:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+.grid-sizer,.grid-item { width: 46.5%; }
+.grid-item {
+	border: 1px solid #ddd;
+	float: left;
+	margin-bottom: 15px;
+	margin-right: 15px;
+	background-color: #fff;
+}
+.grid-item .beges { height: 250px; }
+.grid-item .begeneBege {
+	background: rgba(0,0,0,0.4);
+	min-height: 250px;
+	margin-top: -250px;
+}
+.grid-item .hosted { height: 55px; }
+.grid-item .hosted img {
+	height: 40px;
+	height: 40px;
+	border-radius: 50px;
+	float: left;
+}
+.grid-item .hosted #namaHotel {
+	float: left;
+	margin-left: 5%;
+	margin-top: 12px;
+}
 @media (max-width: 720px) {
 	.list {
 		float: none;

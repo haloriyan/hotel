@@ -58,30 +58,25 @@ foreach ($all as $row) {
 	}else {
 		$title = $row['title'];
 	}
-	echo "".
-			 "<div class='list'>".
-			 	"<div class='bgImage' style='background: url(".$coverImage.");background-size: cover;height: 250px;'>".
-					// "<img src='aset/gbr/".$row['covers']."'>".
-				"</div>".
+	echo "<div class='grid-item'>".
+			"<a href='#'>".
+				"<div class='beges' style='background: url(".$coverImage.");background-size: cover;'></div>".
 				"<div class='ket'>".
-					"<a href='./event/".$row['idevent']."'>".
 					"<div class='wrap'>".
-						"<div id='keterangan'>".
-							"<div class='tgl'><i class='fa fa-calendar'></i> &nbsp; ".$row['tgl_mulai']."</div>".
-							"<h3>".$title."</h3>".
-							"<p><i class='fa fa-map-marker'></i> &nbsp; ".$alamat."</p>".
-						"</div>".
+						"<h3>".$title."</h3>".
+						"<p><i class='fa fa-map-marker'></i> &nbsp; ".$alamat."</p>".
 					"</div>".
-					"</a>".
-					"<a href='".$linkToHosted."' target='_blank'>".
-					"<div id='hosted'>".
-						"<div class='wrap'>".
-							"<img src='aset/gbr/".$iconHosted."' class='ke-kiri'>",
-							"<div id='namaHotel'>Hosted by <b>".$namaHosted."</b></div>".
-						"</div>".
-					"</div>".
-					"</a>".
 				"</div>".
-			 "</div>".
-			"";
+			"</a>".
+			"<a href='#'>".
+				"<div class='hosted'>".
+					"<div class='wrap'>".
+						"<img src='aset/gbr/".$iconHosted."'>".
+						"<div id='namaHotel'>".
+							"Hosted by <b>".$namaHosted."</b>".
+						"</div>".
+					"</div>".
+				"</div>".
+			"</a>".
+		 "</div>";
 }
