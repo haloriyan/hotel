@@ -287,6 +287,7 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 				<div id="xBook" class="ke-kanan"><i class="fa fa-close"></i></div>
 			</h3>
 			<form id="formBook">
+				<input type="hidden" id="tglSkrg" value="<?php echo $tglSkrg; ?>">
 				<input type="hidden" id="minDate" value="<?php echo $tglMulai; ?>">
 				<input type="hidden" id="maxDate" value="<?php echo $tglAkhir; ?>">
 				<input type="hidden" id="idevent" value="<?php echo $idevent; ?>">
@@ -365,9 +366,25 @@ klik("#book", function() {
 
 <script type="text/javascript" src="//connect.facebook.net/en_US/sdk.js"></script>
 <script>
+function toDate(date) {
+	let parts = date.split('-')
+	let myDate = new Date(parts[0], parts[1] - 1, parts[2])
+	return myDate
+}
+
+let dateMin
+let minimumDate = toDate(pilih("#minDate").value)
+let tglSkrg = toDate(pilih("#tglSkrg").value)
+
+if(tglSkrg < minimumDate) {
+	dateMin = minimumDate
+}else {
+	dateMin = tglSkrg
+}
+
 flatpickr("#tglBook", {
 	dateFormat: "Y-m-d",
-	minDate: pilih("#minDate").value,
+	minDate: dateMin,
 	maxDate: pilih("#maxDate").value,
 	disable: [<?php echo getDisabledDate(); ?>]
 })

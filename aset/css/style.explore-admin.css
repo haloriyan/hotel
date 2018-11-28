@@ -54,7 +54,8 @@ body { background-color: #ecf0f1; }
 }
 .profileTabs .profileTab {
 	float: left;
-	width: 33.3%;
+	/*width: 33.3%;*/
+	width: 48.5%;
 	padding: 15px 0px;
 	color: #555;
 }
@@ -202,23 +203,15 @@ input[type=file].box {
 		position: fixed;
 		top: 75px;right: 0px;
 	}
-	.kiri {
-		display: none;
-	}
-	.form {
-		left: 5%;width: 90%;top: 100px;
-	}
-	.notif {
-		left: 10%;right: 10%;
-	}
+	.kiri { display: none; }
+	.form { left: 5%;width: 90%;top: 100px; }
+	.notif { left: 10%;right: 10%; }
 	.container {
 		left: 5%;right: 5%;
 		width: 88%;
 		top: 150px;
 	}
-	.tabs .tab {
-		width: 19.9%;
-	}
+	.tabs .tab { width: 19.9%; }
 	.form .box {
 		width: 70%;
 		background-color: red;
@@ -234,4 +227,12 @@ input[type=file].box {
 		border-bottom: 1px solid #ddd;
 		z-index: 1;
 	}
+	.profile { display: none; }
+	.sub { background: none;width: 170%; }
+	.sub li {
+		width: 100%;
+		line-height: 60px;
+		border-radius: 6px;
+	}
+	#subUser { right: 0px !important; }
 }

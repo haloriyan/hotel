@@ -199,12 +199,10 @@ select.box {
 	}
 
 	.sub {
+		display: block;
 		position: static;
-		width: 100%;
 		background-color: #fff;
 		border: none;
-	}
-	.sub li {
-		width: 100%;
+		color: #cb0029;
 	}
 }

@@ -53,6 +53,7 @@ setcookie('month', '', time() + 1, '/');
 	<link href='../aset/fw/build/font-awesome.min.css' rel='stylesheet'>
 	<link href='../aset/css/style.index.css' rel='stylesheet'>
 	<link href="../aset/css/style.explore-admin.css" rel="stylesheet">
+	<link href='../aset/css/tambahanIndex.css' rel='stylesheet'>
 	<style>
 		.box {
 			font-size: 16px;
@@ -114,6 +115,9 @@ setcookie('month', '', time() + 1, '/');
 			#myListing #thTitle {
 				width: 1500px;
 			}
+			.sub a {
+				color: #cb0023;
+			}
 		}
 	</style>
 </head>
@@ -121,13 +125,14 @@ setcookie('month', '', time() + 1, '/');
 
 <div class="atas merah-2">
 	<img src= "../aset/gbr/logo.png" class="logoHome">
+	<div id="tblMenu" aksi="bkMenu"><i class="fa fa-bars"></i></div>
 	<div class="pencarian">
 		<i class="fa fa-search"></i>
 		<input type="text" class="box" placeholder="Type your search...">
 	</div>
 	<nav class="menu">
 		<a href="./<?php echo $idhotel; ?>" target='_blank'><li id="adaSub">Hello <?php echo $namaPertama; ?> ! &nbsp; <i class="fa fa-angle-down"></i>
-			<nav class="sub" id="subUser">
+			<nav class="sub merah-2" id="subUser">
 				<a href="./dashboard"><li><div id="icon"><i class="fa fa-home"></i></div> Dashboard</li></a>
 				<a href="./detail"><li><div id="icon"><i class="fa fa-user"></i></div> Profile</li></a>
 				<a href="./listing"><li><div id="icon"><i class="fa fa-pencil"></i></div> Listing</li></a>
@@ -257,6 +262,17 @@ setcookie('month', '', time() + 1, '/');
 			load()
 		})
 		return false
+	})
+	klik("#tblMenu", function() {
+		let tbl = pilih("#tblMenu")
+		let aksi = tbl.getAttribute("aksi")
+		if(aksi == "bkMenu") {
+			pengaya(".menu", "left: 0%")
+			tbl.setAttribute("aksi", "xMenu")
+		}else {
+			pengaya(".menu", "left: 100%")
+			tbl.setAttribute("aksi", "bkMenu")
+		}
 	})
 </script>
 

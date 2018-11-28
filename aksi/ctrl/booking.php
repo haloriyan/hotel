@@ -39,7 +39,8 @@ class booking extends event {
 		return $q;
 	}
 	public function cek($idevent, $iduser) {
-		$q = $this->query("SELECT * FROM booking WHERE idevent = '$idevent' AND iduser = '$iduser' AND status != '9' AND status != '8'");
+		$tglSkrg = date('Y-m-d');
+		$q = $this->query("SELECT * FROM booking WHERE idevent = '$idevent' AND iduser = '$iduser' AND tgl >= '$tglSkrg' AND status != '9' AND status != '8'");
 		if($this->hitung($q) != 0) {
 			return "ada";
 		}else {
