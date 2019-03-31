@@ -209,9 +209,9 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 		<div class="wrap">
 			<h4><div id="icon"><i class="fa fa-money"></i></div> Price</h4>
 			<div class="isi">Pricing</div>
-			<input type="number" class="box" id="priceBox" placeholder='e.g "140000"' min="1">
+			<input type="text" class="box" id="priceBox" placeholder='e.g "140000"' min="1">
 			<button class="tbl merah-2 tblBack" type="button" onclick="hilangKecuali('price')"><i class="fa fa-angle-left"></i></button>
-			<button class="tbl merah-2 tblBack" id="publish" type="button"><i class="fa fa-angle-right"></i></button>
+			<button class="tbl merah-2" id="publish" type="button">Publish</button>
 		</div>
 	</form>
 </div>
@@ -255,6 +255,28 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 			pilih('#afterFour').setAttribute('aktif', 'ya')
 		}
 	}
+	function formatRupiah(angka, prefix){
+		var number_string = angka.replace(/[^,\d]/g, '').toString(),
+		split   		= number_string.split(','),
+		sisa     		= split[0].length % 3,
+		rupiah     		= split[0].substr(0, sisa),
+		ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+		// tambahkan titik jika yang di input sudah menjadi angka ribuan
+		if(ribuan){
+			separator = sisa ? '.' : '';
+			rupiah += separator + ribuan.join('.');
+		}
+ 		rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+		return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+	}
+	function toAngka(angka) {
+		return parseInt(angka.replace(/,.*|[^0-9]/g, ''), 10);
+	}
+	$("#priceBox").on('input', function() {
+		let angka = formatRupiah($(this).val(), 'Rp. ')
+		$(this).val(angka)
+	})
 	function publish() {
 		let title = $("#title").val()
 		let tagline = $("#tagline").val()
@@ -266,7 +288,7 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 		let dateEnd = $("#dateEnd").val()
 		let category = $("#category").val()
 		let seat = $("#seat").val()
-		let price = $("#priceBox").val()
+		let price = toAngka($("#priceBox").val())
 		let pub = "title="+title+"&tagline="+tagline+"&description="+description+"&cover="+cover+"&region="+region+"&address="+address+"&tgl="+date+"&tgl_akhir="+dateEnd+"&category="+category+"&quota="+seat+"&price="+price
 		if(title == "" || tagline == "" || description == "" || cover == "" || region == "" || address == "" || date == "" || category == "" || seat == "" || price == "") {
 			munculPopup("#notif", pengaya("#notif", "top: 225px"))
@@ -363,6 +385,7 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 		}
 
 		var file = $(this)[0].files[0];
+		console.log(file)
 		var upload = new Upload(file);
 		upload.doUpload();
 	})

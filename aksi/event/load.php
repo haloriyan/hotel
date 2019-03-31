@@ -15,7 +15,6 @@ if($bln == "" || $thn == "") {
 $category = $_COOKIE['category'];
 $city   = $_COOKIE['region'];
 
-
 $all = $event->all($keyword, $tglAkhir, $category, $city);
 
 if($all == "kosong" || $all == "null") {
@@ -59,7 +58,7 @@ foreach ($all as $row) {
 		$title = $row['title'];
 	}
 	echo "<div class='grid-item'>".
-			"<a href='#'>".
+			"<a href='./event/".$row['idevent']."'>".
 				"<div class='beges' style='background: url(".$coverImage.");background-size: cover;'></div>".
 				"<div class='ket'>".
 					"<div class='wrap'>".
@@ -68,7 +67,7 @@ foreach ($all as $row) {
 					"</div>".
 				"</div>".
 			"</a>".
-			"<a href='#'>".
+			"<a href='".$linkToHosted."'>".
 				"<div class='hosted'>".
 					"<div class='wrap'>".
 						"<img src='aset/gbr/".$iconHosted."'>".

@@ -81,10 +81,15 @@ $namaPertama = explode(" ", $nama)[0];
 		<input type="text" class="box" placeholder="Type your search...">
 	</div>
 	<nav class="menu">
-		<a href="#"><li>Home</li></a>
-		<a href="#"><li>Explore</li></a>
-		<a href="#"><li>City</li></a>
-		<li>Hello <?php echo $namaPertama; ?> !</li>
+		<a href="./<?php echo $idhotel; ?>" target='_blank'><li id="adaSub">Hello <?php echo $namaPertama; ?> ! &nbsp; <i class="fa fa-angle-down"></i>
+            <nav class="sub merah-2" id="subUser" style="top: 77px !important;">
+                <a href="./dashboard"><li><div id="icon"><i class="fa fa-home"></i></div> Dashboard</li></a>
+                <a href="./detail"><li><div id="icon"><i class="fa fa-user"></i></div> Profile</li></a>
+                <a href="./listing"><li><div id="icon"><i class="fa fa-pencil"></i></div> Listing</li></a>
+                <a href="./restaurant"><li><div id="icon"><i class="fa fa-cutlery"></i></div> Restaurant</li></a>
+                <a href="./logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
+            </nav>
+        </li></a>
 		<a href='<?php echo $linkCta; ?>' target='_blank'><button id="cta" class="tbl"><i class="fa fa-plus-circle"></i> Add Listing</button></a>
 	</nav>
 </div>

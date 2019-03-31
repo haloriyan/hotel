@@ -143,8 +143,8 @@ $lompatKe = [
 		</div>
 	</div>
 	<form id="formDetil" style="display: none;">
-		<div class="wrap">
-			<h4><div id="icon"><i class="fa fa-pencil"></i></div> Detail Information</h4>
+		<div class="wrap" style="margin-top: 55px !important;">
+			<h4 style=""><div id="icon"><i class="fa fa-pencil"></i></div> Detail Information</h4>
 			<div class="isi">Hotel description :</div>
 			<textarea class='box' id='description'><?php echo $description; ?></textarea>
 			<div class="isi">City :</div>
@@ -294,6 +294,8 @@ $lompatKe = [
 		if(val == 'other') {
 			// generate
 			muncul('#citys')
+		}else {
+			hilang("#citys")
 		}
 	}
 	$('#formDetil').submit(function() {

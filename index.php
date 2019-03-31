@@ -93,11 +93,11 @@ $urlNow = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "h
 					<?php
 					}else if($sebagai == "hotel") {
 					?>
-					<a href="./dashboard"><li><div id="icon"><i class="fa fa-home"></i></div> Dashboard</li></a>
-				<a href="./detail"><li><div id="icon"><i class="fa fa-user"></i></div> Profile</li></a>
-				<a href="./listing"><li><div id="icon"><i class="fa fa-pencil"></i></div> Listing</li></a>
-				<a href="./restaurant"><li><div id="icon"><i class="fa fa-cutlery"></i></div> Restaurant</li></a>
-				<a href="./logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
+					<a href="./hotel/dashboard"><li><div id="icon"><i class="fa fa-home"></i></div> Dashboard</li></a>
+					<a href="./hotel/detail"><li><div id="icon"><i class="fa fa-user"></i></div> Profile</li></a>
+					<a href="./hotel/listing"><li><div id="icon"><i class="fa fa-pencil"></i></div> Listing</li></a>
+					<a href="./hotel/restaurant"><li><div id="icon"><i class="fa fa-cutlery"></i></div> Restaurant</li></a>
+					<a href="./hotel/logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
 					<?php
 					}
 					?>

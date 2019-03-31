@@ -42,6 +42,8 @@ $urlNow = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "h
 // delete cookie
 setcookie('tglMulai', '', time() + 1, "/");
 setcookie('tglAkhir', '', time() + 1, "/");
+setcookie('bulan', '', time() + 1, "/");
+setcookie('tahun', '', time() + 1, "/");
 setcookie('kwExplore', '', time() + 1, "/");
 
 if($_GET['q'] != "") {

@@ -227,7 +227,7 @@ $address = $resto->info($sesi, "address");
 			<input type="hidden" id="idresto" value="<?php echo $idresto; ?>">
 			<h4><div id="icon"><i class="fa fa-map-marker"></i></div> Price</h4>
 			<div class="isi">Pricing</div>
-			<input type="number" class="box" id="priceBox" placeholder='e.g "140000"' min="1">
+			<input type="text" class="box" id="priceBox" placeholder='e.g "140000"' min="1">
 			<button class="tbl merah-2 tblBack" type="button" onclick="hilangKecuali('detail')"><i class="fa fa-angle-left"></i></button>
 			<button class="tbl merah-2" id="publish" type="button">PUBLISH</button>
 		</div>
@@ -273,6 +273,29 @@ $address = $resto->info($sesi, "address");
 			pilih('#afterFour').setAttribute('aktif', 'ya')
 		}
 	}
+	function formatRupiah(angka, prefix){
+		var number_string = angka.replace(/[^,\d]/g, '').toString(),
+		split   		= number_string.split(','),
+		sisa     		= split[0].length % 3,
+		rupiah     		= split[0].substr(0, sisa),
+		ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+		// tambahkan titik jika yang di input sudah menjadi angka ribuan
+		if(ribuan){
+			separator = sisa ? '.' : '';
+			rupiah += separator + ribuan.join('.');
+		}
+ 		rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+		return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+	}
+	function toAngka(angka) {
+		return parseInt(angka.replace(/,.*|[^0-9]/g, ''), 10);
+	}
+	$("#priceBox").on('input', function() {
+		let angka = formatRupiah($(this).val(), 'Rp. ')
+		$(this).val(angka)
+	})
+	hilangKecuali('price')
 	function publish() {
 		let idresto = pilih("#idresto").value
 		let title = encodeURIComponent(pilih("#title").value)
@@ -285,7 +308,7 @@ $address = $resto->info($sesi, "address");
 		let dateEnd = pilih("#dateEnd").value
 		let seat = pilih("#seat").value
 		let category = pilih("#category").value
-		let price = pilih("#priceBox").value
+		let price = toAngka(pilih("#priceBox").value)
 		let pub = "idresto="+idresto+"&title="+title+"&tagline="+tagline+"&description="+description+"&cover="+cover+"&region="+region+"&address="+address+"&tgl="+date+"&tgl_akhir="+dateEnd+"&category="+category+"&quota="+seat+"&price="+price
 		if(title == "" || tagline == "" || description == "" || cover == "" || region == "" || address == "" || date == "" || category == "" || seat == "" || price == "") {
 			munculPopup("#notif", pengaya("#notif", "top: 225px"))
