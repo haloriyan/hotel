@@ -73,6 +73,7 @@ $namaPertama = explode(" ", $nama)[0];
         .myList {
             width: 31.46%;
             display: inline-block;
+            vertical-align: top;
             box-shadow: 1px 1px 5px 1px #ddd;
             margin: 0px 10px;
             margin-bottom: 25px;
@@ -162,14 +163,31 @@ $namaPertama = explode(" ", $nama)[0];
     </div>
 </div>
 
-<script src="../aset/js/embo.js"></script>
+<div class="popupWrapper" id="deleteEvent">
+    <div class="popup">
+        <div class="wrap">
+            <h3>Delete event
+                <div class="ke-kanan" id="xDelete"><i class="fa fa-close"></i></div>
+            </h3>
+            <form id="formDelete">
+                <input type="hidden" id="idevent">
+                <p>Sure want to delete this event?</p>
+                <div class="bag-tombol">
+                    <button class="merah-2">Yes, delete this</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="../aset/js/emboBaru.js"></script>
 <script>
     function load() {
         ambil("../aksi/event/redeemable.php", (res) => {
-            tulis("#loads", res)
+            $("#loads").tulis(res)
         })
         ambil("../aksi/redeem/myRedeem.php", (res) => {
-            tulis("#myRedeem", res)
+            $("#myRedeem").tulis(res)
         })
     }
     function request(id) {
@@ -178,14 +196,30 @@ $namaPertama = explode(" ", $nama)[0];
             load()
         })
     }
+    function hapus(id) {
+        munculPopup("#deleteEvent", $("#deleteEvent").pengaya("top: 120px"))
+        $("#idevent").isi(id)
+    }
+    submit('#formDelete', () => {
+        let id = $("#idevent").isi()
+        pos("../aksi/event/delete.php", "idevent="+id, (res) => {
+            load()
+            console.log(res)
+        })
+        return false
+    })
 
     
     tekan("Escape", () => {
         hilangPopup("#notif")
         hilangPopup("#abortRedeem")
+        hilangPopup("#deleteEvent")
     })
-    klik("#xNotif", () => {
+    $("#xNotif").klik(() => {
         hilangPopup("#notif")
+    })
+    $("#xDelete").klik(() => {
+        hilangPopup("#deleteEvent")
     })
 
     load()

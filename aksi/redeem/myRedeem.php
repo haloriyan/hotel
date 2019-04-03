@@ -53,9 +53,11 @@ foreach($myRedeem as $row) {
     if($status == 0) {
         $statusMsg = "Pending";
         $warna = "kuning";
+        $btnDelete = '';
     }else if($status == 1) {
         $statusMsg = "<i class='fa fa-check'></i> &nbsp; Confirmed";
         $warna = "hijau";
+        $btnDelete = '<button class="tbl merah-2" onclick="hapus(`'.$idevent.'`)"><i class="fa fa-trash"></i></button>';
     }
     echo "<div class='myList'>".
             "<img src='../aset/gbr/".$coverImage."'>".
@@ -63,6 +65,7 @@ foreach($myRedeem as $row) {
                 "<h3>".$title."</h3>".
                 "<p><i class='fa fa-money'></i> &nbsp; ".toIdr($fixedSaldo)."</p>".
                 "<button class='tbl $warna' style='cursor: default;'>".$statusMsg."</button>".
+                $btnDelete.
             "</div>".
          "</div>";
 }

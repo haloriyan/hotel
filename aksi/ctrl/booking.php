@@ -175,7 +175,7 @@ class booking extends event {
 		}
 		date_default_timezone_set('Asia/Jakarta');
 		$tglSkrg = date('Y-m-d');
-		$q = $this->query("SELECT * FROM event WHERE $tipes AND status != '9' AND tgl_akhir < '$tglSkrg'");
+		$q = $this->query("SELECT * FROM event WHERE $tipes AND status != '9' AND status != '0' AND tgl_akhir < '$tglSkrg'");
 		if($this->hitung($q) == 0) {
 			return "null";
 		}else {

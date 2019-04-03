@@ -3,7 +3,8 @@ include 'booking.php';
 
 class redeem extends booking {
 	public function my($idhotel, $status = NULL) {
-		$q = $this->tabel("redeem")->pilih()->dimana(["idhotel" => $idhotel, "id_resto" => 0])->eksekusi();
+		// $q = $this->tabel("redeem")->pilih()->dimana(["idhotel" => $idhotel, "id_resto" => 0])->eksekusi();
+		$q = $this->query("SELECT * FROM redeem INNER JOIN event ON redeem.idhotel = event.idhotel WHERE idhotel = '$idhotel' AND id_resto = '0' AND event.status = '1'");
 		if($this->hitung($q) == 0) {
 			return "null";
 		}else {
@@ -14,7 +15,8 @@ class redeem extends booking {
 		}
 	}
 	public function myForResto($id) {
-		$q = $this->tabel("redeem")->pilih()->dimana(["id_resto" => $id])->eksekusi();
+		// $q = $this->tabel("redeem")->pilih()->dimana(["id_resto" => $id])->eksekusi();
+		$q = $this->query("SELECT * FROM redeem INNER JOIN event ON redeem.id_resto = event.id_resto WHERE id_resto = '$id' AND event.status = '1'");
 		if($this->hitung($q) == 0) {
 			return "null";
 		}else {

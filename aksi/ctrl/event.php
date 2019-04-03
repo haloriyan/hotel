@@ -104,9 +104,9 @@ class event extends resto {
 			}
 			$filterTgl = "tgl_akhir LIKE '%$tglAkhir%'";
 		}
-		$sqlQuery = $this->query("SELECT * FROM event LEFT JOIN hotel ON event.idhotel = hotel.idhotel WHERE nama LIKE '%$keyword%' AND category LIKE '%$cat%' AND $filterTgl AND region LIKE '%$region%' ORDER BY event.added DESC");
+		$sqlQuery = $this->query("SELECT * FROM event LEFT JOIN hotel ON event.idhotel = hotel.idhotel WHERE nama LIKE '%$keyword%' AND category LIKE '%$cat%' AND $filterTgl AND region LIKE '%$region%' AND status = '1' ORDER BY event.added DESC");
 		if($this->hitung($sqlQuery) == 0) {
-			$sqlQuery = $this->query("SELECT * FROM event WHERE title LIKE '%$keyword%' AND category LIKE '%$cat%' AND $filterTgl AND region LIKE '%$region%' ORDER BY event.added DESC");
+			$sqlQuery = $this->query("SELECT * FROM event WHERE title LIKE '%$keyword%' AND category LIKE '%$cat%' AND $filterTgl AND region LIKE '%$region%' AND status = '1' ORDER BY event.added DESC");
 			// $sqlQuery = $this->query("SELECT * FROM event WHERE title LIKE '%$keyword%' AND category LIKE '%$category%' AND ");
 		}
 		if($this->hitung($sqlQuery) == 0) {
@@ -139,7 +139,7 @@ class event extends resto {
 	}
 	public function totMyEvent($id, $resto = NULL) {
 		if($resto == "") {
-			$q = $this->tabel("event")->pilih()->dimana(["idhotel" => $id, "id_resto" => ""])->eksekusi();
+			$q = $this->query("SELECT * FROM event WHERE idhotel = '$id' AND id_resto = '' AND status = '1'");
 		}else {
 			$q = $this->tabel("event")->pilih()->dimana(["id_resto" => $id])->eksekusi();
 		}

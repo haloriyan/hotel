@@ -88,7 +88,7 @@ function pos(url, data, efek) {
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr.onreadystatechange = function() {
 		if(xhr.readyState == 4 && xhr.status == 200) {
-			efek();
+			efek(xhr.responseText);
 		}else {
 			// console.log("gagal mengirim data");
 		}
