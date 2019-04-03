@@ -29,6 +29,7 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 			width: 100%;
 			transition: 0.4s;
 		}
+		div.box { max-height: 120px;overflow: auto; }
 		.box:focus { border-bottom: 2px solid #cb0023; }
 		#image,#location,#detail,#price { display: none; }
 		.atas { z-index: 2; }
@@ -137,7 +138,8 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 			<div class="isi">Tagline</div>
 			<input type="text" class="box" id="tagline" placeholder="Tagline..." autocomplete="off">
 			<div class="isi">Description</div>
-			<textarea class="box" id="description" placeholder="Event description..."></textarea><br />
+			<!-- <textarea class="box" id="description" placeholder="Event description..."></textarea><br /> -->
+			<div id="description" class="box" contenteditable="true"></div>
 			<button class="tbl merah-2 tblBack"><i class="fa fa-angle-right"></i></button>
 		</div>
 	</form>
@@ -280,7 +282,7 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 	function publish() {
 		let title = $("#title").val()
 		let tagline = $("#tagline").val()
-		let description = $("#description").val()
+		let description = encodeURIComponent($("#description").html())
 		let cover = $("#covers").val()
 		let region = $("#region").val()
 		let address = $("#address").val()
@@ -307,7 +309,7 @@ $idhotel = $hotel->get($sesi, 'idhotel');
 	submit("#basic", function() {
 		let title 		= pilih("#title").value
 		let tagline 	= pilih("#tagline").value
-		let description = pilih("#description").value
+		let description = pilih("#description").innerHTML
 		if(title == "" || tagline == "" || description == "") {
 			munculPopup("#notif", pengaya("#notif", "top: 225px"))
 			tulis("#isiNotif", "All field must be filled")

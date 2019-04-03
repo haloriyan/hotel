@@ -35,6 +35,7 @@ $address = $resto->info($sesi, "address");
 			width: 100%;
 			transition: 0.4s;
 		}
+		div.box { max-height: 120px;overflow: auto; }
 		.box:focus { border-bottom: 2px solid #cb0023; }
 		#image,#location,#detail,#price { display: none; }
 		.atas { z-index: 2; }
@@ -154,7 +155,8 @@ $address = $resto->info($sesi, "address");
 			<div class="isi">Tagline</div>
 			<input type="text" class="box" id="tagline" placeholder="Tagline..." autocomplete="off">
 			<div class="isi">Description</div>
-			<textarea class="box" id="description" placeholder="Event description..."></textarea><br />
+			<!-- <textarea class="box" id="description" placeholder="Event description..."></textarea><br /> -->
+			<div id="description" class="box" contenteditable="true"></div>
 			<button class="tbl merah-2"><i class="fa fa-angle-right"></i></button>
 		</div>
 	</form>
@@ -300,7 +302,7 @@ $address = $resto->info($sesi, "address");
 		let idresto = pilih("#idresto").value
 		let title = encodeURIComponent(pilih("#title").value)
 		let tagline = encodeURIComponent(pilih("#tagline").value)
-		let description = encodeURIComponent(pilih("#description").value)
+		let description = encodeURIComponent(pilih("#description").innerHTML)
 		let cover = pilih("#covers").value
 		let region = pilih("#region").value
 		let address = encodeURIComponent(pilih("#address").value)
@@ -327,7 +329,7 @@ $address = $resto->info($sesi, "address");
 	submit("#basic", function() {
 		let title 		= pilih("#title").value
 		let tagline 	= pilih("#tagline").value
-		let description = pilih("#description").value
+		let description = pilih("#description").innerHTML
 		if(title == "" || tagline == "" || description == "") {
 			munculPopup("#notif", pengaya("#notif", "top: 225px"))
 			tulis("#isiNotif", "All field must be filled")
