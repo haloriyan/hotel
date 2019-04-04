@@ -1,5 +1,5 @@
 <?php
-include 'aksi/ctrl/booking.php';
+include 'aksi/ctrl/komentar.php';
 
 function toIdr($angka) {
 	return 'Rp. '.strrev(implode('.', str_split(strrev(strval($angka)), 3)));
@@ -23,6 +23,7 @@ $sesiHotel = $_SESSION['uhotel'];
 if($sesiHotel == "") {
 	$sesi = $user->sesi();
 	$nama = $user->info($sesi, "nama");
+	$myId = $user->info($sesi, "iduser");
 	$sebagai = "public";
 }else {
 	$sesi = $hotel->sesi(1);
@@ -74,6 +75,8 @@ function getDisabledDate() {
 
 setcookie('idevents', $idevent, time() + 3666, "/");
 $urlNow = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+$totKomentar = $komen->tot($idevent);
 
 // Category
 $category = ["Food and Beverage","Room","Venue","Sports and Wellness","Shopping","Recreation","Parties","Others"];
@@ -162,10 +165,10 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 					<?php
 					}else if($sebagai == "hotel") {
 					?>
-					<a href="./dashboard"><li><div id="icon"><i class="fa fa-home"></i></div> Dashboard</li></a>
-				<a href="./detail"><li><div id="icon"><i class="fa fa-user"></i></div> Profile</li></a>
-				<a href="./listing"><li><div id="icon"><i class="fa fa-pencil"></i></div> Listing</li></a>
-				<a href="./restaurant"><li><div id="icon"><i class="fa fa-cutlery"></i></div> Restaurant</li></a>
+					<a href="../hotel/dashboard"><li><div id="icon"><i class="fa fa-home"></i></div> Dashboard</li></a>
+				<a href="../hotel/detail"><li><div id="icon"><i class="fa fa-user"></i></div> Profile</li></a>
+				<a href="../hotel/listing"><li><div id="icon"><i class="fa fa-pencil"></i></div> Listing</li></a>
+				<a href="../hotel/restaurant"><li><div id="icon"><i class="fa fa-cutlery"></i></div> Restaurant</li></a>
 				<a href="../logout"><li><div id="icon"><i class="fa fa-sign-out"></i></div> Logout</li></a>
 					<?php
 					}
@@ -210,51 +213,68 @@ $city = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","Sur
 				</p>
 			</div>
 			<div class="menuHotel">
-				<a href="#"><li class="active">Details</li></a>
-				<a href="#"><li>Comments <div class="tot">0</div></li></a>
+				<a href="#"><li class="active" id="showdetails">Details</li></a>
+				<a href="#comments"><li id="showcomments">Comments <div class="tot"><?php echo $totKomentar; ?></div></li></a>
 			</div>
 		</div>
 	</div>
 	<div class="bawahe">
 		<div class="wrap">
-			<div id="bawahKiri">
+			<div class="hiddenBawah" id="comments" style="display: none;">
 				<div class="bagian">
 					<div class="wrap">
-						<h3><i class="fa fa-align-justify"></i> &nbsp; Description</h3>
-						<p>
-							<?php
-							echo $description;
-							?>
-						</p>
+						<?php if($sebagai == "public") { ?>
+						<form id="berkomentar">
+							<input type="hidden" id="myId" value="<?php echo $myId; ?>">
+							<!-- <input type="text" class="box" placeholder="Comments..."> -->
+							<div class="box" contenteditable="true" id="komentarBox">Comments...</div>
+							<button class="tbl merah-2"><i class="fa fa-paper-plane"></i></button>
+						</form>
+						<?php } ?>
+						<div id="loadKomentar"></div>
 					</div>
 				</div>
 			</div>
-			<div id="bawahKanan">
-				<div class="bagian location">
-					<div class="wrap">
-						<h3><i class="fa fa-map-marker"></i> &nbsp; Location</h3>
-						<p>
-							<?php echo $alamat; ?>
-						</p>
+			<div id="details">
+				<div id="bawahKiri">
+					<div class="bagian">
+						<div class="wrap">
+							<h3><i class="fa fa-align-justify"></i> &nbsp; Description</h3>
+							<p>
+								<?php
+								echo $description;
+								?>
+							</p>
+						</div>
 					</div>
 				</div>
-				<div class="bagian tgl">
-					<div class="wrap">
-						<h3><i class="fa fa-calendar"></i> &nbsp; Date</h3>
-						<p>
-							<?php echo sayDate($tglMulai)." - ".sayDate($tglAkhir); ?>
-						</p>
+				<div id="bawahKanan">
+					<div class="bagian location">
+						<div class="wrap">
+							<h3><i class="fa fa-map-marker"></i> &nbsp; Location</h3>
+							<p>
+								<?php echo $alamat; ?>
+							</p>
+						</div>
 					</div>
-				</div>
-				<div class="bagian hosted">
-					<div class="wrap">
-						<a href="../hotel/<?php echo $idhotel; ?>" style="color: #444;text-decoration: none;">
-						<h3><i class="fa fa-map-marker"></i> &nbsp; Hosted by</h3>
-						<p>
-							<img src="../aset/gbr/<?php echo $iconHotel; ?>" class="iconHotel"><br />
-							<span><?php echo $namaHotel; ?></span>
-						</p>
-						</a>
+					<div class="bagian tgl">
+						<div class="wrap">
+							<h3><i class="fa fa-calendar"></i> &nbsp; Date</h3>
+							<p>
+								<?php echo sayDate($tglMulai)." - ".sayDate($tglAkhir); ?>
+							</p>
+						</div>
+					</div>
+					<div class="bagian hosted">
+						<div class="wrap">
+							<a href="../hotel/<?php echo $idhotel; ?>" style="color: #444;text-decoration: none;">
+							<h3><i class="fa fa-map-marker"></i> &nbsp; Hosted by</h3>
+							<p>
+								<img src="../aset/gbr/<?php echo $iconHotel; ?>" class="iconHotel"><br />
+								<span><?php echo $namaHotel; ?></span>
+							</p>
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>	
@@ -388,6 +408,13 @@ flatpickr("#tglBook", {
 	maxDate: pilih("#maxDate").value,
 	disable: [<?php echo getDisabledDate(); ?>]
 })
+function loadComment() {
+	let id = pilih("#idevent").value
+	pos("../aksi/komentar/load.php", "id="+id, (res) => {
+		tulis("#loadKomentar", res)
+	})
+}
+loadComment()
 </script>
 <script src="../aset/js/tambahanEvent.js"></script>
 <?php
@@ -396,6 +423,64 @@ if(isset($_COOKIE['kukiLogin'])) {
 muncul(".bg")
 muncul("#notif")
 </script>';
+}
+if($sesi == "") {
+	echo '<script>
+klik("#tblLogin", () => {
+	mengarahkan("../auth&r="+redirect)
+})
+</script>';
+}
+if($sebagai == "public") {
+	echo "<h1>halo dunia</h1>";
+	echo '<script>
+pilih("#komentarBox").addEventListener("focus", (e) => {
+	let commentValue = pilih("#komentarBox").innerHTML
+	if(commentValue == "Comments...") {
+		pilih("#komentarBox").innerHTML = ""
+	}
+})
+submit("#berkomentar", () => {
+	let id = pilih("#myId").value
+	let idevent = pilih("#idevent").value
+	let komentar = pilih("#komentarBox").innerHTML
+	if(komentar == "Comments..." || komentar == "") {
+		alert("Comment box must be filled")
+		return false
+	}
+	let com = "iduser="+id+"&idevent="+idevent+"&komentar="+komentar
+	pos("../aksi/komentar/add.php", com, () => {
+		loadComment()
+	})
+	return false
+})
+</script>';
+}
+if($sebagai != "public") {
+?>
+	<h1>Hello world</h1>
+	<script>
+	function hehe(ke) {
+		let id = pilih("#idkomen"+ke).value
+		let reply = pilih("#balasan"+ke).innerHTML
+		let rep = "id="+id+"&reply="+reply
+		pos("../aksi/komentar/reply.php", rep, () => {
+			loadComment()
+		})
+		return false
+	}
+	function deleteReply(id) {
+		pos("../aksi/komentar/deleteReply.php", "id="+id, () => {
+			loadComment()
+		})
+	}
+	function deleteComment(id) {
+		pos("../aksi/komentar/delete.php", "id="+id, () => {
+			loadComment()
+		})
+	}
+	</script>
+	<?php
 }
 ?>
 

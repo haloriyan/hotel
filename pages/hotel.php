@@ -176,7 +176,7 @@ $cities2 = ["Bali","Bandung","Jakarta","Lombok","Makassar","Malang","Semarang","
 				<a href="#profiles"><li id="showprofiles" aktif="ya">Profile</li></a>
 				<!-- <a href="#loadReviews"><li id="showreviews">Reviews <div class="tot">0</div></li></a> -->
 				<!-- <a href="#"><li id="showreviews">Reviews <div class="tot">0</div></li></a> -->
-				<a href="#loadReviews"><li id="showreviews">Reviews <div class="tot">0</div></li></a>
+				<!-- <a href="#loadReviews"><li id="showreviews">Reviews <div class="tot">0</div></li></a> -->
 				<a href="#explores"><li id="showexplores">Explore <div class="tot"><?php echo $totExplore; ?></div></li></a>
 				<!-- <a href="#"><li id="showrents">Rent <div class="tot">4</div></li></a> -->
 			</div>

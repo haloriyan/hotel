@@ -55,10 +55,15 @@ class event extends resto {
 		$q = $this->tabel('event')->ubah([$kolom => $value])->dimana(['idevent' => $id])->eksekusi();
 		return $q;
 	}
-	public function my($id, $keyword = NULL, $category = NULL, $month = NULL) {
+	public function my($id, $keyword = NULL, $category = NULL, $month = NULL, $all = NULL) {
 		$thn = date('Y');
 		$tglFilter = $thn.'-'.$month;
-		$q = $this->query("SELECT * FROM event WHERE idhotel = '$id' AND status = '1' AND id_resto = '0' AND title LIKE '%$keyword%' AND category LIKE '%$category%' AND tgl_mulai LIKE '%$tglFilter%'");
+		if($all == "") {
+			$status = "status = '1'";
+		}else {
+			$status = "status LIKE '%%'";
+		}
+		$q = $this->query("SELECT * FROM event WHERE idhotel = '$id' AND $status AND id_resto = '0' AND title LIKE '%$keyword%' AND category LIKE '%$category%' AND tgl_mulai LIKE '%$tglFilter%'");
 		if($this->hitung($q) == "") {
 			return "kosong";
 		}else {
@@ -68,10 +73,15 @@ class event extends resto {
 			return $hasil;
 		}
 	}
-	public function myForResto($id, $keyword = NULL, $category = NULL, $month = NULL) {
+	public function myForResto($id, $keyword = NULL, $category = NULL, $month = NULL, $all = NULL) {
 		$thn = date('Y');
 		$tglFilter = $thn.'-'.$month;
-		$q = $this->query("SELECT * FROM event WHERE id_resto = '$id' AND status = '1' AND title LIKE '%$keyword%' AND category LIKE '%$category%' AND tgl_mulai LIKE '%$tglFilter%'");
+		if($all == "") {
+			$status = "status = '1'";
+		}else {
+			$status = "status LIKE '%%'";
+		}
+		$q = $this->query("SELECT * FROM event WHERE id_resto = '$id' AND $status AND title LIKE '%$keyword%' AND category LIKE '%$category%' AND tgl_mulai LIKE '%$tglFilter%'");
 		if($this->hitung($q) == "") {
 			return "kosong";
 		}else {

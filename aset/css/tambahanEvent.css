@@ -51,6 +51,23 @@
 .bg { z-index: 6; }
 .popup { z-index: 16; }
 
+.komen .reply {
+	margin-left: 5%;
+	margin-top: 15px;
+	width: 95%;
+}
+div.box {
+	font-size: 17px;
+	width: 85%;
+	padding: 20px;
+	display: inline-block;
+	max-height: 100px;
+	overflow: auto;
+	margin-right: 10px;
+	cursor: text !important;
+}
+#berkomentar button { position: relative;top: -72px;margin-top: -25px; }
+
 @media (max-width: 720px) {
 	.cta {
 		top: 290px;left: 40%;

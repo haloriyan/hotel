@@ -60,6 +60,3 @@ function selectDate(val) {
 		loadBoxQty()
 	})
 }
-klik("#tblLogin", () => {
-	mengarahkan("../auth&r="+redirect)
-})

@@ -34,6 +34,9 @@ if($pakaiAkun == "resto") {
 }
 $namaPertama = explode(" ", $nama)[0];
 
+// reset cookie
+setcookie('kwSearchDasbor', '', time() + 2, '/');
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,7 +52,9 @@ $namaPertama = explode(" ", $nama)[0];
         .box { font-size: 16px;}
         .myList {
             width: 31.46%;
-            float: left;
+            display: inline-block;
+            vertical-align: top;
+            margin: -2px;
             box-shadow: 1px 1px 5px 1px #ddd;
             margin: 0px 10px;
             margin-bottom: 25px;

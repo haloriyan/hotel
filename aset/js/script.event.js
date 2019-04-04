@@ -1,3 +1,17 @@
+function gantiMenu(kecuali) {
+	pilih("#showdetails").setAttribute("aktif", "tidak")
+	// pilih("#showreviews").setAttribute("aktif", "tidak")
+	// pilih("#showrents").setAttribute("aktif", "tidak")
+	pilih("#showcomments").setAttribute("aktif", "tidak")
+
+	hilang("#details")
+	hilang("#comments")
+	// hilang("#reviews")
+	// hilang("#rents")
+
+	muncul("#"+kecuali)
+	pilih("#show"+kecuali).setAttribute("aktif", "ya")
+}
 function munculContact() {
 	muncul(".bg")
 	pengaya(".listContact", "right: 2.5%")
@@ -6,6 +20,13 @@ function munculContact() {
 		pengaya("#call", "left: 0px")
 	}, 400)
 }
+klik("#showcomments", () => {
+	gantiMenu("comments")
+})
+klik("#showdetails", () => {
+	gantiMenu("details")
+})
+
 function munculShare() {
 	muncul(".bg")
 	muncul(".sharer")

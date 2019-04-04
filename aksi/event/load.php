@@ -2,6 +2,13 @@
 include '../ctrl/event.php';
 
 error_reporting(1);
+
+function convertTanggal($tgl) {
+	$bln = ["01" => "January", "02" => "February" , "03" => "March", "04" => "April", "05" => "May", "06" => "June", "07" => "July", "08" => "August", "09" => "September", "10" => "October", "11" => "November", "12" => "December"];
+	$t = explode("-", $tgl);
+	return $bln[$t[1]]." ".$t[2].", ".$t[0];
+}
+
 $keyword = $_COOKIE['kwExplore'];
 
 $bln = $_COOKIE['bulan'];
@@ -57,13 +64,21 @@ foreach ($all as $row) {
 	}else {
 		$title = $row['title'];
 	}
-	echo "<div class='grid-item'>".
+	$tglMulai = convertTanggal($row['tgl_mulai']);
+	echo "<div class='grid-item' style='height: 420px;'>".
 			"<a href='./event/".$row['idevent']."'>".
 				"<div class='beges' style='background: url(".$coverImage.");background-size: cover;'></div>".
 				"<div class='ket'>".
 					"<div class='wrap'>".
 						"<h3>".$title."</h3>".
-						"<p><i class='fa fa-map-marker'></i> &nbsp; ".$alamat."</p>".
+						"<p>".
+							"<div class='bag bag-5'>".
+								"<i class='fa fa-map-marker'></i> &nbsp; ".$alamat."".
+							"</div>".
+							"<div class='bag bag-5'>".
+								"<i class='fa fa-calendar'></i> &nbsp; ".$tglMulai."".
+							"</div>".
+						"</p>".
 					"</div>".
 				"</div>".
 			"</a>".
